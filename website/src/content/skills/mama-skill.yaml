@@ -1,6 +1,6 @@
 name: "妈妈"
 slug: "mama-skill"
-type: "skill"
+type: "meta-skill"
 
 author:
   name: "jiangziyan-693"

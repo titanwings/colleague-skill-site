@@ -1,6 +1,6 @@
 name: "老板"
 slug: "boss-skill"
-type: "skill"
+type: "meta-skill"
 
 author:
   name: "nicepkg"
