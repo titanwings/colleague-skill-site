@@ -6,13 +6,23 @@ body:
   - type: markdown
     attributes:
       value: |
-        填 5 个字段就够了，维护者会帮你整理格式。
+        填好下面两个字段，机器人会自动读取你的 `meta.json` 并帮你生成 Gallery 条目。
 
   - type: input
-    id: name
+    id: skill_repo
     attributes:
-      label: 叫什么
-      placeholder: "安全工程师小王 / 《人月神话》作者 / 我的导师老张"
+      label: 你的 Skill 仓库地址
+      description: 包含 `colleagues/{slug}/meta.json` 的 GitHub 仓库
+      placeholder: "https://github.com/yourname/my-skills"
+    validations:
+      required: true
+
+  - type: input
+    id: slug
+    attributes:
+      label: Skill 的 slug
+      description: 对应 `colleagues/` 下的目录名
+      placeholder: "example_tianyi"
     validations:
       required: true
 
@@ -20,50 +30,6 @@ body:
     id: author_github
     attributes:
       label: 你的 GitHub 用户名
-      placeholder: "zhangsan"
+      placeholder: "yourname"
     validations:
       required: true
-
-  - type: textarea
-    id: description
-    attributes:
-      label: 一段话描述 TA
-      description: 能做什么、怎么说话、有什么风格——越具体越好
-      placeholder: "专注 Web 安全审计，review 时先看鉴权再看 SQL，高危当场给方案，说话直接不废话。"
-    validations:
-      required: true
-
-  - type: textarea
-    id: preview_conversation
-    attributes:
-      label: 来一段对话预览
-      placeholder: |
-        你：帮我看看这个 API 有没有安全问题
-        TA：先看鉴权——没有 rate limiting，参数直接拼 SQL，两个高危。改法：① 加鉴权中间件 ② SQL 改参数化查询。
-    validations:
-      required: true
-
-  - type: dropdown
-    id: tags
-    attributes:
-      label: 领域标签
-      multiple: true
-      options:
-        - frontend
-        - backend
-        - security
-        - devops
-        - data
-        - design
-        - product
-        - hr
-        - management
-        - other
-    validations:
-      required: true
-
-  - type: input
-    id: skill_repo
-    attributes:
-      label: Skill 文件链接（可选）
-      placeholder: "https://github.com/yourname/your-skills"
