@@ -22,7 +22,7 @@ npm run build
 
 ### 方式一：提 Issue（推荐给非技术用户）
 
-直接填这个 [Issue 模板](https://github.com/titanwings/colleague-skill/issues/new?template=submit-skill.yml)，维护者会帮你转成 YAML 提交。
+直接填这个 [Issue 模板](https://github.com/titanwings/colleague-skill-site/issues/new?template=submit-skill.yml)，维护者会帮你转成 YAML 提交。
 
 ### 方式二：直接提 PR（推荐给开发者）
 
