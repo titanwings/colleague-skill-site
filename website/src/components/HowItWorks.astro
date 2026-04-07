@@ -3,30 +3,39 @@ const steps = [
   {
     num: '01',
     icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>`,
-    title: '喂原材料',
+    titleZh: '喂原材料',
+    titleEn: 'Dump Everything In',
     subtitle: 'Feed Raw Data',
-    desc: '飞书记录、邮件线程、GitHub PR、截图、录音文字稿——能找到的全扔进来。哪怕只有一段群聊也能跑。',
-    detail: '越多越准，十条也够用',
+    descZh: '飞书记录、邮件线程、GitHub PR、截图、录音文字稿——能找到的全扔进来。哪怕只有一段群聊也能跑。',
+    descEn: 'Feishu chats, email threads, GitHub PRs, screenshots, voice transcripts — throw it all in. Even a single group chat screenshot works.',
+    detailZh: '越多越准，十条也够用',
+    detailEn: 'More = better, but 10 is enough',
     color: 'text-blue-400',
     bg: 'bg-blue-500/10 border-blue-500/20',
   },
   {
     num: '02',
     icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
-    title: '自动蒸馏',
+    titleZh: '自动蒸馏',
+    titleEn: 'Auto Distillation',
     subtitle: 'Auto Distillation',
-    desc: '大模型提取工作逻辑、决策风格、说话方式，生成结构化的 Work Skill + 5 层 Persona。不用你动手。',
-    detail: '通常 2-5 分钟搞定',
+    descZh: '大模型提取工作逻辑、决策风格、说话方式，生成结构化的 Work Skill + 5 层 Persona。不用你动手。',
+    descEn: 'The model extracts decision logic, work style, and communication patterns — generating a structured Work Skill + 5-layer Persona. Zero effort on your part.',
+    detailZh: '通常 2-5 分钟搞定',
+    detailEn: 'Usually done in 2–5 min',
     color: 'text-brand-400',
     bg: 'bg-brand-500/10 border-brand-500/20',
   },
   {
     num: '03',
     icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
-    title: '随叫随到',
+    titleZh: '随叫随到',
+    titleEn: 'Summon Anytime',
     subtitle: 'Summon Anytime',
-    desc: '在 Claude Code 里 /一下，就像那个人坐在你旁边。问专业问题、让他 review 代码、请他拍板——全行。',
-    detail: '兼容所有 AgentSkills 工具',
+    descZh: '在 Claude Code 里 /一下，就像那个人坐在你旁边。问专业问题、让他 review 代码、请他拍板——全行。',
+    descEn: 'Just /[slug] in Claude Code. Like having them sitting right next to you — ask anything, request a code review, get a decision. It all works.',
+    detailZh: '兼容所有 AgentSkills 工具',
+    detailEn: 'Works with all AgentSkills tools',
     color: 'text-green-400',
     bg: 'bg-green-500/10 border-green-500/20',
   },
@@ -40,11 +49,12 @@ const steps = [
         HOW IT WORKS
       </div>
       <h2 class="section-heading">
-        三步搞定，<span class="gradient-text">不需要 PhD</span>
+        <span class="lang-zh">三步搞定，<span class="gradient-text">不需要 PhD</span></span>
+        <span class="lang-en">Three Steps.<br/><span class="gradient-text">No PhD Required.</span></span>
       </h2>
-      <p class="text-surface-600 font-mono text-xs mb-1">Three steps. No PhD required.</p>
       <p class="section-sub">
-        技术上是 RAG + 结构化 Prompt，体验上是那个人还在
+        <span class="lang-zh">技术上是 RAG + 结构化 Prompt，体验上是那个人还在</span>
+        <span class="lang-en">Under the hood: RAG + structured prompts. In practice: feels like they never left.</span>
       </p>
     </div>
 
@@ -71,14 +81,21 @@ const steps = [
             )}
 
             <div>
-              <h3 class="text-xl font-bold text-white mb-1">{step.title}</h3>
+              <h3 class="text-xl font-bold text-white mb-1">
+                <span class="lang-zh">{step.titleZh}</span>
+                <span class="lang-en">{step.titleEn}</span>
+              </h3>
               <p class="text-xs text-surface-500 font-mono mb-3">{step.subtitle}</p>
-              <p class="text-surface-400 text-sm leading-relaxed mb-3">{step.desc}</p>
+              <p class="text-surface-400 text-sm leading-relaxed mb-3">
+                <span class="lang-zh">{step.descZh}</span>
+                <span class="lang-en">{step.descEn}</span>
+              </p>
               <div class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border ${step.bg} ${step.color}`}>
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                {step.detail}
+                <span class="lang-zh">{step.detailZh}</span>
+                <span class="lang-en">{step.detailEn}</span>
               </div>
             </div>
           </div>
@@ -88,18 +105,24 @@ const steps = [
 
     <!-- Use cases row -->
     <div class="mt-20 reveal">
-      <p class="text-center text-surface-500 text-sm mb-6 font-mono">// dot-skill 能蒸馏的，不只是一种人</p>
+      <p class="text-center text-surface-500 text-sm mb-6 font-mono">
+        <span class="lang-zh">// dot-skill 能蒸馏的，不只是一种人</span>
+        <span class="lang-en">// dot-skill distills more than just colleagues</span>
+      </p>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { icon: '👨‍💻', title: 'colleague.skill', desc: '离职的技术大牛、带过你的老板、共事三年的前辈' },
-          { icon: '🧑‍🏫', title: 'ex-skill', desc: '已经离职的前辈、走散的导师、那个你后悔没多请教的人' },
-          { icon: '📚', title: 'author.skill', desc: '反复重读的书、读不完的论文、某个领域的圣经' },
-          { icon: '🔬', title: 'expert.skill', desc: '请不起的顾问、约不到的专家、某个细分领域的神' },
+          { icon: '👨‍💻', title: 'colleague.skill', descZh: '离职的技术大牛、带过你的老板、共事三年的前辈', descEn: 'The brilliant teammate who quit before you could learn everything from them' },
+          { icon: '🧑‍🏫', title: 'ex-skill', descZh: '已经离职的前辈、走散的导师、那个你后悔没多请教的人', descEn: 'The mentor who moved on, the teacher you never thanked, the one you regret losing touch with' },
+          { icon: '📚', title: 'author.skill', descZh: '反复重读的书、读不完的论文、某个领域的圣经', descEn: 'The book you keep re-reading, the paper you never finish, the field\'s holy text' },
+          { icon: '🔬', title: 'expert.skill', descZh: '请不起的顾问、约不到的专家、某个细分领域的神', descEn: 'The consultant you can\'t afford, the expert you can\'t reach, the legend of their niche' },
         ].map((item) => (
           <div class="card-base p-4 text-center group hover:border-brand-500/30 transition-all">
             <div class="text-2xl mb-2">{item.icon}</div>
             <div class="text-xs font-mono text-brand-400 mb-1.5">{item.title}</div>
-            <p class="text-surface-500 text-xs leading-relaxed">{item.desc}</p>
+            <p class="text-surface-500 text-xs leading-relaxed">
+              <span class="lang-zh">{item.descZh}</span>
+              <span class="lang-en">{item.descEn}</span>
+            </p>
           </div>
         ))}
       </div>

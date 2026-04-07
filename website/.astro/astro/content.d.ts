@@ -145,6 +145,11 @@ declare module 'astro:content' {
 
 	type DataEntryMap = {
 		"skills": {
+"fengge-wangmingtianya": {
+	id: "fengge-wangmingtianya";
+  collection: "skills";
+  data: any
+};
 "frontend-architect-chen": {
 	id: "frontend-architect-chen";
   collection: "skills";
@@ -152,6 +157,11 @@ declare module 'astro:content' {
 };
 "hr-xiao-li": {
 	id: "hr-xiao-li";
+  collection: "skills";
+  data: any
+};
+"hu-chen-feng": {
+	id: "hu-chen-feng";
   collection: "skills";
   data: any
 };
