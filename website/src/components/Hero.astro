@@ -3,11 +3,8 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-  <!-- Background layers -->
   <div class="absolute inset-0 bg-grid-pattern"></div>
   <div class="absolute inset-0 bg-hero-gradient"></div>
-
-  <!-- Ambient glow orbs -->
   <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-brand-600/8 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -16,24 +13,31 @@ const base = import.meta.env.BASE_URL;
     <!-- Badge -->
     <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/30 rounded-full text-sm text-brand-400 font-medium mb-8 animate-fade-in">
       <span class="w-2 h-2 bg-brand-400 rounded-full animate-pulse"></span>
-      AgentSkills 开放标准 · GitHub 10k+ Stars
+      AgentSkills Open Standard · GitHub 10k+ Stars
       <svg class="w-4 h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
       </svg>
     </div>
 
     <!-- Headline -->
-    <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-white leading-tight tracking-tight mb-6 animate-fade-up" style="animation-delay: 100ms; animation-fill-mode: backwards;">
+    <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-white leading-tight tracking-tight mb-3 animate-fade-up" style="animation-delay: 100ms; animation-fill-mode: backwards;">
       人会离开<br/>
       <span class="gradient-text">.skill</span> 不会
     </h1>
+    <p class="text-surface-600 font-mono text-sm mb-8 animate-fade-up" style="animation-delay: 150ms; animation-fill-mode: backwards;">
+      People leave. Skills don't.
+    </p>
 
     <!-- Subtitle -->
-    <p class="text-xl sm:text-2xl text-surface-400 max-w-3xl mx-auto mb-4 animate-fade-up" style="animation-delay: 200ms; animation-fill-mode: backwards;">
+    <p class="text-xl sm:text-2xl text-surface-400 max-w-3xl mx-auto mb-2 animate-fade-up" style="animation-delay: 200ms; animation-fill-mode: backwards;">
       离职的同事、封神的导师、读不完的书、请不起的专家——
     </p>
+    <p class="text-surface-500 text-sm max-w-2xl mx-auto mb-4 animate-fade-up font-mono" style="animation-delay: 220ms; animation-fill-mode: backwards;">
+      Colleagues who quit · Mentors who moved on · Books you never finish · Experts you can't afford
+    </p>
     <p class="text-xl sm:text-2xl text-surface-300 max-w-3xl mx-auto mb-12 animate-fade-up" style="animation-delay: 300ms; animation-fill-mode: backwards;">
-      统统召唤进你的 AI 工作流，随叫随到
+      统统蒸馏成 <span class="text-brand-400 font-semibold">.skill</span>，随叫随到
+      <span class="block text-surface-500 text-sm font-mono mt-1">Distill anyone into an AI Skill. Summon anytime.</span>
     </p>
 
     <!-- Skill series pills -->
@@ -69,7 +73,7 @@ const base = import.meta.env.BASE_URL;
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
-        从 colleague.skill 开始
+        开始蒸馏 · Get Started
       </a>
       <a
         href={`${base}/gallery/`}
@@ -78,7 +82,7 @@ const base = import.meta.env.BASE_URL;
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
         </svg>
-        逛逛 Skill Gallery
+        Skill Gallery
       </a>
     </div>
 
@@ -92,23 +96,22 @@ const base = import.meta.env.BASE_URL;
           <span class="ml-3 text-surface-400 text-xs font-mono">claude-code — colleague.skill</span>
         </div>
         <div class="p-6 font-mono text-sm text-left space-y-3">
-          <div class="text-surface-500"># Step 1：在 Claude Code 里运行</div>
+          <div class="text-surface-500"># Step 1: run in Claude Code</div>
           <div class="flex items-start gap-2">
             <span class="text-brand-400 shrink-0">❯</span>
             <span class="text-white"><span class="text-brand-300">/create-colleague</span></span>
           </div>
           <div class="text-surface-500 pl-4 space-y-1">
-            <div><span class="text-green-400">✓</span> 采集飞书消息 <span class="text-surface-600">847 条</span></div>
+            <div><span class="text-green-400">✓</span> 采集飞书消息 <span class="text-surface-600">847 条 · messages collected</span></div>
             <div><span class="text-green-400">✓</span> 提取 code review 评论 <span class="text-surface-600">234 条</span></div>
-            <div><span class="text-green-400">✓</span> 分析工作模式 <span class="text-surface-600">...</span></div>
-            <div><span class="text-brand-400">⚡</span> 生成 Work Skill + Persona <span class="text-surface-600">...</span></div>
+            <div><span class="text-brand-400">⚡</span> 生成 Work Skill + Persona <span class="text-surface-600">generating...</span></div>
           </div>
           <div class="pt-2 border-t border-surface-800">
             <span class="text-green-400 font-semibold">✓ Done! </span>
-            <span class="text-surface-300">Skill saved to </span>
+            <span class="text-surface-300">Skill saved → </span>
             <span class="text-brand-400">colleagues/security-engineer-wang/</span>
           </div>
-          <div class="mt-3 text-surface-500"># Step 2：直接 /[slug] 召唤</div>
+          <div class="mt-3 text-surface-500"># Step 2: summon with /[slug]</div>
           <div class="flex items-start gap-2">
             <span class="text-brand-400 shrink-0">❯</span>
             <span class="text-white"><span class="text-brand-300">/security-engineer-wang</span> <span class="text-surface-400">帮我看看这个 API 有没有安全问题</span><span class="animate-terminal-blink text-brand-400">▋</span></span>
@@ -130,19 +133,18 @@ const base = import.meta.env.BASE_URL;
         <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
         </svg>
-        <span>飞书 / 钉钉 / Slack / 邮件 全支持</span>
+        <span>飞书 / 钉钉 / Slack / Email</span>
       </div>
       <div class="w-px h-4 bg-surface-700 hidden sm:block"></div>
       <div class="flex items-center gap-2 text-surface-400 text-sm">
         <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
         </svg>
-        <span>AgentSkills 开放标准</span>
+        <span>AgentSkills Open Standard</span>
       </div>
     </div>
   </div>
 
-  <!-- Scroll indicator -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-surface-600">
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
