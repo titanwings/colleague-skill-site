@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#161b22"/>
+  <rect width="32" height="32" rx="8" fill="url(#bg)" opacity="0.5"/>
+  <text x="16" y="22" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="14" font-weight="700" fill="#F59E0B" text-anchor="middle">cs</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="32" y2="32">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+</svg>

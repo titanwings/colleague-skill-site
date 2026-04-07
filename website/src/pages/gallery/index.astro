@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SkillGallery from '../../components/SkillGallery.astro';
+import { getAllSkills } from '../../lib/skills';
+
+const base = import.meta.env.BASE_URL;
+const skills = await getAllSkills();
+---
+
+<BaseLayout
+  title="Skill Gallery — colleague-skill"
+  description={`浏览 ${skills.length} 个社区蒸馏的同事 Skill，涵盖安全、前端、HR、产品等方向。找到你需要的，随时召唤。`}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+
+    <!-- Page header -->
+    <div class="text-center mb-12 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-800 border border-surface-700 rounded-full text-xs text-surface-400 font-mono mb-4">
+        COMMUNITY SKILLS
+      </div>
+      <h1 class="section-heading mb-3">
+        Skill <span class="gradient-text">Gallery</span>
+      </h1>
+      <p class="section-sub">
+        社区蒸馏的同事们。他们离职了，但 Skill 还在。
+      </p>
+
+      <!-- Submit button -->
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <a
+          href="https://github.com/titanwings/colleague-skill/issues/new?template=submit-skill.yml"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          提交我的 Skill
+        </a>
+        <a
+          href="https://github.com/titanwings/colleague-skill/blob/main/website/src/content/skills/_template.yaml"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-secondary"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          查看提交模板
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="grid grid-cols-3 gap-4 mb-10 reveal">
+      {[
+        { num: skills.length.toString(), label: '已收录 Skill' },
+        { num: [...new Set(skills.flatMap((s) => s.tags))].length.toString(), label: '覆盖技术领域' },
+        { num: [...new Set(skills.map((s) => s.author.github))].length.toString(), label: '社区贡献者' },
+      ].map((stat) => (
+        <div class="card-base p-4 text-center">
+          <div class="text-2xl font-black text-brand-400">{stat.num}</div>
+          <div class="text-xs text-surface-500 mt-1">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Gallery component -->
+    <div class="reveal">
+      <SkillGallery skills={skills} base={base} />
+    </div>
+
+  </div>
+</BaseLayout>

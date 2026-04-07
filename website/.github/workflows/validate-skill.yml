@@ -1,0 +1,167 @@
+name: Validate Community Skill Submission
+
+on:
+  pull_request:
+    paths:
+      - 'website/src/content/skills/*.yaml'
+      - 'website/src/content/skills/*.yml'
+
+jobs:
+  validate:
+    name: Validate Skill YAML
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install js-yaml
+        run: npm install js-yaml
+
+      - name: Validate skill files
+        id: validate
+        run: |
+          node - <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const yaml = require('js-yaml');
+
+          const skillsDir = path.join(process.cwd(), 'website/src/content/skills');
+          const files = fs.readdirSync(skillsDir).filter(f =>
+            (f.endsWith('.yaml') || f.endsWith('.yml')) && !f.startsWith('_')
+          );
+
+          const slugs = new Set();
+          let hasError = false;
+
+          const required = ['name', 'slug', 'author', 'description', 'tags', 'created_at'];
+
+          for (const file of files) {
+            const filePath = path.join(skillsDir, file);
+            let doc;
+
+            try {
+              doc = yaml.load(fs.readFileSync(filePath, 'utf8'));
+            } catch (e) {
+              console.error(`❌ ${file}: YAML 格式错误 — ${e.message}`);
+              hasError = true;
+              continue;
+            }
+
+            // Check required fields
+            for (const field of required) {
+              if (!doc[field]) {
+                console.error(`❌ ${file}: 缺少必填字段 "${field}"`);
+                hasError = true;
+              }
+            }
+
+            // Check author fields
+            if (doc.author && (!doc.author.name || !doc.author.github)) {
+              console.error(`❌ ${file}: author 必须包含 name 和 github 字段`);
+              hasError = true;
+            }
+
+            // Check slug uniqueness
+            if (doc.slug) {
+              if (slugs.has(doc.slug)) {
+                console.error(`❌ ${file}: slug "${doc.slug}" 已存在，请使用唯一的 slug`);
+                hasError = true;
+              }
+              slugs.add(doc.slug);
+
+              // Check slug format
+              if (!/^[a-z0-9-]+$/.test(doc.slug)) {
+                console.error(`❌ ${file}: slug "${doc.slug}" 只能包含小写字母、数字和连字符`);
+                hasError = true;
+              }
+
+              // Check slug matches filename
+              const expectedFile = doc.slug + '.yaml';
+              if (file !== expectedFile && file !== doc.slug + '.yml') {
+                console.warn(`⚠️  ${file}: 文件名建议与 slug 一致（期望 ${expectedFile}）`);
+              }
+            }
+
+            // Check tags
+            const validTags = ['frontend','backend','security','devops','data','design','product','hr','management','other'];
+            if (doc.tags) {
+              const invalidTags = doc.tags.filter(t => !validTags.includes(t));
+              if (invalidTags.length > 0) {
+                console.error(`❌ ${file}: 无效的 tag: ${invalidTags.join(', ')}。有效选项: ${validTags.join(', ')}`);
+                hasError = true;
+              }
+            }
+
+            // Check preview_conversation
+            if (doc.preview_conversation && doc.preview_conversation.length > 0) {
+              for (const turn of doc.preview_conversation) {
+                if (!['user', 'skill'].includes(turn.role)) {
+                  console.error(`❌ ${file}: preview_conversation 中 role 只能是 "user" 或 "skill"`);
+                  hasError = true;
+                }
+              }
+            }
+
+            if (!hasError) {
+              console.log(`✅ ${file}: 验证通过`);
+            }
+          }
+
+          if (hasError) {
+            process.exit(1);
+          }
+
+          console.log('\n✅ 所有 Skill 文件验证通过！');
+          EOF
+
+      - name: Add ready-to-merge label
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: labels } = await github.rest.issues.listLabelsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+
+            const labelExists = labels.some(l => l.name === 'ready-to-merge');
+
+            if (!labelExists) {
+              await github.rest.issues.createLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'ready-to-merge',
+                color: '2ecc71',
+                description: 'Skill 验证通过，可以合并',
+              });
+            }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['ready-to-merge'],
+            });
+
+      - name: Comment on PR
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## ✅ Skill 验证通过！
+
+感谢你的贡献！你提交的 Skill 格式验证通过。
+
+合并后，这个 Skill 将自动出现在 [Gallery](https://titanwings.github.io/colleague-skill/gallery/) 中。
+
+**Reviewer 注意：** 请检查 \`description\` 和 \`preview_conversation\` 内容是否合适、是否包含真实姓名等敏感信息。`,
+            });

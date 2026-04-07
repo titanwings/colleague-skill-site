@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface-900 text-surface-100 font-sans;
+  }
+
+  ::selection {
+    @apply bg-brand-500/30 text-brand-200;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-surface-900;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-600 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-surface-500;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-brand-500 hover:bg-brand-400 text-surface-900 font-semibold rounded-lg transition-all duration-200 hover:shadow-glow-amber hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 border border-surface-600 hover:border-brand-500/50 text-surface-200 hover:text-brand-400 font-medium rounded-lg transition-all duration-200 hover:bg-surface-800;
+  }
+
+  .tag-pill {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-700 text-surface-300 border border-surface-600/50;
+  }
+
+  .tag-pill-brand {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-500/15 text-brand-400 border border-brand-500/30;
+  }
+
+  .card-base {
+    @apply bg-surface-800 border border-surface-700 rounded-xl shadow-card transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:border-brand-500/40 hover:shadow-card-hover hover:-translate-y-1;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold text-white;
+  }
+
+  .section-sub {
+    @apply text-surface-400 text-lg mt-3 max-w-2xl mx-auto;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-400 to-brand-600 bg-clip-text text-transparent;
+  }
+
+  .code-block {
+    @apply bg-surface-900 border border-surface-700 rounded-lg font-mono text-sm overflow-x-auto;
+  }
+
+  .terminal-window {
+    @apply bg-surface-900 border border-surface-700 rounded-xl overflow-hidden shadow-2xl;
+  }
+
+  .terminal-header {
+    @apply flex items-center gap-2 px-4 py-3 bg-surface-800 border-b border-surface-700;
+  }
+
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+}
+
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.stagger-children.visible > *:nth-child(1) { transition-delay: 0ms; }
+.stagger-children.visible > *:nth-child(2) { transition-delay: 100ms; }
+.stagger-children.visible > *:nth-child(3) { transition-delay: 200ms; }
+.stagger-children.visible > *:nth-child(4) { transition-delay: 300ms; }
+.stagger-children.visible > *:nth-child(5) { transition-delay: 400ms; }
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Glow effect for highlighted code */
+.highlight-amber {
+  color: #fbbf24;
+  text-shadow: 0 0 20px rgba(251,191,36,0.5);
+}
+
+/* Terminal cursor */
+.cursor::after {
+  content: '▋';
+  @apply text-brand-400 animate-terminal-blink;
+}

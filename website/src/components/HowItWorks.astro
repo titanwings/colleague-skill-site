@@ -1,0 +1,90 @@
+---
+const steps = [
+  {
+    num: '01',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>`,
+    title: '提供原材料',
+    subtitle: 'Feed the Raw Data',
+    desc: '把飞书消息、钉钉记录、GitHub PR 评论、邮件线程扔进去。越多越好，边角料也算。',
+    detail: '支持批量导出，也可以直接授权 API 自动采集',
+    color: 'text-blue-400',
+    bg: 'bg-blue-500/10 border-blue-500/20',
+  },
+  {
+    num: '02',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
+    title: '自动分析生成',
+    subtitle: 'AI-powered Distillation',
+    desc: '大模型提取工作模式、决策逻辑、沟通风格，自动生成结构化的 Work Skill + Persona。',
+    detail: '全程自动化，通常 2-5 分钟完成',
+    color: 'text-brand-400',
+    bg: 'bg-brand-500/10 border-brand-500/20',
+  },
+  {
+    num: '03',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+    title: '随时召唤同事',
+    subtitle: 'Summon at Will',
+    desc: '在 Claude Code 或任何 MCP 客户端里 @一下，就像对方坐在你旁边一样。',
+    detail: '兼容所有 AgentSkills 标准工具',
+    color: 'text-green-400',
+    bg: 'bg-green-500/10 border-green-500/20',
+  },
+];
+---
+
+<section class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-800 border border-surface-700 rounded-full text-xs text-surface-400 font-mono mb-4">
+        HOW IT WORKS
+      </div>
+      <h2 class="section-heading">
+        三步搞定，<span class="gradient-text">没有魔法</span>
+      </h2>
+      <p class="section-sub">
+        技术上是 RAG + 结构化 Prompt，用起来是同事还在
+      </p>
+    </div>
+
+    <div class="relative">
+      <!-- Connector line (desktop) -->
+      <div class="hidden lg:block absolute top-20 left-0 right-0 h-px bg-gradient-to-r from-transparent via-surface-700 to-transparent"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 stagger-children">
+        {steps.map((step, i) => (
+          <div class="relative flex flex-col items-center text-center group">
+            <!-- Step number + icon circle -->
+            <div class={`relative w-16 h-16 rounded-2xl border-2 ${step.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+              <div class={step.color} set:html={step.icon} />
+              <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-surface-900 border border-surface-700 flex items-center justify-center">
+                <span class="text-xs font-mono font-bold text-surface-400">{step.num}</span>
+              </div>
+            </div>
+
+            <!-- Arrow (between steps on mobile) -->
+            {i < steps.length - 1 && (
+              <div class="lg:hidden absolute -bottom-5 left-1/2 -translate-x-1/2 text-surface-600">
+                <svg class="w-5 h-5 rotate-90 lg:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            )}
+
+            <div>
+              <h3 class="text-xl font-bold text-white mb-1">{step.title}</h3>
+              <p class="text-xs text-surface-500 font-mono mb-3">{step.subtitle}</p>
+              <p class="text-surface-400 text-sm leading-relaxed mb-3">{step.desc}</p>
+              <div class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border ${step.bg} ${step.color}`}>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                {step.detail}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

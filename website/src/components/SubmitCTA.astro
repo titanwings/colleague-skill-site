@@ -1,0 +1,64 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="py-24 relative overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 via-transparent to-purple-500/5"></div>
+  <div class="absolute inset-0 bg-grid-pattern opacity-50"></div>
+
+  <!-- Glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/8 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+    <div class="card-base p-12 bg-gradient-to-br from-surface-800/80 to-surface-800/40 border-surface-700/50 backdrop-blur-sm">
+
+      <div class="text-5xl mb-6 animate-float">🧬</div>
+
+      <h2 class="text-3xl md:text-4xl font-black text-white mb-4">
+        蒸馏了你的同事？<br/>
+        <span class="gradient-text">分享给社区！</span>
+      </h2>
+
+      <p class="text-surface-400 text-lg mb-8 max-w-xl mx-auto">
+        你蒸馏的同事可能正是别人苦苦寻找的那个人。<br/>
+        提交到 Gallery，让他继续影响更多人。
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+        <a
+          href="https://github.com/titanwings/colleague-skill/issues/new?template=submit-skill.yml"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary text-base px-8 py-4"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          提交我的 Skill（Issue）
+        </a>
+        <a
+          href={`${base}/gallery/`}
+          class="btn-secondary text-base px-8 py-4"
+        >
+          先逛逛 Gallery →
+        </a>
+      </div>
+
+      <!-- Stats row -->
+      <div class="flex flex-wrap justify-center gap-x-10 gap-y-4 pt-8 border-t border-surface-700/50">
+        {[
+          { num: '2 分钟', label: '填一个 Issue 表单' },
+          { num: '自动', label: 'CI 校验格式' },
+          { num: '合并后', label: '立即出现在 Gallery' },
+        ].map((s) => (
+          <div class="text-center">
+            <div class="text-brand-400 font-bold text-lg">{s.num}</div>
+            <div class="text-surface-500 text-xs mt-0.5">{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

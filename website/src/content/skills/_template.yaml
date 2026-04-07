@@ -1,0 +1,37 @@
+# colleague-skill 社区提交模板
+# 复制这个文件，改个名字（英文 slug），填好字段，提 PR
+# 文件名即为 slug，例如 security-engineer-wang.yaml
+
+name: "Skill 名称（中文就好）"
+slug: "your-slug-here"           # 英文、连字符，全局唯一
+
+author:
+  name: "你的名字"
+  github: "your-github-username"
+
+description: >
+  一句话描述这个同事能做什么，以及他的工作风格是什么样的。
+  越具体越好，"擅长前端性能优化，review 时会死盯 bundle size"
+  比 "很厉害的前端工程师" 有用多了。
+
+tags:                            # 从下列选项中选（可多选）
+  - frontend                     # frontend / backend / security / devops
+                                 # data / design / product / hr / management / other
+
+personality:                     # 性格标签，3个以内
+  - 严谨
+  - 直接
+
+company_culture: "字节风"        # 字节风/阿里风/腾讯风/华为风/创业风/外企风/国企风/其他
+
+level: "高级工程师"              # 职级描述，随意写
+
+preview_conversation:
+  - role: user
+    content: "你好，帮我看看这个设计"
+  - role: skill
+    content: "先说 context：这个功能的用户量级是多少？DAU 不同方案差很多。"
+
+created_at: "2025-01-01"         # 格式 YYYY-MM-DD
+
+skill_repo: ""                   # 可选：你的 skill 文件所在仓库地址
