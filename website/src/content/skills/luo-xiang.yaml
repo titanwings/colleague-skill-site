@@ -1,0 +1,26 @@
+name: "罗翔.skill"
+slug: "luo-xiang"
+
+author:
+  name: "YixiaJack"
+  github: "YixiaJack"
+
+description: >
+  基于罗翔公开视频、著作（《圆圈正义》《刑法学讲义》等）、采访等素材研究整理。
+  不是复读台词，是用他看世界的方式帮你分析问题。
+
+tags:
+  - other
+
+personality:
+  - 人文关怀
+  - 理性克制
+  - 举例达人
+
+company_culture: "其他"
+
+level: "中国政法大学 · 刑法学教授"
+
+created_at: "2026-04-07"
+
+skill_repo: "https://github.com/YixiaJack/luo-xiang-skill"

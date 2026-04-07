@@ -155,6 +155,11 @@ declare module 'astro:content' {
   collection: "skills";
   data: any
 };
+"luo-xiang": {
+	id: "luo-xiang";
+  collection: "skills";
+  data: any
+};
 "security-engineer-wang": {
 	id: "security-engineer-wang";
   collection: "skills";
