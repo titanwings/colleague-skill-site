@@ -6,7 +6,7 @@ export default defineConfig({
   site: 'https://titanwings.github.io',
   base: '/colleague-skill-site',
   integrations: [tailwind()],
-  output: 'static',
+  output: 'static', // static site generation
   vite: {
     plugins: [yaml()],
   },
