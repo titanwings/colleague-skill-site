@@ -1,6 +1,6 @@
 name: "厉鬼"
 slug: "vengeful-ghost-skill"
-type: "skill"
+type: "meta-skill"
 
 author:
   name: "Trailblazer-Aha"

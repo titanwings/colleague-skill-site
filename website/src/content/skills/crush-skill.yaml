@@ -1,6 +1,6 @@
 name: "暗恋对象"
 slug: "crush-skill"
-type: "skill"
+type: "meta-skill"
 
 author:
   name: "xiaoheizi8"
