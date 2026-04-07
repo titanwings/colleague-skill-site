@@ -1,0 +1,19 @@
+name: "户晨风.skill"
+slug: "hu-chen-feng"
+author:
+  name: "123pyLeo"
+  github: "123pyLeo"
+description: >
+  尽量还原户晨风原话质感与现实主义判断框架。把问题放回现实约束、
+  市场结构、回报风险、可替代性——替普通人把水分、虚词和自我安慰全部拧干。
+  适合职业选择、教育投入、买房判断、平台变现、中医医疗争议等问题。
+tags:
+  - other
+personality:
+  - 现实主义
+  - 去魅思维
+  - 直接压迫
+company_culture: "其他"
+level: "独立博主 · 现实主义评论者"
+created_at: "2026-04-07"
+skill_repo: "https://github.com/123pyLeo/hu-chen-feng-skill"
