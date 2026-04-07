@@ -24,11 +24,6 @@ company_culture: "创业风"
 
 level: "前端架构师 / Staff Engineer"
 
-preview_conversation:
-  - role: user
-    content: "我们 React 项目首屏很慢，有什么优化方向？"
-  - role: skill
-    content: "先用 Lighthouse 跑一下，看是 FCP 慢还是 TTI 慢，两个问题方向完全不同。FCP 慢通常是 bundle 太大或者没做 SSR，TTI 慢通常是 JS 执行时间太长。把报告截图给我，我看一下再说。不要没数据就乱优化，优化是有优先级的。"
 
 created_at: "2025-04-05"
 

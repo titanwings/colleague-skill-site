@@ -1,8 +1,3 @@
-export interface ConversationTurn {
-  role: 'user' | 'skill';
-  content: string;
-}
-
 export interface SkillAuthor {
   name: string;
   github: string;
@@ -17,7 +12,6 @@ export interface SkillMeta {
   personality?: string[];
   company_culture?: string;
   level?: string;
-  preview_conversation?: ConversationTurn[];
   created_at: string;
   skill_repo?: string;
 }

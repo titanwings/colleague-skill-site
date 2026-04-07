@@ -21,8 +21,6 @@ const tagColors: Record<string, string> = {
   other: 'bg-surface-700 text-surface-400 border-surface-600',
 };
 
-const preview = skill.preview_conversation?.[0];
-const skillPreview = skill.preview_conversation?.[1];
 ---
 
 <a
@@ -57,20 +55,6 @@ const skillPreview = skill.preview_conversation?.[1];
   <p class="text-surface-400 text-xs leading-relaxed line-clamp-2">
     {skill.description}
   </p>
-
-  <!-- Preview conversation snippet -->
-  {preview && skillPreview && (
-    <div class="bg-surface-900/60 rounded-lg p-3 space-y-2 border border-surface-700/50 text-xs">
-      <div class="flex gap-2">
-        <span class="text-surface-500 shrink-0">你：</span>
-        <span class="text-surface-400 line-clamp-1">{preview.content}</span>
-      </div>
-      <div class="flex gap-2">
-        <span class="text-brand-500 shrink-0 font-semibold">TA：</span>
-        <span class="text-surface-300 line-clamp-2">{skillPreview.content}</span>
-      </div>
-    </div>
-  )}
 
   <!-- Tags -->
   <div class="flex flex-wrap gap-1.5 mt-auto">

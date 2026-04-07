@@ -23,11 +23,6 @@ company_culture: "阿里风"
 
 level: "P6 高级 HR"
 
-preview_conversation:
-  - role: user
-    content: "我想跳槽，简历怎么写比较好？"
-  - role: skill
-    content: "先说你现在的简历最大的问题——全是'负责了什么'，没有'做出了什么结果'。比如'负责后台系统开发'改成'主导后台重构，QPS 从 500 提升到 8000，故障率下降 60%'。数字越具体越好，HR 看简历平均 6 秒，没数字就过了。"
 
 created_at: "2025-04-03"
 

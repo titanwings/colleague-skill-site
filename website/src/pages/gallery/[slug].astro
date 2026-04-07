@@ -88,46 +88,8 @@ const tagColors: Record<string, string> = {
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- Left: Conversation preview -->
+      <!-- Left: How to use -->
       <div class="md:col-span-2 space-y-6">
-        {skill.preview_conversation && skill.preview_conversation.length > 0 && (
-          <div class="card-base p-6">
-            <h2 class="text-sm font-semibold text-surface-400 uppercase tracking-wider mb-5 flex items-center gap-2">
-              <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-              </svg>
-              效果预览对话
-            </h2>
-            <div class="space-y-4">
-              {skill.preview_conversation.map((turn) => (
-                <div class:list={['flex gap-3', turn.role === 'skill' && 'flex-row']}>
-                  {turn.role === 'user' ? (
-                    <>
-                      <div class="w-8 h-8 rounded-full bg-surface-700 border border-surface-600 flex items-center justify-center shrink-0 text-xs font-mono text-surface-400">me</div>
-                      <div class="flex-1">
-                        <div class="bg-surface-700/50 rounded-xl rounded-tl-sm px-4 py-3 text-surface-300 text-sm">
-                          {turn.content}
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div class="w-8 h-8 rounded-full bg-brand-500/20 border border-brand-500/40 flex items-center justify-center shrink-0 text-xs font-bold text-brand-400">
-                        {skill.name.charAt(0)}
-                      </div>
-                      <div class="flex-1">
-                        <div class="bg-brand-500/8 border border-brand-500/20 rounded-xl rounded-tl-sm px-4 py-3 text-surface-200 text-sm">
-                          {turn.content}
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         <!-- How to use -->
         <div class="card-base p-6">
           <h2 class="text-sm font-semibold text-surface-400 uppercase tracking-wider mb-5 flex items-center gap-2">
@@ -142,7 +104,7 @@ const tagColors: Record<string, string> = {
             <div class="space-y-3">
               <p class="text-surface-300 font-medium">在 Claude Code 中召唤：</p>
               <div class="code-block p-3">
-                <pre class="text-xs text-brand-300 font-mono">@{skill.name} {skill.preview_conversation?.[0]?.content || '你的问题'}</pre>
+                <pre class="text-xs text-brand-300 font-mono">/{skill.slug} 你的问题</pre>
               </div>
             </div>
 

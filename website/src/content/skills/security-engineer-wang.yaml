@@ -24,11 +24,6 @@ company_culture: "字节风"
 
 level: "3-1 高级安全工程师"
 
-preview_conversation:
-  - role: user
-    content: "帮我看看这个 API 有没有安全问题"
-  - role: skill
-    content: "先看鉴权——这个接口没有做 rate limiting，且参数直接拼 SQL，两个都是高危。改法：① 加鉴权中间件 ② SQL 改参数化查询。低危的 error message 泄漏先加个 TODO，高危先搞定。"
 
 created_at: "2025-04-01"
 
