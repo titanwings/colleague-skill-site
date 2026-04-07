@@ -3,30 +3,30 @@ const steps = [
   {
     num: '01',
     icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>`,
-    title: '提供原材料',
-    subtitle: 'Feed the Raw Data',
-    desc: '把飞书消息、钉钉记录、GitHub PR 评论、邮件线程扔进去。越多越好，边角料也算。',
-    detail: '支持批量导出，也可以直接授权 API 自动采集',
+    title: '喂原材料',
+    subtitle: 'Feed Raw Data',
+    desc: '飞书记录、邮件线程、GitHub PR、截图、录音文字稿——能找到的全扔进来。哪怕只有一段群聊也能跑。',
+    detail: '越多越准，十条也够用',
     color: 'text-blue-400',
     bg: 'bg-blue-500/10 border-blue-500/20',
   },
   {
     num: '02',
     icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
-    title: '自动分析生成',
-    subtitle: 'AI-powered Distillation',
-    desc: '大模型提取工作模式、决策逻辑、沟通风格，自动生成结构化的 Work Skill + Persona。',
-    detail: '全程自动化，通常 2-5 分钟完成',
+    title: '自动蒸馏',
+    subtitle: 'Auto Distillation',
+    desc: '大模型提取工作逻辑、决策风格、说话方式，生成结构化的 Work Skill + 5 层 Persona。不用你动手。',
+    detail: '通常 2-5 分钟搞定',
     color: 'text-brand-400',
     bg: 'bg-brand-500/10 border-brand-500/20',
   },
   {
     num: '03',
     icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
-    title: '随时召唤同事',
-    subtitle: 'Summon at Will',
-    desc: '在 Claude Code 或任何 MCP 客户端里 @一下，就像对方坐在你旁边一样。',
-    detail: '兼容所有 AgentSkills 标准工具',
+    title: '随叫随到',
+    subtitle: 'Summon Anytime',
+    desc: '在 Claude Code 里 /一下，就像那个人坐在你旁边。问专业问题、让他 review 代码、请他拍板——全行。',
+    detail: '兼容所有 AgentSkills 工具',
     color: 'text-green-400',
     bg: 'bg-green-500/10 border-green-500/20',
   },
@@ -40,10 +40,10 @@ const steps = [
         HOW IT WORKS
       </div>
       <h2 class="section-heading">
-        三步搞定，<span class="gradient-text">没有魔法</span>
+        三步搞定，<span class="gradient-text">不需要 PhD</span>
       </h2>
       <p class="section-sub">
-        技术上是 RAG + 结构化 Prompt，用起来是同事还在
+        技术上是 RAG + 结构化 Prompt，体验上是那个人还在
       </p>
     </div>
 
@@ -54,7 +54,6 @@ const steps = [
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 stagger-children">
         {steps.map((step, i) => (
           <div class="relative flex flex-col items-center text-center group">
-            <!-- Step number + icon circle -->
             <div class={`relative w-16 h-16 rounded-2xl border-2 ${step.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
               <div class={step.color} set:html={step.icon} />
               <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-surface-900 border border-surface-700 flex items-center justify-center">
@@ -62,7 +61,6 @@ const steps = [
               </div>
             </div>
 
-            <!-- Arrow (between steps on mobile) -->
             {i < steps.length - 1 && (
               <div class="lg:hidden absolute -bottom-5 left-1/2 -translate-x-1/2 text-surface-600">
                 <svg class="w-5 h-5 rotate-90 lg:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,6 +80,25 @@ const steps = [
                 {step.detail}
               </div>
             </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Use cases row -->
+    <div class="mt-20 reveal">
+      <p class="text-center text-surface-500 text-sm mb-6 font-mono">// 能蒸馏的不只是同事</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {[
+          { icon: '👨‍💻', title: 'colleague.skill', desc: '离职的技术大牛、带过你的老板、共事三年的搭档' },
+          { icon: '🧑‍🏫', title: 'mentor.skill', desc: '教过你的教授、影响你的前辈、没来得及请教的人' },
+          { icon: '📚', title: 'author.skill', desc: '反复重读的书、读不完的论文、某个领域的圣经' },
+          { icon: '🔬', title: 'expert.skill', desc: '请不起的顾问、约不到的专家、某个细分领域的神' },
+        ].map((item) => (
+          <div class="card-base p-4 text-center group hover:border-brand-500/30 transition-all">
+            <div class="text-2xl mb-2">{item.icon}</div>
+            <div class="text-xs font-mono text-brand-400 mb-1.5">{item.title}</div>
+            <p class="text-surface-500 text-xs leading-relaxed">{item.desc}</p>
           </div>
         ))}
       </div>

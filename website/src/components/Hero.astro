@@ -24,18 +24,40 @@ const base = import.meta.env.BASE_URL;
 
     <!-- Headline -->
     <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-white leading-tight tracking-tight mb-6 animate-fade-up" style="animation-delay: 100ms; animation-fill-mode: backwards;">
-      将冰冷的离别<br/>
-      化为温暖的
-      <span class="gradient-text"> Skill</span>
+      把任何人的智慧<br/>
+      蒸馏成一个
+      <span class="gradient-text"> .skill</span>
     </h1>
 
     <!-- Subtitle -->
     <p class="text-xl sm:text-2xl text-surface-400 max-w-3xl mx-auto mb-4 animate-fade-up" style="animation-delay: 200ms; animation-fill-mode: backwards;">
-      把离职同事的工作方式、决策风格、领域知识——
+      离职的同事、封神的导师、读不完的书、请不起的专家——
     </p>
     <p class="text-xl sm:text-2xl text-surface-300 max-w-3xl mx-auto mb-12 animate-fade-up" style="animation-delay: 300ms; animation-fill-mode: backwards;">
-      蒸馏成一个随时可以召唤的 <span class="text-brand-400 font-semibold">AI Skill</span>
+      统统召唤进你的 AI 工作流，随叫随到
     </p>
+
+    <!-- Skill series pills -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10 animate-fade-up" style="animation-delay: 350ms; animation-fill-mode: backwards;">
+      {[
+        { name: 'colleague.skill', desc: '蒸馏同事', active: true },
+        { name: 'mentor.skill', desc: '蒸馏导师', active: false },
+        { name: 'author.skill', desc: '蒸馏作者', active: false },
+        { name: 'expert.skill', desc: '蒸馏专家', active: false },
+        { name: '???.skill', desc: '你来定义', active: false },
+      ].map((s) => (
+        <span class={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono border transition-all ${
+          s.active
+            ? 'bg-brand-500/20 border-brand-500/50 text-brand-300'
+            : 'bg-surface-800/60 border-surface-700 text-surface-500 hover:border-surface-600 hover:text-surface-400'
+        }`}>
+          <span class={s.active ? 'text-brand-400' : 'text-surface-600'}>●</span>
+          {s.name}
+          <span class="opacity-60">·</span>
+          <span class="opacity-70">{s.desc}</span>
+        </span>
+      ))}
+    </div>
 
     <!-- CTA Buttons -->
     <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-up" style="animation-delay: 400ms; animation-fill-mode: backwards;">
@@ -48,7 +70,7 @@ const base = import.meta.env.BASE_URL;
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
-        快速开始
+        从 colleague.skill 开始
       </a>
       <a
         href={`${base}/gallery/`}
@@ -57,7 +79,7 @@ const base = import.meta.env.BASE_URL;
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
         </svg>
-        浏览 Skill Gallery
+        逛逛 Skill Gallery
       </a>
     </div>
 
@@ -68,7 +90,7 @@ const base = import.meta.env.BASE_URL;
           <div class="terminal-dot bg-red-500/80"></div>
           <div class="terminal-dot bg-yellow-500/80"></div>
           <div class="terminal-dot bg-green-500/80"></div>
-          <span class="ml-3 text-surface-400 text-xs font-mono">claude-code — colleague-skill</span>
+          <span class="ml-3 text-surface-400 text-xs font-mono">claude-code — colleague.skill</span>
         </div>
         <div class="p-6 font-mono text-sm text-left space-y-3">
           <div class="text-surface-500"># Step 1：在 Claude Code 里运行</div>
@@ -109,14 +131,14 @@ const base = import.meta.env.BASE_URL;
         <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
         </svg>
-        <span>支持飞书 / 钉钉 / Slack / 邮件</span>
+        <span>飞书 / 钉钉 / Slack / 邮件 全支持</span>
       </div>
       <div class="w-px h-4 bg-surface-700 hidden sm:block"></div>
       <div class="flex items-center gap-2 text-surface-400 text-sm">
         <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
         </svg>
-        <span>AgentSkills 开放标准兼容</span>
+        <span>AgentSkills 开放标准</span>
       </div>
     </div>
   </div>
