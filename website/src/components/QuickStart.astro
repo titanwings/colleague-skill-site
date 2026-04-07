@@ -4,26 +4,55 @@ const methods = [
     name: 'Claude Code',
     icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>`,
     command: 'git clone https://github.com/titanwings/colleague-skill ~/.claude/skills/create-colleague',
-    description: '安装到全局，所有项目均可用',
-    badge: '推荐',
+    descZh: '安装到全局，所有项目均可用',
+    descEn: 'Install globally — works across all your projects',
+    badgeZh: '推荐',
+    badgeEn: 'Recommended',
     badgeColor: 'bg-brand-500/20 text-brand-400 border-brand-500/30',
   },
   {
     name: 'OpenClaw',
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`,
     command: 'git clone https://github.com/titanwings/colleague-skill ~/.openclaw/workspace/skills/create-colleague',
-    description: 'OpenClaw 安装方式',
-    badge: 'CLI',
+    descZh: 'OpenClaw 安装方式',
+    descEn: 'Install via OpenClaw',
+    badgeZh: 'CLI',
+    badgeEn: 'CLI',
     badgeColor: 'bg-surface-700 text-surface-400 border-surface-600',
   },
   {
-    name: '手动安装',
+    name: 'Manual',
+    nameZh: '手动安装',
+    nameEn: 'Manual Install',
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>`,
     command: 'git clone https://github.com/titanwings/colleague-skill\ncd colleague-skill && pip install -r requirements.txt',
-    description: '克隆仓库，手动配置',
-    badge: 'DIY',
+    descZh: '克隆仓库，手动配置',
+    descEn: 'Clone the repo and configure manually',
+    badgeZh: 'DIY',
+    badgeEn: 'DIY',
     badgeColor: 'bg-surface-700 text-surface-400 border-surface-600',
     multiline: true,
+  },
+];
+
+const nextSteps = [
+  {
+    step: '1',
+    cmd: '/create-colleague',
+    descZh: '在 Claude Code 里启动，按提示填信息',
+    descEn: 'Run in Claude Code, follow the prompts',
+  },
+  {
+    step: '2',
+    cmd: '/list-colleagues',
+    descZh: '查看所有已生成的 Skill',
+    descEn: 'List all your distilled Skills',
+  },
+  {
+    step: '3',
+    cmd: '/security-engineer-wang 帮我 review 这段代码',
+    descZh: '/[slug] 直接召唤',
+    descEn: '/[slug] to summon them instantly',
   },
 ];
 ---
@@ -35,10 +64,12 @@ const methods = [
         QUICK START
       </div>
       <h2 class="section-heading">
-        5 分钟上手，<span class="gradient-text">不是吹的</span>
+        <span class="lang-zh">5 分钟上手，<span class="gradient-text">不是吹的</span></span>
+        <span class="lang-en">Up in 5 Minutes.<br/><span class="gradient-text">Not an Exaggeration.</span></span>
       </h2>
       <p class="section-sub">
-        选你顺手的方式，装完直接蒸馏
+        <span class="lang-zh">选你顺手的方式，装完直接蒸馏</span>
+        <span class="lang-en">Pick your method, install, and start distilling</span>
       </p>
     </div>
 
@@ -50,10 +81,18 @@ const methods = [
               <div class="w-9 h-9 rounded-lg bg-surface-700 border border-surface-600 flex items-center justify-center text-surface-300 group-hover:text-brand-400 group-hover:border-brand-500/40 transition-colors">
                 <Fragment set:html={method.icon} />
               </div>
-              <span class="font-semibold text-white text-sm">{method.name}</span>
+              <span class="font-semibold text-white text-sm">
+                {method.nameZh ? (
+                  <>
+                    <span class="lang-zh">{method.nameZh}</span>
+                    <span class="lang-en">{method.nameEn}</span>
+                  </>
+                ) : method.name}
+              </span>
             </div>
             <span class={`text-xs px-2 py-0.5 rounded-full border font-medium ${method.badgeColor}`}>
-              {method.badge}
+              <span class="lang-zh">{method.badgeZh}</span>
+              <span class="lang-en">{method.badgeEn}</span>
             </span>
           </div>
 
@@ -62,7 +101,7 @@ const methods = [
             <button
               class="copy-btn absolute top-2 right-2 p-1.5 rounded bg-surface-700 border border-surface-600 text-surface-400 hover:text-white hover:border-surface-500 opacity-0 group-hover/code:opacity-100 transition-all"
               data-command={method.command}
-              title="复制"
+              title="Copy"
             >
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
@@ -70,27 +109,32 @@ const methods = [
             </button>
           </div>
 
-          <p class="text-surface-500 text-xs">{method.description}</p>
+          <p class="text-surface-500 text-xs">
+            <span class="lang-zh">{method.descZh}</span>
+            <span class="lang-en">{method.descEn}</span>
+          </p>
         </div>
       ))}
     </div>
 
     <!-- Next steps -->
     <div class="card-base p-6 reveal">
-      <h3 class="text-sm font-semibold text-surface-300 mb-4 font-mono"># 装完之后</h3>
+      <h3 class="text-sm font-semibold text-surface-300 mb-4 font-mono">
+        <span class="lang-zh"># 装完之后</span>
+        <span class="lang-en"># After Setup</span>
+      </h3>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {[
-          { step: '1', cmd: '/create-colleague', desc: '在 Claude Code 里启动，按提示填信息' },
-          { step: '2', cmd: '/list-colleagues', desc: '查看所有已生成的 Skill' },
-          { step: '3', cmd: '/security-engineer-wang 帮我 review 这段代码', desc: '/[slug] 直接召唤' },
-        ].map((item) => (
+        {nextSteps.map((item) => (
           <div class="flex gap-3">
             <div class="w-6 h-6 rounded-full bg-brand-500/20 border border-brand-500/30 flex items-center justify-center shrink-0 text-xs font-bold text-brand-400">
               {item.step}
             </div>
             <div>
               <div class="code-block px-2.5 py-1 text-xs text-brand-300 font-mono mb-1.5">{item.cmd}</div>
-              <p class="text-surface-500 text-xs">{item.desc}</p>
+              <p class="text-surface-500 text-xs">
+                <span class="lang-zh">{item.descZh}</span>
+                <span class="lang-en">{item.descEn}</span>
+              </p>
             </div>
           </div>
         ))}

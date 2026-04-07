@@ -21,9 +21,9 @@ const skills = await getAllSkills();
       <h1 class="section-heading mb-3">
         Skill <span class="gradient-text">Gallery</span>
       </h1>
-      <p class="text-surface-600 font-mono text-xs mb-2">Community-distilled Skills. They left. The Skills stayed.</p>
       <p class="section-sub">
-        社区贡献的 dot-skill。他们离开了，但智慧还在。
+        <span class="lang-zh">社区贡献的 dot-skill。他们离开了，但智慧还在。</span>
+        <span class="lang-en">Community-distilled Skills. They left. The Skills stayed.</span>
       </p>
 
       <!-- Submit button -->
@@ -37,7 +37,8 @@ const skills = await getAllSkills();
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
           </svg>
-          提交我的 Skill
+          <span class="lang-zh">提交我的 Skill</span>
+          <span class="lang-en">Submit My Skill</span>
         </a>
         <a
           href="https://github.com/titanwings/colleague-skill-site/blob/main/website/src/content/skills/_template.yaml"
@@ -48,7 +49,8 @@ const skills = await getAllSkills();
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
           </svg>
-          查看提交模板
+          <span class="lang-zh">查看提交模板</span>
+          <span class="lang-en">View Template</span>
         </a>
       </div>
     </div>
@@ -56,13 +58,16 @@ const skills = await getAllSkills();
     <!-- Stats bar -->
     <div class="grid grid-cols-3 gap-4 mb-10 reveal">
       {[
-        { num: skills.length.toString(), label: '已收录 Skill' },
-        { num: [...new Set(skills.flatMap((s) => s.tags))].length.toString(), label: '覆盖技术领域' },
-        { num: [...new Set(skills.map((s) => s.author.github))].length.toString(), label: '社区贡献者' },
+        { num: skills.length.toString(), labelZh: '已收录 Skill', labelEn: 'Skills Listed' },
+        { num: [...new Set(skills.flatMap((s) => s.tags))].length.toString(), labelZh: '覆盖技术领域', labelEn: 'Domains Covered' },
+        { num: [...new Set(skills.map((s) => s.author.github))].length.toString(), labelZh: '社区贡献者', labelEn: 'Contributors' },
       ].map((stat) => (
         <div class="card-base p-4 text-center">
           <div class="text-2xl font-black text-brand-400">{stat.num}</div>
-          <div class="text-xs text-surface-500 mt-1">{stat.label}</div>
+          <div class="text-xs text-surface-500 mt-1">
+            <span class="lang-zh">{stat.labelZh}</span>
+            <span class="lang-en">{stat.labelEn}</span>
+          </div>
         </div>
       ))}
     </div>

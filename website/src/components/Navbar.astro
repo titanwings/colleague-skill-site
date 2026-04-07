@@ -32,7 +32,8 @@ const currentPath = Astro.url.pathname;
               : 'text-surface-300 hover:text-white hover:bg-surface-800'
           ]}
         >
-          首页 <span class="text-surface-600 text-xs">Home</span>
+          <span class="lang-zh">首页</span>
+          <span class="lang-en">Home</span>
         </a>
         <a
           href={`${base}/gallery/`}
@@ -104,7 +105,9 @@ const currentPath = Astro.url.pathname;
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-1">
-      <a href={`${base}/`} class="block px-4 py-2.5 rounded-lg text-surface-300 hover:text-white hover:bg-surface-800 transition-colors">首页 Home</a>
+      <a href={`${base}/`} class="block px-4 py-2.5 rounded-lg text-surface-300 hover:text-white hover:bg-surface-800 transition-colors">
+        <span class="lang-zh">首页</span><span class="lang-en">Home</span>
+      </a>
       <a href={`${base}/gallery/`} class="block px-4 py-2.5 rounded-lg text-surface-300 hover:text-white hover:bg-surface-800 transition-colors">Skill Gallery</a>
       <a href="https://github.com/titanwings/colleague-skill" target="_blank" rel="noopener noreferrer" class="block px-4 py-2.5 rounded-lg text-surface-300 hover:text-white hover:bg-surface-800 transition-colors">GitHub →</a>
     </div>
