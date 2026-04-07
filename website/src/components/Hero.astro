@@ -25,29 +25,37 @@ const base = import.meta.env.BASE_URL;
       <span class="lang-zh">人会离开<br/><span class="gradient-text">dot-skill</span> 不会</span>
       <span class="lang-en">People leave.<br/><span class="gradient-text">Skills don't.</span></span>
     </h1>
-    <p class="text-surface-600 font-mono text-sm mb-8 animate-fade-up" style="animation-delay: 150ms; animation-fill-mode: backwards;">
+    <p class="text-surface-600 font-mono text-sm mb-10 animate-fade-up" style="animation-delay: 150ms; animation-fill-mode: backwards;">
       <span class="lang-zh">People leave. Skills don't.</span>
-      <span class="lang-en">Bottle the genius. Summon forever.</span>
+      <span class="lang-en">Bottle the wisdom. Summon forever.</span>
     </p>
 
     <!-- Subtitle -->
-    <p class="text-xl sm:text-2xl text-surface-400 max-w-3xl mx-auto mb-2 animate-fade-up" style="animation-delay: 200ms; animation-fill-mode: backwards;">
-      <span class="lang-zh">离职的大牛、封神的导师、读不完的书、请不起的专家——</span>
-      <span class="lang-en">The teammate who quit. The mentor who moved on. The expert you can't afford.</span>
+    <p class="text-xl sm:text-2xl text-surface-400 max-w-3xl mx-auto mb-3 animate-fade-up leading-relaxed" style="animation-delay: 200ms; animation-fill-mode: backwards;">
+      <span class="lang-zh">
+        已经走了的人、<span class="text-surface-300">只活在书里的人</span>、这辈子都见不到的人——
+      </span>
+      <span class="lang-en">
+        The ones who are gone. <span class="text-surface-300">The ones who only live in books.</span> The icons you'll never actually meet.
+      </span>
     </p>
-    <p class="text-xl sm:text-2xl text-surface-300 max-w-3xl mx-auto mb-12 animate-fade-up" style="animation-delay: 300ms; animation-fill-mode: backwards;">
-      <span class="lang-zh">统统蒸馏成 <span class="text-brand-400 font-semibold">dot-skill</span>，随叫随到</span>
-      <span class="lang-en">Distill anyone into a <span class="text-brand-400 font-semibold">dot-skill</span>. Summon them anytime.</span>
+    <p class="text-lg sm:text-xl text-surface-500 max-w-2xl mx-auto mb-12 animate-fade-up" style="animation-delay: 260ms; animation-fill-mode: backwards;">
+      <span class="lang-zh">那些你错过了、来不及问、再也见不到的——</span>
+      <span class="lang-en">Everyone you missed, never got to ask, or simply lost along the way —</span>
+    </p>
+    <p class="text-2xl sm:text-3xl text-surface-200 font-semibold max-w-3xl mx-auto mb-12 animate-fade-up" style="animation-delay: 320ms; animation-fill-mode: backwards;">
+      <span class="lang-zh">统统蒸馏成 <span class="text-brand-400">dot-skill</span>，随叫随到</span>
+      <span class="lang-en">Distill anyone into a <span class="text-brand-400">dot-skill</span>. Summon them anytime.</span>
     </p>
 
     <!-- Skill series pills -->
     <div class="flex flex-wrap justify-center gap-2 mb-10 animate-fade-up" style="animation-delay: 350ms; animation-fill-mode: backwards;">
       {[
-        { name: 'colleague.skill', descZh: '蒸馏大牛', descEn: 'bottle your teammate', active: true },
-        { name: 'ex-skill', descZh: '蒸馏前任', descEn: 'bottle your ex', active: false },
-        { name: 'author.skill', descZh: '蒸馏作者', descEn: 'bottle a book', active: false },
-        { name: 'expert.skill', descZh: '蒸馏专家', descEn: 'bottle an expert', active: false },
-        { name: '???.skill', descZh: '你来定义', descEn: 'you decide', active: false },
+        { name: 'memory.skill', descZh: '蒸馏逝去的人', descEn: 'the ones who are gone', active: true },
+        { name: 'author.skill', descZh: '书里才见过的人', descEn: 'legends in your books', active: false },
+        { name: 'icon.skill', descZh: '够不到的公众人物', descEn: 'icons you can\'t reach', active: false },
+        { name: 'ex-skill', descZh: '那些走散的人', descEn: 'those you\'ve lost touch with', active: false },
+        { name: '???.skill', descZh: '你来定义', descEn: 'anyone, really', active: false },
       ].map((s) => (
         <span class={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono border transition-all ${
           s.active
