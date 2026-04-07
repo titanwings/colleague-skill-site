@@ -57,4 +57,6 @@ body:
   - type: input
     id: skill_repo
     attributes:
-      label: Skill 文件链接（可选）
+      label: Skill 文件链接
+    validations:
+      required: true
