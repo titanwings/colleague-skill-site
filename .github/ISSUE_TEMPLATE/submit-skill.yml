@@ -34,11 +34,6 @@ body:
     id: preview_conversation
     attributes:
       label: 来一段对话预览
-      placeholder: |
-        你：帮我看看这个 API 有没有安全问题
-        TA：先看鉴权——没有 rate limiting，参数直接拼 SQL，两个高危。改法：① 加鉴权中间件 ② SQL 改参数化查询。
-    validations:
-      required: true
 
   - type: dropdown
     id: tags
