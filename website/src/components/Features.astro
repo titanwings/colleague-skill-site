@@ -2,9 +2,12 @@
 const features = [
   {
     icon: '🧬',
-    title: '蒸馏，不是复制',
-    subtitle: 'Distillation, Not Imitation',
-    description: '不是把聊天记录喂给 GPT 让它背台词。而是提炼决策逻辑、工作方式、说话风格，让 Skill 真正"像那个人"。',
+    title: { zh: '蒸馏，不是复制', en: 'Distillation, Not Karaoke' },
+    subtitle: { zh: 'Distillation, Not Imitation', en: '' },
+    description: {
+      zh: '不是把聊天记录喂给 GPT 让它背台词。而是提炼决策逻辑、工作方式、说话风格，让 Skill 真正"像那个人"。',
+      en: "We don't feed it chat logs and hope it memorizes the vibes. We extract decision patterns, work style, and communication habits — so the Skill actually *thinks* like them.",
+    },
     tags: ['Work Skill', 'Persona', '5层性格'],
     color: 'from-purple-500/20 to-blue-500/10',
     borderColor: 'border-purple-500/20',
@@ -12,29 +15,38 @@ const features = [
   },
   {
     icon: '🔥',
-    title: '原材料随便扔',
-    subtitle: 'Any Source, Any Format',
-    description: '飞书 / 钉钉 / Slack / 邮件 / GitHub PR / 截图 / PDF……能导出的全塞进来，边角料也算，多多益善。',
+    title: { zh: '原材料随便扔', en: 'Garbage In, Gold Out' },
+    subtitle: { zh: 'Any Source, Any Format', en: '' },
+    description: {
+      zh: '飞书 / 钉钉 / Slack / 邮件 / GitHub PR / 截图 / PDF……能导出的全塞进来，边角料也算，多多益善。',
+      en: 'Feishu / DingTalk / Slack / emails / GitHub PRs / screenshots / PDFs — throw everything in. Even a single group chat screenshot counts. We work with scraps.',
+    },
     tags: ['Feishu API', 'DingTalk', 'Slack', '.eml'],
     color: 'from-orange-500/20 to-red-500/10',
     borderColor: 'border-orange-500/20',
     tagColor: 'bg-orange-500/10 text-orange-400 border-orange-500/20',
   },
   {
-    icon: '📈',
-    title: '越用越像本人',
-    subtitle: 'Gets Better Over Time',
-    description: '用着用着发现不对？直接说"他不会这样做，应该是……"——Skill 当场记住，下次改正。比真人还好管。',
-    tags: ['对话纠正', '增量更新', '版本回滚'],
+    icon: '🔄',
+    title: { zh: '自进化，自纠正', en: 'It Learns. You Win.' },
+    subtitle: { zh: 'Self-Evolving, Self-Correcting', en: '' },
+    description: {
+      zh: '发现 Skill 答错了？直接说「他不会这样做」——Skill 立刻记住，下次自动修正。比真人还好沟通。',
+      en: "Catch it being off? Just say 'nope, that's not how they'd do it.' The Skill updates itself on the spot. No arguments. No excuses. Just silent self-correction.",
+    },
+    tags: ['Self-Evolving', 'Self-Correcting', '版本管理'],
     color: 'from-green-500/20 to-teal-500/10',
     borderColor: 'border-green-500/20',
     tagColor: 'bg-green-500/10 text-green-400 border-green-500/20',
   },
   {
     icon: '🌍',
-    title: '开放，不锁厂商',
-    subtitle: 'Open Standard, No Lock-in',
-    description: 'AgentSkills 开放标准，Claude Code / OpenClaw / 任何 MCP 客户端都能用。Skill 是你的，平台随你换。',
+    title: { zh: '开放，不锁厂商', en: 'Open Standard. No Vendor Prison.' },
+    subtitle: { zh: 'Open Standard, No Lock-in', en: '' },
+    description: {
+      zh: 'AgentSkills 开放标准，Claude Code / OpenClaw / 任何 MCP 客户端都能用。Skill 是你的，平台随你换。',
+      en: 'AgentSkills open standard — works with Claude Code, OpenClaw, or any MCP client. Your Skill is yours. Swap platforms whenever you feel like it. We\'re not your landlord.',
+    },
     tags: ['AgentSkills', 'MCP', 'Claude Code', 'OpenClaw'],
     color: 'from-brand-500/20 to-yellow-500/10',
     borderColor: 'border-brand-500/20',
@@ -52,11 +64,12 @@ const features = [
         WHY .SKILL
       </div>
       <h2 class="section-heading">
-        不只是 Prompt，<span class="gradient-text">是真正的数字分身</span>
+        <span class="lang-zh">不只是 Prompt，<span class="gradient-text">是真正的数字分身</span></span>
+        <span class="lang-en">Not Just a Prompt.<br/><span class="gradient-text">A Real Digital Twin.</span></span>
       </h2>
-      <p class="text-surface-600 font-mono text-xs mb-1">Not just a prompt — a real digital twin.</p>
       <p class="section-sub">
-        那些你再也问不到的人——其实还没走远
+        <span class="lang-zh">那些你再也问不到的人——其实还没走远</span>
+        <span class="lang-en">The people you can't ask anymore? They haven't really left.</span>
       </p>
     </div>
 
@@ -67,10 +80,16 @@ const features = [
             <div class="text-3xl shrink-0 mt-0.5">{f.icon}</div>
             <div class="flex-1 min-w-0">
               <div class="flex items-baseline gap-2 mb-1">
-                <h3 class="text-lg font-bold text-white">{f.title}</h3>
-                <span class="text-xs text-surface-500 font-mono">{f.subtitle}</span>
+                <h3 class="text-lg font-bold text-white">
+                  <span class="lang-zh">{f.title.zh}</span>
+                  <span class="lang-en">{f.title.en}</span>
+                </h3>
+                {f.subtitle.zh && <span class="text-xs text-surface-500 font-mono lang-zh">{f.subtitle.zh}</span>}
               </div>
-              <p class="text-surface-400 text-sm leading-relaxed mb-4">{f.description}</p>
+              <p class="text-surface-400 text-sm leading-relaxed mb-4">
+                <span class="lang-zh">{f.description.zh}</span>
+                <span class="lang-en">{f.description.en}</span>
+              </p>
               <div class="flex flex-wrap gap-2">
                 {f.tags.map((tag) => (
                   <span class={`inline-flex items-center px-2 py-0.5 rounded text-xs font-mono border ${f.tagColor}`}>

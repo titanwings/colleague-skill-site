@@ -60,6 +60,15 @@ const currentPath = Astro.url.pathname;
 
       <!-- CTA Buttons -->
       <div class="flex items-center gap-2">
+        <!-- Language toggle -->
+        <button
+          id="lang-toggle"
+          class="px-2.5 py-1.5 rounded-lg text-xs font-mono font-bold border border-surface-700 hover:border-brand-500/50 text-surface-400 hover:text-brand-400 transition-all"
+          title="Switch language / 切换语言"
+          aria-label="Toggle language"
+        >
+          <span id="lang-label">EN</span>
+        </button>
         <a
           href={`${base}/gallery/`}
           class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-surface-300 hover:text-white border border-surface-700 hover:border-surface-600 rounded-lg transition-all hover:bg-surface-800"
@@ -103,6 +112,21 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
+  // Language toggle
+  const langToggle = document.getElementById('lang-toggle');
+  const langLabel = document.getElementById('lang-label');
+  const savedLang = localStorage.getItem('dotskill-lang') || 'zh';
+  document.documentElement.setAttribute('data-lang', savedLang);
+  if (langLabel) langLabel.textContent = savedLang === 'zh' ? 'EN' : '中';
+
+  langToggle?.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-lang') || 'zh';
+    const next = current === 'zh' ? 'en' : 'zh';
+    document.documentElement.setAttribute('data-lang', next);
+    localStorage.setItem('dotskill-lang', next);
+    if (langLabel) langLabel.textContent = next === 'zh' ? 'EN' : '中';
+  });
+
   const navbar = document.getElementById('navbar');
   const navbarBg = document.getElementById('navbar-bg');
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');

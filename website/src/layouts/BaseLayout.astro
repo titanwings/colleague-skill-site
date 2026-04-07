@@ -13,8 +13,8 @@ interface Props {
 const base = import.meta.env.BASE_URL;
 
 const {
-  title = 'colleague-skill — 把同事蒸馏成 AI Skill',
-  description = '遵循 AgentSkills 开放标准的开源工具，自动从飞书/钉钉/Slack 采集数据，生成可直接调用的同事 AI Skill。GitHub 10k+ Stars。',
+  title = 'dot-skill — 人会离开，dot-skill 不会',
+  description = '把任何人的智慧蒸馏成可调用的 AI Skill。Distill anyone into an AI Skill. AgentSkills open standard. GitHub 10k+ Stars.',
   ogImage = `${base}/og-image.png`,
   ogType = 'website',
 } = Astro.props;
@@ -34,7 +34,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="colleague-skill, AI Skill, AgentSkills, 同事蒸馏, 飞书, 钉钉, Slack, Claude Code" />
+    <meta name="keywords" content="dot-skill, AI Skill, AgentSkills, skill distillation, 飞书, 钉钉, Slack, Claude Code" />
     <meta name="author" content="titanwings" />
 
     <!-- Open Graph / Facebook -->

@@ -21,33 +21,32 @@ const base = import.meta.env.BASE_URL;
 
     <!-- Headline -->
     <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-white leading-tight tracking-tight mb-3 animate-fade-up" style="animation-delay: 100ms; animation-fill-mode: backwards;">
-      人会离开<br/>
-      <span class="gradient-text">.skill</span> 不会
+      <span class="lang-zh">人会离开<br/><span class="gradient-text">dot-skill</span> 不会</span>
+      <span class="lang-en">People leave.<br/><span class="gradient-text">Skills don't.</span></span>
     </h1>
     <p class="text-surface-600 font-mono text-sm mb-8 animate-fade-up" style="animation-delay: 150ms; animation-fill-mode: backwards;">
-      People leave. Skills don't.
+      <span class="lang-zh">People leave. Skills don't.</span>
+      <span class="lang-en">Bottle the genius. Summon forever.</span>
     </p>
 
     <!-- Subtitle -->
     <p class="text-xl sm:text-2xl text-surface-400 max-w-3xl mx-auto mb-2 animate-fade-up" style="animation-delay: 200ms; animation-fill-mode: backwards;">
-      离职的同事、封神的导师、读不完的书、请不起的专家——
-    </p>
-    <p class="text-surface-500 text-sm max-w-2xl mx-auto mb-4 animate-fade-up font-mono" style="animation-delay: 220ms; animation-fill-mode: backwards;">
-      Colleagues who quit · Mentors who moved on · Books you never finish · Experts you can't afford
+      <span class="lang-zh">离职的大牛、封神的导师、读不完的书、请不起的专家——</span>
+      <span class="lang-en">The teammate who quit. The mentor who moved on. The expert you can't afford.</span>
     </p>
     <p class="text-xl sm:text-2xl text-surface-300 max-w-3xl mx-auto mb-12 animate-fade-up" style="animation-delay: 300ms; animation-fill-mode: backwards;">
-      统统蒸馏成 <span class="text-brand-400 font-semibold">.skill</span>，随叫随到
-      <span class="block text-surface-500 text-sm font-mono mt-1">Distill anyone into an AI Skill. Summon anytime.</span>
+      <span class="lang-zh">统统蒸馏成 <span class="text-brand-400 font-semibold">dot-skill</span>，随叫随到</span>
+      <span class="lang-en">Distill anyone into a <span class="text-brand-400 font-semibold">dot-skill</span>. Summon them anytime.</span>
     </p>
 
     <!-- Skill series pills -->
     <div class="flex flex-wrap justify-center gap-2 mb-10 animate-fade-up" style="animation-delay: 350ms; animation-fill-mode: backwards;">
       {[
-        { name: 'colleague.skill', desc: '蒸馏同事', active: true },
-        { name: 'mentor.skill', desc: '蒸馏导师', active: false },
-        { name: 'author.skill', desc: '蒸馏作者', active: false },
-        { name: 'expert.skill', desc: '蒸馏专家', active: false },
-        { name: '???.skill', desc: '你来定义', active: false },
+        { name: 'colleague.skill', descZh: '蒸馏大牛', descEn: 'bottle your teammate', active: true },
+        { name: 'ex-skill', descZh: '蒸馏前任', descEn: 'bottle your ex', active: false },
+        { name: 'author.skill', descZh: '蒸馏作者', descEn: 'bottle a book', active: false },
+        { name: 'expert.skill', descZh: '蒸馏专家', descEn: 'bottle an expert', active: false },
+        { name: '???.skill', descZh: '你来定义', descEn: 'you decide', active: false },
       ].map((s) => (
         <span class={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono border transition-all ${
           s.active
@@ -57,7 +56,8 @@ const base = import.meta.env.BASE_URL;
           <span class={s.active ? 'text-brand-400' : 'text-surface-600'}>●</span>
           {s.name}
           <span class="opacity-60">·</span>
-          <span class="opacity-70">{s.desc}</span>
+          <span class="opacity-70 lang-zh">{s.descZh}</span>
+          <span class="opacity-70 lang-en">{s.descEn}</span>
         </span>
       ))}
     </div>
@@ -93,7 +93,7 @@ const base = import.meta.env.BASE_URL;
           <div class="terminal-dot bg-red-500/80"></div>
           <div class="terminal-dot bg-yellow-500/80"></div>
           <div class="terminal-dot bg-green-500/80"></div>
-          <span class="ml-3 text-surface-400 text-xs font-mono">claude-code — colleague.skill</span>
+          <span class="ml-3 text-surface-400 text-xs font-mono">claude-code — dot-skill</span>
         </div>
         <div class="p-6 font-mono text-sm text-left space-y-3">
           <div class="text-surface-500"># Step 1: run in Claude Code</div>

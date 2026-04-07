@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Language toggle system */
+.lang-en { display: none; }
+html[data-lang="en"] .lang-zh { display: none; }
+html[data-lang="en"] .lang-en { display: revert; }
+
 @layer base {
   * {
     box-sizing: border-box;
