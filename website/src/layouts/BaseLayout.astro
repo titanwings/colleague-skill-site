@@ -58,6 +58,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <slot name="head" />
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "76878b4b6158495fb3efc083ab422f58"}'></script>
   </head>
   <body class="min-h-screen flex flex-col bg-surface-900">
     <Navbar />
