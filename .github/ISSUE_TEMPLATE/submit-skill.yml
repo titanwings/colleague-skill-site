@@ -35,25 +35,6 @@ body:
     attributes:
       label: 来一段对话预览
 
-  - type: dropdown
-    id: tags
-    attributes:
-      label: 领域标签
-      multiple: true
-      options:
-        - frontend
-        - backend
-        - security
-        - devops
-        - data
-        - design
-        - product
-        - hr
-        - management
-        - other
-    validations:
-      required: true
-
   - type: input
     id: skill_repo
     attributes:
