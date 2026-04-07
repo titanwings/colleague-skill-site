@@ -4,6 +4,7 @@
 
 name: "Skill 名称（中文就好）"
 slug: "your-slug-here"           # 英文、连字符，全局唯一
+type: "skill"                    # skill（人的 persona）或 meta-skill（生成 skill 的工具）
 
 author:
   name: "你的名字"

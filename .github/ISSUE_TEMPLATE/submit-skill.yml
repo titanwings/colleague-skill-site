@@ -8,6 +8,16 @@ body:
       value: |
         填 5 个字段就够了，维护者会帮你整理格式。
 
+  - type: dropdown
+    id: type
+    attributes:
+      label: 类型
+      options:
+        - skill（人的 persona）
+        - meta-skill（生成 skill 的工具）
+    validations:
+      required: true
+
   - type: input
     id: name
     attributes:

@@ -74,12 +74,19 @@ const personalityMap: Record<string, string> = {
       </div>
     </div>
 
-    {skill.company_culture && (
-      <span class="shrink-0 text-xs px-2 py-0.5 rounded bg-surface-700/50 border border-surface-600/50 text-surface-400 font-mono">
-        <span class="lang-zh">{skill.company_culture}</span>
-        <span class="lang-en">{cultureMap[skill.company_culture] || skill.company_culture}</span>
-      </span>
-    )}
+    <div class="flex items-center gap-1.5 shrink-0">
+      {skill.type === 'meta-skill' && (
+        <span class="text-xs px-2 py-0.5 rounded bg-purple-500/15 border border-purple-500/30 text-purple-300 font-mono">
+          meta-skill
+        </span>
+      )}
+      {skill.company_culture && (
+        <span class="text-xs px-2 py-0.5 rounded bg-surface-700/50 border border-surface-600/50 text-surface-400 font-mono">
+          <span class="lang-zh">{skill.company_culture}</span>
+          <span class="lang-en">{cultureMap[skill.company_culture] || skill.company_culture}</span>
+        </span>
+      )}
+    </div>
   </div>
 
   <!-- Description -->
