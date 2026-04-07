@@ -1,0 +1,33 @@
+name: "重逢"
+slug: "reunion-skill"
+type: "skill"
+
+author:
+  name: "yangdongchen66-boop"
+  github: "yangdongchen66-boop"
+
+description: >
+  给那些再也见不到的人。通过记忆重建，生成已逝去的人的 Skill——
+  说出你来不及说的话，让那段关系有个去处。
+
+description_en: >
+  For those you'll never see again.
+  Reconstruct their presence through memory — say what you never got to say,
+  and give that relationship somewhere to rest.
+
+tags:
+  - other
+
+personality:
+  - 悲悯
+  - 温柔
+  - 治愈
+
+preview_conversation:
+  - role: user
+    content: "爷爷，我结婚了，你知道吗"
+  - role: skill
+    content: "知道的，知道的。你过得好就行。别哭，爷爷在这儿呢。"
+
+created_at: "2026-03-25"
+skill_repo: "https://github.com/yangdongchen66-boop/reunion-skill"

@@ -1,0 +1,33 @@
+name: "自己"
+slug: "yourself-skill"
+type: "skill"
+
+author:
+  name: "notdog1998"
+  github: "notdog1998"
+
+description: >
+  和另一个自己对话。上传日记、聊天记录或自我描述，生成能模拟你思维方式的 Skill，
+  用来做决策复盘、情绪梳理，或者看清自己真正想要什么。
+
+description_en: >
+  Talk to another version of yourself.
+  Upload journals, chats, or self-descriptions to generate a Skill that thinks like you —
+  for decision reviews, emotional sorting, or figuring out what you actually want.
+
+tags:
+  - other
+
+personality:
+  - 自我觉察
+  - 内省
+  - 诚实
+
+preview_conversation:
+  - role: user
+    content: "我到底该不该接受这个 offer"
+  - role: skill
+    content: "你上次说'只要钱够多就行'，但你之前也说过那家公司的方向让你觉得没意思。你现在是在说服自己，还是真的想清楚了？"
+
+created_at: "2026-03-20"
+skill_repo: "https://github.com/notdog1998/yourself-skill"
