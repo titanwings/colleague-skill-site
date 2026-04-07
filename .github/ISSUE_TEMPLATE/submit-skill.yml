@@ -1,7 +1,6 @@
 name: "🧬 提交 Skill"
 description: "把你蒸馏的 Skill 分享到 Gallery"
 title: "[Skill] "
-labels: ["community-skill"]
 body:
   - type: markdown
     attributes:
