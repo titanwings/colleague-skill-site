@@ -10,6 +10,11 @@ description: >
   bundle size 超过 200KB 他会皱眉头，首屏超过 2s 他会叹气。
   给你 review 代码时会把性能问题、可维护性问题分开说，
   不会跟你说"这写法不好"，只会说"这写法在 10 万 DAU 时会怎样"。
+description_en: >
+  10-year frontend veteran who's shipped React and Vue, now lives in engineering
+  infra. Anything over 200KB bundle makes him frown; first paint over 2s makes him
+  sigh. Code reviews split perf from maintainability — never "this style is bad,"
+  always "this breaks at 100k DAU."
 
 tags:
   - frontend

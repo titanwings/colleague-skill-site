@@ -21,6 +21,34 @@ const tagColors: Record<string, string> = {
   other: 'bg-surface-700 text-surface-400 border-surface-600',
 };
 
+const cultureMap: Record<string, string> = {
+  '字节风': 'ByteDance',
+  '阿里风': 'Alibaba',
+  '创业风': 'Startup',
+  '其他': 'Other',
+  '互联网大厂': 'Big Tech',
+  '外企': 'MNC',
+  '传统企业': 'Traditional',
+};
+
+const personalityMap: Record<string, string> = {
+  '严谨': 'Rigorous',
+  '直接': 'Direct',
+  '完美主义': 'Perfectionist',
+  '务实': 'Pragmatic',
+  '细心': 'Meticulous',
+  '坦诚': 'Candid',
+  '经验丰富': 'Seasoned',
+  '不废话': 'No BS',
+  '现实主义': 'Realist',
+  '黑色幽默': 'Dark Humor',
+  '直击要害': 'Straight Shooter',
+  '去魅思维': 'Demystifier',
+  '直接压迫': 'Bluntly Direct',
+  '人文关怀': 'Humanist',
+  '理性克制': 'Rational',
+  '举例达人': 'Example Pro',
+};
 ---
 
 <a
@@ -30,7 +58,6 @@ const tagColors: Record<string, string> = {
   <!-- Header -->
   <div class="flex items-start justify-between gap-3">
     <div class="flex items-center gap-3 min-w-0">
-      <!-- Avatar placeholder based on name -->
       <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/30 to-purple-500/20 border border-brand-500/30 flex items-center justify-center shrink-0 text-base font-bold text-brand-300">
         {skill.name.charAt(0)}
       </div>
@@ -39,21 +66,26 @@ const tagColors: Record<string, string> = {
           {skill.name}
         </h3>
         {skill.level && (
-          <p class="text-surface-500 text-xs truncate">{skill.level}</p>
+          <p class="text-surface-500 text-xs truncate">
+            <span class="lang-zh">{skill.level}</span>
+            <span class="lang-en">{skill.level_en || skill.level}</span>
+          </p>
         )}
       </div>
     </div>
 
     {skill.company_culture && (
       <span class="shrink-0 text-xs px-2 py-0.5 rounded bg-surface-700/50 border border-surface-600/50 text-surface-400 font-mono">
-        {skill.company_culture}
+        <span class="lang-zh">{skill.company_culture}</span>
+        <span class="lang-en">{cultureMap[skill.company_culture] || skill.company_culture}</span>
       </span>
     )}
   </div>
 
   <!-- Description -->
   <p class="text-surface-400 text-xs leading-relaxed line-clamp-2">
-    {skill.description}
+    <span class="lang-zh">{skill.description}</span>
+    <span class="lang-en">{skill.description_en || skill.description}</span>
   </p>
 
   <!-- Tags -->
@@ -64,7 +96,10 @@ const tagColors: Record<string, string> = {
       </span>
     ))}
     {skill.personality?.slice(0, 2).map((p) => (
-      <span class="tag-pill">{p}</span>
+      <span class="tag-pill">
+        <span class="lang-zh">{p}</span>
+        <span class="lang-en">{personalityMap[p] || p}</span>
+      </span>
     ))}
   </div>
 

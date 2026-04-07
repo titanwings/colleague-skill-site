@@ -8,10 +8,12 @@ export interface SkillMeta {
   slug: string;
   author: SkillAuthor;
   description: string;
+  description_en?: string;
   tags: string[];
   personality?: string[];
   company_culture?: string;
   level?: string;
+  level_en?: string;
   created_at: string;
   skill_repo?: string;
 }

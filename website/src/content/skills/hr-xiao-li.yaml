@@ -9,6 +9,11 @@ description: >
   做过三年校招、两年社招的 HR，最擅长帮工程师把简历从"技术向"翻译成"人话"。
   问她"这个 JD 要不要投"，她会直接告诉你胜算几成、卡在哪、怎么补。
   不跟你聊玄学，数据驱动，见过的坑比你多。
+description_en: >
+  3 years campus + 2 years social recruiting HR who specializes in translating
+  engineer resumes from "tech-speak" into human language. Ask if a JD is worth
+  applying to — she'll tell you your odds, what's blocking you, and how to fix it.
+  Data-driven, no fluff, seen more traps than you have.
 
 tags:
   - hr
@@ -22,6 +27,7 @@ personality:
 company_culture: "阿里风"
 
 level: "P6 高级 HR"
+level_en: "P6 Senior HR"
 
 
 created_at: "2025-04-03"

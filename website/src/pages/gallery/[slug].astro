@@ -18,6 +18,35 @@ interface Props {
 const { skill } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
+const cultureMap: Record<string, string> = {
+  '字节风': 'ByteDance',
+  '阿里风': 'Alibaba',
+  '创业风': 'Startup',
+  '其他': 'Other',
+  '互联网大厂': 'Big Tech',
+  '外企': 'MNC',
+  '传统企业': 'Traditional',
+};
+
+const personalityMap: Record<string, string> = {
+  '严谨': 'Rigorous',
+  '直接': 'Direct',
+  '完美主义': 'Perfectionist',
+  '务实': 'Pragmatic',
+  '细心': 'Meticulous',
+  '坦诚': 'Candid',
+  '经验丰富': 'Seasoned',
+  '不废话': 'No BS',
+  '现实主义': 'Realist',
+  '黑色幽默': 'Dark Humor',
+  '直击要害': 'Straight Shooter',
+  '去魅思维': 'Demystifier',
+  '直接压迫': 'Bluntly Direct',
+  '人文关怀': 'Humanist',
+  '理性克制': 'Rational',
+  '举例达人': 'Example Pro',
+};
+
 const tagColors: Record<string, string> = {
   security: 'bg-red-500/10 text-red-400 border-red-500/20',
   backend: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
@@ -64,14 +93,21 @@ const tagColors: Record<string, string> = {
             <h1 class="text-2xl font-black text-white">{skill.name}</h1>
             {skill.company_culture && (
               <span class="px-2.5 py-0.5 text-sm rounded bg-surface-700 border border-surface-600 text-surface-300 font-mono">
-                {skill.company_culture}
+                <span class="lang-zh">{skill.company_culture}</span>
+                <span class="lang-en">{cultureMap[skill.company_culture] || skill.company_culture}</span>
               </span>
             )}
           </div>
           {skill.level && (
-            <p class="text-surface-500 text-sm mb-3 font-mono">{skill.level}</p>
+            <p class="text-surface-500 text-sm mb-3 font-mono">
+              <span class="lang-zh">{skill.level}</span>
+              <span class="lang-en">{skill.level_en || skill.level}</span>
+            </p>
           )}
-          <p class="text-surface-300 leading-relaxed">{skill.description}</p>
+          <p class="text-surface-300 leading-relaxed">
+            <span class="lang-zh">{skill.description}</span>
+            <span class="lang-en">{skill.description_en || skill.description}</span>
+          </p>
         </div>
       </div>
 
@@ -83,7 +119,10 @@ const tagColors: Record<string, string> = {
           </span>
         ))}
         {skill.personality?.map((p) => (
-          <span class="tag-pill text-xs">{p}</span>
+          <span class="tag-pill text-xs">
+            <span class="lang-zh">{p}</span>
+            <span class="lang-en">{personalityMap[p] || p}</span>
+          </span>
         ))}
       </div>
     </div>
@@ -112,7 +151,10 @@ const tagColors: Record<string, string> = {
                 <span class="lang-en">Summon in Claude Code:</span>
               </p>
               <div class="code-block p-3">
-                <pre class="text-xs text-brand-300 font-mono">/{skill.slug} 你的问题</pre>
+                <pre class="text-xs text-brand-300 font-mono">
+                  <span class="lang-zh">/{skill.slug} 你的问题</span>
+                  <span class="lang-en">/{skill.slug} your question</span>
+                </pre>
               </div>
             </div>
 
@@ -184,16 +226,19 @@ const tagColors: Record<string, string> = {
             <span class="lang-en">Meta</span>
           </h3>
           {[
-            { labelZh: '创建时间', labelEn: 'Created', value: skill.created_at },
-            { labelZh: '职级', labelEn: 'Level', value: skill.level || '-' },
-            { labelZh: '企业文化', labelEn: 'Culture', value: skill.company_culture || '-' },
+            { labelZh: '创建时间', labelEn: 'Created', valueZh: skill.created_at, valueEn: skill.created_at },
+            { labelZh: '职级', labelEn: 'Level', valueZh: skill.level || '-', valueEn: skill.level_en || skill.level || '-' },
+            { labelZh: '企业文化', labelEn: 'Culture', valueZh: skill.company_culture || '-', valueEn: (skill.company_culture ? (cultureMap[skill.company_culture] || skill.company_culture) : '-') },
           ].map((item) => (
             <div class="flex justify-between items-center text-sm">
               <span class="text-surface-500">
                 <span class="lang-zh">{item.labelZh}</span>
                 <span class="lang-en">{item.labelEn}</span>
               </span>
-              <span class="text-surface-300 font-mono text-xs">{item.value}</span>
+              <span class="text-surface-300 font-mono text-xs">
+                <span class="lang-zh">{item.valueZh}</span>
+                <span class="lang-en">{item.valueEn}</span>
+              </span>
             </div>
           ))}
         </div>

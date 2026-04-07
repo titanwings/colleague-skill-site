@@ -50,7 +50,8 @@ const nextSteps = [
   },
   {
     step: '3',
-    cmd: '/security-engineer-wang 帮我 review 这段代码',
+    cmdZh: '/security-engineer-wang 帮我 review 这段代码',
+    cmdEn: '/security-engineer-wang review this code for me',
     descZh: '/[slug] 直接召唤',
     descEn: '/[slug] to summon them instantly',
   },
@@ -130,7 +131,14 @@ const nextSteps = [
               {item.step}
             </div>
             <div>
-              <div class="code-block px-2.5 py-1 text-xs text-brand-300 font-mono mb-1.5">{item.cmd}</div>
+              <div class="code-block px-2.5 py-1 text-xs text-brand-300 font-mono mb-1.5">
+                {item.cmdZh ? (
+                  <>
+                    <span class="lang-zh">{item.cmdZh}</span>
+                    <span class="lang-en">{item.cmdEn}</span>
+                  </>
+                ) : item.cmd}
+              </div>
               <p class="text-surface-500 text-xs">
                 <span class="lang-zh">{item.descZh}</span>
                 <span class="lang-en">{item.descEn}</span>

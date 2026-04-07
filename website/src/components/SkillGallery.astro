@@ -23,6 +23,8 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
       <input
         type="text"
         id="search-input"
+        data-placeholder-zh="搜索 Skill 名称、描述、标签..."
+        data-placeholder-en="Search skills by name, description, tag..."
         placeholder="搜索 Skill 名称、描述、标签..."
         class="w-full pl-10 pr-4 py-2.5 bg-surface-800 border border-surface-700 hover:border-surface-600 focus:border-brand-500/60 focus:outline-none rounded-lg text-sm text-white placeholder-surface-500 transition-colors"
       />
@@ -32,7 +34,7 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
         id="tag-filter"
         class="px-3 py-2.5 bg-surface-800 border border-surface-700 hover:border-surface-600 focus:border-brand-500/60 focus:outline-none rounded-lg text-sm text-surface-300 transition-colors cursor-pointer"
       >
-        <option value="">全部领域</option>
+        <option value="" data-zh="全部领域" data-en="All Domains">全部领域</option>
         {allTags.map((tag) => (
           <option value={tag}>{tag}</option>
         ))}
@@ -41,7 +43,7 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
         id="culture-filter"
         class="px-3 py-2.5 bg-surface-800 border border-surface-700 hover:border-surface-600 focus:border-brand-500/60 focus:outline-none rounded-lg text-sm text-surface-300 transition-colors cursor-pointer"
       >
-        <option value="">全部风格</option>
+        <option value="" data-zh="全部风格" data-en="All Styles">全部风格</option>
         {allCultures.map((c) => (
           <option value={c}>{c}</option>
         ))}
@@ -51,7 +53,8 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
 
   <!-- Results count -->
   <p class="text-surface-500 text-sm mb-6" id="results-count">
-    共 <span id="count-num" class="text-surface-300 font-medium">{skills.length}</span> 个 Skill
+    <span class="lang-zh">共 <span id="count-num" class="text-surface-300 font-medium">{skills.length}</span> 个 Skill</span>
+    <span class="lang-en"><span id="count-num-en" class="text-surface-300 font-medium">{skills.length}</span> Skills</span>
   </p>
 
   <!-- Grid -->
@@ -78,8 +81,14 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
   <!-- Empty state -->
   <div id="empty-state" class="hidden text-center py-20">
     <div class="text-5xl mb-4">🔍</div>
-    <p class="text-surface-400 text-lg font-medium mb-2">没找到匹配的 Skill</p>
-    <p class="text-surface-600 text-sm">换个关键词试试，或者<a href="https://github.com/titanwings/colleague-skill-site/issues/new?template=submit-skill.yml" class="text-brand-400 hover:underline" target="_blank" rel="noopener noreferrer">提交一个新的</a></p>
+    <p class="text-surface-400 text-lg font-medium mb-2">
+      <span class="lang-zh">没找到匹配的 Skill</span>
+      <span class="lang-en">No matching Skills found</span>
+    </p>
+    <p class="text-surface-600 text-sm">
+      <span class="lang-zh">换个关键词试试，或者<a href="https://github.com/titanwings/colleague-skill-site/issues/new?template=submit-skill.yml" class="text-brand-400 hover:underline" target="_blank" rel="noopener noreferrer">提交一个新的</a></span>
+      <span class="lang-en">Try a different keyword, or <a href="https://github.com/titanwings/colleague-skill-site/issues/new?template=submit-skill.yml" class="text-brand-400 hover:underline" target="_blank" rel="noopener noreferrer">submit a new one</a></span>
+    </p>
   </div>
 </div>
 
@@ -89,8 +98,31 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
   const cultureFilter = document.getElementById('culture-filter') as HTMLSelectElement;
   const skillItems = document.querySelectorAll<HTMLElement>('.skill-item');
   const countNum = document.getElementById('count-num');
+  const countNumEn = document.getElementById('count-num-en');
   const emptyState = document.getElementById('empty-state');
   const skillsGrid = document.getElementById('skills-grid');
+
+  function updateLangUI() {
+    const isEn = document.documentElement.getAttribute('data-lang') === 'en';
+    // Update search placeholder
+    if (searchInput) {
+      searchInput.placeholder = isEn
+        ? searchInput.dataset.placeholderEn || ''
+        : searchInput.dataset.placeholderZh || '';
+    }
+    // Update select first options
+    const tagFirst = tagFilter?.querySelector('option[data-zh]') as HTMLOptionElement;
+    const cultureFirst = cultureFilter?.querySelector('option[data-zh]') as HTMLOptionElement;
+    if (tagFirst) tagFirst.text = isEn ? (tagFirst.dataset.en || '') : (tagFirst.dataset.zh || '');
+    if (cultureFirst) cultureFirst.text = isEn ? (cultureFirst.dataset.en || '') : (cultureFirst.dataset.zh || '');
+  }
+
+  // Run on load
+  updateLangUI();
+
+  // Watch for lang changes
+  const observer = new MutationObserver(updateLangUI);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
 
   function filterSkills() {
     const query = searchInput?.value.toLowerCase().trim() || '';
@@ -116,6 +148,7 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
     });
 
     if (countNum) countNum.textContent = String(visibleCount);
+    if (countNumEn) countNumEn.textContent = String(visibleCount);
     if (emptyState) emptyState.classList.toggle('hidden', visibleCount > 0);
     if (skillsGrid) skillsGrid.classList.toggle('hidden', visibleCount === 0);
   }

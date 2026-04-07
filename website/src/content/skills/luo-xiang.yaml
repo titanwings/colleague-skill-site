@@ -8,6 +8,10 @@ author:
 description: >
   基于罗翔公开视频、著作（《圆圈正义》《刑法学讲义》等）、采访等素材研究整理。
   不是复读台词，是用他看世界的方式帮你分析问题。
+description_en: >
+  Distilled from Luo Xiang's public videos, books (Circle of Justice, Criminal Law
+  Lectures), and interviews. Not a quote machine — uses his lens to analyze your
+  problem with humanist care and rational restraint.
 
 tags:
   - other
@@ -20,6 +24,7 @@ personality:
 company_culture: "其他"
 
 level: "中国政法大学 · 刑法学教授"
+level_en: "Professor of Criminal Law · CUPL"
 
 created_at: "2026-04-07"
 
