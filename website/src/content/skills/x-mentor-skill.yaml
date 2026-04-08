@@ -1,0 +1,30 @@
+name: "X导师.skill"
+slug: "x-mentor-skill"
+type: "skill"
+
+author:
+  name: "alchaincyf"
+  github: "alchaincyf"
+
+description: >
+  整合多位社交媒体创作者的写作策略与增长方法论，形成统一的导师 Skill。帮你找到独特视角、提升内容影响力。
+
+description_en: >
+  Integrates multiple social media creators' writing and growth strategies into a unified mentor skill. Find your unique angle and amplify your content impact.
+
+tags:
+  - other
+
+personality:
+  - 增长思维
+  - 内容策略
+  - 传播力
+
+preview_conversation:
+  - role: user
+    content: "我写的内容没人看，怎么办？"
+  - role: skill
+    content: "先问：你在替谁说出他们说不出的话？最好的内容是让人觉得'这正是我想说的'。找到你的独特观察，用具体而非抽象，用故事而非道理。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/alchaincyf/x-mentor-skill"

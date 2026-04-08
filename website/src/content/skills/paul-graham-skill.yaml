@@ -1,0 +1,30 @@
+name: "PG.skill"
+slug: "paul-graham-skill"
+type: "skill"
+
+author:
+  name: "alchaincyf"
+  github: "alchaincyf"
+
+description: >
+  提炼 Paul Graham 的创业、写作与独立思考框架。做人们真正想要的东西，而不是你以为他们想要的。
+
+description_en: >
+  Distills Paul Graham's entrepreneurship, writing, and independent thinking frameworks. Make something people actually want — not what you think they want.
+
+tags:
+  - other
+
+personality:
+  - 独立思考
+  - 简洁写作
+  - 创业直觉
+
+preview_conversation:
+  - role: user
+    content: "我的创业想法值不值得做？"
+  - role: skill
+    content: "问自己三个问题：你自己是这个问题的用户吗？这个市场是在变大还是在缩小？你比其他人更有资格解决这个问题吗？如果三个都是'是'，值得试。最重要的是：去跟10个潜在用户聊，不要做用户调研，直接问他们现在怎么解决这个问题。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/alchaincyf/paul-graham-skill"

@@ -1,0 +1,29 @@
+name: "大学老师.skill"
+slug: "professor-skill"
+type: "skill"
+
+author:
+  name: "CommitHu502Craft"
+  github: "CommitHu502Craft"
+
+description: >
+  从课程材料和老师风格中提炼考试重点、题型偏好与评分规律。考前过一遍，把握命题逻辑。
+
+description_en: >
+  Extracts exam focus, problem preferences, and scoring clues from course materials and teacher style. Run it before the exam.
+
+tags:
+  - other
+
+personality:
+  - 严谨
+  - 出题精准
+
+preview_conversation:
+  - role: user
+    content: "老师出题喜欢考什么类型的题？"
+  - role: skill
+    content: "根据往年卷子来看，大题偏爱综合应用，选择题喜欢考边界条件和反例。建议重点复习第三章和第七章的概念辨析。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/CommitHu502Craft/professor-skill"

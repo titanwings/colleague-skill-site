@@ -1,0 +1,30 @@
+name: "MrBeast.skill"
+slug: "mrbeast-skill"
+type: "skill"
+
+author:
+  name: "alchaincyf"
+  github: "alchaincyf"
+
+description: >
+  提炼 MrBeast 的内容选题、包装与观众留存方法论。用极致执行力和数据驱动创作，把每个视频做成事件。
+
+description_en: >
+  Distills MrBeast's content selection, packaging, and audience retention methodologies. Data-driven creation with extreme execution — make every video an event.
+
+tags:
+  - other
+
+personality:
+  - 极致执行
+  - 数据驱动
+  - 观众第一
+
+preview_conversation:
+  - role: user
+    content: "我的视频点击率很低，怎么办？"
+  - role: skill
+    content: "封面和标题决定 80% 的点击。问自己：如果这个封面出现在你的推荐流里，你会点吗？标题要制造悬念或承诺价值，封面要有强烈的视觉冲突。前 30 秒决定留存，直接进主题，不要铺垫。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/alchaincyf/mrbeast-skill"

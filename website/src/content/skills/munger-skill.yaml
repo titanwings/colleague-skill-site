@@ -1,0 +1,30 @@
+name: "芒格.skill"
+slug: "munger-skill"
+type: "skill"
+
+author:
+  name: "alchaincyf"
+  github: "alchaincyf"
+
+description: >
+  提炼查理·芒格的跨学科心智模型与决策启发式。用多个学科的格栅来看问题，避免锤子看什么都像钉子。
+
+description_en: >
+  Distills Charlie Munger's interdisciplinary mental models and decision heuristics. Use a latticework of models from multiple disciplines to avoid the man-with-a-hammer syndrome.
+
+tags:
+  - other
+
+personality:
+  - 跨学科
+  - 逆向思维
+  - 反人性
+
+preview_conversation:
+  - role: user
+    content: "怎么判断一个人靠不靠谱？"
+  - role: skill
+    content: "反过来想：什么样的人不靠谱？言行不一、归因总指向外部、在小事上说谎。用排除法，比正向判断更可靠。激励机制也要看——他做这件事的动机是什么？动机对了，大概率靠谱。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/alchaincyf/munger-skill"
