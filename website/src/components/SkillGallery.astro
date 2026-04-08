@@ -78,18 +78,37 @@ const { skills, base } = Astro.props;
       <span class="lang-en">Try a different keyword, or <a href="https://github.com/titanwings/colleague-skill-site/issues/new?template=submit-skill.yml" class="text-brand-400 hover:underline" target="_blank" rel="noopener noreferrer">submit a new one</a></span>
     </p>
   </div>
+
+  <!-- Pagination -->
+  <div id="pagination" class="hidden flex items-center justify-center gap-2 mt-10">
+    <button id="prev-btn" class="px-4 py-2 rounded-lg text-base font-mono border bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+      <span class="lang-zh">上一页</span><span class="lang-en">Prev</span>
+    </button>
+    <span id="page-info" class="text-surface-500 text-base font-mono px-3"></span>
+    <button id="next-btn" class="px-4 py-2 rounded-lg text-base font-mono border bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+      <span class="lang-zh">下一页</span><span class="lang-en">Next</span>
+    </button>
+  </div>
 </div>
 
 <script>
+  const PAGE_SIZE = 15;
+
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
   const typePills = document.querySelectorAll<HTMLElement>('.type-pill');
-  const skillItems = document.querySelectorAll<HTMLElement>('.skill-item');
+  const skillItems = Array.from(document.querySelectorAll<HTMLElement>('.skill-item'));
   const countNum = document.getElementById('count-num');
   const countNumEn = document.getElementById('count-num-en');
   const emptyState = document.getElementById('empty-state');
   const skillsGrid = document.getElementById('skills-grid');
+  const pagination = document.getElementById('pagination');
+  const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
+  const nextBtn = document.getElementById('next-btn') as HTMLButtonElement;
+  const pageInfo = document.getElementById('page-info');
 
   let activeType = '';
+  let currentPage = 1;
+  let filteredItems: HTMLElement[] = [];
 
   function updateLangUI() {
     const isEn = document.documentElement.getAttribute('data-lang') === 'en';
@@ -113,11 +132,25 @@ const { skills, base } = Astro.props;
     active.classList.remove('bg-surface-800/60', 'border-surface-600', 'text-surface-300');
   }
 
+  function renderPage() {
+    const totalPages = Math.ceil(filteredItems.length / PAGE_SIZE);
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const end = start + PAGE_SIZE;
+
+    skillItems.forEach((item) => item.style.display = 'none');
+    filteredItems.slice(start, end).forEach((item) => item.style.display = '');
+
+    if (pageInfo) pageInfo.textContent = `${currentPage} / ${totalPages}`;
+    if (prevBtn) prevBtn.disabled = currentPage <= 1;
+    if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
+    if (pagination) pagination.classList.toggle('hidden', totalPages <= 1);
+  }
+
   function filterSkills() {
     const query = searchInput?.value.toLowerCase().trim() || '';
-    let visibleCount = 0;
+    currentPage = 1;
 
-    skillItems.forEach((item) => {
+    filteredItems = skillItems.filter((item) => {
       const name = item.dataset.name || '';
       const desc = item.dataset.description || '';
       const tags = item.dataset.tags || '';
@@ -126,18 +159,20 @@ const { skills, base } = Astro.props;
 
       const matchesQuery = !query || name.includes(query) || desc.includes(query) || tags.includes(query) || personality.toLowerCase().includes(query);
       const matchesType = !activeType || itemType === activeType;
-
-      const visible = matchesQuery && matchesType;
-      item.style.display = visible ? '' : 'none';
-      if (visible) visibleCount++;
+      return matchesQuery && matchesType;
     });
 
-    if (countNum) countNum.textContent = String(visibleCount);
-    if (countNumEn) countNumEn.textContent = String(visibleCount);
-    if (emptyState) emptyState.classList.toggle('hidden', visibleCount > 0);
-    if (skillsGrid) skillsGrid.classList.toggle('hidden', visibleCount === 0);
+    const count = filteredItems.length;
+    if (countNum) countNum.textContent = String(count);
+    if (countNumEn) countNumEn.textContent = String(count);
+    if (emptyState) emptyState.classList.toggle('hidden', count > 0);
+    if (skillsGrid) skillsGrid.classList.toggle('hidden', count === 0);
+
+    renderPage();
   }
 
+  prevBtn?.addEventListener('click', () => { currentPage--; renderPage(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  nextBtn?.addEventListener('click', () => { currentPage++; renderPage(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
   searchInput?.addEventListener('input', filterSkills);
 
   typePills.forEach((pill) => {
@@ -147,4 +182,7 @@ const { skills, base } = Astro.props;
       filterSkills();
     });
   });
+
+  // Init
+  filterSkills();
 </script>
