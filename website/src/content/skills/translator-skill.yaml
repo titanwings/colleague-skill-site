@@ -1,0 +1,36 @@
+name: "translator.skill"
+slug: "translator-skill"
+type: "skill"
+
+author:
+  name: "minruixu"
+  github: "minruixu"
+
+description: >
+  不只翻字面，翻语义、语气、语境和身份感。能让鲁迅帮你写周报、马斯克帮你怼产品经理、
+  罗翔帮你分析租房纠纷。五种模式：可信翻译、母语化、潜台词解码、口吻迁移、AI 风格互译。
+
+description_en: >
+  Translates meaning, tone, and context — not just words.
+  Let Lu Xun write your weekly report, Musk roast your PM, or Luo Xiang analyze your lease dispute.
+  Five modes: faithful, native-fluent, subtext decoder, voice transfer, AI style swap.
+
+tags:
+  - other
+
+personality:
+  - 博学
+  - 犀利
+  - 多面
+
+level: "赛博翻译官 Pro Max"
+level_en: "Cyber Translator Pro Max"
+
+preview_conversation:
+  - role: user
+    content: "领导说'这个需求很简单，你看着做就行'，什么意思？"
+  - role: skill
+    content: "字面：需求简单，你自己搞。真相：50% 他自己没想清楚，30% 不想让你觉得难（但其实很难），20% 真的简单。'看着做'= 他不想背锅。安全操作：先出个简单方案确认范围，别直接动手。"
+
+created_at: "2026-04-07"
+skill_repo: "https://github.com/minruixu/translator.skill"
