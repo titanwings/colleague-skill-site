@@ -60,7 +60,7 @@ const features = [
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16 reveal">
-      <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-800 border border-surface-700 rounded-full text-xs text-surface-400 font-mono mb-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-800 border border-surface-700 rounded-full text-sm text-surface-400 font-mono mb-4">
         WHY .SKILL
       </div>
       <h2 class="section-heading">
@@ -84,7 +84,7 @@ const features = [
                   <span class="lang-zh">{f.title.zh}</span>
                   <span class="lang-en">{f.title.en}</span>
                 </h3>
-                {f.subtitle.zh && <span class="text-xs text-surface-500 font-mono lang-zh">{f.subtitle.zh}</span>}
+                {f.subtitle.zh && <span class="text-sm text-surface-500 font-mono lang-zh">{f.subtitle.zh}</span>}
               </div>
               <p class="text-surface-400 text-sm leading-relaxed mb-4">
                 <span class="lang-zh">{f.description.zh}</span>
@@ -92,7 +92,7 @@ const features = [
               </p>
               <div class="flex flex-wrap gap-2">
                 {f.tags.map((tag) => (
-                  <span class={`inline-flex items-center px-2 py-0.5 rounded text-xs font-mono border ${f.tagColor}`}>
+                  <span class={`inline-flex items-center px-2 py-0.5 rounded text-sm font-mono border ${f.tagColor}`}>
                     {tag}
                   </span>
                 ))}
