@@ -39,13 +39,13 @@ const links = {
       <div class="col-span-2 md:col-span-1">
         <a href={`${base}/`} class="flex items-center gap-2.5 mb-4">
           <div class="w-8 h-8 rounded-lg bg-brand-500/20 border border-brand-500/40 flex items-center justify-center">
-            <span class="text-brand-400 font-mono font-bold text-sm">.</span>
+            <span class="text-brand-400 font-mono font-bold text-base">.</span>
           </div>
-          <span class="font-bold text-white text-sm font-mono">
+          <span class="font-bold text-white text-base font-mono">
             <span class="text-brand-400">dot</span>-skill
           </span>
         </a>
-        <p class="text-surface-500 text-sm leading-relaxed mb-4">
+        <p class="text-surface-500 text-base leading-relaxed mb-4">
           <span class="lang-zh">把任何人的智慧蒸馏成 dot-skill。</span>
           <span class="lang-en">Distill anyone's wisdom into a dot-skill.</span>
         </p>
@@ -67,7 +67,7 @@ const links = {
       <!-- Link columns -->
       {Object.values(links).map((group) => (
         <div>
-          <h4 class="text-sm font-semibold text-surface-400 uppercase tracking-wider mb-3">
+          <h4 class="text-base font-semibold text-surface-400 uppercase tracking-wider mb-3">
             <span class="lang-zh">{group.zh}</span>
             <span class="lang-en">{group.en}</span>
           </h4>
@@ -78,7 +78,7 @@ const links = {
                   href={item.href}
                   target={item.external ? '_blank' : undefined}
                   rel={item.external ? 'noopener noreferrer' : undefined}
-                  class="text-surface-500 hover:text-surface-200 text-sm transition-colors inline-flex items-center gap-1"
+                  class="text-surface-500 hover:text-surface-200 text-base transition-colors inline-flex items-center gap-1"
                 >
                   {item.labelZh ? (
                     <>
@@ -100,11 +100,11 @@ const links = {
     </div>
 
     <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-8 border-t border-surface-800">
-      <p class="text-surface-600 text-sm">
+      <p class="text-surface-600 text-base">
         MIT License · Made with ❤️ by
         <a href="https://github.com/titanwings" class="text-surface-500 hover:text-brand-400 transition-colors" target="_blank" rel="noopener noreferrer">titanwings</a>
       </p>
-      <p class="text-surface-700 text-sm font-mono">
+      <p class="text-surface-700 text-base font-mono">
         <span class="lang-zh">// 人会离开，dot-skill 不会</span>
         <span class="lang-en">// People leave. dot-skills don't.</span>
       </p>

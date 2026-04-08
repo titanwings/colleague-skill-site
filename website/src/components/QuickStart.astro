@@ -61,7 +61,7 @@ const nextSteps = [
 <section class="py-24 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16 reveal">
-      <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-800 border border-surface-700 rounded-full text-sm text-surface-400 font-mono mb-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-800 border border-surface-700 rounded-full text-base text-surface-400 font-mono mb-4">
         QUICK START
       </div>
       <h2 class="section-heading">
@@ -82,7 +82,7 @@ const nextSteps = [
               <div class="w-9 h-9 rounded-lg bg-surface-700 border border-surface-600 flex items-center justify-center text-surface-300 group-hover:text-brand-400 group-hover:border-brand-500/40 transition-colors">
                 <Fragment set:html={method.icon} />
               </div>
-              <span class="font-semibold text-white text-sm">
+              <span class="font-semibold text-white text-base">
                 {method.nameZh ? (
                   <>
                     <span class="lang-zh">{method.nameZh}</span>
@@ -91,14 +91,14 @@ const nextSteps = [
                 ) : method.name}
               </span>
             </div>
-            <span class={`text-sm px-2 py-0.5 rounded-full border font-medium ${method.badgeColor}`}>
+            <span class={`text-base px-2 py-0.5 rounded-full border font-medium ${method.badgeColor}`}>
               <span class="lang-zh">{method.badgeZh}</span>
               <span class="lang-en">{method.badgeEn}</span>
             </span>
           </div>
 
           <div class="code-block p-3 mb-3 relative group/code">
-            <pre class="text-sm text-surface-300 overflow-x-auto"><code>{method.command}</code></pre>
+            <pre class="text-base text-surface-300 overflow-x-auto"><code>{method.command}</code></pre>
             <button
               class="copy-btn absolute top-2 right-2 p-1.5 rounded bg-surface-700 border border-surface-600 text-surface-400 hover:text-white hover:border-surface-500 opacity-0 group-hover/code:opacity-100 transition-all"
               data-command={method.command}
@@ -110,7 +110,7 @@ const nextSteps = [
             </button>
           </div>
 
-          <p class="text-surface-500 text-sm">
+          <p class="text-surface-500 text-base">
             <span class="lang-zh">{method.descZh}</span>
             <span class="lang-en">{method.descEn}</span>
           </p>
@@ -120,18 +120,18 @@ const nextSteps = [
 
     <!-- Next steps -->
     <div class="card-base p-6 reveal">
-      <h3 class="text-sm font-semibold text-surface-300 mb-4 font-mono">
+      <h3 class="text-base font-semibold text-surface-300 mb-4 font-mono">
         <span class="lang-zh"># 装完之后</span>
         <span class="lang-en"># After Setup</span>
       </h3>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {nextSteps.map((item) => (
           <div class="flex gap-3">
-            <div class="w-6 h-6 rounded-full bg-brand-500/20 border border-brand-500/30 flex items-center justify-center shrink-0 text-sm font-bold text-brand-400">
+            <div class="w-6 h-6 rounded-full bg-brand-500/20 border border-brand-500/30 flex items-center justify-center shrink-0 text-base font-bold text-brand-400">
               {item.step}
             </div>
             <div>
-              <div class="code-block px-2.5 py-1 text-sm text-brand-300 font-mono mb-1.5">
+              <div class="code-block px-2.5 py-1 text-base text-brand-300 font-mono mb-1.5">
                 {item.cmdZh ? (
                   <>
                     <span class="lang-zh">{item.cmdZh}</span>
@@ -139,7 +139,7 @@ const nextSteps = [
                   </>
                 ) : item.cmd}
               </div>
-              <p class="text-surface-500 text-sm">
+              <p class="text-surface-500 text-base">
                 <span class="lang-zh">{item.descZh}</span>
                 <span class="lang-en">{item.descEn}</span>
               </p>

@@ -71,7 +71,7 @@ const tagColors: Record<string, string> = {
     <!-- Back link -->
     <a
       href={`${base}/gallery/`}
-      class="inline-flex items-center gap-2 text-surface-500 hover:text-brand-400 text-sm mb-8 transition-colors group"
+      class="inline-flex items-center gap-2 text-surface-500 hover:text-brand-400 text-base mb-8 transition-colors group"
     >
       <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -92,14 +92,14 @@ const tagColors: Record<string, string> = {
           <div class="flex flex-wrap items-start gap-3 mb-2">
             <h1 class="text-2xl font-black text-white">{skill.name}</h1>
             {skill.company_culture && (
-              <span class="px-2.5 py-0.5 text-sm rounded bg-surface-700 border border-surface-600 text-surface-300 font-mono">
+              <span class="px-2.5 py-0.5 text-base rounded bg-surface-700 border border-surface-600 text-surface-300 font-mono">
                 <span class="lang-zh">{skill.company_culture}</span>
                 <span class="lang-en">{cultureMap[skill.company_culture] || skill.company_culture}</span>
               </span>
             )}
           </div>
           {skill.level && (
-            <p class="text-surface-500 text-sm mb-3 font-mono">
+            <p class="text-surface-500 text-base mb-3 font-mono">
               <span class="lang-zh">{skill.level}</span>
               <span class="lang-en">{skill.level_en || skill.level}</span>
             </p>
@@ -114,12 +114,12 @@ const tagColors: Record<string, string> = {
       <!-- Tags -->
       <div class="flex flex-wrap gap-2 mt-6 pt-6 border-t border-surface-700">
         {skill.tags?.map((tag) => (
-          <span class={`inline-flex items-center px-2.5 py-1 rounded-lg text-sm font-mono border ${tagColors[tag] || tagColors.other}`}>
+          <span class={`inline-flex items-center px-2.5 py-1 rounded-lg text-base font-mono border ${tagColors[tag] || tagColors.other}`}>
             {tag}
           </span>
         ))}
         {skill.personality?.map((p) => (
-          <span class="tag-pill text-sm">
+          <span class="tag-pill text-base">
             <span class="lang-zh">{p}</span>
             <span class="lang-en">{personalityMap[p] || p}</span>
           </span>
@@ -132,14 +132,14 @@ const tagColors: Record<string, string> = {
       <div class="md:col-span-2 space-y-6">
         <!-- How to use -->
         <div class="card-base p-6">
-          <h2 class="text-sm font-semibold text-surface-400 uppercase tracking-wider mb-5 flex items-center gap-2">
+          <h2 class="text-base font-semibold text-surface-400 uppercase tracking-wider mb-5 flex items-center gap-2">
             <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
             </svg>
             <span class="lang-zh">如何使用这个 Skill</span>
             <span class="lang-en">How to Use This Skill</span>
           </h2>
-          <div class="space-y-4 text-sm text-surface-400">
+          <div class="space-y-4 text-base text-surface-400">
             <p>
               <span class="lang-zh">首先确保你已经安装了 colleague-skill 并配置好了对应的 Skill 文件。</span>
               <span class="lang-en">Make sure you have colleague-skill installed and the Skill file configured.</span>
@@ -151,7 +151,7 @@ const tagColors: Record<string, string> = {
                 <span class="lang-en">Summon in Claude Code:</span>
               </p>
               <div class="code-block p-3">
-                <pre class="text-sm text-brand-300 font-mono">
+                <pre class="text-base text-brand-300 font-mono">
                   <span class="lang-zh">/{skill.slug} 你的问题</span>
                   <span class="lang-en">/{skill.slug} your question</span>
                 </pre>
@@ -164,7 +164,7 @@ const tagColors: Record<string, string> = {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
                 <div>
-                  <p class="text-brand-400 text-sm font-medium mb-1">
+                  <p class="text-brand-400 text-base font-medium mb-1">
                     <span class="lang-zh">作者提供了 Skill 文件</span>
                     <span class="lang-en">Author provided a Skill file</span>
                   </p>
@@ -172,7 +172,7 @@ const tagColors: Record<string, string> = {
                     href={skill.skill_repo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-sm text-surface-400 hover:text-brand-400 transition-colors inline-flex items-center gap-1"
+                    class="text-base text-surface-400 hover:text-brand-400 transition-colors inline-flex items-center gap-1"
                   >
                     {skill.skill_repo}
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -190,7 +190,7 @@ const tagColors: Record<string, string> = {
       <div class="space-y-4">
         <!-- Author card -->
         <div class="card-base p-5">
-          <h3 class="text-sm font-semibold text-surface-500 uppercase tracking-wider mb-4">
+          <h3 class="text-base font-semibold text-surface-500 uppercase tracking-wider mb-4">
             <span class="lang-zh">贡献者</span>
             <span class="lang-en">Contributor</span>
           </h3>
@@ -203,12 +203,12 @@ const tagColors: Record<string, string> = {
               onerror="this.style.display='none'"
             />
             <div>
-              <p class="text-white text-sm font-medium">{skill.author.name}</p>
+              <p class="text-white text-base font-medium">{skill.author.name}</p>
               <a
                 href={`https://github.com/${skill.author.github}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-sm text-surface-500 hover:text-brand-400 transition-colors flex items-center gap-1"
+                class="text-base text-surface-500 hover:text-brand-400 transition-colors flex items-center gap-1"
               >
                 @{skill.author.github}
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -221,7 +221,7 @@ const tagColors: Record<string, string> = {
 
         <!-- Meta card -->
         <div class="card-base p-5 space-y-3">
-          <h3 class="text-sm font-semibold text-surface-500 uppercase tracking-wider">
+          <h3 class="text-base font-semibold text-surface-500 uppercase tracking-wider">
             <span class="lang-zh">元信息</span>
             <span class="lang-en">Meta</span>
           </h3>
@@ -230,12 +230,12 @@ const tagColors: Record<string, string> = {
             { labelZh: '职级', labelEn: 'Level', valueZh: skill.level || '-', valueEn: skill.level_en || skill.level || '-' },
             { labelZh: '企业文化', labelEn: 'Culture', valueZh: skill.company_culture || '-', valueEn: (skill.company_culture ? (cultureMap[skill.company_culture] || skill.company_culture) : '-') },
           ].map((item) => (
-            <div class="flex justify-between items-center text-sm">
+            <div class="flex justify-between items-center text-base">
               <span class="text-surface-500">
                 <span class="lang-zh">{item.labelZh}</span>
                 <span class="lang-en">{item.labelEn}</span>
               </span>
-              <span class="text-surface-300 font-mono text-sm">
+              <span class="text-surface-300 font-mono text-base">
                 <span class="lang-zh">{item.valueZh}</span>
                 <span class="lang-en">{item.valueEn}</span>
               </span>
@@ -245,11 +245,11 @@ const tagColors: Record<string, string> = {
 
         <!-- Share / also like -->
         <div class="card-base p-5">
-          <h3 class="text-sm font-semibold text-surface-500 uppercase tracking-wider mb-3">
+          <h3 class="text-base font-semibold text-surface-500 uppercase tracking-wider mb-3">
             <span class="lang-zh">想要这个 dot-skill？</span>
             <span class="lang-en">Want This dot-skill?</span>
           </h3>
-          <p class="text-surface-500 text-sm mb-4">
+          <p class="text-surface-500 text-base mb-4">
             <span class="lang-zh">用 colleague-skill 生成属于你自己版本的同类 Skill</span>
             <span class="lang-en">Use colleague-skill to distill your own version</span>
           </p>
@@ -257,7 +257,7 @@ const tagColors: Record<string, string> = {
             href="https://github.com/titanwings/colleague-skill#readme"
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-primary w-full justify-center text-sm py-2.5"
+            class="btn-primary w-full justify-center text-base py-2.5"
           >
             <span class="lang-zh">开始蒸馏 →</span>
             <span class="lang-en">Start Distilling →</span>

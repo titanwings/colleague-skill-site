@@ -62,11 +62,11 @@ const personalityMap: Record<string, string> = {
         {skill.name.charAt(0)}
       </div>
       <div class="min-w-0">
-        <h3 class="font-bold text-white text-sm group-hover:text-brand-400 transition-colors truncate">
+        <h3 class="font-bold text-white text-base group-hover:text-brand-400 transition-colors truncate">
           {skill.name}
         </h3>
         {skill.level && (
-          <p class="text-surface-500 text-sm truncate">
+          <p class="text-surface-500 text-base truncate">
             <span class="lang-zh">{skill.level}</span>
             <span class="lang-en">{skill.level_en || skill.level}</span>
           </p>
@@ -76,12 +76,12 @@ const personalityMap: Record<string, string> = {
 
     <div class="flex items-center gap-1.5 shrink-0">
       {skill.type === 'meta-skill' && (
-        <span class="text-sm px-2 py-0.5 rounded bg-purple-500/15 border border-purple-500/30 text-purple-300 font-mono">
+        <span class="text-base px-2 py-0.5 rounded bg-purple-500/15 border border-purple-500/30 text-purple-300 font-mono">
           meta-skill
         </span>
       )}
       {skill.company_culture && (
-        <span class="text-sm px-2 py-0.5 rounded bg-surface-700/50 border border-surface-600/50 text-surface-400 font-mono">
+        <span class="text-base px-2 py-0.5 rounded bg-surface-700/50 border border-surface-600/50 text-surface-400 font-mono">
           <span class="lang-zh">{skill.company_culture}</span>
           <span class="lang-en">{cultureMap[skill.company_culture] || skill.company_culture}</span>
         </span>
@@ -90,7 +90,7 @@ const personalityMap: Record<string, string> = {
   </div>
 
   <!-- Description -->
-  <p class="text-surface-400 text-sm leading-relaxed line-clamp-2">
+  <p class="text-surface-400 text-base leading-relaxed line-clamp-2">
     <span class="lang-zh">{skill.description}</span>
     <span class="lang-en">{skill.description_en || skill.description}</span>
   </p>
@@ -98,7 +98,7 @@ const personalityMap: Record<string, string> = {
   <!-- Tags -->
   <div class="flex flex-wrap gap-1.5 mt-auto">
     {skill.tags?.slice(0, 3).map((tag) => (
-      <span class={`inline-flex items-center px-2 py-0.5 rounded text-sm border font-mono ${tagColors[tag] || tagColors.other}`}>
+      <span class={`inline-flex items-center px-2 py-0.5 rounded text-base border font-mono ${tagColors[tag] || tagColors.other}`}>
         {tag}
       </span>
     ))}
@@ -120,8 +120,8 @@ const personalityMap: Record<string, string> = {
         loading="lazy"
         onerror="this.style.display='none'"
       />
-      <span class="text-surface-500 text-sm">{skill.author.name}</span>
+      <span class="text-surface-500 text-base">{skill.author.name}</span>
     </div>
-    <span class="text-surface-600 text-sm font-mono">{skill.created_at}</span>
+    <span class="text-surface-600 text-base font-mono">{skill.created_at}</span>
   </div>
 </a>

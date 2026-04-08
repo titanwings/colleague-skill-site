@@ -45,7 +45,7 @@ const steps = [
 <section class="py-24 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16 reveal">
-      <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-800 border border-surface-700 rounded-full text-sm text-surface-400 font-mono mb-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-800 border border-surface-700 rounded-full text-base text-surface-400 font-mono mb-4">
         HOW IT WORKS
       </div>
       <h2 class="section-heading">
@@ -68,7 +68,7 @@ const steps = [
             <div class={`relative w-16 h-16 rounded-2xl border-2 ${step.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
               <div class={step.color} set:html={step.icon} />
               <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-surface-900 border border-surface-700 flex items-center justify-center">
-                <span class="text-sm font-mono font-bold text-surface-400">{step.num}</span>
+                <span class="text-base font-mono font-bold text-surface-400">{step.num}</span>
               </div>
             </div>
 
@@ -85,12 +85,12 @@ const steps = [
                 <span class="lang-zh">{step.titleZh}</span>
                 <span class="lang-en">{step.titleEn}</span>
               </h3>
-              <p class="text-sm text-surface-500 font-mono mb-3">{step.subtitle}</p>
+              <p class="text-base text-surface-500 font-mono mb-3">{step.subtitle}</p>
               <p class="text-surface-400 text-base leading-relaxed mb-3">
                 <span class="lang-zh">{step.descZh}</span>
                 <span class="lang-en">{step.descEn}</span>
               </p>
-              <div class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border ${step.bg} ${step.color}`}>
+              <div class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-base border ${step.bg} ${step.color}`}>
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
@@ -118,8 +118,8 @@ const steps = [
         ].map((item) => (
           <div class="card-base p-4 text-center group hover:border-brand-500/30 transition-all">
             <div class="text-2xl mb-2">{item.icon}</div>
-            <div class="text-sm font-mono text-brand-400 mb-1.5">{item.title}</div>
-            <p class="text-surface-500 text-sm leading-relaxed">
+            <div class="text-base font-mono text-brand-400 mb-1.5">{item.title}</div>
+            <p class="text-surface-500 text-base leading-relaxed">
               <span class="lang-zh">{item.descZh}</span>
               <span class="lang-en">{item.descEn}</span>
             </p>

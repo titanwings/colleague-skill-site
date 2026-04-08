@@ -15,7 +15,7 @@ const skills = await getAllSkills();
 
     <!-- Page header -->
     <div class="text-center mb-12 reveal">
-      <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-800 border border-surface-700 rounded-full text-sm text-surface-400 font-mono mb-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-800 border border-surface-700 rounded-full text-base text-surface-400 font-mono mb-4">
         COMMUNITY SKILLS
       </div>
       <h1 class="section-heading mb-3">
@@ -64,7 +64,7 @@ const skills = await getAllSkills();
       ].map((stat) => (
         <div class="card-base p-4 text-center">
           <div class="text-2xl font-black text-brand-400">{stat.num}</div>
-          <div class="text-sm text-surface-500 mt-1">
+          <div class="text-base text-surface-500 mt-1">
             <span class="lang-zh">{stat.labelZh}</span>
             <span class="lang-en">{stat.labelEn}</span>
           </div>
