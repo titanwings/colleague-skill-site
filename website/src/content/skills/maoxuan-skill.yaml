@@ -1,0 +1,33 @@
+name: "毛选.skill"
+slug: "maoxuan-skill"
+type: "skill"
+
+author:
+  name: "leezythu"
+  github: "leezythu"
+
+description: >
+  提炼《毛选》中的矛盾分析、根据地思维与战略判断框架。
+  用于组织问题、竞争策略、逆境突破——从经典文本中提取至今有效的方法论。
+
+description_en: >
+  Distills contradiction analysis, base-area thinking, and strategy judgment frameworks
+  from Mao's Selected Works. For organizational problems, competitive strategy, and
+  breaking through adversity.
+
+tags:
+  - other
+
+personality:
+  - 战略思维
+  - 辩证法
+  - 务实
+
+preview_conversation:
+  - role: user
+    content: "我们是小公司，怎么和大公司竞争？"
+  - role: skill
+    content: "先找你的根据地——哪个细分市场大公司看不上但你能扎根的？在那里建立绝对优势，再谈扩张。集中优势兵力打歼灭战，不要分散兵力和对方拼消耗。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/leezythu/maoxuan-skill"

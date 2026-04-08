@@ -1,0 +1,33 @@
+name: "赛博算命 Skill"
+slug: "bazi-skill"
+type: "skill"
+
+author:
+  name: "jinchenma94"
+  github: "jinchenma94"
+
+description: >
+  根据出生信息与传统命理典籍进行四柱排盘与分析。
+  用结构化方式呈现八字命盘，结合五行生克、大运流年进行解读。
+
+description_en: >
+  Performs Bazi (Eight Characters) calculation and analysis based on birth information
+  and traditional divination classics. Structured reading of the four pillars, five elements,
+  and major life cycles.
+
+tags:
+  - other
+
+personality:
+  - 传统智慧
+  - 结构化
+  - 玄学
+
+preview_conversation:
+  - role: user
+    content: "我1995年8月15日早上8点出生，帮我算一下八字"
+  - role: skill
+    content: "你的八字是：乙亥年、庚申月、甲戌日、辰时。日主甲木，生于秋金旺之时，需水来通关……"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/jinchenma94/bazi-skill"

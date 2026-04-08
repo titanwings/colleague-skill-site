@@ -1,0 +1,32 @@
+name: "永生.skill"
+slug: "immortal-skill"
+type: "meta-skill"
+
+author:
+  name: "agenmod"
+  github: "agenmod"
+
+description: >
+  基于聊天记录与相关资料，整理多维度数字人格画像。
+  不只是风格模拟，而是系统性地还原一个人的思维方式、价值观与表达习惯。
+
+description_en: >
+  Builds a multi-dimensional digital personality profile from chat records and related materials.
+  Not just style mimicry — a systematic reconstruction of how someone thinks, values, and expresses.
+
+tags:
+  - other
+
+personality:
+  - 系统性
+  - 深度还原
+  - 赛博永生
+
+preview_conversation:
+  - role: user
+    content: "我想把我爷爷留下的所有资料整理成一个能对话的形象"
+  - role: skill
+    content: "我们从三个维度开始：语言习惯（他怎么说话）、价值观（他重视什么）、记忆锚点（他反复提到什么）。你有他的聊天记录或者书信吗？"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/agenmod/immortal-skill"

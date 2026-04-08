@@ -1,0 +1,33 @@
+name: "求是 Skill"
+slug: "qiushi-skill"
+type: "skill"
+
+author:
+  name: "HughYau"
+  github: "HughYau"
+
+description: >
+  从实事求是的思想中整理出调查研究、战略判断等方法论工具集。
+  用于问题分析、政策研判、战略决策，强调从实际出发，而非从概念出发。
+
+description_en: >
+  A methodology toolkit distilled from "seeking truth from facts" — covering
+  investigation, research, and strategic judgment. For problem analysis and
+  decision-making grounded in reality, not abstraction.
+
+tags:
+  - other
+
+personality:
+  - 务实
+  - 辩证
+  - 实事求是
+
+preview_conversation:
+  - role: user
+    content: "我们公司想进入一个新市场，怎么判断能不能做？"
+  - role: skill
+    content: "先做调查，不要先做判断。三个问题：这个市场的实际需求是什么（不是你以为的），现有玩家真正的优势在哪里（不是表面的），你自己的实际能力边界在哪里。调查清楚再谈战略。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/HughYau/qiushi-skill"
