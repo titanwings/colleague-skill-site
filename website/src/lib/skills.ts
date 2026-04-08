@@ -20,8 +20,12 @@ export async function getAllSkills(): Promise<SkillMeta[]> {
     }
   }
 
-  // Sort by created_at desc
-  skills.sort((a, b) => b.created_at.localeCompare(a.created_at));
+  // Pinned first, then by created_at desc
+  skills.sort((a, b) => {
+    if (a.pinned && !b.pinned) return -1;
+    if (!a.pinned && b.pinned) return 1;
+    return b.created_at.localeCompare(a.created_at);
+  });
   _cache = skills;
   return skills;
 }

@@ -1,6 +1,7 @@
 name: "毛选.skill"
 slug: "maoxuan-skill"
 type: "skill"
+pinned: true
 
 author:
   name: "leezythu"

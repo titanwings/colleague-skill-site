@@ -7,6 +7,7 @@ export interface SkillMeta {
   name: string;
   slug: string;
   type?: 'skill' | 'meta-skill';
+  pinned?: boolean;
   author: SkillAuthor;
   description: string;
   description_en?: string;

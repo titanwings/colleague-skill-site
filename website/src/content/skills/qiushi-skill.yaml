@@ -1,6 +1,7 @@
 name: "求是 Skill"
 slug: "qiushi-skill"
 type: "skill"
+pinned: true
 
 author:
   name: "HughYau"
