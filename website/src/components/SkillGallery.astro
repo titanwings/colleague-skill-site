@@ -9,7 +9,6 @@ interface Props {
 
 const { skills, base } = Astro.props;
 
-const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Boolean))];
 ---
 
 <div>
@@ -36,9 +35,6 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
       </button>
       <button data-type="skill" class="type-pill px-3 py-1 rounded-full text-xs font-mono border transition-all cursor-pointer bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-white">skill</button>
       <button data-type="meta-skill" class="type-pill px-3 py-1 rounded-full text-xs font-mono border transition-all cursor-pointer bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-white">meta-skill</button>
-      {allCultures.map((c) => (
-        <button data-culture={c} class="culture-pill px-3 py-1 rounded-full text-xs font-mono border transition-all cursor-pointer bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-white">{c}</button>
-      ))}
     </div>
   </div>
 
@@ -87,7 +83,6 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
 <script>
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
   const typePills = document.querySelectorAll<HTMLElement>('.type-pill');
-  const culturePills = document.querySelectorAll<HTMLElement>('.culture-pill');
   const skillItems = document.querySelectorAll<HTMLElement>('.skill-item');
   const countNum = document.getElementById('count-num');
   const countNumEn = document.getElementById('count-num-en');
@@ -95,7 +90,6 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
   const skillsGrid = document.getElementById('skills-grid');
 
   let activeType = '';
-  let activeCulture = '';
 
   function updateLangUI() {
     const isEn = document.documentElement.getAttribute('data-lang') === 'en';
@@ -116,7 +110,7 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
       p.classList.add('bg-surface-800/60', 'border-surface-600', 'text-surface-300');
     });
     active.classList.add('active', 'bg-brand-500/20', 'border-brand-500/50', 'text-brand-300');
-    active.classList.remove('bg-surface-800', 'border-surface-700', 'text-surface-400');
+    active.classList.remove('bg-surface-800/60', 'border-surface-600', 'text-surface-300');
   }
 
   function filterSkills() {
@@ -128,14 +122,12 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
       const desc = item.dataset.description || '';
       const tags = item.dataset.tags || '';
       const personality = item.dataset.personality || '';
-      const itemCulture = item.dataset.culture || '';
       const itemType = item.dataset.type || 'skill';
 
       const matchesQuery = !query || name.includes(query) || desc.includes(query) || tags.includes(query) || personality.toLowerCase().includes(query);
       const matchesType = !activeType || itemType === activeType;
-      const matchesCulture = !activeCulture || itemCulture === activeCulture;
 
-      const visible = matchesQuery && matchesType && matchesCulture;
+      const visible = matchesQuery && matchesType;
       item.style.display = visible ? '' : 'none';
       if (visible) visibleCount++;
     });
@@ -152,26 +144,6 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
     pill.addEventListener('click', () => {
       activeType = pill.dataset.type || '';
       setActivePill(typePills, pill);
-      filterSkills();
-    });
-  });
-
-  culturePills.forEach((pill) => {
-    pill.addEventListener('click', () => {
-      if (activeCulture === (pill.dataset.culture || '')) {
-        // toggle off
-        activeCulture = '';
-        pill.classList.remove('active', 'bg-brand-500/20', 'border-brand-500/50', 'text-brand-300');
-        pill.classList.add('bg-surface-800/60', 'border-surface-600', 'text-surface-300');
-      } else {
-        activeCulture = pill.dataset.culture || '';
-        culturePills.forEach((p) => {
-          p.classList.remove('active', 'bg-brand-500/20', 'border-brand-500/50', 'text-brand-300');
-          p.classList.add('bg-surface-800/60', 'border-surface-600', 'text-surface-300');
-        });
-        pill.classList.add('active', 'bg-brand-500/20', 'border-brand-500/50', 'text-brand-300');
-        pill.classList.remove('bg-surface-800', 'border-surface-700', 'text-surface-400');
-      }
       filterSkills();
     });
   });
