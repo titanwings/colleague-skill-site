@@ -59,7 +59,7 @@ const skills = await getAllSkills();
     <div class="grid grid-cols-3 gap-4 mb-10 reveal">
       {[
         { num: skills.length.toString(), labelZh: '已收录 Skill', labelEn: 'Skills Listed' },
-        { num: [...new Set(skills.flatMap((s) => s.tags))].length.toString(), labelZh: '覆盖技术领域', labelEn: 'Domains Covered' },
+        { num: skills.filter((s) => s.type === 'meta-skill').length.toString(), labelZh: 'meta-skill', labelEn: 'meta-skills' },
         { num: [...new Set(skills.map((s) => s.author.github))].length.toString(), labelZh: '社区贡献者', labelEn: 'Contributors' },
       ].map((stat) => (
         <div class="card-base p-4 text-center">
