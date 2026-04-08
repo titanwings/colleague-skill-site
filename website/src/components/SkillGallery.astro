@@ -14,8 +14,9 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
 
 <div>
   <!-- Filter bar -->
-  <div class="flex flex-col sm:flex-row gap-4 mb-8" id="filter-bar">
-    <div class="relative flex-1">
+  <div class="flex flex-col gap-3 mb-8" id="filter-bar">
+    <!-- Search -->
+    <div class="relative">
       <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
       </svg>
@@ -28,24 +29,16 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
         class="w-full pl-10 pr-4 py-2.5 bg-surface-800 border border-surface-700 hover:border-surface-600 focus:border-brand-500/60 focus:outline-none rounded-lg text-sm text-white placeholder-surface-500 transition-colors"
       />
     </div>
-    <div class="flex gap-2 flex-wrap">
-      <select
-        id="type-filter"
-        class="px-3 py-2.5 bg-surface-800 border border-surface-700 hover:border-surface-600 focus:border-brand-500/60 focus:outline-none rounded-lg text-sm text-surface-300 transition-colors cursor-pointer"
-      >
-        <option value="" data-zh="全部类型" data-en="All Types">全部类型</option>
-        <option value="skill">skill</option>
-        <option value="meta-skill">meta-skill</option>
-      </select>
-      <select
-        id="culture-filter"
-        class="px-3 py-2.5 bg-surface-800 border border-surface-700 hover:border-surface-600 focus:border-brand-500/60 focus:outline-none rounded-lg text-sm text-surface-300 transition-colors cursor-pointer"
-      >
-        <option value="" data-zh="全部风格" data-en="All Styles">全部风格</option>
-        {allCultures.map((c) => (
-          <option value={c}>{c}</option>
-        ))}
-      </select>
+    <!-- Type pills -->
+    <div class="flex flex-wrap gap-2" id="type-pills">
+      <button data-type="" class="type-pill active px-3 py-1 rounded-full text-xs font-mono border transition-all cursor-pointer bg-brand-500/20 border-brand-500/50 text-brand-300">
+        <span class="lang-zh">全部</span><span class="lang-en">All</span>
+      </button>
+      <button data-type="skill" class="type-pill px-3 py-1 rounded-full text-xs font-mono border transition-all cursor-pointer bg-surface-800 border-surface-700 text-surface-400 hover:border-surface-500 hover:text-surface-300">skill</button>
+      <button data-type="meta-skill" class="type-pill px-3 py-1 rounded-full text-xs font-mono border transition-all cursor-pointer bg-surface-800 border-surface-700 text-surface-400 hover:border-surface-500 hover:text-surface-300">meta-skill</button>
+      {allCultures.map((c) => (
+        <button data-culture={c} class="culture-pill px-3 py-1 rounded-full text-xs font-mono border transition-all cursor-pointer bg-surface-800 border-surface-700 text-surface-400 hover:border-surface-500 hover:text-surface-300">{c}</button>
+      ))}
     </div>
   </div>
 
@@ -93,41 +86,41 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
 
 <script>
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
-  const typeFilter = document.getElementById('type-filter') as HTMLSelectElement;
-  const cultureFilter = document.getElementById('culture-filter') as HTMLSelectElement;
+  const typePills = document.querySelectorAll<HTMLElement>('.type-pill');
+  const culturePills = document.querySelectorAll<HTMLElement>('.culture-pill');
   const skillItems = document.querySelectorAll<HTMLElement>('.skill-item');
   const countNum = document.getElementById('count-num');
   const countNumEn = document.getElementById('count-num-en');
   const emptyState = document.getElementById('empty-state');
   const skillsGrid = document.getElementById('skills-grid');
 
+  let activeType = '';
+  let activeCulture = '';
+
   function updateLangUI() {
     const isEn = document.documentElement.getAttribute('data-lang') === 'en';
-    // Update search placeholder
     if (searchInput) {
       searchInput.placeholder = isEn
         ? searchInput.dataset.placeholderEn || ''
         : searchInput.dataset.placeholderZh || '';
     }
-    // Update select first options
-    const typeFirst = typeFilter?.querySelector('option[data-zh]') as HTMLOptionElement;
-    const cultureFirst = cultureFilter?.querySelector('option[data-zh]') as HTMLOptionElement;
-    if (typeFirst) typeFirst.text = isEn ? (typeFirst.dataset.en || '') : (typeFirst.dataset.zh || '');
-    if (cultureFirst) cultureFirst.text = isEn ? (cultureFirst.dataset.en || '') : (cultureFirst.dataset.zh || '');
   }
 
-  // Run on load
   updateLangUI();
-
-  // Watch for lang changes
   const observer = new MutationObserver(updateLangUI);
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
 
+  function setActivePill(pills: NodeListOf<HTMLElement>, active: HTMLElement) {
+    pills.forEach((p) => {
+      p.classList.remove('active', 'bg-brand-500/20', 'border-brand-500/50', 'text-brand-300');
+      p.classList.add('bg-surface-800', 'border-surface-700', 'text-surface-400');
+    });
+    active.classList.add('active', 'bg-brand-500/20', 'border-brand-500/50', 'text-brand-300');
+    active.classList.remove('bg-surface-800', 'border-surface-700', 'text-surface-400');
+  }
+
   function filterSkills() {
     const query = searchInput?.value.toLowerCase().trim() || '';
-    const type = typeFilter?.value || '';
-    const culture = cultureFilter?.value || '';
-
     let visibleCount = 0;
 
     skillItems.forEach((item) => {
@@ -139,10 +132,10 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
       const itemType = item.dataset.type || 'skill';
 
       const matchesQuery = !query || name.includes(query) || desc.includes(query) || tags.includes(query) || personality.toLowerCase().includes(query);
-      const matchesTag = !type || itemType === type;
-      const matchesCulture = !culture || itemCulture === culture;
+      const matchesType = !activeType || itemType === activeType;
+      const matchesCulture = !activeCulture || itemCulture === activeCulture;
 
-      const visible = matchesQuery && matchesTag && matchesCulture;
+      const visible = matchesQuery && matchesType && matchesCulture;
       item.style.display = visible ? '' : 'none';
       if (visible) visibleCount++;
     });
@@ -154,6 +147,32 @@ const allCultures = [...new Set(skills.map((s) => s.company_culture).filter(Bool
   }
 
   searchInput?.addEventListener('input', filterSkills);
-  typeFilter?.addEventListener('change', filterSkills);
-  cultureFilter?.addEventListener('change', filterSkills);
+
+  typePills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      activeType = pill.dataset.type || '';
+      setActivePill(typePills, pill);
+      filterSkills();
+    });
+  });
+
+  culturePills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      if (activeCulture === (pill.dataset.culture || '')) {
+        // toggle off
+        activeCulture = '';
+        pill.classList.remove('active', 'bg-brand-500/20', 'border-brand-500/50', 'text-brand-300');
+        pill.classList.add('bg-surface-800', 'border-surface-700', 'text-surface-400');
+      } else {
+        activeCulture = pill.dataset.culture || '';
+        culturePills.forEach((p) => {
+          p.classList.remove('active', 'bg-brand-500/20', 'border-brand-500/50', 'text-brand-300');
+          p.classList.add('bg-surface-800', 'border-surface-700', 'text-surface-400');
+        });
+        pill.classList.add('active', 'bg-brand-500/20', 'border-brand-500/50', 'text-brand-300');
+        pill.classList.remove('bg-surface-800', 'border-surface-700', 'text-surface-400');
+      }
+      filterSkills();
+    });
+  });
 </script>
