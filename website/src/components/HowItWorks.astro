@@ -85,8 +85,8 @@ const steps = [
                 <span class="lang-zh">{step.titleZh}</span>
                 <span class="lang-en">{step.titleEn}</span>
               </h3>
-              <p class="text-xs text-surface-500 font-mono mb-3">{step.subtitle}</p>
-              <p class="text-surface-400 text-sm leading-relaxed mb-3">
+              <p class="text-sm text-surface-500 font-mono mb-3">{step.subtitle}</p>
+              <p class="text-surface-400 text-base leading-relaxed mb-3">
                 <span class="lang-zh">{step.descZh}</span>
                 <span class="lang-en">{step.descEn}</span>
               </p>
@@ -105,7 +105,7 @@ const steps = [
 
     <!-- Use cases row -->
     <div class="mt-20 reveal">
-      <p class="text-center text-surface-500 text-sm mb-6 font-mono">
+      <p class="text-center text-surface-500 text-base mb-6 font-mono">
         <span class="lang-zh">// dot-skill 能蒸馏的，不只是一种人</span>
         <span class="lang-en">// dot-skill distills more than just colleagues</span>
       </p>
@@ -118,8 +118,8 @@ const steps = [
         ].map((item) => (
           <div class="card-base p-4 text-center group hover:border-brand-500/30 transition-all">
             <div class="text-2xl mb-2">{item.icon}</div>
-            <div class="text-xs font-mono text-brand-400 mb-1.5">{item.title}</div>
-            <p class="text-surface-500 text-xs leading-relaxed">
+            <div class="text-sm font-mono text-brand-400 mb-1.5">{item.title}</div>
+            <p class="text-surface-500 text-sm leading-relaxed">
               <span class="lang-zh">{item.descZh}</span>
               <span class="lang-en">{item.descEn}</span>
             </p>
