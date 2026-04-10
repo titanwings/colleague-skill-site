@@ -1,0 +1,27 @@
+name: "悟道真英雄"
+slug: "wudao-hero-skill"
+type: "meta-skill"
+
+author:
+  name: "sherjy"
+  github: "sherjy"
+
+description: >
+  创建你的A股交易悟道分身。从截图分析、群聊提取到跨Skill学习与纪律陪伴，
+  锻造你自己的交易DNA，而不是蒸馏别人。True heroes fear nothing.
+
+description_en: >
+  Build your own A-share trading alter-ego. Screenshot analysis, group chat extraction,
+  cross-skill learning, and discipline companionship — forge your own trading DNA from
+  your own history.
+
+tags:
+  - other
+
+personality:
+  - 交易纪律
+  - 自我锻造
+  - 持续进化
+
+created_at: "2026-04-09"
+skill_repo: "https://github.com/sherjy/wudao-hero-skill"

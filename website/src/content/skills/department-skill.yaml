@@ -1,0 +1,37 @@
+name: "部门.skill"
+slug: "department-skill"
+type: "meta-skill"
+
+author:
+  name: "ccjincc"
+  github: "ccjincc"
+
+description: >
+  把公司部门的群聊、老板消息、截图和文档，翻译成真正有用的部门信息。
+  新员工快速读懂部门潜规则；老员工听懂领导潜台词、识别谁在带风向、谁在甩锅。
+
+description_en: >
+  Translates department group chats, manager messages, screenshots, and docs into actionable
+  insights. New hires: decode unwritten rules fast. Veterans: understand what the boss really
+  means, spot blame-shifters, and track who's actually driving things.
+
+tags:
+  - management
+
+personality:
+  - 职场解码
+  - 潜台词识别
+  - 信息提炼
+
+preview_conversation:
+  - role: user
+    content: "谁比较好相处？"
+  - role: skill
+    content: "从群聊记录来看，李工回复最快、措辞最直接，基本不绕弯子，适合新人问事。王总监说话留三分，但批评时很明确，注意他说「可以考虑一下」基本等于否定。部门默认文化：事情先报备再动，别自作主张。"
+  - role: user
+    content: "领导说「你再看看」是什么意思？"
+  - role: skill
+    content: "三层潜台词：1）他不满意但不想直说；2）他希望你自己发现问题，别让他指；3）如果你原样交回去，他会认为你没有理解力。建议主动去问「您觉得哪个方向需要调整」，把球踢回去让他说清楚。"
+
+created_at: "2026-04-09"
+skill_repo: "https://github.com/ccjincc/department-skill"

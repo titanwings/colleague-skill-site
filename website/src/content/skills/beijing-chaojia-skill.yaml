@@ -1,0 +1,25 @@
+name: "北京炒家"
+slug: "beijing-chaojia-skill"
+type: "skill"
+
+author:
+  name: "sherjy"
+  github: "sherjy"
+
+description: >
+  北京炒家视角 Skill — 用首板打板与分仓纪律控制回撤。A股短线交易实战思维框架。
+
+description_en: >
+  Beijing trader's perspective — first-board entry timing, position sizing discipline, and
+  drawdown control. Practical A-share short-term trading framework.
+
+tags:
+  - other
+
+personality:
+  - 打板纪律
+  - 仓位控制
+  - 短线思维
+
+created_at: "2026-04-09"
+skill_repo: "https://github.com/sherjy/beijing-chaojia-skill"
