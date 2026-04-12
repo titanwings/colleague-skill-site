@@ -1,7 +1,7 @@
 name: "KarlMarx Skill"
 slug: "karlmarx-skill"
 type: "skill"
-pinned: true
+pinned: false
 
 author:
   name: "baojiachen0214"

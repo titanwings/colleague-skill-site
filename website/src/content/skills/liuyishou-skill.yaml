@@ -1,0 +1,36 @@
+name: "留一手"
+slug: "liuyishou-skill"
+type: "skill"
+pinned: true
+
+author:
+  name: "liuyishou-skill"
+  github: "liuyishou-skill"
+
+description: >
+  让认真工作的人，不只留下产出，也留下自己。
+  轻量级职业防御 Skill：在完成日常工作的同时，持续沉淀影响证据、判断资产、协作资本和迁移能力。
+  不是教你躺平，而是帮你把可替代的劳动交给 AI，把不可替代的自己留给自己。
+
+description_en: >
+  Let serious workers leave behind more than just output — leave themselves.
+  A lightweight career defense skill: build influence evidence, judgment assets,
+  collaboration capital, and transferable skills while doing your daily work.
+  Give the replaceable labor to AI. Keep the irreplaceable you for yourself.
+
+tags:
+  - other
+
+personality:
+  - 职业防御
+  - 护城河沉淀
+  - 反替代
+
+preview_conversation:
+  - role: user
+    content: "我做了很多救火和协调，但没人替我记得，绩效也没反映出来，怎么办？"
+  - role: skill
+    content: "你现在做的事是在消耗自己，但没在积累自己。留一手的逻辑很简单：每次救火，顺手记一条「我做了什么判断、为什么这么决定、结果是什么」。三个月后你有了一份影响证据库，而不只是一堆加班记录。从今天起，每个任务完成后花5分钟，把可复用的判断提炼出来——这才是你真正的护城河。"
+
+created_at: "2026-04-12"
+skill_repo: "https://github.com/liuyishou-skill/liuyishou-skill"
