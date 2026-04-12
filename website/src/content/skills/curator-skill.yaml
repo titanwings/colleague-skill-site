@@ -1,0 +1,34 @@
+name: "图鉴.skill"
+slug: "curator-skill"
+type: "meta-skill"
+
+author:
+  name: "Aar0nPB"
+  github: "Aar0nPB"
+
+description: >
+  跨作者 persona skill 调度器。根据对话意图，从 30 个 persona / meta-skill 中智能匹配推荐，覆盖 colleague/ex 等系列和花叔全系（nuwa-skill, steve-jobs-skill 等）。
+
+description_en: >
+  A cross-author persona skill router. Intelligently matches from 30 persona/meta-skills based on conversation intent — covering the colleague/ex series and Huashu's full lineup.
+
+tags:
+  - other
+
+personality:
+  - 跨作者
+  - 智能匹配
+  - 生态调度
+
+preview_conversation:
+  - role: user
+    content: "Naval 会怎么看这件事？"
+  - role: skill
+    content: "这个问题适合召唤 naval-skill——Naval Ravikant 的思维框架，擅长财富哲学、杠杆思维和长期主义。已为你匹配，接下来我用他的视角来回答你。"
+  - role: user
+    content: "有什么好玩的 persona skill？"
+  - role: skill
+    content: "当前图鉴收录了30个 persona/meta-skill，分几类给你看——\n\n【历史人物】王小波、鲁迅、毛姆、孔子…\n【科技创业】Steve Jobs、Naval、Elon…\n【虚构角色】云天明、闪电侠、蝙蝠侠…\n【同事系列】colleague-skill 各位…\n\n你想探索哪个方向？"
+
+created_at: "2026-04-10"
+skill_repo: ""

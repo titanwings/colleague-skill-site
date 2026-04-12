@@ -1,0 +1,30 @@
+name: "诸子"
+slug: "zhuzi-skill"
+type: "skill"
+
+author:
+  name: "linzzzzzz"
+  github: "linzzzzzz"
+
+description: >
+  多人格结构化辩论 Agent Skill。不是把几个人格并排输出，而是让不同视角真正交锋、反驳、收敛，再由系统给出一段中立总结。
+
+description_en: >
+  A multi-persona structured debate skill. Doesn't just output different viewpoints in parallel — makes them actually clash, counter each other, and converge, then delivers a neutral synthesis.
+
+tags:
+  - other
+
+personality:
+  - 多视角交锋
+  - 结构化辩论
+  - 中立综合
+
+preview_conversation:
+  - role: user
+    content: "AI 会取代人类的创造力吗？"
+  - role: skill
+    content: "【诸子激活——辩论开始】\n\n**乐观派**：AI 是工具的延伸，就像印刷术没有消灭文学，AI 会解放人类去做更高层次的创造。\n\n**悲观派**：等等——印刷术不会「主动生成」文本，但 AI 会。这个类比本身就有问题。当AI能以更低成本产出「足够好」的内容，市场会选择谁？\n\n**乐观派**：「足够好」不是「真正好」。人类创造力的核心是意义与体验，这是AI没有的。\n\n**悲观派**：但消费者分辨得出来吗？\n\n【中立综合】：两方都触及了真实的张力。AI确实在替代某些创造性劳动的执行层，但「意义生产」仍依赖人类的生命经验。更准确的问题不是「取代」，而是「哪些创造力会被重新定价」。"
+
+created_at: "2026-04-10"
+skill_repo: ""

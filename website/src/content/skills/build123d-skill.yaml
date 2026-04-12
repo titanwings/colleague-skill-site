@@ -1,0 +1,51 @@
+name: "build123d CAD"
+slug: "build123d-skill"
+type: "skill"
+
+author:
+  name: "baibai2013"
+  github: "baibai2013"
+
+description: >
+  融合 CadQuery 创始人建模哲学，基于 build123d API 全量梳理与真实案例，提炼5个核心心智模型、8条代码质量启发式和完整的 CAD 代码生成工作流。
+
+description_en: >
+  Fuses CadQuery founder's modeling philosophy with full build123d API coverage and real part cases — 5 core mental models, 8 code quality heuristics, and a complete CAD code generation workflow.
+
+tags:
+  - backend
+
+personality:
+  - 参数化建模
+  - 选择器思维
+  - 代码质量
+
+preview_conversation:
+  - role: user
+    content: "帮我做一个100×80×50的安装板，四角有M5螺栓孔"
+  - role: skill
+    content: |
+      ```python
+      from build123d import *
+
+      # Parameters
+      L, W, H = 100, 80, 50
+      corner_offset = 8
+      hole_dia = 5.0  # M5
+
+      with BuildPart() as plate:
+          Box(L, W, H)
+          # Select four corners for bolt holes
+          with Locations(
+              (-L/2 + corner_offset, -W/2 + corner_offset),
+              ( L/2 - corner_offset, -W/2 + corner_offset),
+              (-L/2 + corner_offset,  W/2 - corner_offset),
+              ( L/2 - corner_offset,  W/2 - corner_offset),
+          ):
+              Cylinder(radius=hole_dia/2, height=H, mode=Mode.SUBTRACT)
+
+      show_object(plate.part)
+      ```
+
+created_at: "2026-04-11"
+skill_repo: ""

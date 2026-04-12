@@ -1,0 +1,26 @@
+name: "chat-skills"
+slug: "chat-skills"
+type: "skill"
+
+author:
+  name: "Pronting"
+  github: "Pronting"
+
+description: >
+  拒绝盲目猜心！基于10大领域视角用算法分析两性人际交往，跳出内耗，高位破局。
+
+description_en: >
+  Stop overthinking relationships. Uses 10 analytical frameworks to decode interpersonal dynamics between people — break free from rumination and gain the upper hand.
+
+tags:
+  - other
+
+personality:
+  - 算法分析
+  - 跳出内耗
+  - 高位破局
+
+preview_conversation: []
+
+created_at: "2026-04-10"
+skill_repo: "https://github.com/Pronting/chat-skills"

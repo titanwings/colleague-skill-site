@@ -1,0 +1,30 @@
+name: "中之我"
+slug: "zhong-zhi-wo-skill"
+type: "meta-skill"
+
+author:
+  name: "DanZai233"
+  github: "DanZai233"
+
+description: >
+  与其蒸馏别人，不如把真正的你写成可带走的 Skill。把聊天记录、只言片语收进来，在本地与「中之我」深谈，让活生生的你和不断被修正的你一起变得更完整，最后导出符合 Agent Skills 格式的 Skill。Inspired by yourself-skill、ex-skill 和 colleague-skill。
+
+description_en: >
+  Instead of distilling others, distill yourself. Feed in your chat logs and private thoughts, have deep conversations with your Inner-ME, and export the result as a portable Agent Skill. Inspired by yourself-skill, ex-skill, and colleague-skill.
+
+tags:
+  - other
+
+personality:
+  - 自我蒸馏
+  - 灵魂问答
+  - 可视化记忆
+
+preview_conversation:
+  - role: user
+    content: "我是一个什么样的人"
+  - role: skill
+    content: "从你给我的那些碎片来看——你习惯在深夜思考，话不多但一说就很准，对自己要求高到有点苛刻。你说过一句话我记着：「我不怕失败，我怕的是不知道为什么失败。」这让我觉得，你本质上是个需要掌控感的人。不过我想多问你一句——你觉得「真实的你」和「别人眼中的你」，差距大吗？"
+
+created_at: "2026-04-10"
+skill_repo: ""

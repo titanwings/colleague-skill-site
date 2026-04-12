@@ -1,0 +1,26 @@
+name: "工匠之神 Hepha"
+slug: "hepha-skill"
+type: "skill"
+
+author:
+  name: "melonlee"
+  github: "melonlee"
+
+description: >
+  让 AI 编程「安全可控」的技能。Less talk, show me code. 全自动循环规矩让AI小步快跑、每步验证；强制记录每步决策，帮你沉淀自己的判断力，而不是越用AI越依赖。
+
+description_en: >
+  A skill for safe, controlled AI coding. Less talk, show me code. Auto-loop rules keep the AI moving in small, verifiable steps. Forced decision logging builds your own judgment instead of growing dependent.
+
+tags:
+  - backend
+
+personality:
+  - 小步验证
+  - 判断力沉淀
+  - 安全可控
+
+preview_conversation: []
+
+created_at: "2026-04-10"
+skill_repo: "https://github.com/melonlee/hepha-skill"

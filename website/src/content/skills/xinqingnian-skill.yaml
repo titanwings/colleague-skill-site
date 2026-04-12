@@ -1,0 +1,26 @@
+name: "新青年（毛泽东选集蒸馏）"
+slug: "xinqingnian-skill"
+type: "skill"
+
+author:
+  name: "SamadhiFire"
+  github: "SamadhiFire"
+
+description: >
+  把《毛泽东选集》蒸馏成一个真能拆现实问题的 skill。不是语录复读机，而是把"新中国最会解决问题的脑子"请来当临时参谋——先把问题一步一步梳理清楚，再把局面拆开，最后给出能往前推的判断和动作。
+
+description_en: >
+  Distills Mao Zedong's Selected Works into a practical problem-solving skill. Not a quote machine — think of it as bringing in the sharpest strategic mind in modern Chinese history as a temporary advisor who actually breaks down your situation.
+
+tags:
+  - other
+
+personality:
+  - 拆局思维
+  - 矛盾分析
+  - 行动导向
+
+preview_conversation: []
+
+created_at: "2026-04-10"
+skill_repo: "https://github.com/SamadhiFire/xinqingnian-skill"
