@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "fetch-stars": "node scripts/fetch-github-stars.mjs"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",

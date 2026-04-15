@@ -8,6 +8,21 @@ interface Props {
 
 const { skill, base } = Astro.props;
 
+const NEW_WINDOW_DAYS = 14;
+const isNew = (() => {
+  if (!skill.created_at) return false;
+  const created = new Date(skill.created_at);
+  if (Number.isNaN(created.getTime())) return false;
+  const ageMs = Date.now() - created.getTime();
+  return ageMs >= 0 && ageMs <= NEW_WINDOW_DAYS * 24 * 60 * 60 * 1000;
+})();
+
+function formatStars(n: number): string {
+  if (n < 1000) return String(n);
+  if (n < 10000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+  return Math.round(n / 1000) + 'k';
+}
+
 const tagColors: Record<string, string> = {
   security: 'bg-red-500/10 text-red-400 border-red-500/20',
   backend: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
@@ -59,6 +74,11 @@ const personalityMap: Record<string, string> = {
     <span class="absolute top-3 right-3 text-xs font-mono px-2 py-0.5 rounded bg-brand-500/15 border border-brand-500/30 text-brand-400">
       <span class="lang-zh">置顶</span>
       <span class="lang-en">pinned</span>
+    </span>
+  )}
+  {isNew && !skill.pinned && (
+    <span class="absolute top-3 right-3 text-xs font-mono px-2 py-0.5 rounded bg-green-500/15 border border-green-500/30 text-green-400">
+      NEW
     </span>
   )}
   <!-- Header -->
@@ -128,6 +148,19 @@ const personalityMap: Record<string, string> = {
       />
       <span class="text-surface-500 text-base">{skill.author.name}</span>
     </div>
-    <span class="text-surface-600 text-base font-mono">{skill.created_at}</span>
+    <div class="flex items-center gap-2.5">
+      {typeof skill.stars === 'number' && (
+        <span
+          class="flex items-center gap-1 text-surface-500 text-base font-mono"
+          title={skill.stars_synced_at ? `GitHub stars · synced ${skill.stars_synced_at.slice(0, 10)}` : 'GitHub stars'}
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/>
+          </svg>
+          {formatStars(skill.stars)}
+        </span>
+      )}
+      <span class="text-surface-600 text-base font-mono">{skill.created_at}</span>
+    </div>
   </div>
 </a>
