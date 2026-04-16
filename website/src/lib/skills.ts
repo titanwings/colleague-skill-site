@@ -1,7 +1,17 @@
 import type { SkillMeta } from '../types/skill';
+import starsData from '../data/github-stars.json';
 
 // Use Astro's glob import for YAML files
 // This is called at build time
+
+const STARS_MAP = starsData as Record<string, { stars: number; synced_at: string }>;
+const REPO_URL_RE = /^https?:\/\/github\.com\/([^/\s]+)\/([^/\s#?]+?)(?:\.git)?\/?$/i;
+
+function repoKey(skillRepo: string | undefined): string | null {
+  if (!skillRepo) return null;
+  const m = skillRepo.match(REPO_URL_RE);
+  return m ? `${m[1]}/${m[2]}` : null;
+}
 
 let _cache: SkillMeta[] | null = null;
 
@@ -16,6 +26,12 @@ export async function getAllSkills(): Promise<SkillMeta[]> {
     if (path.includes('_template')) continue;
     const raw = (mod as { default: SkillMeta }).default;
     if (raw && raw.slug && raw.name) {
+      const key = repoKey(raw.skill_repo);
+      const starEntry = key ? STARS_MAP[key] : undefined;
+      if (starEntry) {
+        raw.stars = starEntry.stars;
+        raw.stars_synced_at = starEntry.synced_at;
+      }
       skills.push(raw);
     }
   }
