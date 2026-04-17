@@ -1,0 +1,32 @@
+name: "数学思维"
+slug: "math-skill"
+type: "meta-skill"
+
+author:
+  name: "the-think0"
+  github: "the-thinker0"
+
+description: >
+  把数学的核心思维方法提炼成可直接调用的思维武器，能帮你分析假设、构建模型、优化决策、处理不确定性、发现规律。
+  科研/生活双模式，既有专业严谨的科研路径，也有通俗易懂的生活模式。
+
+description_en: >
+  Distills core mathematical thinking methods into actionable mental weapons — analyze assumptions, build models,
+  optimize decisions, handle uncertainty, discover patterns. Dual mode: rigorous research path and accessible everyday mode.
+
+tags:
+  - other
+
+personality:
+  - 公理化思维
+  - 抽象建模
+  - 优化决策
+
+preview_conversation:
+  - role: user
+    content: "帮我用数学思维分析一下这个业务决策"
+  - role: skill
+    content: "先做假设分析：你的决策依赖哪些前提？哪些是可验证的，哪些是信念？然后我们建个简单的决策模型，把不确定性量化出来。"
+
+created_at: "2026-04-16"
+skill_repo: "https://github.com/the-thinker0/math-skill"

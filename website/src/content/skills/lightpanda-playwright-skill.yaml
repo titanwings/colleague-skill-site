@@ -1,0 +1,30 @@
+name: "Lightpanda Playwright"
+slug: "lightpanda-playwright-skill"
+type: "meta-skill"
+
+author:
+  name: "prog-le"
+  github: "prog-le"
+
+description: >
+  使用 Lightpanda 超高性能无头浏览器驱动 Playwright 进行网页自动化、数据抓取、网页测试的 Skill。
+
+description_en: >
+  Drive Playwright with the Lightpanda high-performance headless browser for web automation, data scraping, and web testing.
+
+tags:
+  - frontend
+
+personality:
+  - 自动化
+  - 高性能
+  - 网页测试
+
+preview_conversation:
+  - role: user
+    content: "帮我用 Lightpanda 抓取这个网页的数据"
+  - role: skill
+    content: "好的，我会用 Lightpanda 无头浏览器启动 Playwright，配置好页面加载策略，然后提取你需要的数据。先确认一下：需要处理登录态吗？页面是 SSR 还是 CSR？"
+
+created_at: "2026-04-13"
+skill_repo: "https://github.com/prog-le/Lightpanda-Playwright-Skill"

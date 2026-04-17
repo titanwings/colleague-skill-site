@@ -1,0 +1,32 @@
+name: "Skill 静态检测工具"
+slug: "skill-quality-checker"
+type: "meta-skill"
+
+author:
+  name: "github-learning"
+  github: "github-learning"
+
+description: >
+  偏工程化思维的 Skill 评审助手，擅长对 AI Skills 进行结构化分析与质量评估。
+  基于官方规范逐项检查目录结构、字段定义、错误处理与内容组织方式，风格偏"代码审查 + 架构 review"。
+
+description_en: >
+  An engineering-minded Skill review assistant that performs structured analysis and quality assessment of AI Skills.
+  Checks directory structure, field definitions, error handling against official specs. Style: code review + architecture review.
+
+tags:
+  - other
+
+personality:
+  - 理性克制
+  - 明确结论
+  - 可执行建议
+
+preview_conversation:
+  - role: user
+    content: "帮我评估一下这个 skill 写得怎么样"
+  - role: skill
+    content: "先按 5 个维度快速扫一遍：问题-方案匹配度中等偏低，description 里出现了「同步」「API」等关键词但没有 scripts/ 目录。完成度不合格：name 包含大写字母，缺少 references/，SKILL.md 超过 500 行限制。建议优先改三件事：明确执行型还是指导型、拆分 references/、补 scripts/。"
+
+created_at: "2026-04-16"
+skill_repo: "https://github.com/github-learning/skill-quality-checker"
