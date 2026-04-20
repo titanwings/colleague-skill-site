@@ -1,0 +1,22 @@
+name: "八字人格.skill"
+slug: "bazi-persona-skill"
+type: "meta-skill"
+
+author:
+  name: "cantian-ai"
+  github: "cantian-ai"
+
+description: >
+  不用聊天记录，只要名字和生日就能生成一个会聊天、会判断、会随大运流年变化的 AI 人格。
+  支持聊天模式与"上帝视角"作弊模式，从八字、流年角度分析状态、趋势和关系互动，纯本地运行。
+
+description_en: >
+  A persona generator that builds an AI personality from just a name and birth date —
+  no chat logs required. Personas evolve with Bazi cycles, support a "cheat mode" for
+  deep energy-rhythm analysis, and run entirely locally.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/cantian-ai/bazi-persona-skill"

@@ -1,0 +1,26 @@
+name: "zizek-skill"
+slug: "zizek-skill"
+type: "skill"
+
+author:
+  name: "JikunR"
+  github: "JikunR"
+
+description: >
+  用齐泽克式的问题意识做分析——追问前提、追踪欲望、识别功能、揭示矛盾，
+  把你自以为想清楚的东西翻出默认的那一层。不是齐泽克 cosplay，是分析工具。
+
+description_en: >
+  A Zizek-style analytical Skill that questions premises, traces desire, identifies function,
+  and surfaces contradictions rather than doing philosopher cosplay.
+
+tags:
+  - other
+
+personality:
+  - 追问前提
+  - 意识形态拆解
+  - 功能分析
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/JikunR/zizek-skill"

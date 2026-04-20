@@ -1,0 +1,28 @@
+name: "Toprank"
+slug: "toprank-contentwriter"
+type: "skill"
+
+author:
+  name: "nowork-studio"
+  github: "nowork-studio"
+
+description: >
+  给 Claude Code 直接接上 Google Search Console 和 Google Ads 的 SEO + Google Ads 技能。
+  分析流量、找出影响排名的问题、识别浪费的广告预算，并在有仓库权限时直接改 meta、修标题、加结构化数据。
+
+description_en: >
+  SEO + Google Ads skills for Claude Code with direct access to Google Search Console
+  and Google Ads. Analyzes traffic, surfaces ranking issues, finds wasted ad spend,
+  and — when given repo access — rewrites meta tags, fixes headings, and ships
+  structured-data changes.
+
+tags:
+  - other
+
+personality:
+  - 数据驱动
+  - 可执行
+  - 直接落地
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/nowork-studio/toprank"

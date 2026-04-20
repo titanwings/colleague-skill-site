@@ -1,0 +1,26 @@
+name: "米塞斯方法论.skill"
+slug: "mises-perspective"
+type: "skill"
+
+author:
+  name: "LijiayuDeng"
+  github: "LijiayuDeng"
+
+description: >
+  以路德维希·冯·米塞斯的方法论为核心的中文分析型 Skill，从人类行动、价格与经济计算出发，
+  分析制度、干预与资本配置，强调方法而非角色扮演。
+
+description_en: >
+  A method-first Chinese analysis Skill built on Ludwig von Mises's praxeology, reasoning
+  from human action, prices, and economic calculation about institutions and intervention.
+
+tags:
+  - other
+
+personality:
+  - 人类行动学
+  - 制度分析
+  - 方法优先
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/LijiayuDeng/mises-perspective"

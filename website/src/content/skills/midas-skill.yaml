@@ -1,0 +1,23 @@
+name: "midas.skill"
+slug: "midas-skill"
+type: "meta-skill"
+
+author:
+  name: "realteamprinz"
+  github: "realteamprinz"
+
+description: >
+  把你日常生活里的"噪音"——Slack 聊天、相册、浏览记录、购物清单、朋友吐槽——
+  炼成一份排序过的赚钱信号与机会清单。用六种镜头（需求缺口、套利、金钱信号、技能桥接、网络路径、行为）做三角验证。
+
+description_en: >
+  Turns everyday "noise" — Slack chats, camera rolls, browser history, purchases,
+  friends' complaints — into a ranked list of money signals, opportunities, and
+  next actions. Triangulates across six lenses: demand gap, arbitrage, money signal,
+  skill bridge, network path, and behavioral cues.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/realteamprinz/midas-skill"

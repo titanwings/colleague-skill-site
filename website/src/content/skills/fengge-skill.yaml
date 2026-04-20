@@ -1,0 +1,26 @@
+name: "峰哥.skill"
+slug: "fengge-skill"
+type: "skill"
+
+author:
+  name: "Walshyu"
+  github: "Walshyu"
+
+description: >
+  蒸馏 B 站纪录片创作者峰哥亡命天涯（周丽峰）的思维框架，提炼 6 个心智模型与 8 条决策启发式，
+  包括反讽辩证法、底层视角的反同情化和第一反应优先于预设，适合分析纪录片选题与采访方法。
+
+description_en: >
+  Distills Bilibili documentary creator Fengge Wangmingtianya (Zhou Lifeng)'s thinking into
+  6 mental models covering ironic dialectics, non-pitying bottom-up lens, and instinct over scripts.
+
+tags:
+  - other
+
+personality:
+  - 反讽辩证
+  - 反同情视角
+  - 现场优先
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/Walshyu/fengge-skill"

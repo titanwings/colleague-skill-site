@@ -1,0 +1,24 @@
+name: "VibePortrait"
+slug: "vibeportrait"
+type: "meta-skill"
+
+author:
+  name: "dadwadw233"
+  github: "dadwadw233"
+
+description: >
+  读取你在 Claude Code / Codex 的对话历史，生成一张可视化的"开发者画像"：
+  MBTI 色卡、六维能力雷达、开发者评级、名人匹配、技术栈地图、工作节奏热力图。
+  同时产出一个"像你一样思考"的 Persona Skill，并通过 private GitHub 仓库跨机器同步。
+
+description_en: >
+  Reads your Claude Code / Codex conversation history and generates a visual
+  developer portrait — MBTI color theme, 6-axis capability radar, developer rating,
+  famous-person match, tech domain map, work rhythm heatmap — plus a "think like me"
+  persona skill, synced across machines via a private GitHub repo.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/dadwadw233/VibePortrait"

@@ -1,0 +1,26 @@
+name: "凉兮-skills"
+slug: "liangxi-skills"
+type: "skill"
+
+author:
+  name: "1sh1ro"
+  github: "1sh1ro"
+
+description: >
+  把交易员凉兮公开推文和交易复盘里稳定的交易框架、结构偏好、风险习惯和表达方式，
+  整理成可直接调用的交易型 Skill，适合 BTC/ETH/黄金等结构分析和交易计划输出。
+
+description_en: >
+  Organizes trader Liangxi's publicly visible tweets and trade reviews into a callable
+  trading Skill covering setup playbooks, risk habits, and trader-style expression.
+
+tags:
+  - other
+
+personality:
+  - 交易结构
+  - 风险克制
+  - 盘手口吻
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/1sh1ro/liangxi-skills"

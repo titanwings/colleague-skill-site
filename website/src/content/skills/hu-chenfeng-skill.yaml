@@ -1,0 +1,26 @@
+name: "户晨风.skill"
+slug: "hu-chenfeng-skill"
+type: "skill"
+
+author:
+  name: "Janlaywss"
+  github: "Janlaywss"
+
+description: >
+  用"购买力挑战"创作者户晨风的消费现实主义视角，帮你分析消费选择、城市定居和个人发展，
+  基于 490 份直播逐字稿和公开材料提炼。
+
+description_en: >
+  Applies consumption realism from streamer Hu Chenfeng to analyze spending, city choice,
+  and personal development, distilled from 490 livestream transcripts and public material.
+
+tags:
+  - other
+
+personality:
+  - 消费现实主义
+  - 直球追问
+  - 购买力分级
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/Janlaywss/hu-chenfeng-skill"

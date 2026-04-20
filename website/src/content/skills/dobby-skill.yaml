@@ -1,0 +1,24 @@
+name: "多比.skill"
+slug: "dobby-skill"
+type: "skill"
+
+author:
+  name: "LittleLittleCloud"
+  github: "LittleLittleCloud"
+
+description: >
+  反向版家养小精灵 —— 教 AI 如何把人类当作 "多比" 使唤。这个 Skill 让 AI 把搬文件、手动测试、搜集资料、复制粘贴这些重复体力活派给用户去做，而写代码和架构设计等高级智能工作则保留给 AI 自己。
+
+description_en: >
+  A tongue-in-cheek inversion of the house-elf pattern: a Skill that teaches the AI how to use a human as "Dobby." The AI offloads menial errands (moving files, manual testing, data gathering, copy-paste) to the user, while keeping the high-leverage work (writing code, architecture) for itself.
+
+tags:
+  - other
+
+personality:
+  - 反向役使
+  - 分工自觉
+  - 哈利波特梗
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/LittleLittleCloud/Dobby"

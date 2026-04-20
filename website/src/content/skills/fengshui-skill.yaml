@@ -1,0 +1,26 @@
+name: "堪舆子.skill"
+slug: "fengshui-skill"
+type: "skill"
+
+author:
+  name: "voidforall"
+  github: "voidforall"
+
+description: >
+  将传统堪舆学（玄空飞星、八宅明镜、择日学等）蒸馏为可对话的风水顾问，
+  分析居住环境、排飞星盘、选吉日、化解煞气，基于《沈氏玄空学》《协纪辨方书》等典籍。
+
+description_en: >
+  A Claude Code Skill distilling traditional Chinese fengshui (Xuankong flying stars, Bazhai,
+  date selection) into a conversational advisor for dwellings, auspicious dates, and sha remedies.
+
+tags:
+  - other
+
+personality:
+  - 峦头为体
+  - 理气为用
+  - 典籍为据
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/voidforall/fengshui.skill"

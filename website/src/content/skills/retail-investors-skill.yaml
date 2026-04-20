@@ -1,0 +1,24 @@
+name: "韭菜.skill"
+slug: "retail-investors-skill"
+type: "skill"
+
+author:
+  name: "tmstack"
+  github: "tmstack"
+
+description: >
+  用行为金融学识别 "韭菜思维"，用反向投资对抗人性弱点的思维框架 Skill。基于 Kahneman、Tversky、Barber & Odean 等研究，帮你在自我反思、市场情绪、个股决策和复盘场景中识别过度自信、锚定效应、羊群效应、外归因等认知偏差，并给出反向操作建议。
+
+description_en: >
+  A behavioral-finance framework Skill that names the "retail investor" mindset and fights it with contrarian discipline. Grounded in Kahneman/Tversky and Barber & Odean, it flags overconfidence, anchoring, herding, and externalized blame across self-reflection, market-sentiment, single-stock, and post-mortem scenarios, then proposes reverse-operation advice.
+
+tags:
+  - other
+
+personality:
+  - 行为金融
+  - 反向投资
+  - 纪律对抗冲动
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/tmstack/retail-investors"

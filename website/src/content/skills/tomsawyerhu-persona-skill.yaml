@@ -1,0 +1,23 @@
+name: "Persona Skill"
+slug: "tomsawyerhu-persona-skill"
+type: "meta-skill"
+
+author:
+  name: "Tomsawyerhu"
+  github: "Tomsawyerhu"
+
+description: >
+  把原始传记、引语、访谈、聊天记录和文档，通过 /persona 命令族蒸馏成模块化人格。
+  支持蒸馏、切换、融合与角色扮演——不是宽松的风格提示，而是读语料、建多维结构、绑证据与场景的 source-first 工作流。
+
+description_en: >
+  A source-first workflow that turns raw biographies, quotes, interviews, chat logs,
+  and documents into modular personas via the /persona command family — distill,
+  switch, fuse, and roleplay. Builds multi-dimensional structure with evidence
+  and scenario bindings, not loose style prompts.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/Tomsawyerhu/Persona-Skill"

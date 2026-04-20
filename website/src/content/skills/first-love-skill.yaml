@@ -1,0 +1,19 @@
+name: "初恋.skill"
+slug: "first-love-skill"
+type: "meta-skill"
+
+author:
+  name: "z969081067-commits"
+  github: "z969081067-commits"
+
+description: >
+  把记忆里的初恋蒸馏成一个可以对话的 AI Skill。输入聊天记录、照片、社交内容与回忆，自动生成人格 + 记忆 + 回复变化系统，保留青涩与留白；提供回忆模式、性格模式和 "温柔删除"（seal-summer）等管理命令。
+
+description_en: >
+  Distill a first love from memory into a conversational Skill. From chat logs, photos, socials, and recollections it builds a persona, a shared-memory module, and a response-variability engine, with modes for reminiscing, personality-only play, and a gentle "seal-summer" delete.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/z969081067-commits/first-love-skill"

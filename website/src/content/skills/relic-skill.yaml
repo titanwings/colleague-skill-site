@@ -1,0 +1,24 @@
+name: "relic.skill"
+slug: "relic-skill"
+type: "meta-skill"
+
+author:
+  name: "Ylsssq926"
+  github: "Ylsssq926"
+
+description: >
+  万物永生引擎。把人、宠物、关系、团队、地方、时刻从散落的数据碎片锻造成可交互的数字灵魂。
+  提供人类、宠物、关系、团队文化、业务专家、地方、时刻、公众人物、飞书 CLI 九套模板，
+  让你的奶奶、你家猫、你们团队的那种默契都能被记住并继续说话。
+
+description_en: >
+  An "everything-immortal" engine that forges people, pets, relationships, teams,
+  places, and moments into interactive digital souls from scattered data fragments.
+  Ships nine templates (human, pet, relationship, team culture, expert, place,
+  moment, public figure, Feishu CLI) so the things you care about can keep speaking.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/Ylsssq926/relic.skill"
