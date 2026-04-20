@@ -1,7 +1,6 @@
 name: "留一手"
 slug: "liuyishou-skill"
 type: "skill"
-pinned: true
 
 author:
   name: "liuyishou-skill"

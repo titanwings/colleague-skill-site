@@ -1,0 +1,31 @@
+name: "dot-skill"
+slug: "dot-skill"
+type: "meta-skill"
+pinned: true
+
+author:
+  name: "titanwings"
+  github: "titanwings"
+
+description: >
+  把任何人蒸馏成一个 AI Skill —— 不止同事，伴侣、家人、老友、偶像、名人、小说角色，甚至你自己都可以。
+  从 colleague.skill 升级而来的统一元技能引擎：原材料 + 你的描述 → 一个真正像 TA 的 AI Skill，用 TA 的方式思考、用 TA 的口吻说话。
+  支持 colleague / relationship / celebrity 三大家族，兼容 Claude Code、Codex、OpenClaw、Hermes 等运行环境。
+
+description_en: >
+  Distill anyone into an AI Skill — not just colleagues. Partners, family, old friends,
+  idols, public figures, even fictional characters or yourself. Evolved from colleague.skill,
+  dot-skill is the unified meta-skill engine: source material + your description → an AI Skill
+  that truly resembles them, thinks the way they think, and speaks in their voice. Supports
+  the colleague / relationship / celebrity families across Claude Code, Codex, OpenClaw, Hermes.
+
+tags:
+  - other
+
+personality:
+  - 蒸馏任何人
+  - 六层人格结构
+  - AgentSkills 标准
+
+created_at: "2026-04-13"
+skill_repo: "https://github.com/titanwings/colleague-skill"
