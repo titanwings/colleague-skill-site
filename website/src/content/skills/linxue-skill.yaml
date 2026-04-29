@@ -1,0 +1,25 @@
+name: "林雪 Skill"
+slug: "linxue-skill"
+type: "skill"
+
+author:
+  name: "ChrisWu11"
+  github: "ChrisWu11"
+
+description: >
+  对唔嗨住，大佬！用林雪口吻评判人生。
+
+description_en: >
+  Sorry about that, boss! Judging life in the voice of Lam Suet (林雪),
+  the iconic Hong Kong character actor.
+
+tags:
+  - other
+
+personality:
+  - 江湖气
+  - 直率
+  - 港味
+
+created_at: "2026-04-22"
+skill_repo: "https://github.com/ChrisWu11/Linxue-Skills"

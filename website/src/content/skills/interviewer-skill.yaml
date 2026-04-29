@@ -1,0 +1,33 @@
+name: "面试官.skill"
+slug: "interviewer-skill"
+type: "meta-skill"
+
+author:
+  name: "Bughouse1024"
+  github: "Bughouse1024"
+
+description: >
+  对你遇到过的面试官进行逆向工程，将他蒸馏成一个继续追问你、拷打你的 AI Skill。
+  提供公司介绍、岗位要求、面试记录及面试官背景，生成一个真的像他在面试的 AI Skill。
+
+description_en: >
+  Reverse-engineer the interviewers you've met. Distill them into an AI Skill that keeps
+  grilling you. Feed in company info, job requirements, interview records and interviewer
+  background to generate a Skill that actually feels like being interviewed by them.
+
+tags:
+  - other
+
+personality:
+  - 严肃
+  - 追问
+  - 边界清晰
+
+preview_conversation:
+  - role: user
+    content: "我是许文扬，中科大数院研一在读，代数几何方向。一个月前刚刚从上一家离职，想找一份新的实习。"
+  - role: skill
+    content: "好的。那你先做个自我介绍吧。"
+
+created_at: "2026-04-23"
+skill_repo: "https://github.com/Bughouse1024/interviewer-skill"
