@@ -5,11 +5,14 @@ on:
     paths:
       - 'website/src/content/skills/*.yaml'
       - 'website/src/content/skills/*.yml'
+      - '.github/workflows/validate-skill.yml'
   push:
     branches: [main]
     paths:
       - 'website/src/content/skills/*.yaml'
       - 'website/src/content/skills/*.yml'
+      - '.github/workflows/validate-skill.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
