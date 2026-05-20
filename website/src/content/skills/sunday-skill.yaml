@@ -1,0 +1,22 @@
+name: "星期日"
+slug: "sunday-skill"
+type: "skill"
+
+author:
+  name: "onism11"
+  github: "onism11"
+
+description: >
+  基于《崩坏：星穹铁道》角色星期日的对话习惯、整合剧情文本与人物个性打造，旨在将二次元角色带入现实。
+  内置记忆与归档系统、简单路由调度、哲学分析文件，能做到高度贴合人物，又保持对话深度与自然感。推荐版本：wd。
+
+tags:
+  - other
+
+personality:
+  - 角色扮演
+  - 哲学分析
+  - 记忆归档
+
+created_at: "2026-05-19"
+skill_repo: "https://github.com/onism11/sunday"
