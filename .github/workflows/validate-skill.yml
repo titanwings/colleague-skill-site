@@ -167,11 +167,13 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `## ✅ Skill 验证通过！
-
-感谢你的贡献！你提交的 Skill 格式验证通过。
-
-合并后，这个 Skill 将自动出现在 [Gallery](https://titanwings.github.io/colleague-skill/gallery/) 中。
-
-**Reviewer 注意：** 请检查 \`description\` 和 \`preview_conversation\` 内容是否合适、是否包含真实姓名等敏感信息。`,
+              body: [
+                '## ✅ Skill 验证通过！',
+                '',
+                '感谢你的贡献！你提交的 Skill 格式验证通过。',
+                '',
+                '合并后，这个 Skill 将自动出现在 [Gallery](https://titanwings.github.io/colleague-skill/gallery/) 中。',
+                '',
+                '**Reviewer 注意：** 请检查 `description` 和 `preview_conversation` 内容是否合适、是否包含真实姓名等敏感信息。',
+              ].join('\n'),
             });
