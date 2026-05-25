@@ -1,0 +1,21 @@
+name: "current-partner-skill"
+slug: "current-partner-skill"
+type: "skill"
+
+author:
+  name: "KingOfLitangDz"
+  github: "KingOfLitangDz"
+
+description: >
+  蒸馏现任 skill，用于模拟对话、纪念日记忆和关键关系节点复盘，把亲密关系中的当前陪伴变成可持续对话。
+
+tags:
+  - other
+
+personality:
+  - 现任陪伴
+  - 纪念日记忆
+  - 关系对话
+
+created_at: "2026-04-01"
+skill_repo: "https://github.com/KingOfLitangDz/current-partner-skill"

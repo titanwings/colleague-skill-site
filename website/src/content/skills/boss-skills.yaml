@@ -1,0 +1,19 @@
+name: "老板.skill"
+slug: "boss-skills"
+type: "meta-skill"
+
+author:
+  name: "vogtsw"
+  github: "vogtsw"
+
+description: >
+  把老板的聊天记录、会议纪要、评审批注和项目材料蒸馏成 Skill。除了模拟老板的说话方式，还会用他的标准评判项目、教你向上汇报/争资源/报坏消息，并内置马斯克、乔布斯、贝索斯、黄仁勋等企业家风格模板，可直接生成对应风格的 "理想老板" Skill。
+
+description_en: >
+  Distill your boss's chat logs, meeting notes, review comments, and project docs into a Skill. Beyond mimicking the voice, it evaluates projects with the boss's standards, coaches you on managing up, and ships built-in archetype templates for Musk, Jobs, Bezos, and Jensen Huang.
+
+tags:
+  - management
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/vogtsw/boss-skills"

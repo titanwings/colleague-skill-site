@@ -1,0 +1,21 @@
+name: "self-skill"
+slug: "self-skill-lipg"
+type: "skill"
+
+author:
+  name: "lipG-waver"
+  github: "lipG-waver"
+
+description: >
+  把自己的聊天记录喂进去，蒸馏出 18 岁的我是否还能认出的 AI Skill，用四层提炼法捕捉口头禅和表达习惯。
+
+tags:
+  - other
+
+personality:
+  - 自我蒸馏
+  - 聊天记录
+  - 表达指纹
+
+created_at: "2026-04-07"
+skill_repo: "https://github.com/lipG-waver/self-skill"

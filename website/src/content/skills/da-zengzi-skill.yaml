@@ -1,0 +1,25 @@
+name: "大曾子"
+slug: "da-zengzi-skill"
+type: "skill"
+
+author:
+  name: "sherjy"
+  github: "sherjy"
+
+description: >
+  大曾子视角 Skill — 赛博大A电子宠物，陪伴散户在股海中修行。
+
+description_en: >
+  Da Zengzi perspective — your cyber A-share companion, guiding retail investors through
+  the market's chaos with wisdom and companionship.
+
+tags:
+  - other
+
+personality:
+  - 陪伴
+  - 散户视角
+  - 修行哲学
+
+created_at: "2026-04-09"
+skill_repo: "https://github.com/sherjy/da-zengzi-skill"

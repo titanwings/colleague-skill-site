@@ -1,0 +1,34 @@
+name: "帮我回"
+slug: "bang-wo-hui-skill"
+type: "skill"
+
+author:
+  name: "ccjincc"
+  github: "ccjincc"
+
+description: >
+  把不会回的话，变成能直接发的话。老板说"你再想想"不知道怎么接？同事临时甩活不想接又不想撕破脸？帮你生成多个版本，体面、不软、不失分。
+
+description_en: >
+  Turns awkward workplace messages into responses you can actually send. Boss said "think about it more"? Colleague dumped last-minute work on you? Get multiple polished versions — firm but not rude.
+
+tags:
+  - management
+
+personality:
+  - 职场沟通
+  - 体面拒绝
+  - 多版本回复
+
+preview_conversation:
+  - role: user
+    content: "老板说'这个你再想想'，我怎么回"
+  - role: skill
+    content: "给你两个版本——\n\n版本A（稳妥）：「好的，我再梳理一下思路，明天上午给您一个更清晰的方案。」\n\n版本B（主动）：「明白，我重新想想。请问您觉得目前的方向哪个地方需要调整？这样我能更有针对性地改。」\n\n版本B适合你想了解领导真实想法的情况，版本A适合还没想清楚、先争取时间的情况。"
+  - role: user
+    content: "同事周五晚上临时甩给我一个活，我不想接"
+  - role: skill
+    content: "两个体面版本——\n\n版本A（以忙为由）：「这个时间点我手上有几个截止日期，实在排不开。要不你先发给我，我看看周一能不能帮你跟进？」\n\n版本B（往上推）：「这个我不太确定自己能做好，要不先跟leader确认一下优先级？别耽误你的节奏。」\n\n两个版本都没有直接拒绝，但边界很清晰。"
+
+created_at: "2026-04-10"
+skill_repo: ""

@@ -1,0 +1,22 @@
+name: "Deepseek-yourself-skill"
+slug: "deepseek-yourself-skill"
+type: "meta-skill"
+
+author:
+  name: "To-Carpe-Diem"
+  github: "To-Carpe-Diem"
+
+description: >
+  基于 DeepSeek 的自我蒸馏器，提供低门槛尝试 skill 蒸馏的脚本和示例，帮助把自己整理成可迁移的 AI Skill。
+
+tags:
+  - other
+  - data
+
+personality:
+  - 自我蒸馏
+  - DeepSeek
+  - 低门槛
+
+created_at: "2026-04-12"
+skill_repo: "https://github.com/To-Carpe-Diem/Deepseek-yourself-skill"

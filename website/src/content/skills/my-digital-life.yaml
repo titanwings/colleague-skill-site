@@ -1,0 +1,24 @@
+name: "数字生命开源计划"
+slug: "my-digital-life"
+type: "meta-skill"
+
+author:
+  name: "weixr18"
+  github: "weixr18"
+
+description: >
+  一个个人知识库框架，帮你搭建让 AI 深度理解自己的"数字生命"。
+  以经历库、认知库、技术库、兴趣库四个维度组织内容，配合 CLAUDE.md 总-分结构，
+  让 AI 不只是记住你说过什么，而是能反问、挑战、陪你看清自己。
+
+description_en: >
+  A personal knowledge-base framework for building a "digital life" that lets AI
+  truly understand you. Organizes content into four libraries (experience, cognition,
+  skills, interests) with a summary-detail structure, so AI can challenge you and
+  surface your own blind spots rather than just recall what you said.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/weixr18/my-digital-life"

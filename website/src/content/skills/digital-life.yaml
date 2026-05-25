@@ -1,0 +1,33 @@
+name: "数字人生"
+slug: "digital-life"
+type: "meta-skill"
+
+author:
+  name: "wildbyteai"
+  github: "wildbyteai"
+
+description: >
+  数字考古工具。把你的微信记录、朋友圈、搜索历史翻译成结构化的人格档案，
+  帮你看清自己留下了什么数字痕迹，以及这些痕迹在说什么。
+
+description_en: >
+  Digital archaeology tool. Translates your WeChat history, Moments, and search logs
+  into a structured personality profile — revealing what digital traces you've left
+  and what they say about you.
+
+tags:
+  - other
+
+personality:
+  - 洞察
+  - 客观
+  - 深度分析
+
+preview_conversation:
+  - role: user
+    content: "帮我分析一下我过去三年的聊天记录"
+  - role: skill
+    content: "从你的记录来看，你在 2023 年前频繁讨论'稳定'和'安全感'，2024 年开始出现大量'转型''冒险'相关词汇。这个转折点发生了什么？"
+
+created_at: "2026-03-10"
+skill_repo: "https://github.com/wildbyteai/digital-life"

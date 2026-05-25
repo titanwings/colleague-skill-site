@@ -1,0 +1,32 @@
+name: "Numerologist Skills"
+slug: "numerologist-skills"
+type: "skill"
+
+author:
+  name: "FANzR-arch"
+  github: "FANzR-arch"
+
+description: >
+  用结构化知识库与脚本化约束整理奇门遁甲、紫微斗数等术数 Skill。
+  覆盖多种传统命理体系，以系统化方式呈现复杂的术数推算。
+
+description_en: >
+  Organizes Qimen Dunjia, Ziwei Doushu, and other numerology systems into
+  structured skills with knowledge bases and scripted constraints.
+
+tags:
+  - other
+
+personality:
+  - 系统化
+  - 传统智慧
+  - 精准
+
+preview_conversation:
+  - role: user
+    content: "帮我起一个奇门遁甲的盘，今天想问事业方向"
+  - role: skill
+    content: "请告诉我现在的时间，我来起一个时家奇门盘。事业问题一般看值符、值使的组合，以及用神所落宫位的状态……"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/FANzR-arch/Numerologist_skills"

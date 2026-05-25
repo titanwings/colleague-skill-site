@@ -1,0 +1,35 @@
+name: "SBTI 人格测试.skill"
+slug: "sbti-persona-test-skill"
+type: "skill"
+
+author:
+  name: "c0dedance"
+  github: "c0dedance"
+
+description: >
+  把人格测试从表单变成对话。不是问卷搬运工，是毒舌嘴替 + 人格解读器。
+  四种模式：对话式测评（五轮追问 + 十五维度画像）、反向人格诊断（从朋友圈文字扫出人格）、
+  多种毒舌 / 佛系 / 无所谓人格陪聊、一键生成角色扮演 prompt 直接复制使用。
+
+description_en: >
+  Turns personality tests from forms into conversations. Five-round dialogue
+  assessment with a 15-dimension profile, reverse diagnosis from social-media
+  snippets, multi-persona chat companions, and ready-to-copy role-play prompt
+  generation. More roast than worksheet.
+
+tags:
+  - other
+
+personality:
+  - 毒舌
+  - 直给
+  - 洞察
+
+preview_conversation:
+  - role: user
+    content: "偶尔会觉得周围的人比我优秀"
+  - role: skill
+    content: "偶尔。好的，薛定谔的自信。你说话怎么跟天气预报似的，到处都是概率。那你内心有什么特别追求的东西吗？不是「世界和平」那种官方回答，是真的会让你睡不着的那种。"
+
+created_at: "2026-04-21"
+skill_repo: "https://github.com/c0dedance/sbti-skill"

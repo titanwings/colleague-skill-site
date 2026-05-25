@@ -1,0 +1,53 @@
+name: "🧬 提交 Skill"
+description: "把你蒸馏的 Skill 分享到 Gallery"
+title: "[Skill] "
+labels: ["community-skill"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        填 5 个字段就够了，维护者会帮你整理格式。
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: 类型
+      options:
+        - skill（人的 persona）
+        - meta-skill（生成 skill 的工具）
+    validations:
+      required: true
+
+  - type: input
+    id: name
+    attributes:
+      label: 叫什么
+    validations:
+      required: true
+
+  - type: input
+    id: author_github
+    attributes:
+      label: 你的 GitHub 用户名
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 一段话描述 TA
+      description: 能做什么、怎么说话、有什么风格——越具体越好
+    validations:
+      required: true
+
+  - type: textarea
+    id: preview_conversation
+    attributes:
+      label: 来一段对话预览
+
+  - type: input
+    id: skill_repo
+    attributes:
+      label: Skill 文件链接
+    validations:
+      required: true

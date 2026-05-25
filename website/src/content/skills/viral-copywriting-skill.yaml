@@ -1,0 +1,22 @@
+name: "viral-copywriting-skill"
+slug: "viral-copywriting-skill"
+type: "skill"
+
+author:
+  name: "kangarooking"
+  github: "kangarooking"
+
+description: >
+  把《爆款文案》的销售型文案方法蒸馏成 14 个可执行 AI skill 工具包，服务转化文案和营销表达。
+
+tags:
+  - product
+  - design
+
+personality:
+  - 销售文案
+  - 转化
+  - 书籍蒸馏
+
+created_at: "2026-05-02"
+skill_repo: "https://github.com/kangarooking/viral-copywriting-skill"

@@ -1,0 +1,21 @@
+name: "professor-skill"
+slug: "zhrq-professor-skill"
+type: "skill"
+
+author:
+  name: "Zhrq-vis"
+  github: "Zhrq-vis"
+
+description: >
+  将教授蒸馏成赛博形态，用熟悉的研究判断、学术反馈和指导方式帮助你推进科研。
+
+tags:
+  - other
+
+personality:
+  - 教授视角
+  - 科研指导
+  - 学术反馈
+
+created_at: "2026-04-03"
+skill_repo: "https://github.com/Zhrq-vis/professor-skill"

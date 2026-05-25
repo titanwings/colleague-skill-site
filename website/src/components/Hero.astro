@@ -1,0 +1,177 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+  <div class="absolute inset-0 bg-grid-pattern"></div>
+  <div class="absolute inset-0 bg-hero-gradient"></div>
+  <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-brand-600/8 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+
+    <!-- Badge -->
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/30 rounded-full text-base text-brand-400 font-medium mb-8 animate-fade-in">
+      <span class="w-2 h-2 bg-brand-400 rounded-full animate-pulse"></span>
+      <span class="lang-zh">dot-skill · AgentSkills 开放标准 · GitHub 10k+ Stars</span>
+      <span class="lang-en">dot-skill · AgentSkills Open Standard · GitHub 10k+ Stars</span>
+      <svg class="w-4 h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-white leading-tight tracking-tight mb-3 animate-fade-up" style="animation-delay: 100ms; animation-fill-mode: backwards;">
+      <span class="lang-zh">人会离开<br/><span class="gradient-text">dot-skill</span> 不会</span>
+      <span class="lang-en">People leave.<br/><span class="gradient-text">Skills don't.</span></span>
+    </h1>
+    <p class="text-surface-600 font-mono text-base mb-10 animate-fade-up" style="animation-delay: 150ms; animation-fill-mode: backwards;">
+      <span class="lang-zh">People leave. Skills don't.</span>
+      <span class="lang-en">Bottle the wisdom. Summon forever.</span>
+    </p>
+
+    <!-- Subtitle -->
+    <p class="text-xl sm:text-2xl text-surface-400 max-w-3xl mx-auto mb-3 animate-fade-up leading-relaxed" style="animation-delay: 200ms; animation-fill-mode: backwards;">
+      <span class="lang-zh">
+        已经走了的人、<span class="text-surface-300">只活在书里的人</span>、这辈子再也见不到的人——
+      </span>
+      <span class="lang-en">
+        The ones who are gone. <span class="text-surface-300">The ones who only live in books.</span> The icons you'll never actually meet.
+      </span>
+    </p>
+    <p class="text-lg sm:text-xl text-surface-500 max-w-2xl mx-auto mb-12 animate-fade-up" style="animation-delay: 260ms; animation-fill-mode: backwards;">
+      <span class="lang-zh">那些你错过了、来不及问、再也见不到的——</span>
+      <span class="lang-en">Everyone you missed, never got to ask, or simply lost along the way —</span>
+    </p>
+    <p class="text-2xl sm:text-3xl text-surface-200 font-semibold max-w-3xl mx-auto mb-12 animate-fade-up" style="animation-delay: 320ms; animation-fill-mode: backwards;">
+      <span class="lang-zh">统统蒸馏成 <span class="text-brand-400">dot-skill</span>，随时召唤</span>
+      <span class="lang-en">Distill anyone into a <span class="text-brand-400">dot-skill</span>. Summon them anytime.</span>
+    </p>
+
+    <!-- Skill series pills -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10 animate-fade-up" style="animation-delay: 350ms; animation-fill-mode: backwards;">
+      {[
+        { name: 'memory.skill', descZh: '蒸馏逝去的人', descEn: 'the ones who are gone', active: true },
+        { name: 'author.skill', descZh: '书里才见过的人', descEn: 'legends in your books', active: false },
+        { name: 'icon.skill', descZh: '够不到的公众人物', descEn: 'icons you can\'t reach', active: false },
+        { name: 'ex-skill', descZh: '那些走散的人', descEn: 'those you\'ve lost touch with', active: false },
+        { name: '???.skill', descZh: '你来定义', descEn: 'anyone, really', active: false },
+      ].map((s) => (
+        <span class={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-base font-mono border transition-all ${
+          s.active
+            ? 'bg-brand-500/20 border-brand-500/50 text-brand-300'
+            : 'bg-surface-800/60 border-surface-700 text-surface-500 hover:border-surface-600 hover:text-surface-400'
+        }`}>
+          <span class={s.active ? 'text-brand-400' : 'text-surface-600'}>●</span>
+          {s.name}
+          <span class="opacity-60">·</span>
+          <span class="opacity-70 lang-zh">{s.descZh}</span>
+          <span class="opacity-70 lang-en">{s.descEn}</span>
+        </span>
+      ))}
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-up" style="animation-delay: 400ms; animation-fill-mode: backwards;">
+      <a
+        href="https://github.com/titanwings/colleague-skill#readme"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary text-base px-8 py-4 shadow-glow-amber"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+        <span class="lang-zh">开始蒸馏 · Get Started</span>
+        <span class="lang-en">Let's Distill! →</span>
+      </a>
+      <a
+        href={`${base}/gallery/`}
+        class="btn-secondary text-base px-8 py-4"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+        </svg>
+        Skill Gallery
+      </a>
+    </div>
+
+    <!-- Terminal Demo -->
+    <div class="max-w-2xl mx-auto animate-fade-up" style="animation-delay: 500ms; animation-fill-mode: backwards;">
+      <div class="terminal-window animate-glow-pulse">
+        <div class="terminal-header">
+          <div class="terminal-dot bg-red-500/80"></div>
+          <div class="terminal-dot bg-yellow-500/80"></div>
+          <div class="terminal-dot bg-green-500/80"></div>
+          <span class="ml-3 text-surface-400 text-base font-mono">claude-code — dot-skill</span>
+        </div>
+        <div class="p-6 font-mono text-base text-left space-y-3">
+          <div class="text-surface-500"># Step 1: run in Claude Code</div>
+          <div class="flex items-start gap-2">
+            <span class="text-brand-400 shrink-0">❯</span>
+            <span class="text-white"><span class="text-brand-300">/create-colleague</span></span>
+          </div>
+          <div class="text-surface-500 pl-4 space-y-1">
+            <div>
+              <span class="text-green-400">✓</span>
+              <span class="lang-zh"> 采集飞书消息 <span class="text-surface-600">847 条 · collected</span></span>
+              <span class="lang-en"> Collecting Feishu messages <span class="text-surface-600">847 · done</span></span>
+            </div>
+            <div>
+              <span class="text-green-400">✓</span>
+              <span class="lang-zh"> 提取 code review 评论 <span class="text-surface-600">234 条</span></span>
+              <span class="lang-en"> Extracting code review comments <span class="text-surface-600">234</span></span>
+            </div>
+            <div><span class="text-brand-400">⚡</span> Generating Work Skill + Persona <span class="text-surface-600">...</span></div>
+          </div>
+          <div class="pt-2 border-t border-surface-800">
+            <span class="text-green-400 font-semibold">✓ Done! </span>
+            <span class="text-surface-300">Skill saved → </span>
+            <span class="text-brand-400">colleagues/security-engineer-wang/</span>
+          </div>
+          <div class="mt-3 text-surface-500"># Step 2: summon with /[slug]</div>
+          <div class="flex items-start gap-2">
+            <span class="text-brand-400 shrink-0">❯</span>
+            <span class="text-white">
+              <span class="text-brand-300">/security-engineer-wang</span>
+              <span class="text-surface-400 lang-zh"> 帮我看看这个 API 有没有安全问题</span>
+              <span class="text-surface-400 lang-en"> check this API for security issues</span>
+              <span class="animate-terminal-blink text-brand-400">▋</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social proof -->
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 mt-12 animate-fade-up" style="animation-delay: 600ms; animation-fill-mode: backwards;">
+      <div class="flex items-center gap-2 text-surface-400 text-base">
+        <svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span><strong class="text-white">10,000+</strong> GitHub Stars</span>
+      </div>
+      <div class="w-px h-4 bg-surface-700 hidden sm:block"></div>
+      <div class="flex items-center gap-2 text-surface-400 text-base">
+        <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        <span class="lang-zh">飞书 / 钉钉 / Slack / Email</span>
+        <span class="lang-en">Feishu / DingTalk / Slack / Email</span>
+      </div>
+      <div class="w-px h-4 bg-surface-700 hidden sm:block"></div>
+      <div class="flex items-center gap-2 text-surface-400 text-base">
+        <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+        </svg>
+        <span>AgentSkills Open Standard</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-surface-600">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </div>
+</section>

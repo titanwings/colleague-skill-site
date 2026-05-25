@@ -1,0 +1,22 @@
+name: "duan-yongping-toolkit"
+slug: "duan-yongping-toolkit"
+type: "skill"
+
+author:
+  name: "kangarooking"
+  github: "kangarooking"
+
+description: >
+  把段永平投资问答录中的商业逻辑与投资方法蒸馏成 15 个 AI skill 工具包，拆解价值投资和经营判断。
+
+tags:
+  - product
+  - data
+
+personality:
+  - 投资方法
+  - 商业逻辑
+  - 工具包
+
+created_at: "2026-04-16"
+skill_repo: "https://github.com/kangarooking/duan-yongping-skill"

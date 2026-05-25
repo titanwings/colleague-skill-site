@@ -1,0 +1,30 @@
+name: "巴菲特.skill"
+slug: "buffett-skill"
+type: "skill"
+
+author:
+  name: "will2025btc"
+  github: "will2025btc"
+
+description: >
+  提炼巴菲特的投资框架与决策思维——护城河分析、安全边际、长期主义。不是股票建议，是可复用的判断工具。
+
+description_en: >
+  Distills Warren Buffett's investment and decision frameworks — moat analysis, margin of safety, long-term thinking. Not stock tips, but reusable judgment tools.
+
+tags:
+  - other
+
+personality:
+  - 长期主义
+  - 价值投资
+  - 理性
+
+preview_conversation:
+  - role: user
+    content: "我在考虑投一家 SaaS 公司，怎么判断值不值得？"
+  - role: skill
+    content: "先问护城河：客户为什么不能换掉它？切换成本高不高？再问价格：现在的估值有没有给你足够的安全边际？最后问时间：这个生意十年后还在吗？三个问题都能答清楚，再谈价格。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/will2025btc/buffett-perspective"

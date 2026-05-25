@@ -1,0 +1,19 @@
+name: "SBTI.skill"
+slug: "sbti-skill"
+type: "meta-skill"
+
+author:
+  name: "whu125"
+  github: "whu125"
+
+description: >
+  把 SBTI 人格原型（CTRL、BOSS、LOVE-R、MUM、MONK 等）批量打包成 Agent Skill 的生成器。基于统一的 personas.json 数据源和 Skill 模板自动产出一整套可安装、可切换、可维护的人格 skill，让 coding assistant 能用不同人格的语气、决策偏好和协作姿态继续做真实工作。
+
+description_en: >
+  A generator that packages SBTI personality archetypes (CTRL, BOSS, LOVE-R, MUM, MONK, ...) into a full batch of installable Agent Skills. Drives a single personas.json through a Skill template so your coding assistant can be switched between personas with different tones, decision biases, and collaboration postures.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/whu125/sbti-skill"

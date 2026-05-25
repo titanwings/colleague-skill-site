@@ -1,0 +1,22 @@
+name: "persona-compass"
+slug: "persona-compass"
+type: "skill"
+
+author:
+  name: "snowyowlmia"
+  github: "snowyowlmia"
+
+description: >
+  面向真实同事协作的 Claude skill：建立同事人格模型，预测沟通反应，并生成可直接使用的沟通脚本。
+
+tags:
+  - management
+  - hr
+
+personality:
+  - 隐私优先
+  - 沟通策略
+  - 同事画像
+
+created_at: "2026-03-30"
+skill_repo: "https://github.com/snowyowlmia/persona-compass"

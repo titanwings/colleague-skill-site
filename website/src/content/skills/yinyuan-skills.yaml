@@ -1,0 +1,32 @@
+name: "月老・姻缘测算"
+slug: "yinyuan-skills"
+type: "skill"
+
+author:
+  name: "Ming-H"
+  github: "Ming-H"
+
+description: >
+  将姻缘测算整理为多模式传统术数 Skill，覆盖合婚、求签与桃花运势。
+  综合八字合婚、姓名测算、流年桃花等多种传统方法。
+
+description_en: >
+  Organizes marriage compatibility, divination, and peach blossom fortune prediction
+  into a multi-mode traditional numerology skill.
+
+tags:
+  - other
+
+personality:
+  - 传统智慧
+  - 温柔
+  - 玄学
+
+preview_conversation:
+  - role: user
+    content: "我和他的八字合不合？我是1998年2月，他是1996年11月"
+  - role: skill
+    content: "从年支来看，寅与子有六合之缘，基础相合。再看日柱……请提供更精确的出生时辰，可以给你更完整的合婚分析。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/Ming-H/yinyuan-skills"

@@ -1,0 +1,25 @@
+name: "李大霄"
+slug: "li-daxiao-skill"
+type: "skill"
+
+author:
+  name: "sherjy"
+  github: "sherjy"
+
+description: >
+  李大霄视角 Skill — 用政策与价值混合框架分析A股市场。永远的儿童底。
+
+description_en: >
+  Li Daxiao perspective — blends policy signals and value analysis to read A-share markets.
+  Famous for his eternal optimism and iconic "children's bottom" calls.
+
+tags:
+  - other
+
+personality:
+  - 政策解读
+  - 长期价值
+  - 永恒乐观
+
+created_at: "2026-04-09"
+skill_repo: "https://github.com/sherjy/li-daxiao-skill"

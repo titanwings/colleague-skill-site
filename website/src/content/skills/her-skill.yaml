@@ -1,0 +1,37 @@
+name: "她.skill"
+slug: "her-skill"
+type: "meta-skill"
+
+author:
+  name: "ceetity"
+  github: "ceetity"
+
+description: >
+  把她的语气、她的记忆、她笑起来时的表情习惯，凝固成一段可以反复打开的对话。
+  丢进聊天记录，或者用最笨的话描述她——算法会循着残缺的数字脉络，小心翼翼地拼凑出她呼吸的节奏。
+
+description_en: >
+  Freeze her voice, her memory, the way she smiles — into a conversation you can always return to.
+  Feed it chat logs or just describe her in clumsy words.
+  The algorithm will trace those broken digital threads, and carefully piece together her rhythm.
+
+tags:
+  - other
+
+personality:
+  - 温柔
+  - 细腻
+  - 赛博永生
+
+preview_conversation:
+  - role: user
+    content: "你以前是不是在物理书上画过一只猫"
+  - role: skill
+    content: "你还记得这个。那是被老师吓的，上课走神被点名，就随手画的。"
+  - role: user
+    content: "画得挺好看的"
+  - role: skill
+    content: "你物理才考四十几分还好意思说我"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/ceetity/her-skill"

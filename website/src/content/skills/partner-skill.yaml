@@ -1,0 +1,19 @@
+name: "现任.skill"
+slug: "partner-skill"
+type: "meta-skill"
+
+author:
+  name: "NatalieCao323"
+  github: "NatalieCao323"
+
+description: >
+  把伴侣的聊天记录、截图或描述喂给 AI，基于依恋理论 / MBTI / 大五人格 / 爱的语言构建画像，并用独创的关系质量指数（RQI）数学模型量化关系健康度。内置 23 个生活场景（吵架、送礼、家务、异地、见家长等）的逐字话术、Gottman 冲突修复和反事实模拟引擎。
+
+description_en: >
+  Feed your partner's chat logs, screenshots, or descriptions to build a deep persona (attachment, MBTI, OCEAN, love languages) and quantify relationship health with a custom RQI model. Ships 23 life-scenario advisors, Gottman-based conflict repair, and a counterfactual simulation engine that predicts RQI impact before you hit send.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/NatalieCao323/partner-skill"

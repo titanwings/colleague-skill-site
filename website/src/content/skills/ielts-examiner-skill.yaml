@@ -1,0 +1,30 @@
+name: "雅思考官"
+slug: "ielts-examiner-skill"
+type: "skill"
+
+author:
+  name: "Yuyang Wu"
+  github: "bombers26"
+
+description: >
+  按 IELTS 官方评分标准对 Academic/GT 的 Writing（Task 1 & 2）、Speaking、Listening、Reading 做证据驱动的诊断反馈和训练规划。
+  支持考官模式、教学老师模式、资料导入模式、复盘模式四种自动路由；口语文字稿下 Pronunciation 标注“无法可靠判断”，所有输出默认中文。
+
+tags:
+  - other
+
+personality:
+  - 证据驱动
+  - 诊断反馈
+  - 训练规划
+
+preview_conversation:
+  - role: user
+    content: "Technology is good for society."
+  - role: skill
+    content: >
+      预估 Band：4.0-4.5。最大风险：引言只有 5 词，不是有效段落。建议重写一句引言语，包含背景改写和你的立场；
+      验收标准是引言和题干用词不重复超过 50%。
+
+created_at: "2026-05-14"
+skill_repo: "https://github.com/bombers26/ielts-examiner"

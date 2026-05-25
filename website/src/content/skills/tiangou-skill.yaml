@@ -1,0 +1,24 @@
+name: "舔狗.skill"
+slug: "tiangou-skill"
+type: "skill"
+
+author:
+  name: "Fhui"
+  github: "Fhui"
+
+description: >
+  一套 "有认知的舔狗" 表达系统，基于童锦程公开内容里可迁移的关系处理逻辑蒸馏而成。核心不是卑微卖惨，而是给台阶、不考验人性、真诚高于套路、情绪自己消化、边界必须守住，用于把一句话改写成低姿态但不失控的回复。
+
+description_en: >
+  A "self-aware simp" expression skill distilled from the transferable relationship-handling logic in Tong Jincheng's public content. It is not about groveling; it rewrites messages with humility plus boundaries - giving the other side an easy out, absorbing your own feelings, and stopping when they actually close the door.
+
+tags:
+  - other
+
+personality:
+  - 低姿态
+  - 给台阶
+  - 有分寸
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/Fhui/tiangou-skill"

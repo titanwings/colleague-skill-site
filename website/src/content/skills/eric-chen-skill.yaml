@@ -1,0 +1,22 @@
+name: "eric-chen-skill"
+slug: "eric-chen-skill"
+type: "skill"
+
+author:
+  name: "0xAlexWu"
+  github: "0xAlexWu"
+
+description: >
+  Eric Chen（Injective CEO）思维操作系统，基于 40+ 来源深度蒸馏出 6 个核心心智模型。
+
+tags:
+  - product
+  - data
+
+personality:
+  - CEO 视角
+  - 心智模型
+  - 深度蒸馏
+
+created_at: "2026-04-23"
+skill_repo: "https://github.com/0xAlexWu/eric-chen-skill"

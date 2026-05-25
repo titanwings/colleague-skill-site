@@ -1,0 +1,32 @@
+name: "女娲.skill"
+slug: "nuwa-skill"
+type: "meta-skill"
+
+author:
+  name: "alchaincyf"
+  github: "alchaincyf"
+
+description: >
+  从个人的心智模型、决策发式与表达模式中提炼可复用技能。
+  把你独特的思维方式结构化，变成可以调用、可以传递的 Skill。
+
+description_en: >
+  Distills reusable skills from your personal mental models, decision heuristics, and expression patterns.
+  Structures your unique way of thinking into something callable and transferable.
+
+tags:
+  - other
+
+personality:
+  - 创造性
+  - 结构化
+  - 自我蒸馏
+
+preview_conversation:
+  - role: user
+    content: "我总是能快速判断一个项目能不能做，但说不清楚为什么"
+  - role: skill
+    content: "这正是需要蒸馏的直觉。我们来还原你的判断流程：你通常先看什么？市场规模、团队、时机、还是别的？把最近几次判断过的项目说给我听。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/alchaincyf/nuwa-skill"

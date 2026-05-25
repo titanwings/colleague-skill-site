@@ -1,0 +1,24 @@
+name: "Khazix Skills"
+slug: "khazix-skills"
+type: "skill"
+
+author:
+  name: "KKKKhazix"
+  github: "KKKKhazix"
+
+description: >
+  "数字生命卡兹克" 的 AI 工具箱，包含他长期打磨的 Prompts 与 Skills。当前开源两个 Skill：hv-analysis（横纵分析法深度研究，自动联网做纵向时间 + 横向竞争分析并输出排版精美的 PDF 报告）和 khazix-writer（卡兹克公众号长文写作风格与四层自检体系）。
+
+description_en: >
+  Khazix's personal toolbox of battle-tested Prompts and Skills. Ships two Skills today: hv-analysis (a deep-research skill that runs longitudinal + competitive analysis and outputs a polished PDF report) and khazix-writer (the full WeChat long-form writing style, self-check system, and style library used on his channel).
+
+tags:
+  - other
+
+personality:
+  - 深度研究
+  - 长文写作
+  - 方法论沉淀
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/KKKKhazix/khazix-skills"

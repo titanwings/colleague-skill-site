@@ -1,0 +1,22 @@
+name: "zhou-jintao-skill"
+slug: "zhou-jintao-skill"
+type: "skill"
+
+author:
+  name: "WilliamX1019"
+  github: "WilliamX1019"
+
+description: >
+  周金涛周期天王思维操作系统，基于一手演讲资料蒸馏四周期嵌套定位、康波框架和宏观判断方式。
+
+tags:
+  - data
+  - other
+
+personality:
+  - 周期框架
+  - 宏观判断
+  - 康波
+
+created_at: "2026-04-24"
+skill_repo: "https://github.com/WilliamX1019/zhou-jintao-skill"

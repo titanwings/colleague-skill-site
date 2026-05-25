@@ -1,0 +1,26 @@
+name: "金刚经.skill"
+slug: "diamond-sutra-skill"
+type: "skill"
+
+author:
+  name: "dull-bird"
+  github: "dull-bird"
+
+description: >
+  基于南怀瑾《金刚经说什么》与费勇《金刚经修心课》蒸馏的 AI 法师 Skill，
+  采用义理体系 + 说法角色双层架构，用通俗风趣的语言开解工作与生活中的烦恼。
+
+description_en: >
+  An AI dharma-teacher Skill distilled from Nan Huaijin's and Fei Yong's Diamond Sutra
+  commentaries, using a doctrine + persona two-layer architecture to address everyday anxieties.
+
+tags:
+  - other
+
+personality:
+  - 通俗风趣
+  - 破四相
+  - 不说教
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/dull-bird/diamond-sutra-skill"

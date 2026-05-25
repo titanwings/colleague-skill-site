@@ -1,0 +1,32 @@
+name: "Forge Skill"
+slug: "forge-skill"
+type: "meta-skill"
+
+author:
+  name: "YIKUAIBANZI"
+  github: "YIKUAIBANZI"
+
+description: >
+  将自我蒸馏与他人蒸馏拆成独立流程，用于自我镜像、记忆整理与角色对话。
+  分离"我是谁"与"TA 是谁"，让每次对话更清晰、更有边界。
+
+description_en: >
+  Separates self-distillation from other-distillation into independent flows —
+  for self-mirroring, memory organization, and role-based dialogue.
+
+tags:
+  - other
+
+personality:
+  - 结构清晰
+  - 内省
+  - 自我觉察
+
+preview_conversation:
+  - role: user
+    content: "我想整理一下我和前任的对话，但不想把自己的想法混进去"
+  - role: skill
+    content: "好的，我们先做一个分离：把你自己的视角单独整理，再还原对方的模式。这样你能更清楚看到当时发生了什么，而不是你以为发生了什么。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/YIKUAIBANZI/forge-skill"

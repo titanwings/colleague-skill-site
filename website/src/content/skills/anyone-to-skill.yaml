@@ -1,0 +1,22 @@
+name: "Anyone to Skill"
+slug: "anyone-to-skill"
+type: "meta-skill"
+
+author:
+  name: "OpenDemon"
+  github: "OpenDemon"
+
+description: >
+  万魂幡：给 YouTube 频道、PDF、聊天记录或电子书等材料，自动提取心智模型、决策启发式和表达风格，
+  输出可运行的 SKILL.md，把任何人蒸馏成 AI Skill。
+
+tags:
+  - other
+
+personality:
+  - 蒸馏任何人
+  - 心智模型
+  - 自动生成
+
+created_at: "2026-04-06"
+skill_repo: "https://github.com/OpenDemon/anyone-to-skill"

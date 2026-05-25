@@ -1,0 +1,22 @@
+name: "zhihu-valhalla"
+slug: "zhihu-valhalla"
+type: "skill"
+
+author:
+  name: "Charpup"
+  github: "Charpup"
+
+description: >
+  知乎英灵殿：将知乎作者文章蒸馏为 AI 人格档案，并部署为永不下线的 Discord 赛博分身。
+
+tags:
+  - product
+  - other
+
+personality:
+  - 作者蒸馏
+  - 文章人格
+  - 赛博分身
+
+created_at: "2026-03-24"
+skill_repo: "https://github.com/Charpup/zhihu-valhalla"

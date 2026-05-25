@@ -1,0 +1,21 @@
+name: "create-loved-one"
+slug: "create-loved-one"
+type: "skill"
+
+author:
+  name: "yhz-2134"
+  github: "yhz-2134"
+
+description: >
+  亲人 skill：把逝去亲人的记忆与表达方式蒸馏成 AI Skill，承载想念并保留可对话的陪伴入口。
+
+tags:
+  - other
+
+personality:
+  - 亲人记忆
+  - 思念承载
+  - 陪伴
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/yhz-2134/create-loved-one"

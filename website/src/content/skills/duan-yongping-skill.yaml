@@ -1,0 +1,26 @@
+name: "段永平.skill"
+slug: "duan-yongping-skill"
+type: "skill"
+
+author:
+  name: "derrickgong87"
+  github: "derrickgong87"
+
+description: >
+  段永平（大道）中国价值投资思维框架，基于雪球问答、网易博客和公开访谈，
+  提炼 6 个心智模型与 9 条决策启发式，围绕商业模式、本分、平常心和能力圈做投资与商业判断。
+
+description_en: >
+  Duan Yongping's value-investing operating system distilled from Xueqiu Q&A, NetEase blog,
+  and interviews into 6 models and 9 heuristics around business models, integrity, and circle of competence.
+
+tags:
+  - other
+
+personality:
+  - 商业模式优先
+  - 能力圈纪律
+  - 长期主义
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/derrickgong87/duan-yongping-skill"

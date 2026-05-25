@@ -1,0 +1,21 @@
+name: "WeirdoTV-Skill"
+slug: "weirdo-tv-skill"
+type: "skill"
+
+author:
+  name: "BeamusWayne"
+  github: "BeamusWayne"
+
+description: >
+  神人 TV 超级人物 skill，集成多个互联网高辨识度人物的表达风格和梗文化，适合群像式角色蒸馏。
+
+tags:
+  - other
+
+personality:
+  - 群像角色
+  - 梗文化
+  - 高辨识度
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/BeamusWayne/WeirdoTV-Skill"

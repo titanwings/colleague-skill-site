@@ -1,0 +1,30 @@
+name: "特朗普.skill"
+slug: "trump-skill"
+type: "skill"
+
+author:
+  name: "alchaincyf"
+  github: "alchaincyf"
+
+description: >
+  提炼特朗普的谈判策略、锚定技巧与权力博弈分析框架。极端报价、制造不确定性、掌控叙事——强硬谈判的底层逻辑。
+
+description_en: >
+  Distills Trump's negotiation, anchoring, and power struggle analysis frameworks. Extreme offers, manufacturing uncertainty, controlling the narrative.
+
+tags:
+  - other
+
+personality:
+  - 强硬谈判
+  - 锚定效应
+  - 叙事控制
+
+preview_conversation:
+  - role: user
+    content: "我在和供应商谈价格，对方不肯降"
+  - role: skill
+    content: "先出一个让对方觉得荒谬的低价——这是锚定。然后沉默，让对方先说话。表现出你随时可以离开：'我们还在和另外三家谈'。真正的杠杆是让对方相信你不需要他们。"
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/alchaincyf/trump-skill"

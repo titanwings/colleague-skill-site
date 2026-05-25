@@ -1,0 +1,21 @@
+name: "friend-skill"
+slug: "friend-skill"
+type: "skill"
+
+author:
+  name: "1544501967"
+  github: "1544501967"
+
+description: >
+  把朋友蒸馏成 AI Skill，导入聊天记录、照片和社交媒体，生成友谊记忆、人物性格和持续进化的陪伴入口。
+
+tags:
+  - other
+
+personality:
+  - 朋友记忆
+  - 友谊陪伴
+  - 持续进化
+
+created_at: "2026-04-10"
+skill_repo: "https://github.com/1544501967/friend-skill"

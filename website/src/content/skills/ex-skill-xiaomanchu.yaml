@@ -1,0 +1,19 @@
+name: "前任.skill"
+slug: "ex-skill-xiaomanchu"
+type: "meta-skill"
+
+author:
+  name: "therealXiaomanChu"
+  github: "therealXiaomanChu"
+
+description: >
+  把前任蒸馏成一个可以对话的 AI Skill。喂入微信/QQ 聊天记录、朋友圈截图、照片和你的主观描述，生成会用 ta 的口头禅、依恋类型、MBTI、爱的语言和关系记忆跟你对话的 Skill；支持回忆、吵架、深夜情绪等场景。
+
+description_en: >
+  Distill an ex into a conversational AI Skill. Feed in WeChat/QQ logs, Moments screenshots, photos, and your own notes to generate a skill that talks like them, with a 5-layer persona (attachment type, MBTI, love language) plus shared-memory module for everyday, flashback, fight, and late-night-emo scenarios.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/therealXiaomanChu/ex-skill"

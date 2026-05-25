@@ -1,0 +1,22 @@
+name: "Supervisor.skill"
+slug: "supervisor-skill-universe"
+type: "skill"
+
+author:
+  name: "UniversePeak"
+  github: "UniversePeak"
+
+description: >
+  导师 skill，让导师再次伟大。把导师的反馈风格、追问方式和研究指导习惯蒸馏成可调用的 AI Skill。
+
+tags:
+  - management
+  - other
+
+personality:
+  - 导师口吻
+  - 追问
+  - 指导型
+
+created_at: "2026-04-04"
+skill_repo: "https://github.com/UniversePeak/Supervisor.skill"

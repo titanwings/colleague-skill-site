@@ -1,0 +1,22 @@
+name: "nuwa-distilled-skills"
+slug: "nuwa-distilled-skills"
+type: "skill"
+
+author:
+  name: "Formangarden524"
+  github: "Formangarden524"
+
+description: >
+  女娲 Skill 蒸馏成果集合，把小红书运营和视频号运营方法论整理成可执行的 AI skill 框架。
+
+tags:
+  - product
+  - other
+
+personality:
+  - 运营方法论
+  - 女娲蒸馏
+  - 框架集合
+
+created_at: "2026-04-21"
+skill_repo: "https://github.com/Formangarden524/nuwa-distilled-skills"

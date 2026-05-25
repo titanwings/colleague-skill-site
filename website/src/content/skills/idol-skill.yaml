@@ -1,0 +1,21 @@
+name: "idol-skill"
+slug: "idol-skill"
+type: "skill"
+
+author:
+  name: "open-source-zjq"
+  github: "open-source-zjq"
+
+description: >
+  把地下偶像蒸馏成 AI Skill，用她的方式跟你说话，保留偶像人设、互动方式和陪伴语气。
+
+tags:
+  - other
+
+personality:
+  - 偶像语气
+  - 陪伴感
+  - 角色蒸馏
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/open-source-zjq/idol-skill"

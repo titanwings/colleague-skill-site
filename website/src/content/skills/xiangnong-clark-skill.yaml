@@ -1,0 +1,22 @@
+name: "Xiangnong-Clark-skill"
+slug: "xiangnong-clark-skill"
+type: "skill"
+
+author:
+  name: "ClarkYoung-xhs"
+  github: "ClarkYoung-xhs"
+
+description: >
+  香农（杨博宇）Agent Skill，蒸馏自香农的文章、月报与观点，用个人内容资产生成可调用的表达和判断方式。
+
+tags:
+  - product
+  - other
+
+personality:
+  - 文章蒸馏
+  - 个人观点
+  - 内容资产
+
+created_at: "2026-04-11"
+skill_repo: "https://github.com/ClarkYoung-xhs/Xiangnong-Clark-skill"

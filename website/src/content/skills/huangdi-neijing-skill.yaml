@@ -1,0 +1,21 @@
+name: "huangdi-neijing-skill"
+slug: "huangdi-neijing-skill"
+type: "skill"
+
+author:
+  name: "kangarooking"
+  github: "kangarooking"
+
+description: >
+  把《黄帝内经》中的方法论蒸馏成 22 个可执行 AI skill 工具包，覆盖素问与灵枢里的诊断和调养框架。
+
+tags:
+  - other
+
+personality:
+  - 古籍方法论
+  - 中医框架
+  - 工具包
+
+created_at: "2026-04-18"
+skill_repo: "https://github.com/kangarooking/huangdi-neijing-skill"

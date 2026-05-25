@@ -1,0 +1,19 @@
+name: "相亲.skill"
+slug: "love-skill"
+type: "meta-skill"
+
+author:
+  name: "YuzeHao2023"
+  github: "YuzeHao2023"
+
+description: >
+  赛博相亲配对分析工具。把相亲双方的微信/QQ 聊天记录、朋友圈和照片蒸馏成两个 Persona，再用 MBTI、爱的语言、沟通风格和价值观等多维度做兼容性分析，输出量化评分加定性报告，供你在见家长前先做一次理性校验。
+
+description_en: >
+  A cyber matchmaking tool. Distills both sides of a potential match from WeChat/QQ logs, Moments, and photos into two personas, then runs multi-dimensional compatibility analysis (MBTI, love language, communication style, values) to produce a scored report and qualitative breakdown.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/YuzeHao2023/love-skill"

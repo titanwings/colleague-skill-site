@@ -1,0 +1,24 @@
+name: "饕餮.skill"
+slug: "bggg-taotie-skill"
+type: "meta-skill"
+
+author:
+  name: "binggandata"
+  github: "binggandata"
+
+description: >
+  Skill 进化引擎。给它两个 Skill（目标 A + 参考源 B），它会并行跑相同任务、做反向工程分析、
+  提炼可复用模式，然后按优先级渐进式注入改进——每一步都要用户确认。
+  每次成功的进化都存入模式库，越用越准。
+
+description_en: >
+  A skill-evolution engine: feed it a target skill plus a reference skill, and it
+  runs both on the same task in parallel, reverse-engineers why the reference is
+  better, extracts reusable patterns, and progressively injects improvements with
+  user confirmation at each step. Successful patterns accumulate in a pattern library.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/binggandata/bggg-skill-taotie"

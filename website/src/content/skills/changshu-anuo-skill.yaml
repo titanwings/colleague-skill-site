@@ -1,0 +1,26 @@
+name: "常熟阿诺.skill"
+slug: "changshu-anuo-skill"
+type: "skill"
+
+author:
+  name: "Ricardo-Vv"
+  github: "Ricardo-Vv"
+
+description: >
+  提炼常熟阿诺（加州盛亦陶）"抽象文学 + 左右脑互搏 + 诺言诺语"的中文表达结构，
+  用"那我问你"零帧起手，把平凡事说出哲学感。
+
+description_en: >
+  Distills Changshu Anuo's "abstract literature + left-right brain debate" Chinese style,
+  opening with "那我问你" and turning everyday matters into mock-philosophical reflection.
+
+tags:
+  - other
+
+personality:
+  - 抽象文学
+  - 左右脑互搏
+  - 空灵哲思
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/Ricardo-Vv/changshu-anuo"

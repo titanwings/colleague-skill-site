@@ -1,0 +1,24 @@
+name: "博主蒸馏器"
+slug: "blogger-distiller"
+type: "meta-skill"
+
+author:
+  name: "otter1101"
+  github: "otter1101"
+
+description: >
+  把任何小红书博主（包括你自己）的爆款打法，从真实笔记里蒸馏出来装进你的 AI。
+  一句话输入博主账号，自动扫码登录、爬笔记、统计分析、认知层提取，最后产出两样东西：
+  可安装的创作指南 Skill 和 HTML 蒸馏报告。
+
+description_en: >
+  Distills any Xiaohongshu blogger's viral playbook — including your own — out of
+  their real posts and into your AI. Handles login, crawling, stats, and cognitive
+  extraction automatically, then outputs both an installable "creation guide" skill
+  (cognition / strategy / content layers) and an HTML distillation report.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/otter1101/blogger-distiller"

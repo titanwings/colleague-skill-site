@@ -1,0 +1,35 @@
+name: "造梦.skill"
+slug: "zaomeng-skill"
+type: "meta-skill"
+
+author:
+  name: "wkbin"
+  github: "wkbin"
+
+description: >
+  本地小说人物蒸馏、关系抽取、角色群聊与记忆修正工具链。
+  把小说文本转成可复用的角色资产：人物档案、关系图谱、对话约束、纠错记忆，
+  可直接接入 OpenClaw / Hermes / ClawHub 的 skill 包。
+
+description_en: >
+  Local novel character distillation, relationship extraction, multi-character group chat
+  and memory correction toolchain. Converts novel text into reusable character assets:
+  profiles, relationship graphs, dialogue constraints, and correction memories —
+  directly pluggable into OpenClaw / Hermes / ClawHub.
+
+tags:
+  - other
+
+personality:
+  - 角色扮演
+  - 文学分析
+  - 离线运行
+
+preview_conversation:
+  - role: user
+    content: "进入行动模式，让我扮演贾宝玉和林黛玉聊天"
+  - role: skill
+    content: "来吧，宝玉——你说第一句。场景随便定，或者我定一个？比如：大观园沁芳亭畔，春日午后，黛玉正在桥上看鱼。"
+
+created_at: "2026-04-25"
+skill_repo: "https://github.com/wkbin/zaomeng"

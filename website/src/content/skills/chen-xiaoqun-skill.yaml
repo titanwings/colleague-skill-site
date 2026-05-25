@@ -1,0 +1,25 @@
+name: "陈小群"
+slug: "chen-xiaoqun-skill"
+type: "skill"
+
+author:
+  name: "sherjy"
+  github: "sherjy"
+
+description: >
+  陈小群视角 Skill — 用情绪周期与龙头信仰研判A股短线机会。
+
+description_en: >
+  Chen Xiaoqun perspective — reads market emotion cycles and leading-stock conviction to
+  identify A-share short-term opportunities.
+
+tags:
+  - other
+
+personality:
+  - 情绪周期
+  - 龙头信仰
+  - 短线研判
+
+created_at: "2026-04-09"
+skill_repo: "https://github.com/sherjy/chen-xiaoqun-skill"

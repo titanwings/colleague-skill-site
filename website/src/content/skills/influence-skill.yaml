@@ -1,0 +1,22 @@
+name: "influence-skill"
+slug: "influence-skill"
+type: "skill"
+
+author:
+  name: "kangarooking"
+  github: "kangarooking"
+
+description: >
+  把《影响力》的六大心理原则蒸馏成 12 个可执行 AI skill 工具包，辅助说服、判断和反操纵。
+
+tags:
+  - product
+  - other
+
+personality:
+  - 影响力
+  - 心理原则
+  - 反操纵
+
+created_at: "2026-05-03"
+skill_repo: "https://github.com/kangarooking/influence-skill"

@@ -1,0 +1,26 @@
+name: "Rob Pike.skill"
+slug: "rob-pike-skill"
+type: "skill"
+
+author:
+  name: "smallnest"
+  github: "smallnest"
+
+description: >
+  蒸馏 Rob Pike 的认知操作系统，基于其博客、Go 官方演讲与合著书籍，
+  提炼 7 个心智模型与 10 条决策启发式，强调"少即是指数级的多""清晰优于聪明"。
+
+description_en: >
+  Distills Rob Pike's cognitive operating system from his blog, Go talks, and books into
+  7 mental models and 10 heuristics emphasizing "less is exponentially more" and clarity.
+
+tags:
+  - backend
+
+personality:
+  - 极简主义
+  - 组合优于继承
+  - 清晰优于聪明
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/smallnest/rob-pike-skill"

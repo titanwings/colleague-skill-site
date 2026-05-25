@@ -1,0 +1,21 @@
+name: "wangyangming-skill"
+slug: "wangyangming-skill"
+type: "skill"
+
+author:
+  name: "moyvch"
+  github: "moyvch"
+
+description: >
+  王阳明心学思维框架 skill，由女娲.skill 蒸馏生成，把知行合一、致良知等思想转成可对话的判断框架。
+
+tags:
+  - other
+
+personality:
+  - 心学
+  - 知行合一
+  - 女娲蒸馏
+
+created_at: "2026-04-11"
+skill_repo: "https://github.com/moyvch/wangyangming-skill"

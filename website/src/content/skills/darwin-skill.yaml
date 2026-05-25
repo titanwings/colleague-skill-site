@@ -1,0 +1,21 @@
+name: "达尔文.skill"
+slug: "darwin-skill"
+type: "meta-skill"
+
+author:
+  name: "alchaincyf"
+  github: "alchaincyf"
+
+description: >
+  像训练模型一样优化你的 Agent Skills。受 Karpathy autoresearch 启发，
+  用"结构评分 + 效果实测"双重评估和棘轮机制自动化 SKILL.md 优化，只保留有改进的修改。
+
+description_en: >
+  Optimizes Agent Skills like training a model. Inspired by Karpathy's autoresearch, it uses
+  dual evaluation (structure + effect) and a ratchet mechanism to automate SKILL.md improvements.
+
+tags:
+  - devops
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/alchaincyf/darwin-skill"

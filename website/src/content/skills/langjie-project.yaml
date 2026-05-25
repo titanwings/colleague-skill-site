@@ -1,0 +1,21 @@
+name: "langjie-project"
+slug: "langjie-project"
+type: "skill"
+
+author:
+  name: "SamadhiFire"
+  github: "SamadhiFire"
+
+description: >
+  浪姐赛博群聊 skill，蒸馏多位浪姐角色，提供随机称呼系统和多人情绪价值互动。
+
+tags:
+  - other
+
+personality:
+  - 群聊感
+  - 多角色
+  - 情绪价值
+
+created_at: "2026-04-10"
+skill_repo: "https://github.com/SamadhiFire/langjie-project"

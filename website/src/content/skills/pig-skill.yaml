@@ -1,0 +1,21 @@
+name: "pig-skill"
+slug: "pig-skill"
+type: "skill"
+
+author:
+  name: "Neko-Suwako"
+  github: "Neko-Suwako"
+
+description: >
+  把群友蒸馏成 AI Skill，用 TA 的方式跟你说话，保留群聊里的口癖、互动方式和熟人语境。
+
+tags:
+  - other
+
+personality:
+  - 群友蒸馏
+  - 熟人语气
+  - 互动感
+
+created_at: "2026-04-02"
+skill_repo: "https://github.com/Neko-Suwako/pig-skill"

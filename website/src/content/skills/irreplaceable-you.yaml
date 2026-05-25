@@ -1,0 +1,21 @@
+name: "irreplaceable-you"
+slug: "irreplaceable-you"
+type: "skill"
+
+author:
+  name: "xiaoshiyilangzhao1996-droid"
+  github: "xiaoshiyilangzhao1996-droid"
+
+description: >
+  不可替代的你：把自己的灵魂蒸馏成 AI Skill，用自我材料生成能持续对话的个人镜像。
+
+tags:
+  - other
+
+personality:
+  - 自我蒸馏
+  - 灵魂镜像
+  - 个人陪伴
+
+created_at: "2026-04-07"
+skill_repo: "https://github.com/xiaoshiyilangzhao1996-droid/irreplaceable-you"

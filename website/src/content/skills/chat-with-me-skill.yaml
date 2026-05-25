@@ -1,0 +1,24 @@
+name: "博主.skill"
+slug: "chat-with-me-skill"
+type: "meta-skill"
+
+author:
+  name: "YourongZhou"
+  github: "YourongZhou"
+
+description: >
+  把博主的公开社交媒体语料整理成一个能对话、能分析、能改写风格的 Persona Skill。
+  目前支持 X/Twitter 和小红书，流程为"采集文字 → 组织语料 → 生成个性 → 编译 Claude Skill"，
+  支持 roleplay / ask / rewrite 三种模式。
+
+description_en: >
+  Turns a blogger's public social-media corpus into a Persona Skill that can chat,
+  analyze, and rewrite in their voice. Currently supports X/Twitter and Xiaohongshu,
+  with a pipeline of collect → normalize → generate persona → compile Claude skill,
+  exposing roleplay / ask / rewrite modes.
+
+tags:
+  - other
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/YourongZhou/chat_with_me"

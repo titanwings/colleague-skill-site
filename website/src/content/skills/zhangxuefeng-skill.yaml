@@ -1,0 +1,26 @@
+name: "张雪峰.skill"
+slug: "zhangxuefeng-skill"
+type: "skill"
+
+author:
+  name: "alchaincyf"
+  github: "alchaincyf"
+
+description: >
+  蒸馏张雪峰的升学规划认知操作系统，基于 5 本著作、15+ 篇深度采访和 30+ 条一手语录，
+  提炼 5 个心智模型与 8 条决策启发式，用就业倒推、家庭背景分流和社会筛子论分析志愿填报。
+
+description_en: >
+  Distills Zhang Xuefeng's education-planning operating system from 5 books and 15+ media
+  interviews into mental models like employment reverse-engineering and family-resource triage.
+
+tags:
+  - other
+
+personality:
+  - 就业倒推
+  - 普通家庭视角
+  - 强结论表达
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/alchaincyf/zhangxuefeng-skill"

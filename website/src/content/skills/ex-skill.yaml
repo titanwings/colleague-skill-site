@@ -1,0 +1,27 @@
+name: "ex-skill"
+slug: "ex-skill"
+type: "meta-skill"
+
+author:
+  name: "titanwings"
+  github: "titanwings"
+
+description: >
+  把聊天记录蒸馏成前任的 AI persona。上传对话导出、填写人物描述，
+  自动生成能模拟 TA 说话方式与性格的可召唤 Skill。支持微信、iMessage 导出。
+
+description_en: >
+  Distill chat history into an AI persona of a former partner.
+  Upload exported conversations, add a description — out comes a
+  callable Skill that mirrors how they talk and think.
+  Supports WeChat and iMessage exports.
+
+tags:
+  - other
+
+personality:
+  - 赛博永生
+  - 情感蒸馏
+
+created_at: "2026-03-31"
+skill_repo: "https://github.com/titanwings/ex-skill"

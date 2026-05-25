@@ -1,0 +1,26 @@
+name: "本科生科研组反蒸馏.skill"
+slug: "undergrad-anti-distill-skill"
+type: "skill"
+
+author:
+  name: "moismin"
+  github: "moismin"
+
+description: >
+  面向「本科生在大学科研组」场景的反蒸馏模板。
+  在即将离开科研组、导师试图蒸馏你的场景中，保留文档表面完整性，同时避免无意暴露你真正稀缺的隐性资产。
+
+description_en: >
+  An anti-distillation template for undergrad researchers about to leave their lab.
+  Maintains surface-level documentation completeness while carefully protecting your truly scarce tacit knowledge from being extracted by advisors trying to distill you.
+
+tags:
+  - other
+
+personality:
+  - 防御性
+  - 反套路
+  - 学术生存
+
+created_at: "2026-04-09"
+skill_repo: "https://github.com/moismin/undergrad-research-anti-distill-template"
