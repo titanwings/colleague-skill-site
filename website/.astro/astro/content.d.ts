@@ -150,11 +150,6 @@ declare module 'astro:content' {
   collection: "skills";
   data: any
 };
-"addyosmani-agent-skills": {
-	id: "addyosmani-agent-skills";
-  collection: "skills";
-  data: any
-};
 "adele-teacher-skill": {
 	id: "adele-teacher-skill";
   collection: "skills";
@@ -162,16 +157,6 @@ declare module 'astro:content' {
 };
 "agent-skill-distiller": {
 	id: "agent-skill-distiller";
-  collection: "skills";
-  data: any
-};
-"agentskills-spec": {
-	id: "agentskills-spec";
-  collection: "skills";
-  data: any
-};
-"anthropic-skills": {
-	id: "anthropic-skills";
   collection: "skills";
   data: any
 };
@@ -195,26 +180,6 @@ declare module 'astro:content' {
   collection: "skills";
   data: any
 };
-"awesome-agent-skills-voltagent": {
-	id: "awesome-agent-skills-voltagent";
-  collection: "skills";
-  data: any
-};
-"awesome-claude-skills-composio": {
-	id: "awesome-claude-skills-composio";
-  collection: "skills";
-  data: any
-};
-"awesome-codex-skills": {
-	id: "awesome-codex-skills";
-  collection: "skills";
-  data: any
-};
-"awesome-frontend-skills": {
-	id: "awesome-frontend-skills";
-  collection: "skills";
-  data: any
-};
 "bang-wo-hui-skill": {
 	id: "bang-wo-hui-skill";
   collection: "skills";
@@ -222,11 +187,6 @@ declare module 'astro:content' {
 };
 "bang-wo-jiancha-skill": {
 	id: "bang-wo-jiancha-skill";
-  collection: "skills";
-  data: any
-};
-"baoyu-skills": {
-	id: "baoyu-skills";
   collection: "skills";
   data: any
 };
@@ -325,18 +285,8 @@ declare module 'astro:content' {
   collection: "skills";
   data: any
 };
-"claude-code-skills-zh": {
-	id: "claude-code-skills-zh";
-  collection: "skills";
-  data: any
-};
 "clonemate": {
 	id: "clonemate";
-  collection: "skills";
-  data: any
-};
-"cloudflare-skills": {
-	id: "cloudflare-skills";
   collection: "skills";
   data: any
 };
@@ -485,11 +435,6 @@ declare module 'astro:content' {
   collection: "skills";
   data: any
 };
-"elastic-agent-skills": {
-	id: "elastic-agent-skills";
-  collection: "skills";
-  data: any
-};
 "elon-musk-skill": {
 	id: "elon-musk-skill";
   collection: "skills";
@@ -517,11 +462,6 @@ declare module 'astro:content' {
 };
 "fangyuan-skill": {
 	id: "fangyuan-skill";
-  collection: "skills";
-  data: any
-};
-"fe-skills": {
-	id: "fe-skills";
   collection: "skills";
   data: any
 };
@@ -587,11 +527,6 @@ declare module 'astro:content' {
 };
 "gotama-buddha-perspective": {
 	id: "gotama-buddha-perspective";
-  collection: "skills";
-  data: any
-};
-"gsap-skills": {
-	id: "gsap-skills";
   collection: "skills";
   data: any
 };
@@ -702,11 +637,6 @@ declare module 'astro:content' {
 };
 "khazix-skills": {
 	id: "khazix-skills";
-  collection: "skills";
-  data: any
-};
-"lambdatest-agent-skills": {
-	id: "lambdatest-agent-skills";
   collection: "skills";
   data: any
 };
@@ -840,11 +770,6 @@ declare module 'astro:content' {
   collection: "skills";
   data: any
 };
-"neon-agent-skills": {
-	id: "neon-agent-skills";
-  collection: "skills";
-  data: any
-};
 "ni-haixia-skill": {
 	id: "ni-haixia-skill";
   collection: "skills";
@@ -872,11 +797,6 @@ declare module 'astro:content' {
 };
 "open-demon-ex-skills": {
 	id: "open-demon-ex-skills";
-  collection: "skills";
-  data: any
-};
-"openai-skills": {
-	id: "openai-skills";
   collection: "skills";
   data: any
 };
@@ -922,11 +842,6 @@ declare module 'astro:content' {
 };
 "pig-skill": {
 	id: "pig-skill";
-  collection: "skills";
-  data: any
-};
-"pixijs-skills": {
-	id: "pixijs-skills";
   collection: "skills";
   data: any
 };
@@ -1030,11 +945,6 @@ declare module 'astro:content' {
   collection: "skills";
   data: any
 };
-"skills-supply": {
-	id: "skills-supply";
-  collection: "skills";
-  data: any
-};
 "star-skill": {
 	id: "star-skill";
   collection: "skills";
@@ -1062,11 +972,6 @@ declare module 'astro:content' {
 };
 "sunday-skill": {
 	id: "sunday-skill";
-  collection: "skills";
-  data: any
-};
-"supabase-agent-skills": {
-	id: "supabase-agent-skills";
   collection: "skills";
   data: any
 };
@@ -1120,11 +1025,6 @@ declare module 'astro:content' {
   collection: "skills";
   data: any
 };
-"trailofbits-skills": {
-	id: "trailofbits-skills";
-  collection: "skills";
-  data: any
-};
 "translator-skill": {
 	id: "translator-skill";
   collection: "skills";
@@ -1147,16 +1047,6 @@ declare module 'astro:content' {
 };
 "vengeful-ghost-skill": {
 	id: "vengeful-ghost-skill";
-  collection: "skills";
-  data: any
-};
-"vercel-agent-skills": {
-	id: "vercel-agent-skills";
-  collection: "skills";
-  data: any
-};
-"vercel-skills": {
-	id: "vercel-skills";
   collection: "skills";
   data: any
 };
@@ -1207,11 +1097,6 @@ declare module 'astro:content' {
 };
 "writer-skill": {
 	id: "writer-skill";
-  collection: "skills";
-  data: any
-};
-"wshobson-agents": {
-	id: "wshobson-agents";
   collection: "skills";
   data: any
 };
