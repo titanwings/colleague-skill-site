@@ -1,0 +1,22 @@
+name: "新智元.skill"
+slug: "xinzhiyuan-skill"
+type: "skill"
+
+author:
+  name: "wdl339"
+  github: "wdl339"
+
+description: >
+  把知名中文 AI 公众号的内容风格和论文阅读路径蒸馏成 AI Skill，用更熟悉的中文科技媒体口吻理解新论文。
+
+tags:
+  - product
+  - data
+
+personality:
+  - 论文速读
+  - 媒体口吻
+  - 科技感
+
+created_at: "2026-04-06"
+skill_repo: "https://github.com/wdl339/xinzhiyuan.skill"

@@ -1,0 +1,23 @@
+name: "cangjie-skill"
+slug: "cangjie-skill"
+type: "meta-skill"
+
+author:
+  name: "kangarooking"
+  github: "kangarooking"
+
+description: >
+  把一本书蒸馏成一组可执行的 Agent Skills。提供 book-to-skill 的提取器、模板和方法论，
+  是“书到技能”方向的高质量生成器。
+
+tags:
+  - other
+  - product
+
+personality:
+  - 书籍蒸馏
+  - Agent Skills
+  - 生成器
+
+created_at: "2026-04-16"
+skill_repo: "https://github.com/kangarooking/cangjie-skill"

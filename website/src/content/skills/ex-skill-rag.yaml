@@ -1,0 +1,22 @@
+name: "ex-skill-rag"
+slug: "ex-skill-rag"
+type: "skill"
+
+author:
+  name: "Lyricus233"
+  github: "Lyricus233"
+
+description: >
+  基于 therealXiaomanChu/ex-skill 的前任蒸馏项目，扩展 RAG 检索增强能力，让旧聊天记忆更可查询。
+
+tags:
+  - data
+  - other
+
+personality:
+  - 前任蒸馏
+  - RAG
+  - 记忆检索
+
+created_at: "2026-04-20"
+skill_repo: "https://github.com/Lyricus233/ex-skill-rag"

@@ -1,0 +1,22 @@
+name: "five-wealth-skill"
+slug: "five-wealth-skill"
+type: "skill"
+
+author:
+  name: "nullurl"
+  github: "nullurl"
+
+description: >
+  基于《人生的五种财富》蒸馏的 AI Skill，提供五种财富框架诊断、建议和故事匹配，支持 Cola、OpenClaw、Claude Code。
+
+tags:
+  - product
+  - other
+
+personality:
+  - 财富框架
+  - 人生诊断
+  - 故事匹配
+
+created_at: "2026-04-07"
+skill_repo: "https://github.com/nullurl/five-wealth-skill"

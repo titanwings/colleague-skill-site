@@ -1,0 +1,22 @@
+name: "sun-yuchen-perspective"
+slug: "sun-yuchen-perspective"
+type: "skill"
+
+author:
+  name: "alchaincyf"
+  github: "alchaincyf"
+
+description: >
+  孙宇晨 perspective skill，由女娲.skill 蒸馏，提取注意力经营、叙事操盘和高曝光表达的思维方式。
+
+tags:
+  - product
+  - other
+
+personality:
+  - 注意力收割
+  - 叙事操盘
+  - 女娲蒸馏
+
+created_at: "2026-04-07"
+skill_repo: "https://github.com/alchaincyf/sun-yuchen-perspective"

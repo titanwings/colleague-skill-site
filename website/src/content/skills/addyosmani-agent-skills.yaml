@@ -1,0 +1,22 @@
+name: "Addy Osmani Agent Skills"
+slug: "addyosmani-agent-skills"
+type: "skill"
+
+author:
+  name: "addyosmani"
+  github: "addyosmani"
+
+description: >
+  面向 AI coding agents 的生产级工程技能集合，覆盖 API 设计、质量、性能、架构和前端工程实践。
+
+tags:
+  - frontend
+  - backend
+
+personality:
+  - 工程质量
+  - 生产级
+  - Coding Agents
+
+created_at: "2026-02-15"
+skill_repo: "https://github.com/addyosmani/agent-skills"

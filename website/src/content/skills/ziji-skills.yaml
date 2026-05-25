@@ -1,0 +1,22 @@
+name: "自己.skills"
+slug: "ziji-skills"
+type: "skill"
+
+author:
+  name: "huaqiang-huang"
+  github: "huaqiang-huang"
+
+description: >
+  把文档、代码、笔记、聊天和历史决策蒸馏成可持续进化的 AI Skill，形成个人知识与判断的长期副本。
+
+tags:
+  - other
+  - data
+
+personality:
+  - 自我画像
+  - 持续进化
+  - 历史决策
+
+created_at: "2026-04-05"
+skill_repo: "https://github.com/huaqiang-huang/ziji.skills"

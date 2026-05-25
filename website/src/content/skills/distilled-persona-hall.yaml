@@ -1,0 +1,21 @@
+name: "distilled-persona-hall"
+slug: "distilled-persona-hall"
+type: "skill"
+
+author:
+  name: "BiscuitCoder"
+  github: "BiscuitCoder"
+
+description: >
+  女娲 skill 蒸馏人物展厅，把多个已蒸馏人物组织成可单独对话或多人圆桌讨论的赛博人格大厅。
+
+tags:
+  - other
+
+personality:
+  - 人格展厅
+  - 圆桌讨论
+  - 女娲蒸馏
+
+created_at: "2026-04-10"
+skill_repo: "https://github.com/BiscuitCoder/distilled-persona-hall"

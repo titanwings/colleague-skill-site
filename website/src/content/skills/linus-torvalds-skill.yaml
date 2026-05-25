@@ -1,0 +1,22 @@
+name: "Linus-Torvalds-skill"
+slug: "linus-torvalds-skill"
+type: "skill"
+
+author:
+  name: "gufenglees"
+  github: "gufenglees"
+
+description: >
+  蒸馏 Linus Torvalds 的编程哲学和思维方式，提取 Linux、Git 和内核开发背后的工程判断。
+
+tags:
+  - backend
+  - other
+
+personality:
+  - 编程哲学
+  - 工程判断
+  - 直接
+
+created_at: "2026-04-11"
+skill_repo: "https://github.com/gufenglees/Linus-Torvalds-skill"

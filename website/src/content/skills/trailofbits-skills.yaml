@@ -1,0 +1,21 @@
+name: "Trail of Bits Skills"
+slug: "trailofbits-skills"
+type: "skill"
+
+author:
+  name: "trailofbits"
+  github: "trailofbits"
+
+description: >
+  Trail of Bits 安全研究技能集合，面向 Claude Code 和 Codex 的漏洞发现、审计和安全工作流。
+
+tags:
+  - security
+
+personality:
+  - 安全审计
+  - 研究型
+  - 官方实践
+
+created_at: "2026-01-14"
+skill_repo: "https://github.com/trailofbits/skills"

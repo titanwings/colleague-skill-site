@@ -1,0 +1,22 @@
+name: "shopitrust"
+slug: "shopitrust"
+type: "skill"
+
+author:
+  name: "Ratnachem"
+  github: "Ratnachem"
+
+description: >
+  面向真实同事关系的 Claude Code skill，基于 Slack、邮件和日历上下文给出每日 trust battery 提醒。
+
+tags:
+  - management
+  - hr
+
+personality:
+  - 信任维护
+  - 同事关系
+  - 日常提醒
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/Ratnachem/shopitrust"

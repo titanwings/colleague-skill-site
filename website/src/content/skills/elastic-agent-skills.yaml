@@ -1,0 +1,22 @@
+name: "Elastic Agent Skills"
+slug: "elastic-agent-skills"
+type: "skill"
+
+author:
+  name: "elastic"
+  github: "elastic"
+
+description: >
+  Elastic 官方 Agent Skills，帮助 coding agents 正确使用 Elastic Stack、搜索、观测和安全相关能力。
+
+tags:
+  - backend
+  - data
+
+personality:
+  - Elastic
+  - 搜索观测
+  - 官方技能
+
+created_at: "2026-03-06"
+skill_repo: "https://github.com/elastic/agent-skills"

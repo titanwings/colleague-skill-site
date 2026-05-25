@@ -1,0 +1,21 @@
+name: "comfort-kin"
+slug: "comfort-kin"
+type: "skill"
+
+author:
+  name: "daiyanpgg-wq"
+  github: "daiyanpgg-wq"
+
+description: >
+  亲人陪伴对话 Skill：把音频、视频和文本语料转写后蒸馏亲人口吻画像，生成可陪聊的家庭记忆入口。
+
+tags:
+  - other
+
+personality:
+  - 亲人口吻
+  - 陪伴对话
+  - 记忆承载
+
+created_at: "2026-04-17"
+skill_repo: "https://github.com/daiyanpgg-wq/comfort-kin"

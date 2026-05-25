@@ -1,0 +1,22 @@
+name: "cui-hua-skill"
+slug: "cui-hua-skill"
+type: "skill"
+
+author:
+  name: "arould001"
+  github: "arould001"
+
+description: >
+  4S 店销冠汽车销售顾问 AI Skill，基于 186 通真实电话蒸馏，适配 Claude Code 的销售沟通场景。
+
+tags:
+  - product
+  - other
+
+personality:
+  - 销售顾问
+  - 电话蒸馏
+  - 成交导向
+
+created_at: "2026-04-16"
+skill_repo: "https://github.com/arould001/cui-hua-skill"

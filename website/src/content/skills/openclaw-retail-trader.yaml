@@ -1,0 +1,22 @@
+name: "openclaw-retail-trader"
+slug: "openclaw-retail-trader"
+type: "skill"
+
+author:
+  name: "KKunkuner"
+  github: "KKunkuner"
+
+description: >
+  用散户第一视角生成交易想法的 OpenClaw skill，继承 colleague-skill 和 ex-skill 的人格化表达方式。
+
+tags:
+  - data
+  - other
+
+personality:
+  - 散户视角
+  - 交易想法
+  - 直觉化
+
+created_at: "2026-04-03"
+skill_repo: "https://github.com/KKunkuner/openclaw-retail-trader"

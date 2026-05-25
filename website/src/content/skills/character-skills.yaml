@@ -1,0 +1,21 @@
+name: "CHARACTER-SKILLS"
+slug: "character-skills"
+type: "skill"
+
+author:
+  name: "miaomiao-offical"
+  github: "miaomiao-offical"
+
+description: >
+  剧本杀角色蒸馏项目，把剧本扫描件或文本转成可对话 AI Skill，已支持多名玩家角色和 NPC。
+
+tags:
+  - other
+
+personality:
+  - 剧本杀
+  - 角色蒸馏
+  - 自动生成
+
+created_at: "2026-04-11"
+skill_repo: "https://github.com/miaomiao-offical/CHARACTER-SKILLS"

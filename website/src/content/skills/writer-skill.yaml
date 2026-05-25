@@ -1,0 +1,22 @@
+name: "writer-skill"
+slug: "writer-skill"
+type: "skill"
+
+author:
+  name: "Yinmu"
+  github: "Yinmu"
+
+description: >
+  Writer.skill：基于女娲.skill 框架蒸馏知名作家风格，用于风格化写作、口吻迁移和文本生成。
+
+tags:
+  - product
+  - other
+
+personality:
+  - 作家风格
+  - 口吻迁移
+  - 女娲框架
+
+created_at: "2026-04-09"
+skill_repo: "https://github.com/Yinmu/writer-skill"

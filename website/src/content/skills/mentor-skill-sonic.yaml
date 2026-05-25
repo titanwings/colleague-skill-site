@@ -1,0 +1,22 @@
+name: "mentor-skill"
+slug: "mentor-skill-sonic"
+type: "skill"
+
+author:
+  name: "SonicBotMan"
+  github: "SonicBotMan"
+
+description: >
+  把导师蒸馏成 AI Skill，保留 TA 的思维方式、反馈风格和知识体系，让导师离开后判断力仍可被调用。
+
+tags:
+  - management
+  - other
+
+personality:
+  - 导师判断
+  - 反馈风格
+  - 知识体系
+
+created_at: "2026-04-05"
+skill_repo: "https://github.com/SonicBotMan/mentor-skill"

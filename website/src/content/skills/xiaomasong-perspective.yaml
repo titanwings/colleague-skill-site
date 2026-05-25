@@ -1,0 +1,22 @@
+name: "xiaomasong-perspective"
+slug: "xiaomasong-perspective"
+type: "skill"
+
+author:
+  name: "AicbLab"
+  github: "AicbLab"
+
+description: >
+  用女娲.skill 蒸馏的小马宋 perspective skill，用于广告策划案、营销判断和品牌表达。
+
+tags:
+  - product
+  - design
+
+personality:
+  - 营销策划
+  - 品牌表达
+  - 女娲蒸馏
+
+created_at: "2026-04-12"
+skill_repo: "https://github.com/AicbLab/xiaomasong-perspective"

@@ -1,0 +1,21 @@
+name: "导师答疑.skill"
+slug: "canding-teacher-skill"
+type: "skill"
+
+author:
+  name: "Canding3021"
+  github: "Canding3021"
+
+description: >
+  把你的导师蒸馏成 AI Skill，让 TA 在翘课、期末预习、作业和答疑场景里继续用熟悉的方式帮你。
+
+tags:
+  - other
+
+personality:
+  - 导师答疑
+  - 学业救火
+  - 口吻复刻
+
+created_at: "2026-04-10"
+skill_repo: "https://github.com/Canding3021/teacher-skill"

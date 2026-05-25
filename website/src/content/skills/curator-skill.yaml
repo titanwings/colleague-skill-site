@@ -31,4 +31,4 @@ preview_conversation:
     content: "当前图鉴收录了30个 persona/meta-skill，分几类给你看——\n\n【历史人物】王小波、鲁迅、毛姆、孔子…\n【科技创业】Steve Jobs、Naval、Elon…\n【虚构角色】云天明、闪电侠、蝙蝠侠…\n【同事系列】colleague-skill 各位…\n\n你想探索哪个方向？"
 
 created_at: "2026-04-10"
-skill_repo: ""
+skill_repo: "https://github.com/Aar0nPB/curator-skill"

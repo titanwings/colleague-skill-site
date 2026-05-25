@@ -1,0 +1,22 @@
+name: "contagious-skill"
+slug: "contagious-skill"
+type: "skill"
+
+author:
+  name: "kangarooking"
+  github: "kangarooking"
+
+description: >
+  把《疯传》的 STEPPS 传播原则蒸馏成 15 个可执行 AI skill 工具包，用于诊断触发、社交货币和传播设计。
+
+tags:
+  - product
+  - design
+
+personality:
+  - 传播设计
+  - STEPPS
+  - 营销方法
+
+created_at: "2026-05-02"
+skill_repo: "https://github.com/kangarooking/contagious-skill"

@@ -1,0 +1,22 @@
+name: "skills-distill"
+slug: "skills-distill"
+type: "skill"
+
+author:
+  name: "DysonSWang"
+  github: "DysonSWang"
+
+description: >
+  Claude Code Skills 蒸馏仓库，从公开资料蒸馏出多个人物 perspective、内容框架和策略型 skill 集合。
+
+tags:
+  - other
+  - product
+
+personality:
+  - 蒸馏集合
+  - perspective
+  - 公开资料
+
+created_at: "2026-05-18"
+skill_repo: "https://github.com/DysonSWang/skills-distill"

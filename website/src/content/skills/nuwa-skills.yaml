@@ -1,0 +1,22 @@
+name: "nuwa-skills"
+slug: "nuwa-skills"
+type: "skill"
+
+author:
+  name: "dglijin-oss"
+  github: "dglijin-oss"
+
+description: >
+  女娲造人技能框架与人物 Skill 集合，用雷军视角等人物样例展示如何蒸馏思维框架。
+
+tags:
+  - other
+  - product
+
+personality:
+  - 女娲框架
+  - 人物集合
+  - 思维蒸馏
+
+created_at: "2026-04-13"
+skill_repo: "https://github.com/dglijin-oss/nuwa-skills"

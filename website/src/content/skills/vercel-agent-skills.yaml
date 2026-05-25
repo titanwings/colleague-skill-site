@@ -1,0 +1,22 @@
+name: "Vercel Agent Skills"
+slug: "vercel-agent-skills"
+type: "skill"
+
+author:
+  name: "vercel-labs"
+  github: "vercel-labs"
+
+description: >
+  Vercel 官方 agent skills 集合，面向 Vercel、Next.js 和现代 Web 应用开发场景。
+
+tags:
+  - frontend
+  - devops
+
+personality:
+  - Vercel
+  - Web 开发
+  - 官方技能
+
+created_at: "2025-12-08"
+skill_repo: "https://github.com/vercel-labs/agent-skills"

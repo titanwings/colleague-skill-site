@@ -1,0 +1,22 @@
+name: "cyber-figures"
+slug: "cyber-figures"
+type: "skill"
+
+author:
+  name: "cyber-immortal"
+  github: "cyber-immortal"
+
+description: >
+  赛博人物库：把中国互联网最有辨识度的人物蒸馏成 AI Skill / Claude Code Skill，
+  保存口头禅、观点结构和表达 DNA。
+
+tags:
+  - other
+
+personality:
+  - 赛博人物库
+  - 表达 DNA
+  - 角色集合
+
+created_at: "2026-04-06"
+skill_repo: "https://github.com/cyber-immortal/cyber-figures"

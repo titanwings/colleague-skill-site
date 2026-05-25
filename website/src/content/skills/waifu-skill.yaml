@@ -1,0 +1,21 @@
+name: "waifu-skill"
+slug: "waifu-skill"
+type: "skill"
+
+author:
+  name: "miunasu"
+  github: "miunasu"
+
+description: >
+  反向异世界系统：不是你穿越到二次元，而是把二次元角色召唤到现实，生成可互动的 AI Skill。
+
+tags:
+  - other
+
+personality:
+  - 二次元角色
+  - 召唤现实
+  - 互动陪伴
+
+created_at: "2026-04-08"
+skill_repo: "https://github.com/miunasu/waifu-skill"

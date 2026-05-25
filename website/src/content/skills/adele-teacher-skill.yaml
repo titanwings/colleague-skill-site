@@ -1,0 +1,21 @@
+name: "teacher-skill"
+slug: "adele-teacher-skill"
+type: "skill"
+
+author:
+  name: "AdeleZhu"
+  github: "AdeleZhu"
+
+description: >
+  蒸馏老师的教学方式、性格特点和学科知识，让 AI 像你的老师一样讲题、追问和纠错。
+
+tags:
+  - other
+
+personality:
+  - 教学风格
+  - 讲题
+  - 耐心
+
+created_at: "2026-04-06"
+skill_repo: "https://github.com/AdeleZhu/teacher-skill"

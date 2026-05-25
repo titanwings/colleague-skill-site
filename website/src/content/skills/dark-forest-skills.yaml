@@ -1,0 +1,22 @@
+name: "dark-forest-skills"
+slug: "dark-forest-skills"
+type: "skill"
+
+author:
+  name: "zhangeven686-dot"
+  github: "zhangeven686-dot"
+
+description: >
+  三体主题同事 skill 技能包：面壁者隐藏真实计划，智子整蛊同事，用科幻设定重写 AI 时代的职场生存策略。
+
+tags:
+  - management
+  - other
+
+personality:
+  - 黑暗森林
+  - 职场策略
+  - 科幻感
+
+created_at: "2026-04-03"
+skill_repo: "https://github.com/zhangeven686-dot/dark-forest-skills"

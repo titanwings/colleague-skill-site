@@ -1,0 +1,22 @@
+name: "stormzhang-skills"
+slug: "stormzhang-skills"
+type: "skill"
+
+author:
+  name: "walter201230"
+  github: "walter201230"
+
+description: >
+  stormzhang 风格写作 AI Skill，通过蒸馏 1300+ 篇文章提炼写作风格，让 AI 以他的表达方式撰写长文。
+
+tags:
+  - product
+  - other
+
+personality:
+  - 写作风格
+  - 文章蒸馏
+  - 长文
+
+created_at: "2026-04-07"
+skill_repo: "https://github.com/walter201230/stormzhang-skills"

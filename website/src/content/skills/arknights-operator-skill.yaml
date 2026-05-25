@@ -1,0 +1,21 @@
+name: "arknights-operator-skill"
+slug: "arknights-operator-skill"
+type: "skill"
+
+author:
+  name: "riceshowerX"
+  github: "riceshowerX"
+
+description: >
+  将明日方舟角色蒸馏成 AI Skill，生成知识库和五层人格结构，并支持角色持续进化。
+
+tags:
+  - other
+
+personality:
+  - 游戏角色
+  - 五层人格
+  - 持续进化
+
+created_at: "2026-04-15"
+skill_repo: "https://github.com/riceshowerX/arknights-operator-skill"

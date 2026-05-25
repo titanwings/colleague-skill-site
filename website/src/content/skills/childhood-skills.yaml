@@ -1,0 +1,21 @@
+name: "childhood-skills"
+slug: "childhood-skills"
+type: "skill"
+
+author:
+  name: "aka556"
+  github: "aka556"
+
+description: >
+  童年 skill：把小时候的自己蒸馏成可对话角色，和那个“聪明的”小孩重新见面。
+
+tags:
+  - other
+
+personality:
+  - 童年自己
+  - 自我对话
+  - 怀旧
+
+created_at: "2026-04-23"
+skill_repo: "https://github.com/aka556/childhood_skills"

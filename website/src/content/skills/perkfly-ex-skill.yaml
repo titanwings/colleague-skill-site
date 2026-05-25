@@ -1,0 +1,21 @@
+name: "perkfly ex-skill"
+slug: "perkfly-ex-skill"
+type: "skill"
+
+author:
+  name: "perkfly"
+  github: "perkfly"
+
+description: >
+  前任 skill 的高星社区版本，把关系记忆、聊天记录和旧有语气整理成可对话的 AI Skill。
+
+tags:
+  - other
+
+personality:
+  - 前任记忆
+  - 关系蒸馏
+  - 对话复刻
+
+created_at: "2026-03-31"
+skill_repo: "https://github.com/perkfly/ex-skill"

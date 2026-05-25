@@ -1,0 +1,23 @@
+name: "anti-colleague-skill"
+slug: "anti-colleague-skill"
+type: "skill"
+
+author:
+  name: "zgjq"
+  github: "zgjq"
+
+description: >
+  系统拆解 colleague-skill、赛博永生和 AI 同事克隆概念缺陷的反方 Skill，用心理学偏差、
+  第一性原理和历史教训做审查。
+
+tags:
+  - management
+  - other
+
+personality:
+  - 反方视角
+  - 第一性原理
+  - 风险审查
+
+created_at: "2026-04-05"
+skill_repo: "https://github.com/zgjq/anti-colleague-skill"

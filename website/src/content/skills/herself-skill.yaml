@@ -1,0 +1,21 @@
+name: "herself-skill"
+slug: "herself-skill"
+type: "skill"
+
+author:
+  name: "Dclef"
+  github: "Dclef"
+
+description: >
+  与其蒸馏自己，不如性转自己。把自己的另一种可能性做成可对话的 AI Skill，用镜像视角和自己交流。
+
+tags:
+  - other
+
+personality:
+  - 自我镜像
+  - 性转自己
+  - 对话陪伴
+
+created_at: "2026-04-07"
+skill_repo: "https://github.com/Dclef/herself-skill"

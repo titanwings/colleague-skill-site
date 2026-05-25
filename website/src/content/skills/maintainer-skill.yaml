@@ -1,0 +1,22 @@
+name: "maintainer-skill"
+slug: "maintainer-skill"
+type: "skill"
+
+author:
+  name: "VeniVeci"
+  github: "VeniVeci"
+
+description: >
+  把 maintainer 蒸馏成 AI Skill，让它在你发 PR 前先用维护者视角审一遍，提前指出设计、测试和代码问题。
+
+tags:
+  - backend
+  - management
+
+personality:
+  - 维护者视角
+  - PR 审查
+  - 直接
+
+created_at: "2026-04-05"
+skill_repo: "https://github.com/VeniVeci/maintainer-skill"

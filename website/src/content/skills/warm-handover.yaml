@@ -1,0 +1,22 @@
+name: "warm-handover"
+slug: "warm-handover"
+type: "skill"
+
+author:
+  name: "zgjq"
+  github: "zgjq"
+
+description: >
+  有尊严的知识交接工具：通过引导式访谈把经验转成结构化文档和活知识库，作为 colleague-skill 的温暖替代方案。
+
+tags:
+  - management
+  - hr
+
+personality:
+  - 知识交接
+  - 尊严感
+  - 结构化访谈
+
+created_at: "2026-04-05"
+skill_repo: "https://github.com/zgjq/warm-handover"

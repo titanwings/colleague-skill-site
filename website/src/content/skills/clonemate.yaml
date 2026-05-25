@@ -1,0 +1,23 @@
+name: "clonemate"
+slug: "clonemate"
+type: "skill"
+
+author:
+  name: "yeasy1003"
+  github: "yeasy1003"
+
+description: >
+  Local-first Claude Code skill：把同事公开聊天、文档和会议活动蒸馏为可查询的 Markdown vault，
+  再以带免责声明的方式回答问题。
+
+tags:
+  - management
+  - data
+
+personality:
+  - 本地优先
+  - 同事克隆
+  - 可查询记忆
+
+created_at: "2026-05-07"
+skill_repo: "https://github.com/yeasy1003/clonemate"
