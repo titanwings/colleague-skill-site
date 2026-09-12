@@ -1,5 +1,9 @@
 # PR 02 — hero + quick start (`site/02-hero-quickstart`)
 
+> Screenshots, capture receipts and diff images are **not committed** (see
+> `.gitignore`). Regenerate them with `cd website && npm run evidence`; the
+> figures quoted below come from those runs.
+
 Scope: three components only — `Hero.astro`, `QuickStart.astro` and the new
 `AgentSwitcher.astro`. `BaseLayout`, `global.css`, `tailwind.config.mjs`,
 `data/*`, the navbar/footer/features/gallery components and
@@ -13,13 +17,7 @@ command, the exact directory and an honest capability note for all eight hosts.
 
 ## What changed
 
-| File | Change |
-| --- | --- |
-| `website/src/components/AgentSwitcher.astro` | **New (506 lines).** Tablist of all eight coding agents + panel with the install routes, the documented directory and the host's own caveat. Every string comes from `src/data/agents.ts`; nothing is typed twice. |
-| `website/src/components/Hero.astro` | Rewritten (153 lines). Kicker → Fraunces headline (one line per language) → two sentences → shared `.btn-primary` / `.btn-secondary` CTAs → hairline fact bar. Removed: grid/gradient backgrounds, glow blobs, `gradient-text`, terminal window, bouncing chevron, the hard-coded `10,000+` star claim, and the JS-reveal dependency. |
-| `website/src/components/QuickStart.astro` | Rewritten (186 lines). Three numbered steps (`01/02/03`); step 01 embeds the switcher, steps 02/03 keep the previous copy (distill → SKILL.md → summon) in plate panels. Removed the two hard-coded clone commands (they still pointed at `titanwings/colleague-skill`) and the per-card copy script. |
-| `website/src/components/DemoPreview.astro` | Token sweep only (144 lines, no layout/copy change): the two terminal windows were the last dark-plate blocks still using `text-brand-*` / `text-surface-*` / raw palette classes, which fall below AA on the plate after the base re-skin. Pulled into this PR by the plate-contrast audit below; the hero does not render this component. |
-| `docs/evidence/pr-02-hero-quickstart.md`, `docs/evidence/images/pr-02-hero-quickstart-*.jpg`, `docs/evidence/captures/pr-02-hero-quickstart.json` | Evidence for this PR. |
+| File | Change | — | --- | --- | — | `website/src/components/AgentSwitcher.astro` | **New (506 lines).** Tablist of all eight coding agents + panel with the install routes, the documented directory and the host's own caveat. Every string comes from `src/data/agents.ts`; nothing is typed twice. | — | `website/src/components/Hero.astro` | Rewritten (153 lines). Kicker → Fraunces headline (one line per language) → two sentences → shared `.btn-primary` / `.btn-secondary` CTAs → hairline fact bar. Removed: grid/gradient backgrounds, glow blobs, `gradient-text`, terminal window, bouncing chevron, the hard-coded `10,000+` star claim, and the JS-reveal dependency. | — | `website/src/components/QuickStart.astro` | Rewritten (186 lines). Three numbered steps (`01/02/03`); step 01 embeds the switcher, steps 02/03 keep the previous copy (distill → SKILL.md → summon) in plate panels. Removed the two hard-coded clone commands (they still pointed at `titanwings/colleague-skill`) and the per-card copy script. | — | `website/src/components/DemoPreview.astro` | Token sweep only (144 lines, no layout/copy change): the two terminal windows were the last dark-plate blocks still using `text-brand-*` / `text-surface-*` / raw palette classes, which fall below AA on the plate after the base re-skin. Pulled into this PR by the plate-contrast audit below; the hero does not render this component. | — | `docs/evidence/pr-02-hero-quickstart.md`, `(local) pr-02-hero-quickstart-*.jpg`, `(local) pr-02-hero-quickstart.json` | Evidence for this PR. |
 
 ### The switcher (data wiring)
 
@@ -58,12 +56,7 @@ While this PR was under review the base branch gained six commits. They were
 merged in with `git merge --no-edit site/01-design-system` (merge commit
 `36feea5`), and this PR then dropped the three workarounds it had been carrying:
 
-| Base change | What PR-02 dropped |
-| --- | --- |
-| `5758ec7` restored the site-wide `.lang-zh` / `.lang-en` rules in `global.css` | the three scoped copies of that rule (one in each of `Hero.astro`, `QuickStart.astro`, `AgentSwitcher.astro`). The components now rely on the global rules only — re-verified: `data-lang=en` hides `.lang-zh` and shows `.lang-en` in both the hero and the switcher. |
-| `00a1db1` added `--accent-ink` + `text-accent-ink` so accent fills pass AA | the custom ink-filled buttons. The hero now uses the shared `.btn-primary` (accent fill) and `.btn-secondary`. Measured in the browser: **5.09:1** light (white on `#c73e0c`) and **7.87:1** dark (`#15181b` on `#fb923c`); the hover fills (`--accent-soft`) compute to ≈7.3:1 light and ≈10.4:1 dark by hand. |
-| `ac1ad0d` added `skillsCliSupported(id)` and the `{ requireVerified: true }` option | the local `Boolean(agent.skillsCliId)` check and the printed-then-warned `--agent pi` command (see the switcher section above). |
-| `59f66e1` made `capture.mjs` refuse a foreign preview and parse the URL it actually bound | the manual `lsof`/receipt-height workaround described in the first revision of this document. |
+| Base change | What PR-02 dropped | — | --- | --- | — | `5758ec7` restored the site-wide `.lang-zh` / `.lang-en` rules in `global.css` | the three scoped copies of that rule (one in each of `Hero.astro`, `QuickStart.astro`, `AgentSwitcher.astro`). The components now rely on the global rules only — re-verified: `data-lang=en` hides `.lang-zh` and shows `.lang-en` in both the hero and the switcher. | — | `00a1db1` added `--accent-ink` + `text-accent-ink` so accent fills pass AA | the custom ink-filled buttons. The hero now uses the shared `.btn-primary` (accent fill) and `.btn-secondary`. Measured in the browser: **5.09:1** light (white on `#c73e0c`) and **7.87:1** dark (`#15181b` on `#fb923c`); the hover fills (`--accent-soft`) compute to ≈7.3:1 light and ≈10.4:1 dark by hand. | — | `ac1ad0d` added `skillsCliSupported(id)` and the `{ requireVerified: true }` option | the local `Boolean(agent.skillsCliId)` check and the printed-then-warned `--agent pi` command (see the switcher section above). | — | `59f66e1` made `capture.mjs` refuse a foreign preview and parse the URL it actually bound | the manual `lsof`/receipt-height workaround described in the first revision of this document. |
 
 The language fix also changes the *measured* page heights: before the merge the
 page rendered both languages at once, which inflated every section. The two
@@ -72,11 +65,7 @@ pre-merge and post-merge — the live-site baseline of 5997 px is **not** a targ
 here, because it predates the whole refactor (different fonts, tokens and
 sections).
 
-| Page | Pre-merge receipt (PR-02 code, old base styles) | Post-merge receipt (PR-02 code, fixed base styles) | Δ | Attribution |
-| --- | --- | --- | --- | --- |
-| `/` | 7182 px | **6145 px** | −1037 px | base style fix (below) |
-| `/gallery/` | 2613 px | **2463 px** | −150 px | base style fix |
-| `/gallery/boss-skill/` | 1623 px | **1389 px** | −234 px | base style fix |
+| Page | Pre-merge receipt (PR-02 code, old base styles) | Post-merge receipt (PR-02 code, fixed base styles) | Δ | Attribution | — | --- | --- | --- | --- | --- | — | `/` | 7182 px | **6145 px** | −1037 px | base style fix (below) | — | `/gallery/` | 2613 px | **2463 px** | −150 px | base style fix | — | `/gallery/boss-skill/` | 1623 px | **1389 px** | −234 px | base style fix |
 
 Attribution was measured, not guessed: rebuilding the **pre-merge PR-02 code**
 with only the base branch's `global.css` + `tailwind.config.mjs` overlaid gives
@@ -107,29 +96,11 @@ dark plate (`#0f1216`) falls below AA: `text-brand-*` ≈3.68:1 and
 `text-surface-*` ≈3.3:1. Every dark-plate block owned by PR-02 was therefore
 swept:
 
-| File | Plate blocks | State |
-| --- | --- | --- |
-| `Hero.astro` | none (the old hero terminal is gone; all its text is on paper) | clean — the only `text-ink-muted` uses sit on `paper` |
-| `QuickStart.astro` | 2 transcript panels (`.code-block`) | already `text-plate-ink` + `/50`–`/70`; no change needed |
-| `AgentSwitcher.astro` | 2 command `<pre>` blocks per scope | already `text-plate-ink`; no change needed |
-| `DemoPreview.astro` | 2 terminal windows + a `<pre>` (pulled into this PR by this audit) | **fixed — 27 lines carried legacy/raw classes, 0 left** |
+| File | Plate blocks | State | — | --- | --- | --- | — | `Hero.astro` | none (the old hero terminal is gone; all its text is on paper) | clean — the only `text-ink-muted` uses sit on `paper` | — | `QuickStart.astro` | 2 transcript panels (`.code-block`) | already `text-plate-ink` + `/50`–`/70`; no change needed | — | `AgentSwitcher.astro` | 2 command `<pre>` blocks per scope | already `text-plate-ink`; no change needed | — | `DemoPreview.astro` | 2 terminal windows + a `<pre>` (pulled into this PR by this audit) | **fixed — 27 lines carried legacy/raw classes, 0 left** |
 
 The `DemoPreview.astro` sweep, all token-only and with no layout or copy change:
 
-| Before (on plate) | After |
-| --- | --- |
-| `text-surface-300` (code body) | `text-plate-ink/80` (≈10:1) |
-| `text-surface-400` (secondary code, fix list, avatars) | `text-plate-ink/70` (≈8:1) |
-| `text-surface-500` / `text-surface-600` (comments, filename) | `text-plate-ink/60` (≈6:1) |
-| `text-surface-200` (assistant message) | `text-plate-ink` (≈14:1) |
-| `text-brand-400` (markdown headers, "Fixes") | `font-semibold text-plate-ink` — no accent as text on plate |
-| `text-brand-300` (`WHERE id = ?`) | accent as a **fill**: `bg-accent px-1 text-accent-ink` |
-| `text-yellow-400` (emphasis) | `font-semibold text-plate-ink` |
-| `text-red-400` + `bg-red-400/10` (severity) | `bg-rose/20` + `text-plate-ink` (semantic wash, ink text) |
-| `bg-surface-900/50`, `bg-surface-700/50`, `bg-surface-700 border-surface-600` | `bg-plate-ink/10`, `border-plate-line` |
-| `bg-brand-500/20 border-brand-500/40 text-brand-400` (avatar) | `bg-accent text-accent-ink` (fill, not text colour) |
-| `bg-red-500/80`, `bg-yellow-500/80`, `bg-green-500/80` (traffic dots) | `bg-rose`, `bg-warn`, `bg-ok` |
-| section eyebrow + caption below the terminals (these sit on **paper**) | `text-ink-muted` (kept off the plate palette) |
+| Before (on plate) | After | — | --- | --- | — | `text-surface-300` (code body) | `text-plate-ink/80` (≈10:1) | — | `text-surface-400` (secondary code, fix list, avatars) | `text-plate-ink/70` (≈8:1) | — | `text-surface-500` / `text-surface-600` (comments, filename) | `text-plate-ink/60` (≈6:1) | — | `text-surface-200` (assistant message) | `text-plate-ink` (≈14:1) | — | `text-brand-400` (markdown headers, "Fixes") | `font-semibold text-plate-ink` — no accent as text on plate | — | `text-brand-300` (`WHERE id = ?`) | accent as a **fill**: `bg-accent px-1 text-accent-ink` | — | `text-yellow-400` (emphasis) | `font-semibold text-plate-ink` | — | `text-red-400` + `bg-red-400/10` (severity) | `bg-rose/20` + `text-plate-ink` (semantic wash, ink text) | — | `bg-surface-900/50`, `bg-surface-700/50`, `bg-surface-700 border-surface-600` | `bg-plate-ink/10`, `border-plate-line` | — | `bg-brand-500/20 border-brand-500/40 text-brand-400` (avatar) | `bg-accent text-accent-ink` (fill, not text colour) | — | `bg-red-500/80`, `bg-yellow-500/80`, `bg-green-500/80` (traffic dots) | `bg-rose`, `bg-warn`, `bg-ok` | — | section eyebrow + caption below the terminals (these sit on **paper**) | `text-ink-muted` (kept off the plate palette) |
 
 Result — `grep` over the four PR-02 components:
 
@@ -150,19 +121,7 @@ and the plate text tokens actually in use:
 
 ## Test results (all commands re-run after the sync)
 
-| Check | Command | Result |
-| --- | --- | --- |
-| Build | `cd website && npm run build` | **pass — 217 pages** |
-| Build at every commit | `git archive <sha> \| tar -x -C /tmp/… ; ln -s …/node_modules ; npm run build` for each of the four PR-02 commits and the merge commit | **217 pages at each of them** |
-| Evidence capture | `node scripts/capture.mjs --label pr-02-hero-quickstart --port 4411` | 12/12 captures, **0 console errors, 0 horizontal overflow, no `FAIL` line** — receipt `captures/pr-02-hero-quickstart.json` (origin `:4411`), heights 6145 / 2463 / 1389 px |
-| Switcher + a11y harness | Playwright against a preview of this branch | **72/72 checks pass** |
-| Hero CTA contrast | same harness, computed from live styles | **5.09:1 light / 7.87:1 dark** (≥4.5:1) |
-| axe-core, per home-page section incl. every dark-plate block, light + dark (WCAG 2.0/2.1/2.2 A+AA + best practice) | PR-05 toolchain (`@axe-core/playwright`) | **0 violations in the hero, the demo plate blocks and `#quickstart`; 0 in every other `main > section`** — see the table below |
-| Page-wide axe (includes other PRs' navbar/footer) | same run, no `include()` | 2 violations, both in the navbar/footer — attributed below |
-| No hard-coded colours | `grep -rn "#[0-9a-fA-F]\{6\}" website/src/components/{Hero,QuickStart,DemoPreview,AgentSwitcher}.astro` | **empty** (exit 1) |
-| No raw palette / legacy aliases / `text-white` | `grep -rnE "(text\|bg\|border)-(brand\|surface)-[0-9]+\|(text\|bg\|border)-(red\|yellow\|…)-[0-9]+\|text-white" …` | **empty** (exit 1) |
-| Extra crops (hero viewport + switcher, 2×) | see “Screenshots” | 4 JPEGs refreshed from the final build |
-| Extra crops (hero viewport + switcher, 2×) | see “Screenshots” | 4 JPEGs refreshed from the post-sync build |
+| Check | Command | Result | — | --- | --- | --- | — | Build | `cd website && npm run build` | **pass — 217 pages** | — | Build at every commit | `git archive <sha> \| tar -x -C /tmp/… ; ln -s …/node_modules ; npm run build` for each of the four PR-02 commits and the merge commit | **217 pages at each of them** | — | Evidence capture | `node scripts/capture.mjs --label pr-02-hero-quickstart --port 4411` | 12/12 captures, **0 console errors, 0 horizontal overflow, no `FAIL` line** — receipt `captures/pr-02-hero-quickstart.json` (origin `:4411`), heights 6145 / 2463 / 1389 px | — | Switcher + a11y harness | Playwright against a preview of this branch | **72/72 checks pass** | — | Hero CTA contrast | same harness, computed from live styles | **5.09:1 light / 7.87:1 dark** (≥4.5:1) | — | axe-core, per home-page section incl. every dark-plate block, light + dark (WCAG 2.0/2.1/2.2 A+AA + best practice) | PR-05 toolchain (`@axe-core/playwright`) | **0 violations in the hero, the demo plate blocks and `#quickstart`; 0 in every other `main > section`** — see the table below | — | Page-wide axe (includes other PRs' navbar/footer) | same run, no `include()` | 2 violations, both in the navbar/footer — attributed below | — | No hard-coded colours | `grep -rn "#[0-9a-fA-F]\{6\}" website/src/components/{Hero,QuickStart,DemoPreview,AgentSwitcher}.astro` | **empty** (exit 1) | — | No raw palette / legacy aliases / `text-white` | `grep -rnE "(text\|bg\|border)-(brand\|surface)-[0-9]+\|(text\|bg\|border)-(red\|yellow\|…)-[0-9]+\|text-white" …` | **empty** (exit 1) | — | Extra crops (hero viewport + switcher, 2×) | see “Screenshots” | 4 JPEGs refreshed from the final build | — | Extra crops (hero viewport + switcher, 2×) | see “Screenshots” | 4 JPEGs refreshed from the post-sync build |
 
 ### Required self-test 1 — no hard-coded colour literals
 
@@ -237,16 +196,7 @@ hosts=8 distinct command+directory sets=8
 
 Full matrix the component renders:
 
-| Host (`id`) | Scope | AgentSkills CLI (global) | Clone target (global) | Directory (global) | Directory (project) |
-| --- | --- | --- | --- | --- | --- |
-| `claude-code` | global + project | `npx -y skills add titanwings/distilly --skill distilly --agent claude-code --global --copy --yes` | `git clone … ~/.claude/skills/distilly` | `~/.claude/skills/distilly` | `.claude/skills/distilly` |
-| `codex` | global + project | `… --agent codex --global --copy --yes` | `git clone … ~/.agents/skills/distilly` | `~/.agents/skills/distilly` | `.agents/skills/distilly` |
-| `opencode` | global + project | `… --agent opencode --global --copy --yes` | `git clone … ~/.config/opencode/skills/distilly` | `~/.config/opencode/skills/distilly` | `.opencode/skills/distilly` |
-| `openclaw` | global + project | `… --agent openclaw --global --copy --yes` | `git clone … ~/.openclaw/workspace/skills/distilly` | `~/.openclaw/workspace/skills/distilly` | `.openclaw/skills/distilly` |
-| `hermes` | global + project | `… --agent hermes --global --copy --yes` | `git clone … ~/.hermes/skills/distilly` | `~/.hermes/skills/distilly` | `.hermes/skills/distilly` |
-| `deepseek-harness` | global + project | `… --agent deepseek-harness --global --copy --yes` | `git clone … ~/.dsh/skills/distilly` | `~/.dsh/skills/distilly` | `.dsh/skills/distilly` |
-| `grok-build` | global + project | `… --agent grok-build --global --copy --yes` | `git clone … ~/.grok/skills/distilly` | `~/.grok/skills/distilly` | `.grok/skills/distilly` |
-| `pi` | global only | — (no unverified CLI command shown) | `git clone … ~/.pi/agent/skills/distilly` | `~/.pi/agent/skills/distilly` | — (not documented) |
+| Host (`id`) | Scope | AgentSkills CLI (global) | Clone target (global) | Directory (global) | Directory (project) | — | --- | --- | --- | --- | --- | --- | — | `claude-code` | global + project | `npx -y skills add titanwings/distilly --skill distilly --agent claude-code --global --copy --yes` | `git clone … ~/.claude/skills/distilly` | `~/.claude/skills/distilly` | `.claude/skills/distilly` | — | `codex` | global + project | `… --agent codex --global --copy --yes` | `git clone … ~/.agents/skills/distilly` | `~/.agents/skills/distilly` | `.agents/skills/distilly` | — | `opencode` | global + project | `… --agent opencode --global --copy --yes` | `git clone … ~/.config/opencode/skills/distilly` | `~/.config/opencode/skills/distilly` | `.opencode/skills/distilly` | — | `openclaw` | global + project | `… --agent openclaw --global --copy --yes` | `git clone … ~/.openclaw/workspace/skills/distilly` | `~/.openclaw/workspace/skills/distilly` | `.openclaw/skills/distilly` | — | `hermes` | global + project | `… --agent hermes --global --copy --yes` | `git clone … ~/.hermes/skills/distilly` | `~/.hermes/skills/distilly` | `.hermes/skills/distilly` | — | `deepseek-harness` | global + project | `… --agent deepseek-harness --global --copy --yes` | `git clone … ~/.dsh/skills/distilly` | `~/.dsh/skills/distilly` | `.dsh/skills/distilly` | — | `grok-build` | global + project | `… --agent grok-build --global --copy --yes` | `git clone … ~/.grok/skills/distilly` | `~/.grok/skills/distilly` | `.grok/skills/distilly` | — | `pi` | global only | — (no unverified CLI command shown) | `git clone … ~/.pi/agent/skills/distilly` | `~/.pi/agent/skills/distilly` | — (not documented) |
 
 Project scope drops `--global --copy --yes`, e.g.
 `npx -y skills add titanwings/distilly --skill distilly --agent claude-code`.
@@ -318,15 +268,7 @@ FULL PAGE: violations=2 incomplete=1
 AXE: 0 violations in the PR-02 sections (hero + demo plate blocks + #quickstart), light and dark
 ```
 
-| Section (owner) | light violations | dark violations |
-| --- | --- | --- |
-| hero (PR-02) | 0 | 0 |
-| features (other PR) | 0 | 0 |
-| how-it-works (other PR) | 0 | 0 |
-| **demo — 2 terminal windows + `<pre>` (PR-02, fixed in this pass)** | **0** | **0** |
-| **quickstart — switcher command blocks + transcripts (PR-02)** | **0** | **0** |
-| submit-cta (other PR) | 0 | 0 |
-| page-wide, i.e. everything incl. navbar/footer | 2 | 2 |
+| Section (owner) | light violations | dark violations | — | --- | --- | --- | — | hero (PR-02) | 0 | 0 | — | features (other PR) | 0 | 0 | — | how-it-works (other PR) | 0 | 0 | — | **demo — 2 terminal windows + `<pre>` (PR-02, fixed in this pass)** | **0** | **0** | — | **quickstart — switcher command blocks + transcripts (PR-02)** | **0** | **0** | — | submit-cta (other PR) | 0 | 0 | — | page-wide, i.e. everything incl. navbar/footer | 2 | 2 |
 
 The two page-wide violations are **not** in PR-02's files; the attribution run
 resolves each axe target to its owning landmark:
@@ -357,16 +299,7 @@ light-theme hero one is a caret inside the accent-filled button.
 
 ## Screenshots
 
-| Page | Before (live site) | After (this PR) |
-| --- | --- | --- |
-| Home — hero, desktop 1440×900 @2× | `docs/evidence/images/before-home-hero.jpg` | `docs/evidence/images/pr-02-hero-quickstart-hero-light.jpg`, `…-hero-dark.jpg` |
-| Home — desktop, full page (light) | `docs/evidence/images/before-home.jpg` | `docs/evidence/images/pr-02-hero-quickstart-home-light.jpg` |
-| Home — desktop, full page (dark) | — (no light/dark switch before) | `docs/evidence/images/pr-02-hero-quickstart-home-dark.jpg` |
-| Home — mobile 390 px (light / dark) | — | `docs/evidence/images/pr-02-hero-quickstart-home-light-mobile.jpg`, `…-home-dark-mobile.jpg` |
-| Switcher close-up (light / dark) | — | `docs/evidence/images/pr-02-hero-quickstart-switcher-light.jpg`, `…-switcher-dark.jpg` |
-| Demo terminals — plate token sweep (light / dark) | — | `docs/evidence/images/pr-02-hero-quickstart-demo-light.jpg`, `…-demo-dark.jpg` |
-| Gallery | `before-gallery.jpg` | `pr-02-hero-quickstart-gallery-light.jpg`, `…-gallery-dark.jpg` |
-| Detail | `before-detail.jpg` | `pr-02-hero-quickstart-detail-light.jpg`, `…-detail-dark.jpg` |
+| Page | Before (live site) | After (this PR) | — | --- | --- | --- | — | Home — hero, desktop 1440×900 @2× | `(local) before-home-hero.jpg` | `(local) pr-02-hero-quickstart-hero-light.jpg`, `…-hero-dark.jpg` | — | Home — desktop, full page (light) | `(local) before-home.jpg` | `(local) pr-02-hero-quickstart-home-light.jpg` | — | Home — desktop, full page (dark) | — (no light/dark switch before) | `(local) pr-02-hero-quickstart-home-dark.jpg` | — | Home — mobile 390 px (light / dark) | — | `(local) pr-02-hero-quickstart-home-light-mobile.jpg`, `…-home-dark-mobile.jpg` | — | Switcher close-up (light / dark) | — | `(local) pr-02-hero-quickstart-switcher-light.jpg`, `…-switcher-dark.jpg` | — | Demo terminals — plate token sweep (light / dark) | — | `(local) pr-02-hero-quickstart-demo-light.jpg`, `…-demo-dark.jpg` | — | Gallery | `before-gallery.jpg` | `pr-02-hero-quickstart-gallery-light.jpg`, `…-gallery-dark.jpg` | — | Detail | `before-detail.jpg` | `pr-02-hero-quickstart-detail-light.jpg`, `…-detail-dark.jpg` |
 
 Recipe:
 
@@ -460,15 +393,7 @@ Resolved by the base branch and dropped here: the missing site-wide
 
 ## Commits
 
-| SHA | Subject |
-| --- | --- |
-| `7259aab` | `feat(site): add the coding-agent switcher component` |
-| `8ace731` | `refactor(site): rebuild the hero as an editorial masthead` |
-| `4c89375` | `refactor(site): restructure quick start into three numbered steps` |
-| `9653826` | `docs(site): add PR-02 evidence, captures and rollback notes` |
-| `36feea5` | `Merge branch 'site/01-design-system' into site/02-hero-quickstart` (base sync: 6 commits) |
-| `cfcfafc` | `chore(site): sync base fixes and drop the language workaround` |
-| *(this commit)* | `fix(site): move the demo plate text onto plate-ink tokens` (plate-contrast sweep + refreshed evidence) |
+| SHA | Subject | — | --- | --- | — | `7259aab` | `feat(site): add the coding-agent switcher component` | — | `8ace731` | `refactor(site): rebuild the hero as an editorial masthead` | — | `4c89375` | `refactor(site): restructure quick start into three numbered steps` | — | `9653826` | `docs(site): add PR-02 evidence, captures and rollback notes` | — | `36feea5` | `Merge branch 'site/01-design-system' into site/02-hero-quickstart` (base sync: 6 commits) | — | `cfcfafc` | `chore(site): sync base fixes and drop the language workaround` | — | *(this commit)* | `fix(site): move the demo plate text onto plate-ink tokens` (plate-contrast sweep + refreshed evidence) |
 
 Each PR-02 commit builds on its own (see the table above); the merge, the cleanup
 commit and the plate sweep keep the 217-page build green. Nothing is pushed and
