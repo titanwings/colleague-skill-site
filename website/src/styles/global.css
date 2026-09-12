@@ -24,10 +24,13 @@ html[data-theme='light'] {
   --ink-soft: 54 60 65;
   --ink-muted: 96 104 109;
   --ink-dim: 146 154 158;
-  --accent: 225 74 14;
-  --accent-soft: 194 65 12;
-  --accent-deep: 154 52 18;
+  /* The light-theme accent is deliberately darkened so that both
+     accent-on-paper text (≥4.5:1) and white-on-accent fills pass WCAG AA. */
+  --accent: 199 62 12;
+  --accent-soft: 154 52 18;
+  --accent-deep: 124 45 18;
   --accent-wash: 253 240 234;
+  --accent-ink: 255 255 255;
   --line: 214 221 219;
   --plate: 15 18 22;
   --plate-ink: 230 237 243;
@@ -50,9 +53,10 @@ html[data-theme='dark'] {
   --ink-muted: 150 160 168;
   --ink-dim: 110 120 128;
   --accent: 251 146 60;
-  --accent-soft: 249 115 22;
-  --accent-deep: 234 88 12;
+  --accent-soft: 253 186 116;
+  --accent-deep: 249 115 22;
   --accent-wash: 41 24 12;
+  --accent-ink: 21 24 27;
   --line: 42 48 56;
   --plate: 9 11 14;
   --plate-ink: 230 237 243;
@@ -76,9 +80,10 @@ html[data-theme='dark'] {
     --ink-muted: 150 160 168;
     --ink-dim: 110 120 128;
     --accent: 251 146 60;
-    --accent-soft: 249 115 22;
-    --accent-deep: 234 88 12;
+    --accent-soft: 253 186 116;
+    --accent-deep: 249 115 22;
     --accent-wash: 41 24 12;
+    --accent-ink: 21 24 27;
     --line: 42 48 56;
     --plate: 9 11 14;
     --plate-ink: 230 237 243;
@@ -91,6 +96,20 @@ html[data-theme='dark'] {
     --shadow: 0 0 0;
     --grid-opacity: 0.35;
   }
+}
+
+/* ------------------------------------------------------ language toggle -- */
+/* Paired translations: `<span class="lang-zh">…</span><span class="lang-en">…</span>`.
+   `data-lang` lives on <html> and is applied before first paint by BaseLayout.
+   These rules are global on purpose — components must NOT ship scoped copies. */
+.lang-en {
+  display: none;
+}
+html[data-lang='en'] .lang-zh {
+  display: none;
+}
+html[data-lang='en'] .lang-en {
+  display: revert;
 }
 
 /* ------------------------------------------------------------ base layer -- */
@@ -162,7 +181,7 @@ html[data-theme='dark'] {
 /* ------------------------------------------------------ component layer -- */
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-lg transition-all duration-200 hover:bg-accent-soft hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-ink font-semibold rounded-lg transition-all duration-200 hover:bg-accent-soft hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-secondary {
