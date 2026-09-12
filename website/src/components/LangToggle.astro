@@ -1,0 +1,111 @@
+---
+/**
+ * Language toggle — one button that flips `html[data-lang]` between `zh` and
+ * `en`, persists the choice and keeps `<html lang>` in sync.
+ *
+ * This component also ships the *visibility* half of the bilingual mechanism:
+ * both languages are always in the DOM and `html[data-lang]` picks one. The
+ * rules are global because the pairs live in many components, and they only
+ * ever *hide* the inactive side — no `display: revert` — so an author
+ * `display: flex` / `inline-flex` utility on the visible side still wins.
+ *
+ * The active half of `中文 / EN` is styled from `html[data-lang]` alone, so the
+ * button is correct on the very first paint; JS only maintains the accessible
+ * name (which has to follow the reader's language).
+ */
+import { LANG_LABEL, LANG_TOGGLE_COPY } from '../lib/i18n';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<button
+  type="button"
+  data-lang-toggle
+  aria-label={LANG_TOGGLE_COPY.zh.label}
+  title={LANG_TOGGLE_COPY.zh.title}
+  class:list={[
+    'ds-lang-toggle inline-flex items-center gap-1.5 h-9 px-2.5 rounded-pill border border-line bg-transparent font-mono text-xs leading-none tracking-[0.08em] transition-colors hover:border-accent/50',
+    className,
+  ]}
+>
+  <span data-lang-option="zh" lang="zh-CN">{LANG_LABEL.zh}</span>
+  <span class="ds-lang-sep" aria-hidden="true">/</span>
+  <span data-lang-option="en" lang="en">{LANG_LABEL.en}</span>
+</button>
+
+<style is:global>
+  /*
+   * Both languages are in the DOM; `html[data-lang]` decides which one paints.
+   * Only the inactive side is hidden, and with `!important`, so it also beats a
+   * responsive display utility and nothing can override it by cascade order.
+   * `html` ships `data-lang="zh"` statically, so the no-JS default is Chinese.
+   */
+  html:not([data-lang='en']) .lang-en,
+  html[data-lang='en'] .lang-zh {
+    display: none !important;
+  }
+
+  /* Active half of the toggle, driven by the attribute rather than by JS.
+     The inactive half uses `ink-muted` (not `ink-dim`): `ink-dim` only clears
+     ~2.4:1 on paper, which axe flags as a serious contrast failure. */
+  .ds-lang-toggle [data-lang-option] {
+    color: rgb(var(--ink-muted));
+    transition: color 0.2s ease;
+  }
+
+  /* `accent-deep` rather than `accent-soft`: the footer instance sits on
+     `paper-sunk`, where `accent-soft` lands at ~4.3:1 and fails AA for 12px text. */
+  html[data-lang='zh'] .ds-lang-toggle [data-lang-option='zh'],
+  html[data-lang='en'] .ds-lang-toggle [data-lang-option='en'] {
+    color: rgb(var(--accent-deep));
+    font-weight: 600;
+  }
+
+  .ds-lang-toggle .ds-lang-sep {
+    color: rgb(var(--line));
+  }
+</style>
+
+<script>
+  import { LANG_STORAGE_KEY, LANG_TAG, LANG_TOGGLE_COPY, normalizeLang } from '../lib/i18n';
+
+  const toggles = Array.from(document.querySelectorAll<HTMLElement>('[data-lang-toggle]'));
+
+  const current = () => normalizeLang(window.__getLang?.() ?? document.documentElement.getAttribute('data-lang'));
+
+  /** Falls back to a local implementation if the inline bootstrap did not run. */
+  function setLang(lang: 'zh' | 'en') {
+    if (window.__setLang) {
+      window.__setLang(lang);
+      return;
+    }
+    document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', LANG_TAG[lang]);
+    try {
+      localStorage.setItem(LANG_STORAGE_KEY, lang);
+    } catch {
+      /* ignore */
+    }
+    window.dispatchEvent(new CustomEvent('langchange', { detail: lang }));
+  }
+
+  /** The accessible name describes the action, so it follows the visible language. */
+  function syncLabels() {
+    const copy = LANG_TOGGLE_COPY[current()];
+    toggles.forEach((el) => {
+      el.setAttribute('aria-label', copy.label);
+      el.setAttribute('title', copy.title);
+    });
+  }
+
+  toggles.forEach((el) => {
+    el.addEventListener('click', () => setLang(current() === 'zh' ? 'en' : 'zh'));
+  });
+
+  syncLabels();
+  window.addEventListener('langchange', syncLabels);
+</script>
