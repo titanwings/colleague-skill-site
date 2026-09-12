@@ -41,17 +41,19 @@ npm run preview    # serve the built output
 
 ```bash
 cd website
-npm run check          # build + internal link check + axe-core accessibility gate
-npm run capture        # build already done? capture evidence screenshots
+npm run capture        # serve the build and write evidence screenshots + a JSON receipt
 npm run evidence       # build + capture
 ```
 
+- `capture` writes before/after screenshots plus a JSON receipt (page height, overflow, computed colours, console errors) under `docs/evidence/`. It refuses a busy port and verifies a per-run marker file, so parallel worktrees cannot capture each other's build.
+
+The link and accessibility gates (`npm run check:links`, `npm run check:a11y`, `npm run check`)
+arrive with the quality-gate PR of the current refactor stack
+(`.github/workflows/quality.yml` runs them together with the capture on every PR
+that touches `website/**`; the deploy workflow publishes `main`):
+
 - `check:links` resolves every internal `href`/`src` in the built pages and fails on a broken target.
 - `check:a11y` runs axe-core (WCAG 2.0/2.1/2.2 A+AA) on home/gallery/detail in **both themes** and fails on `serious`/`critical` impact.
-- `capture` writes before/after screenshots plus a JSON receipt (page height, overflow, computed colours, console errors) under `docs/evidence/`.
-
-CI runs all three on every PR that touches `website/**`
-(`.github/workflows/quality.yml`), and the deploy workflow publishes `main`.
 
 ## Adding a skill to the catalog
 
