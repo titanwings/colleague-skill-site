@@ -52,7 +52,10 @@ jobs:
         working-directory: website
         run: npm run check:a11y
 
+      # Run even when a gate failed, so the uploaded artifact still contains the
+      # screenshots that explain *why* it failed.
       - name: Capture evidence screenshots
+        if: always()
         working-directory: website
         run: node scripts/capture.mjs --label ci
 
@@ -67,3 +70,4 @@ jobs:
             docs/evidence/a11y-report.json
             docs/evidence/link-report.json
           retention-days: 14
+          if-no-files-found: ignore
