@@ -35,6 +35,8 @@ export default {
           soft: rgb('--accent-soft'),
           deep: rgb('--accent-deep'),
           wash: rgb('--accent-wash'),
+          /** Text/icon colour to use *on top of* an accent fill. */
+          ink: rgb('--accent-ink'),
         },
         line: rgb('--line'),
         plate: {
@@ -61,13 +63,16 @@ export default {
           800: rgb('--accent-deep'),
           900: rgb('--accent-deep'),
         },
+        // Legacy names map onto the *contrast-safe* part of the ramp: the old
+        // markup used surface-300..500 for body text, so they resolve to ink
+        // shades rather than the dim decorative tone.
         surface: {
           50: rgb('--ink'),
           100: rgb('--ink'),
           200: rgb('--ink-soft'),
           300: rgb('--ink-muted'),
           400: rgb('--ink-muted'),
-          500: rgb('--ink-dim'),
+          500: rgb('--ink-muted'),
           600: rgb('--line'),
           700: rgb('--line'),
           800: rgb('--paper-raised'),
