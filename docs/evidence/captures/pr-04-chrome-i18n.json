@@ -1,14 +1,14 @@
 {
   "label": "pr-04-chrome-i18n",
   "base": "/colleague-skill-site",
-  "origin": "http://127.0.0.1:4321",
-  "generated_at": "2026-09-12T16:53:53.183Z",
+  "origin": "http://127.0.0.1:4413",
+  "generated_at": "2026-09-12T17:03:19.249Z",
   "captures": [
     {
       "page": "home",
       "theme": "light",
       "viewport": "desktop",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-home-light.jpg",
       "metrics": {
         "title": "dot-skill — 人会离开，.skill 不会 · People leave. Skills don't.",
@@ -25,7 +25,7 @@
       "page": "home",
       "theme": "light",
       "viewport": "mobile",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-home-light-mobile.jpg",
       "metrics": {
         "title": "dot-skill — 人会离开，.skill 不会 · People leave. Skills don't.",
@@ -42,7 +42,7 @@
       "page": "home",
       "theme": "dark",
       "viewport": "desktop",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-home-dark.jpg",
       "metrics": {
         "title": "dot-skill — 人会离开，.skill 不会 · People leave. Skills don't.",
@@ -59,7 +59,7 @@
       "page": "home",
       "theme": "dark",
       "viewport": "mobile",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-home-dark-mobile.jpg",
       "metrics": {
         "title": "dot-skill — 人会离开，.skill 不会 · People leave. Skills don't.",
@@ -76,7 +76,7 @@
       "page": "gallery",
       "theme": "light",
       "viewport": "desktop",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/gallery/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-gallery-light.jpg",
       "metrics": {
         "title": "Skill Gallery — colleague-skill",
@@ -93,7 +93,7 @@
       "page": "gallery",
       "theme": "light",
       "viewport": "mobile",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/gallery/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-gallery-light-mobile.jpg",
       "metrics": {
         "title": "Skill Gallery — colleague-skill",
@@ -110,7 +110,7 @@
       "page": "gallery",
       "theme": "dark",
       "viewport": "desktop",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/gallery/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-gallery-dark.jpg",
       "metrics": {
         "title": "Skill Gallery — colleague-skill",
@@ -127,7 +127,7 @@
       "page": "gallery",
       "theme": "dark",
       "viewport": "mobile",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/gallery/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-gallery-dark-mobile.jpg",
       "metrics": {
         "title": "Skill Gallery — colleague-skill",
@@ -144,7 +144,7 @@
       "page": "detail",
       "theme": "light",
       "viewport": "desktop",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/boss-skill/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/gallery/boss-skill/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-detail-light.jpg",
       "metrics": {
         "title": "老板 — colleague-skill Gallery",
@@ -161,7 +161,7 @@
       "page": "detail",
       "theme": "light",
       "viewport": "mobile",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/boss-skill/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/gallery/boss-skill/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-detail-light-mobile.jpg",
       "metrics": {
         "title": "老板 — colleague-skill Gallery",
@@ -178,7 +178,7 @@
       "page": "detail",
       "theme": "dark",
       "viewport": "desktop",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/boss-skill/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/gallery/boss-skill/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-detail-dark.jpg",
       "metrics": {
         "title": "老板 — colleague-skill Gallery",
@@ -195,7 +195,7 @@
       "page": "detail",
       "theme": "dark",
       "viewport": "mobile",
-      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/boss-skill/",
+      "url": "http://127.0.0.1:4413/colleague-skill-site/gallery/boss-skill/",
       "file": "docs/evidence/images/pr-04-chrome-i18n-detail-dark-mobile.jpg",
       "metrics": {
         "title": "老板 — colleague-skill Gallery",
