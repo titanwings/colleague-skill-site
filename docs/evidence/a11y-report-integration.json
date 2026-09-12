@@ -1,0 +1,165 @@
+{
+  "base": "/colleague-skill-site",
+  "generated_at": "2026-09-12T17:17:52.259Z",
+  "fail_impacts": [
+    "serious",
+    "critical"
+  ],
+  "pages": [
+    {
+      "page": "home",
+      "theme": "light",
+      "url": "/colleague-skill-site/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "home",
+      "theme": "dark",
+      "url": "/colleague-skill-site/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "gallery",
+      "theme": "light",
+      "url": "/colleague-skill-site/gallery/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "gallery",
+      "theme": "dark",
+      "url": "/colleague-skill-site/gallery/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail",
+      "theme": "light",
+      "url": "/colleague-skill-site/gallery/boss-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail",
+      "theme": "dark",
+      "url": "/colleague-skill-site/gallery/boss-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:ace-taffy-skill",
+      "theme": "light",
+      "url": "/colleague-skill-site/gallery/ace-taffy-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:ace-taffy-skill",
+      "theme": "dark",
+      "url": "/colleague-skill-site/gallery/ace-taffy-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:chen-xiaoqun-skill",
+      "theme": "light",
+      "url": "/colleague-skill-site/gallery/chen-xiaoqun-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:chen-xiaoqun-skill",
+      "theme": "dark",
+      "url": "/colleague-skill-site/gallery/chen-xiaoqun-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:ding-yuanying-skill",
+      "theme": "light",
+      "url": "/colleague-skill-site/gallery/ding-yuanying-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:ding-yuanying-skill",
+      "theme": "dark",
+      "url": "/colleague-skill-site/gallery/ding-yuanying-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:hepha-skill",
+      "theme": "light",
+      "url": "/colleague-skill-site/gallery/hepha-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:hepha-skill",
+      "theme": "dark",
+      "url": "/colleague-skill-site/gallery/hepha-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:linxue-skill",
+      "theme": "light",
+      "url": "/colleague-skill-site/gallery/linxue-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:linxue-skill",
+      "theme": "dark",
+      "url": "/colleague-skill-site/gallery/linxue-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:open-demon-ex-skills",
+      "theme": "light",
+      "url": "/colleague-skill-site/gallery/open-demon-ex-skills/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:open-demon-ex-skills",
+      "theme": "dark",
+      "url": "/colleague-skill-site/gallery/open-demon-ex-skills/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:shuixian-skill",
+      "theme": "light",
+      "url": "/colleague-skill-site/gallery/shuixian-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:shuixian-skill",
+      "theme": "dark",
+      "url": "/colleague-skill-site/gallery/shuixian-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:viral-copywriting-skill",
+      "theme": "light",
+      "url": "/colleague-skill-site/gallery/viral-copywriting-skill/",
+      "violations": [],
+      "failing": 0
+    },
+    {
+      "page": "detail:viral-copywriting-skill",
+      "theme": "dark",
+      "url": "/colleague-skill-site/gallery/viral-copywriting-skill/",
+      "violations": [],
+      "failing": 0
+    }
+  ],
+  "failures": []
+}
