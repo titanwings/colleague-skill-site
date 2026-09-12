@@ -89,6 +89,29 @@ Cloudflare beacon loading on every page.
 | Gallery | `before-gallery.jpg` | `pr-01-design-system-gallery-light.jpg` |
 | Detail | `before-detail.jpg` | `pr-01-design-system-detail-light.jpg` |
 
+**Regression found by the parallel PRs and fixed here**
+
+The `global.css` rewrite in this PR dropped the site-wide `.lang-zh` / `.lang-en`
+rules, so both languages rendered at once and every page grew (home 5997 → 7488 px).
+Restored as global rules, with a comment telling components not to ship scoped
+copies. Re-captured after the fix — heights are back in line with the live baseline:
+
+| Page | Live baseline | This PR (after the fix) |
+| --- | --- | --- |
+| `/` (desktop) | 5997 px | 5997 px |
+| `/gallery/` | 2463 px | 2463 px |
+| `/gallery/boss-skill/` | 1389 px | 1389 px |
+
+Two further hardening changes came out of the same review round:
+
+- `capture.mjs` now refuses to shoot a port that already answers, parses the URL
+  astro actually printed, and verifies a per-run marker file served from *this*
+  `dist/` before the first screenshot — parallel worktrees previously captured a
+  peer's build.
+- `agents.ts` gained `skillsCliSupported()` and a `{ requireVerified: true }`
+  option, so the unconfirmed AgentSkills target for Pi can never be presented as
+  verified.
+
 **Known gaps left for the next PRs** (not defects introduced here): section
 headers and feature cards still use the previous zh/en stacking and tinted
 gradients, the terminal demos are still styled ad-hoc, there is no theme toggle
