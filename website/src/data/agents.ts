@@ -149,9 +149,30 @@ export function getAgent(id: AgentId): CodingAgent {
   return agent;
 }
 
+/**
+ * Whether the AgentSkills CLI is a *confirmed* target for this host.
+ *
+ * Hosts without `skillsCliId` (currently Pi) are only listed because they have a
+ * documented install directory; the `--agent <id>` string is unverified, so UI
+ * that prints it must say so, and callers that need certainty should pass
+ * `{ requireVerified: true }`.
+ */
+export function skillsCliSupported(id: AgentId): boolean {
+  return Boolean(getAgent(id).skillsCliId);
+}
+
 /** One-liner via the AgentSkills CLI (works for any host it supports). */
-export function skillsCliCommand(id: AgentId, scope: 'global' | 'project' = 'global'): string {
+export function skillsCliCommand(
+  id: AgentId,
+  scope: 'global' | 'project' = 'global',
+  { requireVerified = false }: { requireVerified?: boolean } = {},
+): string {
   const agent = getAgent(id);
+  if (requireVerified && !agent.skillsCliId) {
+    throw new Error(
+      `${agent.label} is not a confirmed AgentSkills CLI target; use the clone route (${cloneCommand(id, scope)}).`,
+    );
+  }
   const flags = [`--agent ${agent.skillsCliId ?? agent.id}`];
   if (scope === 'global') flags.push('--global', '--copy', '--yes');
   return `npx -y skills add ${BRAND.repo} --skill distilly ${flags.join(' ')}`;
