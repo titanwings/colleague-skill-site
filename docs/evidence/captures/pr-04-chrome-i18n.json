@@ -1,0 +1,213 @@
+{
+  "label": "pr-04-chrome-i18n",
+  "base": "/colleague-skill-site",
+  "origin": "http://127.0.0.1:4321",
+  "generated_at": "2026-09-12T16:53:53.183Z",
+  "captures": [
+    {
+      "page": "home",
+      "theme": "light",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-home-light.jpg",
+      "metrics": {
+        "title": "dot-skill — 人会离开，.skill 不会 · People leave. Skills don't.",
+        "height": 6387,
+        "overflowX": false,
+        "bodyBackground": "rgb(239, 242, 241)",
+        "bodyColor": "rgb(21, 24, 27)",
+        "sections": 6,
+        "links": 29
+      },
+      "consoleErrors": []
+    },
+    {
+      "page": "home",
+      "theme": "light",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-home-light-mobile.jpg",
+      "metrics": {
+        "title": "dot-skill — 人会离开，.skill 不会 · People leave. Skills don't.",
+        "height": 9970,
+        "overflowX": false,
+        "bodyBackground": "rgb(239, 242, 241)",
+        "bodyColor": "rgb(21, 24, 27)",
+        "sections": 6,
+        "links": 29
+      },
+      "consoleErrors": []
+    },
+    {
+      "page": "home",
+      "theme": "dark",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-home-dark.jpg",
+      "metrics": {
+        "title": "dot-skill — 人会离开，.skill 不会 · People leave. Skills don't.",
+        "height": 6387,
+        "overflowX": false,
+        "bodyBackground": "rgb(15, 18, 22)",
+        "bodyColor": "rgb(235, 240, 244)",
+        "sections": 6,
+        "links": 29
+      },
+      "consoleErrors": []
+    },
+    {
+      "page": "home",
+      "theme": "dark",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-home-dark-mobile.jpg",
+      "metrics": {
+        "title": "dot-skill — 人会离开，.skill 不会 · People leave. Skills don't.",
+        "height": 9970,
+        "overflowX": false,
+        "bodyBackground": "rgb(15, 18, 22)",
+        "bodyColor": "rgb(235, 240, 244)",
+        "sections": 6,
+        "links": 29
+      },
+      "consoleErrors": []
+    },
+    {
+      "page": "gallery",
+      "theme": "light",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-gallery-light.jpg",
+      "metrics": {
+        "title": "Skill Gallery — colleague-skill",
+        "height": 2572,
+        "overflowX": false,
+        "bodyBackground": "rgb(239, 242, 241)",
+        "bodyColor": "rgb(21, 24, 27)",
+        "sections": 0,
+        "links": 243
+      },
+      "consoleErrors": []
+    },
+    {
+      "page": "gallery",
+      "theme": "light",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-gallery-light-mobile.jpg",
+      "metrics": {
+        "title": "Skill Gallery — colleague-skill",
+        "height": 5941,
+        "overflowX": false,
+        "bodyBackground": "rgb(239, 242, 241)",
+        "bodyColor": "rgb(21, 24, 27)",
+        "sections": 0,
+        "links": 243
+      },
+      "consoleErrors": []
+    },
+    {
+      "page": "gallery",
+      "theme": "dark",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-gallery-dark.jpg",
+      "metrics": {
+        "title": "Skill Gallery — colleague-skill",
+        "height": 2572,
+        "overflowX": false,
+        "bodyBackground": "rgb(15, 18, 22)",
+        "bodyColor": "rgb(235, 240, 244)",
+        "sections": 0,
+        "links": 243
+      },
+      "consoleErrors": []
+    },
+    {
+      "page": "gallery",
+      "theme": "dark",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-gallery-dark-mobile.jpg",
+      "metrics": {
+        "title": "Skill Gallery — colleague-skill",
+        "height": 5941,
+        "overflowX": false,
+        "bodyBackground": "rgb(15, 18, 22)",
+        "bodyColor": "rgb(235, 240, 244)",
+        "sections": 0,
+        "links": 243
+      },
+      "consoleErrors": []
+    },
+    {
+      "page": "detail",
+      "theme": "light",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/boss-skill/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-detail-light.jpg",
+      "metrics": {
+        "title": "老板 — colleague-skill Gallery",
+        "height": 1498,
+        "overflowX": false,
+        "bodyBackground": "rgb(239, 242, 241)",
+        "bodyColor": "rgb(21, 24, 27)",
+        "sections": 0,
+        "links": 28
+      },
+      "consoleErrors": []
+    },
+    {
+      "page": "detail",
+      "theme": "light",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/boss-skill/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-detail-light-mobile.jpg",
+      "metrics": {
+        "title": "老板 — colleague-skill Gallery",
+        "height": 2619,
+        "overflowX": false,
+        "bodyBackground": "rgb(239, 242, 241)",
+        "bodyColor": "rgb(21, 24, 27)",
+        "sections": 0,
+        "links": 28
+      },
+      "consoleErrors": []
+    },
+    {
+      "page": "detail",
+      "theme": "dark",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/boss-skill/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-detail-dark.jpg",
+      "metrics": {
+        "title": "老板 — colleague-skill Gallery",
+        "height": 1498,
+        "overflowX": false,
+        "bodyBackground": "rgb(15, 18, 22)",
+        "bodyColor": "rgb(235, 240, 244)",
+        "sections": 0,
+        "links": 28
+      },
+      "consoleErrors": []
+    },
+    {
+      "page": "detail",
+      "theme": "dark",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:4321/colleague-skill-site/gallery/boss-skill/",
+      "file": "docs/evidence/images/pr-04-chrome-i18n-detail-dark-mobile.jpg",
+      "metrics": {
+        "title": "老板 — colleague-skill Gallery",
+        "height": 2619,
+        "overflowX": false,
+        "bodyBackground": "rgb(15, 18, 22)",
+        "bodyColor": "rgb(235, 240, 244)",
+        "sections": 0,
+        "links": 28
+      },
+      "consoleErrors": []
+    }
+  ],
+  "failures": []
+}
