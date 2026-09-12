@@ -1,55 +1,35 @@
 # Integrated-state verification
 
+> Screenshots, capture receipts and diff images are **not committed** (see
+> `.gitignore`). Regenerate them with `cd website && npm run evidence`; the
+> figures quoted below come from those runs.
+
 This is the gate run on the **merged stack** (all four sibling PRs on top of the
 design-system base), not on an individual branch. A branch can be green alone and
 still regress the whole page once combined — this run is what rules that out.
 
 ## Merged state
 
-| Branch | Tip |
-| --- | --- |
-| `site/01-design-system` (base) | `8a05eca` |
-| `site/02-hero-quickstart` | `4ae0fd0` |
-| `site/03-gallery` | `e919de3` |
-| `site/04-chrome-i18n` | `ac30ca0` |
-| `site/05-quality` (this branch, before this commit) | `ac30ca0` → gates |
-| merge result (`site/99-integration`) | `d887e48` |
+| Branch | Tip | — | --- | --- | — | `site/01-design-system` (base) | `8a05eca` | — | `site/02-hero-quickstart` | `4ae0fd0` | — | `site/03-gallery` | `e919de3` | — | `site/04-chrome-i18n` | `ac30ca0` | — | `site/05-quality` (this branch, before this commit) | `ac30ca0` → gates | — | merge result (`site/99-integration`) | `d887e48` |
 
 Merges were clean: the branches touch disjoint files by construction (each agent
 was given an explicit file list and told not to edit base files).
 
 ## Results
 
-| Check | Command | Result |
-| --- | --- | --- |
-| Build | `npm run build` | ✅ **217 pages** |
-| Internal links | `npm run check:links` | ✅ **3887 links across 217 pages, 0 broken** |
-| Accessibility | `node scripts/check-a11y.mjs --sample 8` | ✅ **0 violations** (home, gallery, detail + 8 sampled catalog pages × light/dark = 22 combinations, no serious/critical/moderate) |
-| Evidence capture | `node scripts/capture.mjs --label integration` | ✅ 12 screenshots, **0 console errors, 0 horizontal overflow** |
-| Pixel diff vs live baseline | `node scripts/diff-captures.mjs --before before --after integration` | see below |
+| Check | Command | Result | — | --- | --- | --- | — | Build | `npm run build` | ✅ **217 pages** | — | Internal links | `npm run check:links` | ✅ **3887 links across 217 pages, 0 broken** | — | Accessibility | `node scripts/check-a11y.mjs --sample 8` | ✅ **0 violations** (home, gallery, detail + 8 sampled catalog pages × light/dark = 22 combinations, no serious/critical/moderate) | — | Evidence capture | `node scripts/capture.mjs --label integration` | ✅ 12 screenshots, **0 console errors, 0 horizontal overflow** | — | Pixel diff vs live baseline | `node scripts/diff-captures.mjs --before before --after integration` | see below |
 
 Page heights (desktop, light = dark):
 
-| Page | Live baseline | Integrated |
-| --- | --- | --- |
-| `/` | 5997 px | **6534 px** |
-| `/gallery/` | 2463 px | **3204 px** |
-| `/gallery/boss-skill/` | 1389 px | **3298 px** |
+| Page | Live baseline | Integrated | — | --- | --- | --- | — | `/` | 5997 px | **6534 px** | — | `/gallery/` | 2463 px | **3204 px** | — | `/gallery/boss-skill/` | 1389 px | **3298 px** |
 
 ## Before → after, measured
 
-| Page / theme | Changed pixels | Busiest band (y) |
-| --- | --- | --- |
-| home / light | 83.3 % | 2614–2940 px |
-| home / dark | 15.3 % | 6207–6534 px |
-| gallery / light | 90.6 % | 801–961 px |
-| gallery / dark | 33.0 % | 2884–3044 px |
-| detail / light | 57.6 % | 660–825 px |
-| detail / dark | 61.5 % | 2968–3133 px |
+| Page / theme | Changed pixels | Busiest band (y) | — | --- | --- | --- | — | home / light | 83.3 % | 2614–2940 px | — | home / dark | 15.3 % | 6207–6534 px | — | gallery / light | 90.6 % | 801–961 px | — | gallery / dark | 33.0 % | 2884–3044 px | — | detail / light | 57.6 % | 660–825 px | — | detail / dark | 61.5 % | 2968–3133 px |
 
 (The `dark` rows measure the theme switch as well: the live baseline was captured
 in the light theme only, so no dark difference image is kept — only the light
-ones, in `docs/evidence/diffs/`, downscaled for review.)
+ones, in `(local) `, downscaled for review.)
 
 ## What the individual PRs could not have proven
 
