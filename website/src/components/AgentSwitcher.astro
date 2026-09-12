@@ -1,0 +1,497 @@
+---
+/**
+ * AgentSwitcher — pick your coding agent, get the exact install route.
+ *
+ * Follows archify's "installation options" pattern
+ * (https://tt-a1i.github.io/archify/#quickstart): every host shows the exact
+ * command, the exact directory and an honest capability note, so nobody has to
+ * guess whether their agent is supported.
+ *
+ * The data comes from `src/data/agents.ts` — nothing is hand-written here:
+ *   - `skillsCliCommand(id, scope)` → the AgentSkills CLI one-liner
+ *   - `cloneCommand(id, scope)`     → the direct-clone route
+ *   - `globalPath` / `projectPath`  → the documented install directories
+ *   - `note.{zh,en}`                → the per-host caveat
+ *
+ * Progressive enhancement: the default host's panel is rendered visible, so
+ * without JS the page still answers "how do I install this?".
+ */
+import {
+  AGENTS,
+  DEFAULT_AGENT,
+  cloneCommand,
+  skillsCliCommand,
+  type CodingAgent,
+} from '../data/agents';
+
+interface Props {
+  /** id prefix — keeps tab/panel wiring unique if the switcher is used twice. */
+  id?: string;
+}
+
+const { id = 'agent-switcher' } = Astro.props;
+
+type Scope = 'global' | 'project';
+
+interface ScopeView {
+  scope: Scope;
+  cli: string;
+  clone: string;
+  path: string;
+}
+
+interface HostView {
+  agent: CodingAgent;
+  scopes: ScopeView[];
+  /** No `skillsCliId` → the `--agent` target is not a confirmed one. */
+  cliConfirmed: boolean;
+}
+
+const hosts: HostView[] = AGENTS.map((agent) => {
+  const scopes: ScopeView[] = [
+    {
+      scope: 'global',
+      cli: skillsCliCommand(agent.id, 'global'),
+      clone: cloneCommand(agent.id, 'global'),
+      path: agent.globalPath,
+    },
+  ];
+  if (agent.projectPath) {
+    scopes.push({
+      scope: 'project',
+      cli: skillsCliCommand(agent.id, 'project'),
+      clone: cloneCommand(agent.id, 'project'),
+      path: agent.projectPath,
+    });
+  }
+  return { agent, scopes, cliConfirmed: Boolean(agent.skillsCliId) };
+});
+
+const CAPABILITY = {
+  full: { zh: '完整能力 · 可读文件、可执行命令', en: 'Full — reads files, runs commands' },
+  'prompt-only': { zh: '仅提示词 · 无法执行仓库内工具', en: 'Prompt-only — cannot run bundled tooling' },
+} as const;
+
+const ROW = {
+  cli: { n: '01', zh: 'AgentSkills CLI 安装', en: 'Install with the AgentSkills CLI' },
+  clone: { n: '02', zh: '直接克隆到目录', en: 'Clone straight into the directory' },
+  path: { n: '03', zh: '宿主扫描的目录', en: 'Directory the host scans' },
+} as const;
+
+const copyLabel = (what: string, agent: string) => `Copy ${what} for ${agent}`;
+---
+
+<div class="agent-switcher" data-agent-switcher data-agent-default={DEFAULT_AGENT}>
+  <!-- Host picker: real buttons in a tablist, not divs pretending to be ones. -->
+  <div
+    role="tablist"
+    aria-orientation="horizontal"
+    aria-label="Coding agent"
+    class="flex flex-wrap gap-2"
+    data-agent-tablist
+  >
+    {hosts.map((host) => (
+      <button
+        type="button"
+        role="tab"
+        id={`${id}-tab-${host.agent.id}`}
+        aria-controls={`${id}-panel-${host.agent.id}`}
+        aria-selected={host.agent.id === DEFAULT_AGENT ? 'true' : 'false'}
+        tabindex={host.agent.id === DEFAULT_AGENT ? 0 : -1}
+        data-agent-tab={host.agent.id}
+        class="rounded-pill border border-line bg-paper-raised px-3.5 py-1.5 font-grotesk text-xs font-medium tracking-wide text-ink-muted transition-colors hover:border-accent/45 hover:text-accent-soft"
+      >
+        {host.agent.label}
+      </button>
+    ))}
+  </div>
+
+  <!-- Copy feedback for screen readers (and sighted users): polite, never silent. -->
+  <p
+    class="mt-3 min-h-[1.25rem] font-grotesk text-xs text-ink-muted"
+    role="status"
+    aria-live="polite"
+    data-copy-status
+  >
+    <span class="lang-zh"></span>
+    <span class="lang-en"></span>
+  </p>
+
+  {hosts.map((host) => (
+    <div
+      role="tabpanel"
+      id={`${id}-panel-${host.agent.id}`}
+      aria-labelledby={`${id}-tab-${host.agent.id}`}
+      data-agent-panel={host.agent.id}
+      hidden={host.agent.id !== DEFAULT_AGENT}
+      tabindex="0"
+      class="mt-3 rounded-card border border-line bg-paper-raised p-5 sm:p-7"
+    >
+      {/* Panel header: host name, honest capability badge, scope switch. */}
+      <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+          {/* Not a heading: the panel is already named by its tab, and the
+              switcher must not assume a heading level at its call site. */}
+          <p class="font-display text-xl font-semibold text-ink">{host.agent.label}</p>
+          <span
+            class:list={[
+              'inline-flex items-center gap-1.5 rounded-pill border px-2.5 py-0.5 font-grotesk text-[11px] font-medium tracking-wide text-ink-soft',
+              host.agent.capability === 'full'
+                ? 'border-ok/40 bg-ok/10'
+                : 'border-warn/40 bg-warn/10',
+            ]}
+          >
+            <span
+              aria-hidden="true"
+              class:list={[
+                'h-1.5 w-1.5 rounded-full',
+                host.agent.capability === 'full' ? 'bg-ok' : 'bg-warn',
+              ]}
+            ></span>
+            <span class="lang-zh">{CAPABILITY[host.agent.capability].zh}</span>
+            <span class="lang-en">{CAPABILITY[host.agent.capability].en}</span>
+          </span>
+        </div>
+
+        {host.scopes.length > 1 ? (
+          <div
+            role="group"
+            aria-label={`Install scope for ${host.agent.label}`}
+            class="inline-flex rounded-pill border border-line bg-paper-sunk p-0.5"
+          >
+            <button
+              type="button"
+              data-scope-button="global"
+              aria-pressed="true"
+              class="rounded-pill px-3 py-1 font-grotesk text-xs font-medium text-ink-muted transition-colors"
+            >
+              <span class="lang-zh">全局</span>
+              <span class="lang-en">Global</span>
+            </button>
+            <button
+              type="button"
+              data-scope-button="project"
+              aria-pressed="false"
+              class="rounded-pill px-3 py-1 font-grotesk text-xs font-medium text-ink-muted transition-colors"
+            >
+              <span class="lang-zh">项目内</span>
+              <span class="lang-en">Project</span>
+            </button>
+          </div>
+        ) : (
+          <p class="font-grotesk text-xs text-ink-muted">
+            <span class="lang-zh">只有全局目录（{host.agent.globalPath}），没有文档化的项目级路径。</span>
+            <span class="lang-en">Global install only — no documented project-local path.</span>
+          </p>
+        )}
+      </div>
+
+      {host.scopes.map((view) => (
+        <div data-scope-block={view.scope} hidden={view.scope !== 'global'}>
+          {/* 01 — AgentSkills CLI */}
+          <div class="mt-6" data-copy-row>
+            <div class="flex items-center justify-between gap-3">
+              <p class="section-label">
+                {ROW.cli.n} · <span class="lang-zh">{ROW.cli.zh}</span><span class="lang-en">{ROW.cli.en}</span>
+              </p>
+              <button
+                type="button"
+                data-copy
+                aria-label={copyLabel('the AgentSkills CLI command', host.agent.label)}
+                class="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-line bg-paper px-2.5 py-1 font-grotesk text-xs font-medium text-ink-muted transition-colors hover:border-accent/45 hover:text-accent-soft"
+              >
+                <svg class="icon-copy h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <svg class="icon-check h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="label-copy"><span class="lang-zh">复制</span><span class="lang-en">Copy</span></span>
+                <span class="label-copied"><span class="lang-zh">已复制</span><span class="lang-en">Copied</span></span>
+              </button>
+            </div>
+            <pre
+              class="code-block mt-2 px-4 py-3"
+              tabindex="0"
+              role="group"
+              aria-label={`${ROW.cli.en} — ${host.agent.label}`}
+            ><code data-copy-source class="block whitespace-pre leading-relaxed">{view.cli}</code></pre>
+            {!host.cliConfirmed && (
+              <p class="mt-2 font-grotesk text-xs text-warn">
+                <span class="lang-zh">
+                  AgentSkills CLI 尚未确认支持 <code>{host.agent.id}</code> 这个 <code>--agent</code> 目标；命令照 <code>agents.ts</code> 生成，失败就用下面的克隆方式。
+                </span>
+                <span class="lang-en">
+                  <code>{host.agent.id}</code> is not a confirmed AgentSkills CLI <code>--agent</code> target yet — the
+                  command is generated from <code>agents.ts</code>; use the clone route below if it fails.
+                </span>
+              </p>
+            )}
+          </div>
+
+          {/* 02 — direct clone */}
+          <div class="mt-6" data-copy-row>
+            <div class="flex items-center justify-between gap-3">
+              <p class="section-label">
+                {ROW.clone.n} · <span class="lang-zh">{ROW.clone.zh}</span><span class="lang-en">{ROW.clone.en}</span>
+              </p>
+              <button
+                type="button"
+                data-copy
+                aria-label={copyLabel('the clone command', host.agent.label)}
+                class="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-line bg-paper px-2.5 py-1 font-grotesk text-xs font-medium text-ink-muted transition-colors hover:border-accent/45 hover:text-accent-soft"
+              >
+                <svg class="icon-copy h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <svg class="icon-check h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="label-copy"><span class="lang-zh">复制</span><span class="lang-en">Copy</span></span>
+                <span class="label-copied"><span class="lang-zh">已复制</span><span class="lang-en">Copied</span></span>
+              </button>
+            </div>
+            <pre
+              class="code-block mt-2 px-4 py-3"
+              tabindex="0"
+              role="group"
+              aria-label={`${ROW.clone.en} — ${host.agent.label}`}
+            ><code data-copy-source class="block whitespace-pre leading-relaxed">{view.clone}</code></pre>
+          </div>
+
+          {/* 03 — documented directory */}
+          <div class="mt-6 border-t border-line pt-4" data-copy-row>
+            <div class="flex items-center justify-between gap-3">
+              <p class="section-label">
+                {ROW.path.n} · <span class="lang-zh">{ROW.path.zh}</span><span class="lang-en">{ROW.path.en}</span>
+              </p>
+              <button
+                type="button"
+                data-copy
+                aria-label={copyLabel('the install directory', host.agent.label)}
+                class="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-line bg-paper px-2.5 py-1 font-grotesk text-xs font-medium text-ink-muted transition-colors hover:border-accent/45 hover:text-accent-soft"
+              >
+                <svg class="icon-copy h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <svg class="icon-check h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="label-copy"><span class="lang-zh">复制</span><span class="lang-en">Copy</span></span>
+                <span class="label-copied"><span class="lang-zh">已复制</span><span class="lang-en">Copied</span></span>
+              </button>
+            </div>
+            <code data-copy-source class="mt-1 block break-all font-mono text-sm text-ink-soft">{view.path}</code>
+          </div>
+
+          {/* Honest per-host caveat, straight from the support matrix. */}
+          <p class="mt-5 border-l-2 border-accent/40 pl-3 text-sm leading-relaxed text-ink-muted">
+            <span class="lang-zh">{host.agent.note.zh}</span>
+            <span class="lang-en">{host.agent.note.en}</span>
+          </p>
+        </div>
+      ))}
+    </div>
+  ))}
+</div>
+
+<style>
+  /* Scoped twin of the site-wide language switch: `html[data-lang]` flips the
+     pair. It lives here rather than in global.css because that file belongs to
+     the design-system PR — see the PR-02 evidence notes. */
+  :global(html[data-lang='en']) .lang-zh {
+    display: none !important;
+  }
+  :global(html:not([data-lang='en'])) .lang-en {
+    display: none !important;
+  }
+
+  /* Panels and scope blocks are toggled with the `hidden` attribute; make sure
+     no utility class can win over it. */
+  [data-agent-panel][hidden],
+  [data-scope-block][hidden] {
+    display: none !important;
+  }
+
+  /* Selection is signalled by the accent tint + border; the label stays `ink`
+     so the 12px text keeps a >4.5:1 ratio in both themes. */
+  [data-agent-tab][aria-selected='true'] {
+    background: rgb(var(--accent) / 0.12);
+    border-color: rgb(var(--accent) / 0.55);
+    color: rgb(var(--ink));
+  }
+
+  [data-scope-button][aria-pressed='true'] {
+    background: rgb(var(--accent) / 0.14);
+    color: rgb(var(--ink));
+  }
+
+  [data-copy] .icon-check,
+  [data-copy] .label-copied {
+    display: none;
+  }
+
+  [data-copy].is-copied {
+    border-color: rgb(var(--ok) / 0.5);
+    color: rgb(var(--ok));
+  }
+
+  [data-copy].is-copied .icon-copy,
+  [data-copy].is-copied .label-copy {
+    display: none;
+  }
+
+  [data-copy].is-copied .icon-check,
+  [data-copy].is-copied .label-copied {
+    display: inline-flex;
+  }
+</style>
+
+<script>
+  const MESSAGES = {
+    copied: { zh: '已复制到剪贴板。', en: 'Copied to clipboard.' },
+    selected: {
+      zh: '这个浏览器不允许自动复制，命令已选中 —— 请按 Ctrl / ⌘ + C。',
+      en: 'Automatic copy is unavailable here, so the command is selected — press Ctrl / ⌘ + C.',
+    },
+    failed: { zh: '复制失败，请手动选中命令后复制。', en: 'Copy failed — select the command and copy it manually.' },
+  };
+
+  type MessageKey = keyof typeof MESSAGES;
+
+  const timers = new WeakMap<HTMLElement, number>();
+
+  function setStatus(root: HTMLElement, key: MessageKey) {
+    const status = root.querySelector<HTMLElement>('[data-copy-status]');
+    if (!status) return;
+    const message = MESSAGES[key];
+    const zh = status.querySelector<HTMLElement>('.lang-zh');
+    const en = status.querySelector<HTMLElement>('.lang-en');
+    if (zh) zh.textContent = message.zh;
+    if (en) en.textContent = message.en;
+  }
+
+  /** Fallback when the async clipboard API is missing or refuses (non-secure context). */
+  function selectText(node: Node): boolean {
+    try {
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      const selection = window.getSelection();
+      if (!selection) return false;
+      selection.removeAllRanges();
+      selection.addRange(range);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  async function copyRow(row: HTMLElement): Promise<MessageKey> {
+    const source = row.querySelector<HTMLElement>('[data-copy-source]');
+    const text = (source?.textContent ?? '').trim();
+    if (!text) return 'failed';
+
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return 'copied';
+      } catch {
+        /* fall through to the selection fallback */
+      }
+    }
+    return source && selectText(source) ? 'selected' : 'failed';
+  }
+
+  function setUpSwitcher(root: HTMLElement) {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-agent-tab]'));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-agent-panel]'));
+    let scope: 'global' | 'project' = 'global';
+
+    const scopesOf = (panel: HTMLElement): string[] =>
+      Array.from(panel.querySelectorAll<HTMLElement>('[data-scope-block]')).map(
+        (block) => block.dataset.scopeBlock ?? 'global'
+      );
+
+    function applyScope(panel: HTMLElement) {
+      const available = scopesOf(panel);
+      const active = available.includes(scope) ? scope : 'global';
+      panel.querySelectorAll<HTMLElement>('[data-scope-block]').forEach((block) => {
+        block.hidden = block.dataset.scopeBlock !== active;
+      });
+      panel.querySelectorAll<HTMLButtonElement>('[data-scope-button]').forEach((button) => {
+        const pressed = button.dataset.scopeButton === active;
+        button.setAttribute('aria-pressed', String(pressed));
+        button.disabled = !available.includes(button.dataset.scopeButton ?? '');
+        button.title = button.disabled
+          ? 'No documented project-local directory for this host — use the global install.'
+          : '';
+      });
+    }
+
+    function selectAgent(id: string, moveFocus = false) {
+      const panel = panels.find((candidate) => candidate.dataset.agentPanel === id);
+      if (panel && !scopesOf(panel).includes(scope)) scope = 'global';
+
+      tabs.forEach((tab) => {
+        const selected = tab.dataset.agentTab === id;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        if (selected && moveFocus) tab.focus();
+      });
+
+      panels.forEach((candidate) => {
+        const selected = candidate.dataset.agentPanel === id;
+        candidate.hidden = !selected;
+        if (selected) applyScope(candidate);
+      });
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => selectAgent(tab.dataset.agentTab ?? ''));
+    });
+
+    const tablist = root.querySelector<HTMLElement>('[data-agent-tablist]');
+    tablist?.addEventListener('keydown', (event) => {
+      const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+      if (!keys.includes(event.key)) return;
+      const current = tabs.findIndex((tab) => tab === document.activeElement);
+      if (current === -1) return;
+      event.preventDefault();
+      let next = current;
+      if (event.key === 'ArrowRight') next = (current + 1) % tabs.length;
+      if (event.key === 'ArrowLeft') next = (current - 1 + tabs.length) % tabs.length;
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = tabs.length - 1;
+      selectAgent(tabs[next].dataset.agentTab ?? '', true);
+    });
+
+    root.querySelectorAll<HTMLButtonElement>('[data-scope-button]').forEach((button) => {
+      button.addEventListener('click', () => {
+        scope = button.dataset.scopeButton === 'project' ? 'project' : 'global';
+        const panel = panels.find((candidate) => !candidate.hidden);
+        if (panel) applyScope(panel);
+      });
+    });
+
+    root.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const row = button.closest<HTMLElement>('[data-copy-row]');
+        if (!row) return;
+        const result = await copyRow(row);
+        setStatus(root, result);
+        if (result === 'failed') return;
+        button.classList.add('is-copied');
+        window.clearTimeout(timers.get(button));
+        timers.set(
+          button,
+          window.setTimeout(() => button.classList.remove('is-copied'), 2000)
+        );
+      });
+    });
+
+    const initial = root.dataset.agentDefault || tabs[0]?.dataset.agentTab || '';
+    selectAgent(initial);
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-agent-switcher]').forEach(setUpSwitcher);
+</script>
