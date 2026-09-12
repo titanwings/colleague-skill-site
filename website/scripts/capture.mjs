@@ -112,6 +112,21 @@ await mkdir(receiptDir, { recursive: true });
 
 let server;
 let origin = `http://127.0.0.1:${port}`;
+// Never leave an orphan preview behind: a crashed run used to keep the port
+// bound and made the next run (or a peer worktree) fail confusingly.
+const killServer = () => {
+  if (server) {
+    server.kill('SIGTERM');
+    server = null;
+  }
+};
+process.on('exit', killServer);
+for (const signal of ['SIGINT', 'SIGTERM']) {
+  process.on(signal, () => {
+    killServer();
+    process.exit(signal === 'SIGINT' ? 130 : 143);
+  });
+}
 let markerPath;
 if (serve) {
   // Refuse to guess: if something already answers on this port it is not ours.

@@ -85,23 +85,22 @@ export const AGENTS: CodingAgent[] = [
     label: 'OpenClaw',
     skillsCliId: 'openclaw',
     globalPath: '~/.openclaw/workspace/skills/distilly',
-    projectPath: '.openclaw/skills/distilly',
     capability: 'full',
     note: {
-      zh: 'Skill 目录即工作区子目录，装完重开 session 生效。',
-      en: 'The Skill directory lives inside the workspace; reopen the session after install.',
+      zh: 'Skill 目录即工作区子目录，装完重开 session 生效；项目级目录由用户在 OpenClaw 里自定义，官方文档未给确切路径，这里不猜。',
+      en: 'The Skill directory lives inside the workspace; reopen the session after install. Project-local paths are user-defined in OpenClaw, so none is claimed here.',
     },
   },
   {
     id: 'hermes',
     label: 'Hermes',
     skillsCliId: 'hermes',
-    globalPath: '~/.hermes/skills/distilly',
+    globalPath: '~/.hermes/skills/openclaw-imports/distilly',
     projectPath: '.hermes/skills/distilly',
     capability: 'full',
     note: {
-      zh: '项目级安装需先在该目录运行 hermes skills trust。',
-      en: 'Project-local installs need `hermes skills trust` in that directory first.',
+      zh: '默认装在 Hermes 的 openclaw-imports 目录（见 tools/install_hermes_skill.py）；项目级安装需先在该目录运行 hermes skills trust。',
+      en: 'Installs into Hermes’ openclaw-imports directory (see tools/install_hermes_skill.py); project-local installs need `hermes skills trust` there first.',
     },
   },
   {
