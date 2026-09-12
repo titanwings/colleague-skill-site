@@ -12,7 +12,8 @@
     "evidence": "npm run build && node scripts/capture.mjs --label current",
     "check:a11y": "node scripts/check-a11y.mjs",
     "check:links": "node scripts/check-links.mjs",
-    "check": "npm run build && npm run check:links && npm run check:a11y"
+    "check": "npm run build && npm run check:links && npm run check:a11y",
+    "diff": "node scripts/diff-captures.mjs"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
