@@ -1,124 +1,185 @@
 ---
-const base = import.meta.env.BASE_URL;
+/**
+ * Footer — brand, three link groups, live language/theme state, copyright.
+ *
+ * Every outbound URL is derived from `BRAND` (no hard-coded repository or
+ * Discord URLs): the product repo, its releases/issues/readme, the submission
+ * template, the AgentSkills spec and the site repo. Group titles are real
+ * `<h2>`s so the heading outline never jumps from `h1` straight to `h4`.
+ *
+ * The state row reuses the same LangToggle / ThemeToggle components as the
+ * navbar, and mirrors both values as machine-readable text for screenshots and
+ * tests (`[data-state-lang]`, `[data-state-theme]`).
+ */
+import { BRAND } from '../data/brand';
+import LangToggle from './LangToggle.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
-const links = {
-  project: {
-    zh: '项目',
-    en: 'Project',
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+const owner = BRAND.siteRepo.split('/')[0];
+
+const externalNote = { zh: '（新标签页打开）', en: '(opens in a new tab)' };
+
+const groups = [
+  {
+    titleZh: '产品',
+    titleEn: 'Product',
     items: [
-      { label: 'Quick Start', href: 'https://github.com/titanwings/colleague-skill#readme', external: true },
-      { label: 'PRD Docs', href: 'https://github.com/titanwings/colleague-skill/blob/main/docs/PRD.md', external: true },
-      { label: 'Changelog', href: 'https://github.com/titanwings/colleague-skill/releases', external: true },
+      { zh: '快速开始', en: 'Quick Start', href: `${BRAND.repoUrl}#readme`, external: true },
+      { zh: '版本发布', en: 'Releases', href: `${BRAND.repoUrl}/releases`, external: true },
+      { zh: '问题反馈', en: 'Issues', href: `${BRAND.repoUrl}/issues`, external: true },
     ],
   },
-  community: {
-    zh: '社区',
-    en: 'Community',
+  {
+    titleZh: '社区',
+    titleEn: 'Community',
     items: [
-      { labelZh: 'Skill Gallery', labelEn: 'Skill Gallery', href: `${base}/gallery/`, external: false },
-      { labelZh: '提交 Skill', labelEn: 'Submit a Skill', href: 'https://github.com/titanwings/colleague-skill-site/issues/new?template=submit-skill.yml', external: true },
-      { labelZh: 'GitHub Issues', labelEn: 'GitHub Issues', href: 'https://github.com/titanwings/colleague-skill/issues', external: true },
+      { zh: 'Skill Gallery', en: 'Skill Gallery', href: `${base}/gallery/`, external: false },
+      { zh: '提交 Skill', en: 'Submit a Skill', href: BRAND.submitUrl, external: true },
+      { zh: 'Discord', en: 'Discord', href: BRAND.discordUrl, external: true },
     ],
   },
-  standard: {
-    zh: '标准',
-    en: 'Standard',
+  {
+    titleZh: '开放标准',
+    titleEn: 'Open standard',
     items: [
-      { label: 'AgentSkills Spec', href: 'https://agentskills.io', external: true },
-      { label: 'MCP Protocol', href: 'https://modelcontextprotocol.io', external: true },
-      { label: 'Claude Code', href: 'https://claude.ai/code', external: true },
+      { zh: 'AgentSkills 规范', en: 'AgentSkills spec', href: BRAND.agentskillsUrl, external: true },
+      {
+        zh: '格式校验',
+        en: 'Format validation',
+        href: `${BRAND.siteRepoUrl}/blob/main/.github/workflows/validate-skill.yml`,
+        external: true,
+      },
+      { zh: '站点源码', en: 'Site source', href: BRAND.siteRepoUrl, external: true },
     ],
   },
-};
+];
+
+const linkClass = 'text-sm text-ink-muted transition-colors hover:text-ink';
 ---
 
-<footer class="border-t border-surface-800 bg-surface-900/50 mt-auto">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-      <!-- Brand column -->
-      <div class="col-span-2 md:col-span-1">
-        <a href={`${base}/`} class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 rounded-lg bg-brand-500/20 border border-brand-500/40 flex items-center justify-center">
-            <span class="text-brand-400 font-mono font-bold text-base">.</span>
-          </div>
-          <span class="font-bold text-ink text-base font-mono">
-            <span class="text-brand-400">dot</span>-skill
-          </span>
+<footer class="mt-auto border-t border-line bg-paper-sunk">
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="grid gap-10 md:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,1fr))]">
+      <!-- Brand -->
+      <div>
+        <a href={`${base}/`} class="inline-flex items-center gap-2.5" aria-label={BRAND.name}>
+          <span
+            aria-hidden="true"
+            class="flex h-7 w-7 items-center justify-center rounded-[10px] border border-line bg-paper-raised font-mono text-sm leading-none text-accent-soft"
+            >.</span
+          >
+          <span class="font-grotesk text-[15px] font-semibold tracking-tight text-ink">{BRAND.name}</span>
         </a>
-        <p class="text-surface-500 text-base leading-relaxed mb-4">
-          <span class="lang-zh">把任何人的智慧蒸馏成 dot-skill。</span>
-          <span class="lang-en">Distill anyone's wisdom into a dot-skill.</span>
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
+          <span class="lang-zh">{BRAND.shortDescription.zh}</span>
+          <span class="lang-en">{BRAND.shortDescription.en}</span>
         </p>
-        <div class="flex items-center gap-3">
+        <div class="mt-5 flex items-center gap-3">
           <a
-            href="https://github.com/titanwings/colleague-skill"
+            href={BRAND.repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-surface-500 hover:text-ink transition-colors"
-            aria-label="GitHub"
+            class="text-ink-muted transition-colors hover:text-ink"
           >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              ></path>
             </svg>
+            <span class="sr-only">GitHub <span class="lang-zh">{externalNote.zh}</span><span class="lang-en">{externalNote.en}</span></span>
           </a>
           <a
-            href="https://discord.gg/NVX66RxWZv"
+            href={BRAND.discordUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-surface-500 hover:text-indigo-400 transition-colors"
-            aria-label="Discord"
+            class="text-ink-muted transition-colors hover:text-ink"
           >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.036.055a19.904 19.904 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 13.99 13.99 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .036-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.036.055a19.904 19.904 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 13.99 13.99 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .036-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"
+              ></path>
             </svg>
+            <span class="sr-only">Discord <span class="lang-zh">{externalNote.zh}</span><span class="lang-en">{externalNote.en}</span></span>
           </a>
         </div>
       </div>
 
-      <!-- Link columns -->
-      {Object.values(links).map((group) => (
-        <div>
-          <h4 class="text-base font-semibold text-surface-400 uppercase tracking-wider mb-3">
-            <span class="lang-zh">{group.zh}</span>
-            <span class="lang-en">{group.en}</span>
-          </h4>
-          <ul class="space-y-2">
-            {group.items.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  target={item.external ? '_blank' : undefined}
-                  rel={item.external ? 'noopener noreferrer' : undefined}
-                  class="text-surface-500 hover:text-surface-200 text-base transition-colors inline-flex items-center gap-1"
-                >
-                  {item.labelZh ? (
-                    <>
-                      <span class="lang-zh">{item.labelZh}</span>
-                      <span class="lang-en">{item.labelEn}</span>
-                    </>
-                  ) : item.label}
-                  {item.external && (
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                    </svg>
-                  )}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      <!-- Link groups -->
+      {
+        groups.map((group) => (
+          <div>
+            <h2 class="font-grotesk text-xs font-medium uppercase tracking-[0.18em] text-ink-muted">
+              <span class="lang-zh">{group.titleZh}</span>
+              <span class="lang-en">{group.titleEn}</span>
+            </h2>
+            <ul class="mt-4 space-y-2.5">
+              {group.items.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    target={item.external ? '_blank' : undefined}
+                    rel={item.external ? 'noopener noreferrer' : undefined}
+                    class={linkClass}
+                  >
+                    <span class="lang-zh">{item.zh}</span>
+                    <span class="lang-en">{item.en}</span>
+                    {item.external && (
+                      <>
+                        <span aria-hidden="true" class="ml-1 font-mono text-[11px]">
+                          ↗
+                        </span>
+                        <span class="sr-only">
+                          <span class="lang-zh">{externalNote.zh}</span>
+                          <span class="lang-en">{externalNote.en}</span>
+                        </span>
+                      </>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
 
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-8 border-t border-surface-800">
-      <p class="text-surface-600 text-base">
-        MIT License · Made with ❤️ by
-        <a href="https://github.com/titanwings" class="text-surface-500 hover:text-brand-400 transition-colors" target="_blank" rel="noopener noreferrer">titanwings</a>
+    <!-- Live language + theme state, with the same toggles as the navbar. -->
+    <div class="mt-12 flex flex-col gap-5 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex flex-wrap items-center gap-2">
+        <LangToggle />
+        <ThemeToggle />
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.14em] text-ink-muted">
+        lang=<span data-state-lang>zh</span>
+        <span aria-hidden="true"> · </span>
+        theme=<span data-state-theme>auto</span>
       </p>
-      <p class="text-surface-700 text-base font-mono">
-        <span class="lang-zh">// 人会离开，dot-skill 不会</span>
-        <span class="lang-en">// People leave. dot-skills don't.</span>
+    </div>
+
+    <div class="mt-8 flex flex-col gap-2 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-xs text-ink-muted">© {year} {BRAND.name} · <a href={`https://github.com/${owner}`} target="_blank" rel="noopener noreferrer" class="text-ink-muted hover:text-ink">{owner}</a></p>
+      <p class="font-mono text-xs text-ink-muted">
+        <span class="lang-zh">// {BRAND.tagline.zh}</span>
+        <span class="lang-en">// {BRAND.tagline.en}</span>
       </p>
     </div>
   </div>
 </footer>
+
+<script>
+  const langOut = document.querySelector<HTMLElement>('[data-state-lang]');
+  const themeOut = document.querySelector<HTMLElement>('[data-state-theme]');
+
+  function syncState() {
+    const lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'zh';
+    const theme = document.documentElement.getAttribute('data-theme') || 'auto';
+    if (langOut) langOut.textContent = lang;
+    if (themeOut) themeOut.textContent = theme;
+  }
+
+  syncState();
+  window.addEventListener('langchange', syncState);
+  window.addEventListener('themechange', syncState);
+</script>
