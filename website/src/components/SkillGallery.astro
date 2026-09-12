@@ -25,7 +25,7 @@ const { skills, base } = Astro.props;
         data-placeholder-zh="搜索 Skill 名称、描述、标签..."
         data-placeholder-en="Search skills by name, description, tag..."
         placeholder="搜索 Skill 名称、描述、标签..."
-        class="w-full pl-10 pr-4 py-2.5 bg-surface-800 border border-surface-700 hover:border-surface-600 focus:border-brand-500/60 focus:outline-none rounded-lg text-base text-white placeholder-surface-500 transition-colors"
+        class="w-full pl-10 pr-4 py-2.5 bg-surface-800 border border-surface-700 hover:border-surface-600 focus:border-brand-500/60 focus:outline-none rounded-lg text-base text-ink placeholder-surface-500 transition-colors"
       />
     </div>
     <!-- Type pills -->
@@ -33,8 +33,8 @@ const { skills, base } = Astro.props;
       <button data-type="" class="type-pill active px-3 py-1 rounded-full text-base font-mono border transition-all cursor-pointer bg-brand-500/20 border-brand-500/50 text-brand-300">
         <span class="lang-zh">全部</span><span class="lang-en">All</span>
       </button>
-      <button data-type="skill" class="type-pill px-3 py-1 rounded-full text-base font-mono border transition-all cursor-pointer bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-white">skill</button>
-      <button data-type="meta-skill" class="type-pill px-3 py-1 rounded-full text-base font-mono border transition-all cursor-pointer bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-white">meta-skill</button>
+      <button data-type="skill" class="type-pill px-3 py-1 rounded-full text-base font-mono border transition-all cursor-pointer bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-ink">skill</button>
+      <button data-type="meta-skill" class="type-pill px-3 py-1 rounded-full text-base font-mono border transition-all cursor-pointer bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-ink">meta-skill</button>
     </div>
   </div>
 
@@ -81,11 +81,11 @@ const { skills, base } = Astro.props;
 
   <!-- Pagination -->
   <div id="pagination" class="hidden flex items-center justify-center gap-2 mt-10">
-    <button id="prev-btn" class="px-4 py-2 rounded-lg text-base font-mono border bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+    <button id="prev-btn" class="px-4 py-2 rounded-lg text-base font-mono border bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-ink transition-all disabled:opacity-30 disabled:cursor-not-allowed">
       <span class="lang-zh">上一页</span><span class="lang-en">Prev</span>
     </button>
     <span id="page-info" class="text-surface-500 text-base font-mono px-3"></span>
-    <button id="next-btn" class="px-4 py-2 rounded-lg text-base font-mono border bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+    <button id="next-btn" class="px-4 py-2 rounded-lg text-base font-mono border bg-surface-800/60 border-surface-600 text-surface-300 hover:border-surface-400 hover:text-ink transition-all disabled:opacity-30 disabled:cursor-not-allowed">
       <span class="lang-zh">下一页</span><span class="lang-en">Next</span>
     </button>
   </div>
