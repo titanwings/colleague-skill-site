@@ -184,15 +184,3 @@ const hostCount = AGENTS.length;
     </div>
   </div>
 </section>
-
-<style>
-  /* Scoped twin of the site-wide language switch: `html[data-lang]` flips the
-     pair. It lives here rather than in global.css because that file belongs to
-     the design-system PR — see the PR-02 evidence notes. */
-  :global(html[data-lang='en']) .lang-zh {
-    display: none !important;
-  }
-  :global(html:not([data-lang='en'])) .lang-en {
-    display: none !important;
-  }
-</style>
