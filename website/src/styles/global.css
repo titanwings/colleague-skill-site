@@ -1,14 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/*
+ * Distilly marketplace — global theme.
+ *
+ * Design system: "paper & ink", one burnt-orange accent,
+ * colour reserved for semantics. Every token lives in a CSS variable as an
+ * `R G B` triplet so `[data-theme]` flips the whole site and Tailwind opacity
+ * modifiers keep working.
+ *
+ * Theme selection:
+ *   <html data-theme="light|dark|auto">  (auto follows prefers-color-scheme)
+ */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Language toggle system */
-.lang-en { display: none; }
-html[data-lang="en"] .lang-zh { display: none; }
-html[data-lang="en"] .lang-en { display: revert; }
+/* ---------------------------------------------------------------- tokens -- */
+:root,
+html[data-theme='light'] {
+  --paper: 239 242 241;
+  --paper-raised: 248 250 249;
+  --paper-sunk: 230 234 233;
+  --ink: 21 24 27;
+  --ink-soft: 54 60 65;
+  --ink-muted: 96 104 109;
+  --ink-dim: 146 154 158;
+  --accent: 225 74 14;
+  --accent-soft: 194 65 12;
+  --accent-deep: 154 52 18;
+  --accent-wash: 253 240 234;
+  --line: 214 221 219;
+  --plate: 15 18 22;
+  --plate-ink: 230 237 243;
+  --plate-line: 42 48 56;
+  --ok: 4 120 87;
+  --warn: 180 83 9;
+  --info: 8 145 178;
+  --violet: 109 40 217;
+  --rose: 190 18 60;
+  --shadow: 15 18 22;
+  --grid-opacity: 0.5;
+}
 
+html[data-theme='dark'] {
+  --paper: 15 18 22;
+  --paper-raised: 22 27 33;
+  --paper-sunk: 11 13 16;
+  --ink: 235 240 244;
+  --ink-soft: 200 208 214;
+  --ink-muted: 150 160 168;
+  --ink-dim: 110 120 128;
+  --accent: 251 146 60;
+  --accent-soft: 249 115 22;
+  --accent-deep: 234 88 12;
+  --accent-wash: 41 24 12;
+  --line: 42 48 56;
+  --plate: 9 11 14;
+  --plate-ink: 230 237 243;
+  --plate-line: 38 44 52;
+  --ok: 52 211 153;
+  --warn: 251 191 36;
+  --info: 34 211 238;
+  --violet: 167 139 250;
+  --rose: 251 113 133;
+  --shadow: 0 0 0;
+  --grid-opacity: 0.35;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme='auto'] {
+    --paper: 15 18 22;
+    --paper-raised: 22 27 33;
+    --paper-sunk: 11 13 16;
+    --ink: 235 240 244;
+    --ink-soft: 200 208 214;
+    --ink-muted: 150 160 168;
+    --ink-dim: 110 120 128;
+    --accent: 251 146 60;
+    --accent-soft: 249 115 22;
+    --accent-deep: 234 88 12;
+    --accent-wash: 41 24 12;
+    --line: 42 48 56;
+    --plate: 9 11 14;
+    --plate-ink: 230 237 243;
+    --plate-line: 38 44 52;
+    --ok: 52 211 153;
+    --warn: 251 191 36;
+    --info: 34 211 238;
+    --violet: 167 139 250;
+    --rose: 251 113 133;
+    --shadow: 0 0 0;
+    --grid-opacity: 0.35;
+  }
+}
+
+/* ------------------------------------------------------------ base layer -- */
 @layer base {
   * {
     box-sizing: border-box;
@@ -18,85 +103,128 @@ html[data-lang="en"] .lang-en { display: revert; }
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-underline-offset: 0.2em;
   }
 
   body {
-    @apply bg-surface-900 text-surface-100 font-sans;
+    @apply bg-paper text-ink font-sans antialiased;
+    background-image: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply text-ink;
+  }
+
+  a {
+    @apply text-accent-soft underline-offset-4;
+  }
+
+  a:hover {
+    @apply underline;
+  }
+
+  /* Visible, consistent keyboard focus everywhere. */
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 
   ::selection {
-    @apply bg-brand-500/30 text-brand-200;
+    background: rgb(var(--accent) / 0.22);
+    color: rgb(var(--ink));
   }
 
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
+    height: 8px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-surface-900;
+    background: rgb(var(--paper-sunk));
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-surface-600 rounded-full;
+    background: rgb(var(--line));
+    border-radius: 999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-surface-500;
+    background: rgb(var(--ink-dim));
+  }
+
+  code,
+  pre,
+  kbd {
+    @apply font-mono;
   }
 }
 
+/* ------------------------------------------------------ component layer -- */
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-brand-500 hover:bg-brand-400 text-surface-900 font-semibold rounded-lg transition-all duration-200 hover:shadow-glow-amber hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-lg transition-all duration-200 hover:bg-accent-soft hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-6 py-3 border border-surface-600 hover:border-brand-500/50 text-surface-200 hover:text-brand-400 font-medium rounded-lg transition-all duration-200 hover:bg-surface-800;
+    @apply inline-flex items-center gap-2 px-6 py-3 border border-line text-ink-soft font-medium rounded-lg transition-all duration-200 hover:border-accent/60 hover:text-accent-soft hover:bg-paper-raised;
   }
 
   .tag-pill {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-700 text-surface-300 border border-surface-600/50;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-pill text-xs font-medium bg-paper-sunk text-ink-muted border border-line;
   }
 
   .tag-pill-brand {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-500/15 text-brand-400 border border-brand-500/30;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-pill text-xs font-medium bg-accent/12 text-accent-soft border border-accent/30;
   }
 
   .card-base {
-    @apply bg-surface-800 border border-surface-700 rounded-xl shadow-card transition-all duration-300;
+    @apply bg-paper-raised border border-line rounded-card shadow-card transition-all duration-300;
   }
 
   .card-hover {
-    @apply hover:border-brand-500/40 hover:shadow-card-hover hover:-translate-y-1;
+    @apply hover:border-accent/45 hover:shadow-card-hover hover:-translate-y-1;
   }
 
   .section-heading {
-    @apply text-3xl md:text-4xl font-bold text-white;
+    @apply font-display text-3xl md:text-4xl font-semibold tracking-tight text-ink;
   }
 
   .section-sub {
-    @apply text-surface-400 text-lg mt-3 max-w-2xl mx-auto;
+    @apply text-ink-muted text-lg mt-3 max-w-2xl mx-auto;
+  }
+
+  .section-label {
+    @apply font-grotesk uppercase tracking-[0.18em] text-xs font-medium text-accent-soft;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-brand-400 to-brand-600 bg-clip-text text-transparent;
+    @apply text-accent-soft;
+    background: none;
   }
 
   .code-block {
-    @apply bg-surface-900 border border-surface-700 rounded-lg font-mono text-sm overflow-x-auto;
+    @apply bg-plate text-plate-ink border border-plate-line rounded-lg font-mono text-sm overflow-x-auto;
   }
 
   .terminal-window {
-    @apply bg-surface-900 border border-surface-700 rounded-xl overflow-hidden shadow-2xl;
+    @apply bg-plate border border-plate-line rounded-card overflow-hidden shadow-plate;
   }
 
   .terminal-header {
-    @apply flex items-center gap-2 px-4 py-3 bg-surface-800 border-b border-surface-700;
+    @apply flex items-center gap-2 px-4 py-3 bg-plate border-b border-plate-line text-plate-ink;
   }
 
   .terminal-dot {
     @apply w-3 h-3 rounded-full;
   }
+
+  /* Ink-on-paper editorial rule used between sections. */
+  .hairline {
+    @apply border-t border-line;
+  }
 }
 
-/* Scroll reveal animation */
+/* -------------------------------------------------------------- motion -- */
 .reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -108,11 +236,15 @@ html[data-lang="en"] .lang-en { display: revert; }
   transform: translateY(0);
 }
 
-/* Stagger children */
 .stagger-children > * {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .stagger-children.visible > *:nth-child(1) { transition-delay: 0ms; }
@@ -120,19 +252,41 @@ html[data-lang="en"] .lang-en { display: revert; }
 .stagger-children.visible > *:nth-child(3) { transition-delay: 200ms; }
 .stagger-children.visible > *:nth-child(4) { transition-delay: 300ms; }
 .stagger-children.visible > *:nth-child(5) { transition-delay: 400ms; }
-.stagger-children.visible > * {
-  opacity: 1;
-  transform: translateY(0);
-}
 
-/* Glow effect for highlighted code */
 .highlight-amber {
-  color: #fbbf24;
-  text-shadow: 0 0 20px rgba(251,191,36,0.5);
+  color: rgb(var(--accent));
 }
 
-/* Terminal cursor */
 .cursor::after {
   content: '▋';
-  @apply text-brand-400 animate-terminal-blink;
+  @apply text-accent animate-terminal-blink;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .stagger-children > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --------------------------------------------------------------- print -- */
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
+  .no-print {
+    display: none !important;
+  }
 }
