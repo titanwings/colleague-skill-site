@@ -90,7 +90,7 @@ const tagColors: Record<string, string> = {
 
         <div class="flex-1 min-w-0">
           <div class="flex flex-wrap items-start gap-3 mb-2">
-            <h1 class="text-2xl font-black text-white">{skill.name}</h1>
+            <h1 class="text-2xl font-black text-ink">{skill.name}</h1>
             {skill.company_culture && (
               <span class="px-2.5 py-0.5 text-base rounded bg-surface-700 border border-surface-600 text-surface-300 font-mono">
                 <span class="lang-zh">{skill.company_culture}</span>
@@ -203,7 +203,7 @@ const tagColors: Record<string, string> = {
               onerror="this.style.display='none'"
             />
             <div>
-              <p class="text-white text-base font-medium">{skill.author.name}</p>
+              <p class="text-ink text-base font-medium">{skill.author.name}</p>
               <a
                 href={`https://github.com/${skill.author.github}`}
                 target="_blank"

@@ -82,7 +82,7 @@ const nextSteps = [
               <div class="w-9 h-9 rounded-lg bg-surface-700 border border-surface-600 flex items-center justify-center text-surface-300 group-hover:text-brand-400 group-hover:border-brand-500/40 transition-colors">
                 <Fragment set:html={method.icon} />
               </div>
-              <span class="font-semibold text-white text-base">
+              <span class="font-semibold text-ink text-base">
                 {method.nameZh ? (
                   <>
                     <span class="lang-zh">{method.nameZh}</span>
@@ -100,7 +100,7 @@ const nextSteps = [
           <div class="code-block p-3 mb-3 relative group/code">
             <pre class="text-base text-surface-300 overflow-x-auto"><code>{method.command}</code></pre>
             <button
-              class="copy-btn absolute top-2 right-2 p-1.5 rounded bg-surface-700 border border-surface-600 text-surface-400 hover:text-white hover:border-surface-500 opacity-0 group-hover/code:opacity-100 transition-all"
+              class="copy-btn absolute top-2 right-2 p-1.5 rounded bg-surface-700 border border-surface-600 text-surface-400 hover:text-plate-ink hover:border-surface-500 opacity-0 group-hover/code:opacity-100 transition-all"
               data-command={method.command}
               title="Copy"
             >
