@@ -31,9 +31,11 @@ jobs:
           cache: npm
           cache-dependency-path: website/package-lock.json
 
+      # Production dependencies only: the Pages build does not need the
+      # Playwright/axe toolchain used by the quality gates.
       - name: Install dependencies
         working-directory: website
-        run: npm ci
+        run: npm ci --omit=dev
 
       - name: Build site
         working-directory: website
