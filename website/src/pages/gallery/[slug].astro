@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SkillCard from '../../components/SkillCard.astro';
 import { getAllSkills } from '../../lib/skills';
-import { AGENTS, skillsCliCommand } from '../../data/agents';
+import { AGENTS, cloneCommand, skillsCliCommand, skillsCliSupported } from '../../data/agents';
 import type { SkillMeta } from '../../types/skill';
 
 export async function getStaticPaths() {
@@ -83,17 +83,31 @@ const starsSyncedAt = skill.stars_synced_at ? skill.stars_synced_at.slice(0, 10)
 const updatedAt = starsSyncedAt ?? skill.created_at;
 
 /** Exact install routes for the *creator* Skill, straight from data/agents.ts. */
-const agents = AGENTS.map((agent, index) => ({
-  id: agent.id,
-  label: agent.label,
-  capability: agent.capability,
-  globalPath: agent.globalPath,
-  projectPath: agent.projectPath,
-  note: agent.note,
-  globalCommand: skillsCliCommand(agent.id, 'global'),
-  projectCommand: agent.projectPath ? skillsCliCommand(agent.id, 'project') : null,
-  isFirst: index === 0,
-}));
+/**
+ * Exact install routes for the *creator* Skill, straight from data/agents.ts.
+ *
+ * `skillsCliSupported()` gates the AgentSkills CLI route: Pi has a documented
+ * install directory but no confirmed `--agent` id, so it gets the direct-clone
+ * command (also from agents.ts) plus an explicit "unconfirmed" flag instead of a
+ * command we cannot stand behind.
+ */
+const agents = AGENTS.map((agent, index) => {
+  const cliSupported = skillsCliSupported(agent.id);
+  return {
+    id: agent.id,
+    label: agent.label,
+    capability: agent.capability,
+    globalPath: agent.globalPath,
+    projectPath: agent.projectPath,
+    note: agent.note,
+    cliSupported,
+    globalCommand: cliSupported ? skillsCliCommand(agent.id, 'global', { requireVerified: true }) : null,
+    projectCommand:
+      cliSupported && agent.projectPath ? skillsCliCommand(agent.id, 'project', { requireVerified: true }) : null,
+    cloneCommand: cloneCommand(agent.id, 'global'),
+    isFirst: index === 0,
+  };
+});
 
 /**
  * Related = shares at least one tag. A shared *specific* tag outranks the
@@ -399,28 +413,73 @@ const metaValue = 'mt-1.5 text-sm text-ink';
                         </>
                       )}
                     </span>
+                    {!agent.cliSupported && (
+                      <span class="flex items-center gap-1.5 font-mono text-[11px] text-warn">
+                        <span class="h-1.5 w-1.5 rounded-pill bg-warn" aria-hidden="true"></span>
+                        <span class="lang-zh">CLI 未确认</span>
+                        <span class="lang-en">CLI unconfirmed</span>
+                      </span>
+                    )}
                   </div>
 
-                  <!-- Global install -->
-                  <p class={`${metaLabel} mt-6`}>
-                    <span class="lang-zh">全局安装命令</span>
-                    <span class="lang-en">Global install command</span>
-                  </p>
-                  <div class="mt-2 flex flex-wrap items-start gap-2">
-                    <div class="code-block min-w-0 flex-1 p-3">
-                      <pre class="overflow-x-auto text-xs leading-6 text-plate-ink"><code>{agent.globalCommand}</code></pre>
-                    </div>
-                    <button
-                      type="button"
-                      class="copy-cmd"
-                      data-command={agent.globalCommand}
-                      aria-label={`Copy the ${agent.label} install command`}
-                    >
-                      <span class="lang-zh">复制</span>
-                      <span class="lang-en">Copy</span>
-                    </button>
-                    <span class="copy-status" role="status" aria-live="polite"></span>
-                  </div>
+                  {agent.globalCommand ? (
+                    <>
+                      <!-- Global install (verified AgentSkills CLI target) -->
+                      <p class={`${metaLabel} mt-6`}>
+                        <span class="lang-zh">全局安装命令</span>
+                        <span class="lang-en">Global install command</span>
+                      </p>
+                      <div class="mt-2 flex flex-wrap items-start gap-2">
+                        <div class="code-block min-w-0 flex-1 p-3">
+                          <pre class="overflow-x-auto text-xs leading-6 text-plate-ink"><code>{agent.globalCommand}</code></pre>
+                        </div>
+                        <button
+                          type="button"
+                          class="copy-cmd"
+                          data-command={agent.globalCommand}
+                          aria-label={`Copy the ${agent.label} install command`}
+                        >
+                          <span class="lang-zh">复制</span>
+                          <span class="lang-en">Copy</span>
+                        </button>
+                        <span class="copy-status" role="status" aria-live="polite"></span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <!-- No confirmed `--agent` id: state that, and give the clone route -->
+                      <p class="mt-6 max-w-[68ch] border-l-2 border-warn/50 pl-4 text-sm leading-7 text-ink-muted">
+                        <span class="lang-zh">
+                          AgentSkills CLI 还没有确认支持 {agent.label}（
+                          <code class="font-mono text-xs">--agent {agent.id}</code> 未经验证），所以这里不给这条命令，改用下面的直接克隆。
+                        </span>
+                        <span class="lang-en">
+                          The AgentSkills CLI is not a confirmed target for {agent.label} (
+                          <code class="font-mono text-xs">--agent {agent.id}</code> is unverified), so that
+                          command is not shown — use the direct clone below.
+                        </span>
+                      </p>
+                      <p class={`${metaLabel} mt-6`}>
+                        <span class="lang-zh">直接克隆命令</span>
+                        <span class="lang-en">Direct clone command</span>
+                      </p>
+                      <div class="mt-2 flex flex-wrap items-start gap-2">
+                        <div class="code-block min-w-0 flex-1 p-3">
+                          <pre class="overflow-x-auto text-xs leading-6 text-plate-ink"><code>{agent.cloneCommand}</code></pre>
+                        </div>
+                        <button
+                          type="button"
+                          class="copy-cmd"
+                          data-command={agent.cloneCommand}
+                          aria-label={`Copy the ${agent.label} clone command`}
+                        >
+                          <span class="lang-zh">复制</span>
+                          <span class="lang-en">Copy</span>
+                        </button>
+                        <span class="copy-status" role="status" aria-live="polite"></span>
+                      </div>
+                    </>
+                  )}
 
                   <!-- Paths -->
                   <p class={`${metaLabel} mt-6`}>
