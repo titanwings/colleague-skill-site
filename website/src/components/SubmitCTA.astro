@@ -8,6 +8,10 @@
  *
  * The three process lines are numbered rather than badged — no emoji, no
  * gradient panel, no blurred glow.
+ *
+ * Nothing inside the plate uses `text-accent`: the design system darkens
+ * `--accent` for light mode (so accent-on-paper passes AA), which leaves it at
+ * ~3.7:1 on the plate. The accent presence on the plate is the filled button.
  */
 import { BRAND } from '../data/brand';
 
@@ -23,7 +27,7 @@ const process = [
 <section class="border-t border-line py-20 md:py-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="reveal rounded-card border border-plate-line bg-plate px-6 py-12 text-plate-ink sm:px-10 md:px-14 md:py-16">
-      <p class="font-grotesk text-xs font-medium uppercase tracking-[0.18em] text-accent">
+      <p class="font-grotesk text-xs font-medium uppercase tracking-[0.18em] text-plate-ink/70">
         <span class="lang-zh">提交 · Contribute</span>
         <span class="lang-en">Contribute · 提交</span>
       </p>
@@ -39,12 +43,7 @@ const process = [
       </p>
 
       <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <a
-          href={BRAND.submitUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 rounded-lg bg-accent-deep px-6 py-3 text-base font-semibold text-paper transition-colors hover:bg-accent-soft"
-        >
+        <a href={BRAND.submitUrl} target="_blank" rel="noopener noreferrer" class="btn-primary text-base">
           <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" d="M12 5v14M5 12h14"></path>
           </svg>
@@ -53,7 +52,7 @@ const process = [
         </a>
         <a
           href={`${base}/gallery/`}
-          class="inline-flex items-center gap-2 rounded-lg border border-plate-line px-6 py-3 text-base font-medium text-plate-ink transition-colors hover:border-accent hover:text-accent"
+          class="inline-flex items-center gap-2 rounded-lg border border-plate-line px-6 py-3 text-base font-medium text-plate-ink transition-colors hover:border-accent"
         >
           <span class="lang-zh">先逛逛 Gallery</span>
           <span class="lang-en">Browse the Gallery</span>
@@ -65,7 +64,7 @@ const process = [
         {
           process.map((item) => (
             <li class="flex items-baseline gap-3">
-              <span class="font-mono text-[11px] tracking-[0.14em] text-accent">
+              <span class="font-mono text-[11px] tracking-[0.14em] text-plate-ink/70">
                 <span class="lang-zh">{item.numZh}</span>
                 <span class="lang-en">{item.numEn}</span>
               </span>
