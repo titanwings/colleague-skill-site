@@ -112,6 +112,15 @@ Two further hardening changes came out of the same review round:
   option, so the unconfirmed AgentSkills target for Pi can never be presented as
   verified.
 
+**Verified against upstream, not assumed**
+
+The coding-agent matrix was checked line by line against the product repo:
+`INSTALL.md` for the documented per-host directories and
+`tools/install_*_skill.py` for the defaults the installers actually use. That
+check caught two wrong entries — Hermes installs into
+`~/.hermes/skills/openclaw-imports/distilly`, and OpenClaw's project-local
+directory is user-defined in the docs — both corrected rather than shipped.
+
 **Known gaps left for the next PRs** (not defects introduced here): section
 headers and feature cards still use the previous zh/en stacking and tinted
 gradients, the terminal demos are still styled ad-hoc, there is no theme toggle
