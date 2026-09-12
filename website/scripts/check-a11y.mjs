@@ -13,7 +13,7 @@
  *   node scripts/check-a11y.mjs --json out.json  # machine-readable report
  */
 import { spawn } from 'node:child_process';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, rm, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
@@ -31,9 +31,9 @@ const has = (name) => process.argv.includes(`--${name}`);
 
 const base = arg('base', '/colleague-skill-site');
 const port = Number(arg('port', '4322'));
-const origin = `http://127.0.0.1:${port}`;
 const serve = !has('no-serve');
 const failOnAll = has('all');
+const sampleCount = Number(arg('sample', '0')) || 0;
 const jsonOut = arg('json', path.join(repoRoot, 'docs/evidence/a11y-report.json'));
 
 const PAGES = [
@@ -41,55 +41,115 @@ const PAGES = [
   { name: 'gallery', path: '/gallery/' },
   { name: 'detail', path: '/gallery/boss-skill/' },
 ];
+
+/**
+ * `--sample N` adds N deterministic detail pages (every k-th slug from dist/)
+ * so catalog-wide regressions surface without running all 217 × 2 themes.
+ */
+async function sampledDetailPages(count) {
+  if (!count) return [];
+  const dir = path.join(siteRoot, 'dist', 'gallery');
+  const slugs = (await readdir(dir, { withFileTypes: true }))
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name)
+    .sort();
+  if (!slugs.length) return [];
+  const step = Math.max(1, Math.floor(slugs.length / count));
+  return slugs
+    .filter((_, i) => i % step === 0)
+    .slice(0, count)
+    .map((slug) => ({ name: `detail:${slug}`, path: `/gallery/${slug}/` }));
+}
 const THEMES = ['light', 'dark'];
 const FAIL_IMPACTS = failOnAll ? ['serious', 'critical', 'moderate', 'minor'] : ['serious', 'critical'];
 
+/**
+ * Start `astro preview` and prove it serves *this* build (same guard as
+ * capture.mjs): a busy port makes astro move silently, and a peer worktree's
+ * preview would answer on the same port, so we require our own marker file.
+ */
 function startPreview() {
   return new Promise((resolve, reject) => {
     const child = spawn('npx', ['astro', 'preview', '--port', String(port), '--host', '127.0.0.1'], {
       cwd: siteRoot,
       stdio: ['ignore', 'pipe', 'pipe'],
     });
-    const timer = setTimeout(() => reject(new Error('astro preview did not start in 60s')), 60_000);
+    let buffer = '';
+    const timer = setTimeout(() => {
+      child.kill('SIGTERM');
+      reject(new Error(`astro preview did not report a URL in 60s. Output:\n${buffer.slice(-800)}`));
+    }, 60_000);
     const onData = (buf) => {
-      const text = String(buf);
-      if (text.includes(String(port)) || /localhost|ready|serving/i.test(text)) {
+      buffer += String(buf);
+      const match = buffer.match(/https?:\/\/(?:localhost|127\.0\.0\.1):(\d+)/);
+      if (match) {
         clearTimeout(timer);
-        setTimeout(() => resolve(child), 600);
+        resolve({ child, port: Number(match[1]) });
       }
     };
     child.stdout.on('data', onData);
     child.stderr.on('data', onData);
     child.on('exit', (code) => {
       clearTimeout(timer);
-      reject(new Error(`astro preview exited early with code ${code}`));
+      reject(new Error(`astro preview exited early with code ${code}. Output:\n${buffer.slice(-800)}`));
     });
   });
 }
 
-async function waitForServer(url, attempts = 40) {
+async function waitForMarker(url, expected, attempts = 60) {
   for (let i = 0; i < attempts; i += 1) {
     try {
-      const res = await fetch(url);
-      if (res.ok) return;
+      const res = await fetch(url, { cache: 'no-store' });
+      if (res.ok && (await res.text()) === expected) return;
     } catch {
       /* retry */
     }
     await new Promise((r) => setTimeout(r, 500));
   }
-  throw new Error(`server never became ready: ${url}`);
+  throw new Error(`server at ${url} never served this build's marker; pass --port <free port>.`);
 }
 
 let server;
+let origin = `http://127.0.0.1:${port}`;
+// Never leave an orphan preview behind: a crashed run used to keep the port
+// bound and made the next run (or a peer worktree) fail confusingly.
+const killServer = () => {
+  if (server) {
+    server.kill('SIGTERM');
+    server = null;
+  }
+};
+process.on('exit', killServer);
+for (const signal of ['SIGINT', 'SIGTERM']) {
+  process.on(signal, () => {
+    killServer();
+    process.exit(signal === 'SIGINT' ? 130 : 143);
+  });
+}
+let markerPath;
 if (serve) {
-  server = await startPreview();
-  await waitForServer(`${origin}${base}/`);
+  try {
+    const probe = await fetch(`${origin}${base}/`, { cache: 'no-store' });
+    if (probe.ok) throw new Error(`port ${port} is already serving a site; pass --port <free port>`);
+  } catch (error) {
+    if (String(error.message).includes('already serving')) throw error;
+  }
+  const markerName = `.a11y-marker-${process.pid}`;
+  const markerValue = `a11y-${process.pid}-${Date.now()}`;
+  markerPath = path.join(siteRoot, 'dist', markerName);
+  await writeFile(markerPath, markerValue, 'utf8');
+  const started = await startPreview();
+  server = started.child;
+  origin = `http://127.0.0.1:${started.port}`;
+  await waitForMarker(`${origin}${base}/${markerName}`, markerValue);
 }
 
 const browser = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch());
 const report = { base, generated_at: new Date().toISOString(), fail_impacts: FAIL_IMPACTS, pages: [], failures: [] };
 
-for (const page of PAGES) {
+const pages = [...PAGES, ...(await sampledDetailPages(sampleCount))];
+
+for (const page of pages) {
   for (const theme of THEMES) {
     const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, colorScheme: theme });
     const tab = await ctx.newPage();
@@ -122,6 +182,7 @@ if (server) {
   server.kill('SIGTERM');
   await new Promise((r) => setTimeout(r, 300));
 }
+if (markerPath) await rm(markerPath, { force: true });
 
 await mkdir(path.dirname(jsonOut), { recursive: true });
 await writeFile(jsonOut, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
