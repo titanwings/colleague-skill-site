@@ -93,6 +93,20 @@ html[data-theme='dark'] {
   }
 }
 
+/* ------------------------------------------------------ language toggle -- */
+/* Paired translations: `<span class="lang-zh">…</span><span class="lang-en">…</span>`.
+   `data-lang` lives on <html> and is applied before first paint by BaseLayout.
+   These rules are global on purpose — components must NOT ship scoped copies. */
+.lang-en {
+  display: none;
+}
+html[data-lang='en'] .lang-zh {
+  display: none;
+}
+html[data-lang='en'] .lang-en {
+  display: revert;
+}
+
 /* ------------------------------------------------------------ base layer -- */
 @layer base {
   * {
