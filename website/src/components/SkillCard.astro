@@ -10,40 +10,35 @@ const { skill, base } = Astro.props;
 
 const NEW_WINDOW_DAYS = 14;
 const isNew = (() => {
-  if (!skill.created_at) return false;
-  const created = new Date(skill.created_at);
-  if (Number.isNaN(created.getTime())) return false;
-  const ageMs = Date.now() - created.getTime();
+  const created = Date.parse(skill.created_at ?? '');
+  if (!Number.isFinite(created)) return false;
+  const ageMs = Date.now() - created;
   return ageMs >= 0 && ageMs <= NEW_WINDOW_DAYS * 24 * 60 * 60 * 1000;
 })();
 
+/** `skill` / `meta-skill`; YAML without a `type` field is treated as `skill`. */
+const skillType = skill.type === 'meta-skill' ? 'meta-skill' : 'skill';
+
 function formatStars(n: number): string {
   if (n < 1000) return String(n);
-  if (n < 10000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+  if (n < 10000) {
+    // String surgery rather than a `/\\.0$/` regex: that literal trips Astro's
+    // export hoisting in page frontmatter (same code lives in [slug].astro).
+    const rounded = (n / 1000).toFixed(1);
+    return (rounded.endsWith('.0') ? rounded.slice(0, -2) : rounded) + 'k';
+  }
   return Math.round(n / 1000) + 'k';
 }
-
-const tagColors: Record<string, string> = {
-  security: 'bg-red-500/10 text-red-400 border-red-500/20',
-  backend: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  frontend: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-  devops: 'bg-orange-500/10 text-orange-400 border-orange-500/20',
-  data: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-  design: 'bg-pink-500/10 text-pink-400 border-pink-500/20',
-  product: 'bg-green-500/10 text-green-400 border-green-500/20',
-  hr: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
-  management: 'bg-brand-500/10 text-brand-400 border-brand-500/20',
-  other: 'bg-surface-700 text-surface-400 border-surface-600',
-};
 
 const cultureMap: Record<string, string> = {
   '字节风': 'ByteDance',
   '阿里风': 'Alibaba',
+  '腾讯风': 'Tencent',
+  '华为风': 'Huawei',
   '创业风': 'Startup',
+  '外企风': 'MNC',
+  '国企风': 'SOE',
   '其他': 'Other',
-  '互联网大厂': 'Big Tech',
-  '外企': 'MNC',
-  '传统企业': 'Traditional',
 };
 
 const personalityMap: Record<string, string> = {
@@ -64,103 +59,114 @@ const personalityMap: Record<string, string> = {
   '理性克制': 'Rational',
   '举例达人': 'Example Pro',
 };
+
+const tags = skill.tags ?? [];
+const personality = skill.personality ?? [];
+const href = `${base}/gallery/${skill.slug}/`;
 ---
 
 <a
-  href={`${base}/gallery/${skill.slug}/`}
-  class="card-base card-hover p-5 flex flex-col gap-4 group cursor-pointer block relative"
+  href={href}
+  class="group flex h-full flex-col rounded-card border border-line bg-paper-raised p-5 text-ink no-underline transition-colors duration-200 hover:border-accent/60 hover:no-underline"
 >
-  {skill.pinned && (
-    <span class="absolute top-3 right-3 text-xs font-mono px-2 py-0.5 rounded bg-brand-500/15 border border-brand-500/30 text-brand-400">
-      <span class="lang-zh">置顶</span>
-      <span class="lang-en">pinned</span>
+  <!-- Type + status -->
+  <div class="flex items-center justify-between gap-3">
+    <span class="font-grotesk text-[11px] font-medium uppercase tracking-[0.16em] text-ink-muted">
+      {skillType}
     </span>
-  )}
-  {isNew && !skill.pinned && (
-    <span class="absolute top-3 right-3 text-xs font-mono px-2 py-0.5 rounded bg-green-500/15 border border-green-500/30 text-green-400">
-      NEW
-    </span>
-  )}
-  <!-- Header -->
-  <div class="flex items-start justify-between gap-3">
-    <div class="flex items-center gap-3 min-w-0">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/30 to-purple-500/20 border border-brand-500/30 flex items-center justify-center shrink-0 text-base font-bold text-brand-300">
-        {skill.name.charAt(0)}
-      </div>
-      <div class="min-w-0">
-        <h3 class="font-bold text-ink text-base group-hover:text-brand-400 transition-colors truncate">
-          {skill.name}
-        </h3>
-        {skill.level && (
-          <p class="text-surface-500 text-base truncate">
-            <span class="lang-zh">{skill.level}</span>
-            <span class="lang-en">{skill.level_en || skill.level}</span>
-          </p>
-        )}
-      </div>
-    </div>
-
-    <div class="flex items-center gap-1.5 shrink-0">
-      {skill.type === 'meta-skill' && (
-        <span class="text-base px-2 py-0.5 rounded bg-purple-500/15 border border-purple-500/30 text-purple-300 font-mono">
-          meta-skill
+    <span class="flex items-center gap-2">
+      {skill.pinned && (
+        <span
+          class="rounded-pill border border-accent/35 bg-accent-wash px-2 py-0.5 font-grotesk text-[11px] uppercase tracking-[0.12em] text-accent-deep"
+        >
+          <span class="lang-zh">置顶</span>
+          <span class="lang-en">pinned</span>
         </span>
       )}
-      {skill.company_culture && (
-        <span class="text-base px-2 py-0.5 rounded bg-surface-700/50 border border-surface-600/50 text-surface-400 font-mono">
-          <span class="lang-zh">{skill.company_culture}</span>
-          <span class="lang-en">{cultureMap[skill.company_culture] || skill.company_culture}</span>
+      {isNew && !skill.pinned && (
+        <span class="flex items-center gap-1.5 font-grotesk text-[11px] uppercase tracking-[0.12em] text-ok">
+          <span class="h-1.5 w-1.5 rounded-pill bg-ok" aria-hidden="true"></span>new
         </span>
       )}
-    </div>
+    </span>
   </div>
 
-  <!-- Description -->
-  <p class="text-surface-400 text-base leading-relaxed line-clamp-2">
+  <!-- Name -->
+  <h3 class="mt-3 flex items-start justify-between gap-3 font-display text-xl font-semibold leading-snug text-ink">
+    <span>{skill.name}</span>
+    <span
+      class="mt-1 shrink-0 font-mono text-sm text-ink-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-accent-soft"
+      aria-hidden="true">→</span
+    >
+  </h3>
+
+  {skill.level && (
+    <p class="mt-1 font-mono text-xs text-ink-muted">
+      <span class="lang-zh">{skill.level}</span>
+      <span class="lang-en">{skill.level_en || skill.level}</span>
+    </p>
+  )}
+
+  <!-- One-line summary -->
+  <p class="mt-3 line-clamp-2 text-sm leading-relaxed text-ink-soft">
     <span class="lang-zh">{skill.description}</span>
     <span class="lang-en">{skill.description_en || skill.description}</span>
   </p>
 
   <!-- Tags -->
-  <div class="flex flex-wrap gap-1.5 mt-auto">
-    {skill.tags?.slice(0, 3).map((tag) => (
-      <span class={`inline-flex items-center px-2 py-0.5 rounded text-base border font-mono ${tagColors[tag] || tagColors.other}`}>
+  <div class="mt-4 flex flex-wrap gap-1.5">
+    {tags.slice(0, 3).map((tag) => (
+      <span class="rounded-pill border border-line bg-paper-sunk px-2 py-0.5 font-mono text-[11px] text-ink-muted">
         {tag}
       </span>
     ))}
-    {skill.personality?.slice(0, 2).map((p) => (
-      <span class="tag-pill">
+    {personality.slice(0, 2).map((p) => (
+      <span class="rounded-pill border border-line bg-paper-sunk px-2 py-0.5 font-mono text-[11px] text-ink-muted">
         <span class="lang-zh">{p}</span>
         <span class="lang-en">{personalityMap[p] || p}</span>
       </span>
     ))}
+    {skill.company_culture && (
+      <span class="rounded-pill border border-line bg-paper-sunk px-2 py-0.5 font-mono text-[11px] text-ink-muted">
+        <span class="lang-zh">{skill.company_culture}</span>
+        <span class="lang-en">{cultureMap[skill.company_culture] || skill.company_culture}</span>
+      </span>
+    )}
   </div>
 
-  <!-- Footer -->
-  <div class="flex items-center justify-between pt-2 border-t border-surface-700/50">
-    <div class="flex items-center gap-1.5">
+  <!-- Author + stars -->
+  <div class="mt-4 flex items-center justify-between gap-3 border-t border-line pt-4">
+    <span class="flex min-w-0 items-center gap-2">
       <img
-        src={`https://github.com/${skill.author.github}.png?size=24`}
-        alt={skill.author.name}
-        class="w-5 h-5 rounded-full border border-surface-600"
+        src={`https://github.com/${skill.author.github}.png?size=48`}
+        alt=""
+        width="20"
+        height="20"
+        class="h-5 w-5 shrink-0 rounded-pill border border-line object-cover"
         loading="lazy"
-        onerror="this.style.display='none'"
+        decoding="async"
+        onerror="this.remove()"
       />
-      <span class="text-surface-500 text-base">{skill.author.name}</span>
-    </div>
-    <div class="flex items-center gap-2.5">
+      <span class="truncate font-mono text-xs text-ink-muted">{skill.author.name}</span>
+    </span>
+
+    <span class="flex shrink-0 items-center gap-3 font-mono text-xs text-ink-muted">
       {typeof skill.stars === 'number' && (
         <span
-          class="flex items-center gap-1 text-surface-500 text-base font-mono"
-          title={skill.stars_synced_at ? `GitHub stars · synced ${skill.stars_synced_at.slice(0, 10)}` : 'GitHub stars'}
+          class="flex items-center gap-1"
+          title={skill.stars_synced_at
+            ? `GitHub stars · synced ${skill.stars_synced_at.slice(0, 10)}`
+            : 'GitHub stars'}
         >
-          <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-            <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/>
+          <svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path
+              d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"
+            ></path>
           </svg>
           {formatStars(skill.stars)}
         </span>
       )}
-      <span class="text-surface-600 text-base font-mono">{skill.created_at}</span>
-    </div>
+      <span>{skill.created_at}</span>
+    </span>
   </div>
 </a>
