@@ -1,0 +1,10 @@
+
+
+# Evidence artefacts (screenshots, capture receipts, diff images) are kept
+# locally and in the PR description, never committed. Regenerate with:
+#   cd website && npm run evidence
+docs/evidence/images/
+docs/evidence/captures/
+docs/evidence/diffs/
+docs/evidence/a11y-report*.json
+docs/evidence/link-report.json

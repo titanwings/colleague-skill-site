@@ -1,5 +1,9 @@
 # PR 04 — chrome, language and theme (`site/04-chrome-i18n`)
 
+> Screenshots, capture receipts and diff images are **not committed** (see
+> `.gitignore`). Regenerate them with `cd website && npm run evidence`; the
+> figures quoted below come from those runs.
+
 Scope: `Navbar`, `Footer`, `Features`, `HowItWorks`, `SubmitCTA`, the i18n
 bootstrap in `BaseLayout`, and three new files (`lib/i18n.ts`,
 `components/LangToggle.astro`, `components/ThemeToggle.astro`). Hero,
@@ -93,16 +97,7 @@ base forward by seven commits (`ac7ca3a`, `5758ec7`, `59f66e1`, `ac1ad0d`,
 
 All rows below were re-run after the merge and the cleanup.
 
-| Check | Command | Result |
-| --- | --- | --- |
-| Build | `cd website && npm run build` | ✅ `217 page(s) built` |
-| Evidence capture | `cd website && node scripts/capture.mjs --label pr-04-chrome-i18n --port 4413` | ✅ 12 captures, **0 FAIL lines**, 0 console errors, 0 horizontal overflow |
-| Interaction assertions | `node scripts/tmp-i18n-verify.mjs --port 4477` (temp script, Appendix A) | ✅ 27/27 |
-| Gallery smoke (both page types) | temp script, see below | ✅ zh→en on `/gallery/` and `/gallery/boss-skill/`, 0 console errors |
-| axe-core, PR-04 scope, light + dark | temp script, see below | ✅ 0 violations in `header#navbar`, `footer`, `#features`, `#how-it-works`, `.bg-plate` |
-| Grep: hard-coded hex in changed files | `grep -rn "#[0-9a-fA-F]\{6\}"` | ✅ empty for the 7 component/lib files (see the two `BaseLayout` meta exceptions below) |
-| Grep: raw Tailwind palette classes | `grep -rnE "(bg\|text\|border\|from\|to\|via)-(purple\|orange\|…)-[0-9]{2,3}"` | ✅ empty in all PR-04 files |
-| Grep: emoji / pictographs | python scan of `U+1F300-1FAFF`, `U+2600-27BF`, `U+FE0F` | ✅ 0 hits in all PR-04 files |
+| Check | Command | Result | — | --- | --- | --- | — | Build | `cd website && npm run build` | ✅ `217 page(s) built` | — | Evidence capture | `cd website && node scripts/capture.mjs --label pr-04-chrome-i18n --port 4413` | ✅ 12 captures, **0 FAIL lines**, 0 console errors, 0 horizontal overflow | — | Interaction assertions | `node scripts/tmp-i18n-verify.mjs --port 4477` (temp script, Appendix A) | ✅ 27/27 | — | Gallery smoke (both page types) | temp script, see below | ✅ zh→en on `/gallery/` and `/gallery/boss-skill/`, 0 console errors | — | axe-core, PR-04 scope, light + dark | temp script, see below | ✅ 0 violations in `header#navbar`, `footer`, `#features`, `#how-it-works`, `.bg-plate` | — | Grep: hard-coded hex in changed files | `grep -rn "#[0-9a-fA-F]\{6\}"` | ✅ empty for the 7 component/lib files (see the two `BaseLayout` meta exceptions below) | — | Grep: raw Tailwind palette classes | `grep -rnE "(bg\|text\|border\|from\|to\|via)-(purple\|orange\|…)-[0-9]{2,3}"` | ✅ empty in all PR-04 files | — | Grep: emoji / pictographs | python scan of `U+1F300-1FAFF`, `U+2600-27BF`, `U+FE0F` | ✅ 0 hits in all PR-04 files |
 
 ### Build
 
@@ -135,7 +130,7 @@ captured 12 screenshots for "pr-04-chrome-i18n" → docs/evidence/images
 ```
 
 No `FAIL:` line, exit code 0. Receipt:
-`docs/evidence/captures/pr-04-chrome-i18n.json` — `failures: 0`,
+`(local) pr-04-chrome-i18n.json` — `failures: 0`,
 `consoleErrors: 0` in all 12 captures, `overflowX: false` in all 12, body
 colours are the token values (`rgb(239,242,241)` / `rgb(21,24,27)` light,
 `rgb(15,18,22)` / `rgb(235,240,244)` dark).
@@ -143,7 +138,7 @@ colours are the token values (`rgb(239,242,241)` / `rgb(21,24,27)` light,
 Heights are byte-for-byte the same as the pre-merge PR-04 capture
 (6387 / 2572 / 1498 px), so neither the merge nor the cleanup changed the
 rendered page. They are **not** the 5997 / 2463 / 1389 px of the base: those are
-what `docs/evidence/captures/pr-01-design-system.json` records for
+what `(local) pr-01-design-system.json` records for
 `site/01-design-system` *without* PR-04 (regenerated 16:55:22Z), and PR-04's
 rewritten chrome plus three sections add +390 px on the desktop home page and
 +109 px on the two lower pages. Before the merge, the same command on `:4321`
@@ -220,12 +215,7 @@ $ node scripts/tmp-axe.mjs
 
 Issues found this way and fixed inside PR-04:
 
-| Node | Before | Fix |
-| --- | --- | --- |
-| `.ds-lang-toggle [data-lang-option]` (inactive) | `--ink-dim` → ~2.4:1 on paper | `--ink-muted` |
-| `.ds-lang-toggle [data-lang-option='zh']` (active, footer on `paper-sunk`) | `--accent-soft` → ~4.3:1 | `--accent-deep` (~7.7:1) |
-| `.bg-plate h2` | inherited `text-ink` (dark on dark) | explicit `text-plate-ink` |
-| `.bg-plate` eyebrow + process numerals | `text-accent` → 3.68:1 after the base darkened `--accent` | `text-plate-ink/70` (≈8:1) |
+| Node | Before | Fix | — | --- | --- | --- | — | `.ds-lang-toggle [data-lang-option]` (inactive) | `--ink-dim` → ~2.4:1 on paper | `--ink-muted` | — | `.ds-lang-toggle [data-lang-option='zh']` (active, footer on `paper-sunk`) | `--accent-soft` → ~4.3:1 | `--accent-deep` (~7.7:1) | — | `.bg-plate h2` | inherited `text-ink` (dark on dark) | explicit `text-plate-ink` | — | `.bg-plate` eyebrow + process numerals | `text-accent` → 3.68:1 after the base darkened `--accent` | `text-plate-ink/70` (≈8:1) |
 
 The remaining page-wide nodes are in components owned by other PRs: 47 light +
 6 dark after the merge. Dark improved from 22 → 6 with the base's contrast pass.
@@ -263,30 +253,17 @@ $ echo $?
 
 ## Before / after
 
-Baseline images are the live pre-refactor site (`docs/evidence/images/before-*.jpg`,
+Baseline images are the live pre-refactor site (`(local) before-*.jpg`,
 recorded in `docs/REFACTOR-EVIDENCE.md`); the `pr-04-chrome-i18n-*` images come
 from the post-merge capture above. The middle column is the merged base without
-this PR (`docs/evidence/captures/pr-01-design-system.json`, regenerated
+this PR (`(local) pr-01-design-system.json`, regenerated
 16:55:22Z), so the last column isolates what PR-04 itself changed.
 
-| Page | Before (live) | Base, no PR-04 | After (PR-04 build) | Notes |
-| --- | --- | --- | --- | --- |
-| `/` | 5997 px — `before-home.jpg` (hero: `before-home-hero.jpg`) | 5997 px | **6387 px** — `pr-04-chrome-i18n-home-light.jpg`, `-home-dark.jpg` | +390 px from the rewritten chrome and the three editorial sections |
-| `/` (English) | — | — | 6571 px — `pr-04-chrome-i18n-home-en.jpg` | same page with `dotskill-lang=en` |
-| `/gallery/` | 2463 px — `before-gallery.jpg` | 2463 px | **2572 px** — `pr-04-chrome-i18n-gallery-light.jpg`, `-gallery-dark.jpg` | +109 px from navbar + footer; gallery body untouched |
-| `/gallery/boss-skill/` | 1389 px — `before-detail.jpg` | 1389 px | **1498 px** — `pr-04-chrome-i18n-detail-light.jpg`, `-detail-dark.jpg` | +109 px from navbar + footer; detail body untouched |
+| Page | Before (live) | Base, no PR-04 | After (PR-04 build) | Notes | — | --- | --- | --- | --- | --- | — | `/` | 5997 px — `before-home.jpg` (hero: `before-home-hero.jpg`) | 5997 px | **6387 px** — `pr-04-chrome-i18n-home-light.jpg`, `-home-dark.jpg` | +390 px from the rewritten chrome and the three editorial sections | — | `/` (English) | — | — | 6571 px — `pr-04-chrome-i18n-home-en.jpg` | same page with `dotskill-lang=en` | — | `/gallery/` | 2463 px — `before-gallery.jpg` | 2463 px | **2572 px** — `pr-04-chrome-i18n-gallery-light.jpg`, `-gallery-dark.jpg` | +109 px from navbar + footer; gallery body untouched | — | `/gallery/boss-skill/` | 1389 px — `before-detail.jpg` | 1389 px | **1498 px** — `pr-04-chrome-i18n-detail-light.jpg`, `-detail-dark.jpg` | +109 px from navbar + footer; detail body untouched |
 
 Chrome close-ups (element captures, 2× DPR):
 
-| What | Image |
-| --- | --- |
-| Navbar, zh, light | `docs/evidence/images/pr-04-chrome-i18n-nav-light.jpg` |
-| Navbar, dark (moon · 深色) | `docs/evidence/images/pr-04-chrome-i18n-nav-dark.jpg` |
-| Navbar, `data-lang=en` | `docs/evidence/images/pr-04-chrome-i18n-nav-en.jpg` |
-| Mobile disclosure open (390 px) | `docs/evidence/images/pr-04-chrome-i18n-menu-mobile.jpg` |
-| Features / How it works spreads | `pr-04-chrome-i18n-features-editorial.jpg`, `pr-04-chrome-i18n-howitworks-editorial.jpg` |
-| Closing CTA plate | `docs/evidence/images/pr-04-chrome-i18n-submit-cta.jpg` |
-| Footer, light / dark | `pr-04-chrome-i18n-footer-light.jpg`, `pr-04-chrome-i18n-footer-dark.jpg` |
+| What | Image | — | --- | --- | — | Navbar, zh, light | `(local) pr-04-chrome-i18n-nav-light.jpg` | — | Navbar, dark (moon · 深色) | `(local) pr-04-chrome-i18n-nav-dark.jpg` | — | Navbar, `data-lang=en` | `(local) pr-04-chrome-i18n-nav-en.jpg` | — | Mobile disclosure open (390 px) | `(local) pr-04-chrome-i18n-menu-mobile.jpg` | — | Features / How it works spreads | `pr-04-chrome-i18n-features-editorial.jpg`, `pr-04-chrome-i18n-howitworks-editorial.jpg` | — | Closing CTA plate | `(local) pr-04-chrome-i18n-submit-cta.jpg` | — | Footer, light / dark | `pr-04-chrome-i18n-footer-light.jpg`, `pr-04-chrome-i18n-footer-dark.jpg` |
 
 ## Known gaps and unverified items
 
@@ -423,7 +400,7 @@ const browser = await chromium.launch({ channel: 'chrome' }).catch(() => chromiu
   await page2.addInitScript(() => {
     window.__langAtFirstFrame = 'unset';
     requestAnimationFrame(() => {
-      window.__langAtFirstFrame = document.documentElement.getAttribute('data-lang') || 'missing';
+      window.__langAtFirstFrame = document.documentElement.getAttribute('data-lang') | — | 'missing';
     });
   });
   await page2.goto(HOME, { waitUntil: 'networkidle' });
@@ -445,7 +422,7 @@ const browser = await chromium.launch({ channel: 'chrome' }).catch(() => chromiu
   await page3.addInitScript(() => {
     window.__langAtFirstFrame = 'unset';
     requestAnimationFrame(() => {
-      window.__langAtFirstFrame = document.documentElement.getAttribute('data-lang') || 'missing';
+      window.__langAtFirstFrame = document.documentElement.getAttribute('data-lang') | — | 'missing';
     });
   });
   await page3.goto(HOME, { waitUntil: 'networkidle' });
@@ -493,7 +470,7 @@ const browser = await chromium.launch({ channel: 'chrome' }).catch(() => chromiu
   const page2 = await ctx.newPage();
   await page2.addInitScript(() => {
     requestAnimationFrame(() => {
-      window.__themeAtFirstFrame = document.documentElement.getAttribute('data-theme') || 'missing';
+      window.__themeAtFirstFrame = document.documentElement.getAttribute('data-theme') | — | 'missing';
     });
   });
   await page2.goto(HOME, { waitUntil: 'networkidle' });
