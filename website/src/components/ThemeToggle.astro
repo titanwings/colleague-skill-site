@@ -1,0 +1,150 @@
+---
+/**
+ * Theme toggle — cycles `auto → light → dark` through the `window.__setTheme()`
+ * API installed by the BaseLayout bootstrap (same key, same events, so it stays
+ * in sync with anything else that flips the theme).
+ *
+ * Three states are kept rather than two because "follow the system" *is* the
+ * default and is what most readers want: a two-state button can never get back
+ * to it, and on a `prefers-color-scheme` flip the reader would be stuck on a
+ * manual override they never asked for. The cycle is short enough (3 taps) and
+ * the current state is spelled out in text next to the icon, so it is never
+ * guesswork.
+ *
+ * The visible state is driven by CSS from `html[data-theme]` (correct on first
+ * paint, no hydration flicker); JS only maintains the accessible name, which
+ * has to follow both the theme and the reader's language.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  aria-label="主题：跟随系统，点击切换到浅色 / Theme: auto, click for light"
+  title="主题：跟随系统，点击切换到浅色 / Theme: auto, click for light"
+  class:list={[
+    'ds-theme-toggle inline-flex items-center gap-1.5 h-9 px-2.5 rounded-pill border border-line bg-transparent font-mono text-xs leading-none tracking-[0.08em] text-ink-muted transition-colors hover:border-accent/50 hover:text-ink',
+    className,
+  ]}
+>
+  <span class="ds-theme-icon" data-theme-icon="auto" aria-hidden="true">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"></path>
+    </svg>
+  </span>
+  <span class="ds-theme-icon" data-theme-icon="light" aria-hidden="true">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+    </svg>
+  </span>
+  <span class="ds-theme-icon" data-theme-icon="dark" aria-hidden="true">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+      <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"></path>
+    </svg>
+  </span>
+
+  <span class="ds-theme-label" aria-hidden="true">
+    <span data-theme-label="auto"><span class="lang-zh">自动</span><span class="lang-en">Auto</span></span>
+    <span data-theme-label="light"><span class="lang-zh">浅色</span><span class="lang-en">Light</span></span>
+    <span data-theme-label="dark"><span class="lang-zh">深色</span><span class="lang-en">Dark</span></span>
+  </span>
+</button>
+
+<style is:global>
+  /* Exactly one icon and one label are visible; `html[data-theme]` picks them. */
+  .ds-theme-toggle .ds-theme-icon,
+  .ds-theme-toggle .ds-theme-label > [data-theme-label] {
+    display: none;
+  }
+
+  html[data-theme='auto'] .ds-theme-toggle .ds-theme-icon[data-theme-icon='auto'],
+  html[data-theme='light'] .ds-theme-toggle .ds-theme-icon[data-theme-icon='light'],
+  html[data-theme='dark'] .ds-theme-toggle .ds-theme-icon[data-theme-icon='dark'],
+  html[data-theme='auto'] .ds-theme-toggle .ds-theme-label > [data-theme-label='auto'],
+  html[data-theme='light'] .ds-theme-toggle .ds-theme-label > [data-theme-label='light'],
+  html[data-theme='dark'] .ds-theme-toggle .ds-theme-label > [data-theme-label='dark'] {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* The word is a nicety, not the only signal: keep the icon when space is tight. */
+  .ds-theme-toggle .ds-theme-label {
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 420px) {
+    .ds-theme-toggle .ds-theme-label {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { normalizeLang } from '../lib/i18n';
+
+  type Theme = 'auto' | 'light' | 'dark';
+
+  const ORDER: Theme[] = ['auto', 'light', 'dark'];
+
+  const toggles = Array.from(document.querySelectorAll<HTMLElement>('[data-theme-toggle]'));
+
+  const COPY: Record<Theme, { zh: string; en: string }> = {
+    auto: { zh: '主题：跟随系统，点击切换到浅色', en: 'Theme: auto, click for light' },
+    light: { zh: '主题：浅色，点击切换到深色', en: 'Theme: light, click for dark' },
+    dark: { zh: '主题：深色，点击切换到跟随系统', en: 'Theme: dark, click for auto' },
+  };
+
+  const state = (): Theme => {
+    const value = window.__getTheme?.() ?? document.documentElement.getAttribute('data-theme');
+    return value === 'light' || value === 'dark' ? value : 'auto';
+  };
+
+  /** Falls back to a local implementation if the inline bootstrap did not run. */
+  function setTheme(theme: Theme) {
+    if (window.__setTheme) {
+      window.__setTheme(theme);
+      return;
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      if (theme === 'auto') localStorage.removeItem('theme');
+      else localStorage.setItem('theme', theme);
+    } catch {
+      /* ignore */
+    }
+    window.dispatchEvent(new CustomEvent('themechange', { detail: theme }));
+  }
+
+  /** Both languages in one string: the label is a tooltip, not a lang-pair. */
+  function syncLabels() {
+    const lang = normalizeLang(window.__getLang?.() ?? document.documentElement.getAttribute('data-lang'));
+    const copy = COPY[state()];
+    const text = `${copy.zh} / ${copy.en}`;
+    toggles.forEach((el) => {
+      el.setAttribute('aria-label', text);
+      el.setAttribute('title', text);
+      el.setAttribute('data-theme-state', state());
+      el.lang = lang === 'en' ? 'en' : 'zh-CN';
+    });
+  }
+
+  toggles.forEach((el) => {
+    el.addEventListener('click', () => {
+      const next = ORDER[(ORDER.indexOf(state()) + 1) % ORDER.length];
+      setTheme(next);
+    });
+  });
+
+  syncLabels();
+  window.addEventListener('themechange', syncLabels);
+  window.addEventListener('langchange', syncLabels);
+  // `auto` resolves differently when the OS flips; re-read so the label is right.
+  window.matchMedia?.('(prefers-color-scheme: dark)').addEventListener?.('change', syncLabels);
+</script>
