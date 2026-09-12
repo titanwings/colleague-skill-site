@@ -6,7 +6,8 @@ detail page — including an install block that only ships commands it can point
 at a source for.
 
 - Branch: `site/03-gallery` (worktree `/tmp/cs-03-gallery`)
-- Base: `688ec35` (evidence log + baseline captures)
+- Base: `688ec35` (evidence log + baseline captures), synced with
+  `site/01-design-system` in `f7b6138` after review
 - Touched files: `website/src/components/SkillCard.astro`,
   `website/src/components/SkillGallery.astro`,
   `website/src/pages/gallery/index.astro`,
@@ -23,10 +24,72 @@ at a source for.
 | `b714a45` | `refactor(gallery): restyle the gallery index header and catalog stats` |
 | `a45f892` | `feat(gallery): rebuild search, filters and sorting` |
 | `b729837` | `feat(gallery): rebuild the detail page with a verified install block` |
-| _this file_ | `docs(evidence): record the PR 03 gallery refactor` |
+| `8954134` | `docs(evidence): record the PR 03 gallery refactor` |
+| `f7b6138` | `Merge branch 'site/01-design-system' into site/03-gallery` |
+| `e76d839` | `refactor(gallery): drop the workarounds the base branch has since fixed` |
+| `80604eb` | `feat(gallery): flag unconfirmed AgentSkills CLI targets in the install block` |
+| _this file_ | `docs(evidence): record the PR 03 post-review cleanup` |
 
-Each commit was built on its own (`npm run build`, 217 pages) before the next
-one was made.
+Each code commit was built on its own (`npm run build`, 217 pages) before the
+next one was made.
+
+## Post-review cleanup
+
+The review passed on `8954134`; the base branch then landed six commits
+(`5758ec7`, `59f66e1`, `ac1ad0d`, `4b4b889`, `00a1db1`, `ac7ca3a`) that made two
+PR 03 workarounds obsolete and added one API the detail page should use. Merged
+with `git merge --no-edit site/01-design-system` (no conflicts: the base never
+touches the four gallery files).
+
+**Removed (`e76d839`)**
+
+| Workaround | Why it existed | Why it is gone |
+| --- | --- | --- |
+| `.lang-scope .lang-en { display: none }` + 2 siblings, copied into `SkillGallery.astro` and `[slug].astro`, plus the `lang-scope` marker class on the page roots | PR 01 had dropped the site-wide `.lang-zh` / `.lang-en` rules, so both languages rendered at once | `5758ec7` restored them in `global.css`, which now states components must not ship scoped copies |
+| `text-plate` on the gallery CTA | `.btn-primary` hard-coded `text-white` on the accent fill (4.05:1 light / 2.26:1 dark) | `00a1db1` added `--accent-ink` + `text-accent-ink`; `.btn-primary` now clears AA in both themes |
+
+The two `<style is:global>` blocks stay — every remaining selector is namespaced
+by `#gallery-root` / `#install-agents`, so nothing leaks and the blocks are
+immune to Astro's scope rewriting.
+
+**Adopted (`80604eb`)**
+
+`ac1ad0d` split "has a documented install directory" from "is a confirmed
+AgentSkills CLI target": `skillsCliSupported('pi')` is `false`, and
+`skillsCliCommand(..., { requireVerified: true })` throws instead of printing an
+unverified `--agent pi`. The install block now branches on that: the 7 verified
+hosts keep both exact CLI commands (global + project scope, 14 commands), while
+Pi shows a `CLI 未确认 / CLI unconfirmed` flag, a sentence naming the unverified
+flag, and the `cloneCommand()` route
+(`git clone https://github.com/titanwings/distilly ~/.pi/agent/skills/distilly`)
+plus its documented directory — one copyable command, none invented. See
+`images/pr-03-gallery-detail-light-pi-unverified.jpg`.
+
+**Recaptured after the merge** — both columns are desktop heights read from the
+two `docs/evidence/captures/pr-03-gallery.json` receipts (pre-merge: commit
+`8954134`; post-merge: this branch tip), not hand-measured:
+
+| Surface (desktop) | Pre-merge receipt | Post-merge receipt | Δ | Attribution |
+| --- | --- | --- | --- | --- |
+| `home` (not this PR) | 7488 px | **5997 px** | −1491 px | base language fix (`5758ec7`): the duplicated-language text is gone from every home section |
+| `gallery` | 3133 px | **3095 px** | −38 px | same cause, limited to the shared chrome — PR 03's own `<main>` was already single-language |
+| `detail` | 3227 px | **3189 px** | −38 px | same cause |
+| `home` mobile | 14084 px | 10180 px | −3904 px | same cause |
+| `gallery` mobile | 8735 px | 8613 px | −122 px | same cause |
+| `detail` mobile | 5222 px | 5100 px | −122 px | same cause |
+
+The numbers in the review request (5997 / 2463 / 1389 px) are the *base without
+PR 03* figures — `home` 5997 px matches this branch exactly because the home page
+is untouched here, but `gallery` 2463 px and `detail` 1389 px describe the old
+pages PR 03 deliberately replaced: the gallery gained a five-row filter bar, a
+live result count and 24-card pagination, the detail page gained the install
+switcher, the example exchange and the related grid. The meaningful comparison
+for those two pages is the live-site `before-*` capture, not those numbers.
+
+
+The chrome contrast debt also dropped with the base token fix: from 39 unique AA
+text failures to **5** (3 light / 2 dark), listed in the contrast table below.
+
 
 ## What changed
 
@@ -113,34 +176,39 @@ code blocks on the `plate` tokens.
 
 ```console
 $ cd /tmp/cs-03-gallery/website && npm run build
-00:48:20 [build] 217 page(s) built in 1.49s
-00:48:20 [build] Complete!
+01:07:12 [build] 217 page(s) built in 4.06s
+01:07:12 [build] Complete!
 ```
 
-217 pages = 1 home + 1 gallery + 215 detail pages.
+217 pages = 1 home + 1 gallery + 215 detail pages. Re-run after the merge and
+after each of the two cleanup commits.
 
 ### Evidence capture
 
+`capture.mjs` now refuses a preview server that is not this build and needs a
+free port (base `59f66e1`), so the run passes one explicitly.
+
 ```console
-$ cd /tmp/cs-03-gallery/website && node scripts/capture.mjs --label pr-03-gallery
+$ cd /tmp/cs-03-gallery/website && node scripts/capture.mjs --label pr-03-gallery --port 4412
 captured 12 screenshots for "pr-03-gallery" → docs/evidence/images
-  home/light/desktop: 7488px   home/light/mobile: 14084px
-  home/dark/desktop: 7488px    home/dark/mobile: 14084px
-  gallery/light/desktop: 3133px  gallery/light/mobile: 8735px
-  gallery/dark/desktop: 3133px   gallery/dark/mobile: 8735px
-  detail/light/desktop: 3227px   detail/light/mobile: 5222px
-  detail/dark/desktop: 3227px    detail/dark/mobile: 5222px
+  home/light/desktop: 5997px     home/light/mobile: 10180px
+  home/dark/desktop: 5997px      home/dark/mobile: 10180px
+  gallery/light/desktop: 3095px  gallery/light/mobile: 8613px
+  gallery/dark/desktop: 3095px   gallery/dark/mobile: 8613px
+  detail/light/desktop: 3189px   detail/light/mobile: 5100px
+  detail/dark/desktop: 3189px    detail/dark/mobile: 5100px
 ```
 
 No `FAIL` line, exit code 0. Receipt: [`captures/pr-03-gallery.json`](captures/pr-03-gallery.json)
 — 12 captures, `failures: []`, `consoleErrors: []` and `overflowX: false` for
 every page/theme/viewport. The four `home` captures are byte-identical to
-PR 01's: the home page is outside this PR.
+PR 01's: the home page is outside this PR. (Pre-merge heights were 7488 /
+3133 / 3227 px; the drop is the base language fix, see "Post-review cleanup".)
 
 ### Interaction assertions (temporary Playwright script, not committed)
 
 `/tmp/cs03/verify.mjs` starts/reuses `astro preview` and drives the real
-Chromium build. 42/42 checks pass, exit code 0.
+Chromium build. 56/56 checks pass, exit code 0.
 
 ```console
 $ node /tmp/cs03/verify.mjs
@@ -183,14 +251,31 @@ PASS  detail: ArrowRight moves selection and focus to the next agent tab — {"f
 PASS  detail: End jumps to the last agent tab (Pi)
 PASS  detail: copy button writes the exact command to the clipboard —
       npx -y skills add titanwings/distilly --skill distilly --agent claude-code --global --copy --yes
+PASS  detail: every other host still gets a verified --agent command
+PASS  detail: Pi is flagged as an unconfirmed CLI target and gets the clone route —
+      ["git clone https://github.com/titanwings/distilly ~/.pi/agent/skills/distilly"]
 PASS  detail: copy button reports success in a live region — 已复制
+PASS  PR-03 gallery: main .btn-primary uses --accent-ink and clears AA — gallery/light — 1 element(s), expected colour rgb(255,255,255)
+PASS  dark plate text uses plate-safe colours and clears AA — gallery/light — 0 plate text node(s), colours=[]
+PASS  accent fills use accent-ink and clear AA — gallery/light — 3 accent-filled text node(s), colours=[rgb(239, 242, 241) | rgb(255, 255, 255)]
 PASS  contrast AA gallery/light — PR-03 content only — no text below WCAG AA inside <main>
+PASS  PR-03 gallery: main .btn-primary uses --accent-ink and clears AA — gallery/dark — 1 element(s), expected colour rgb(21,24,27)
+PASS  dark plate text uses plate-safe colours and clears AA — gallery/dark — 0 plate text node(s), colours=[]
+PASS  accent fills use accent-ink and clear AA — gallery/dark — 3 accent-filled text node(s), colours=[rgb(15, 18, 22) | rgb(21, 24, 27)]
 PASS  contrast AA gallery/dark — PR-03 content only — no text below WCAG AA inside <main>
+PASS  PR-03 detail: #install-agents pre, #install-agents pre code uses --plate-ink and clears AA — detail/light — 30 element(s), expected colour rgb(230,237,243)
+PASS  dark plate text uses plate-safe colours and clears AA — detail/light — 15 plate text node(s), colours=[rgb(230, 237, 243)]
+PASS  accent fills use accent-ink and clear AA — detail/light — 1 accent-filled text node(s), colours=[rgb(239, 242, 241)]
 PASS  contrast AA detail/light — PR-03 content only — no text below WCAG AA inside <main>
+PASS  PR-03 detail: #install-agents pre, #install-agents pre code uses --plate-ink and clears AA — detail/dark — 30 element(s), expected colour rgb(230,237,243)
+PASS  dark plate text uses plate-safe colours and clears AA — detail/dark — 15 plate text node(s), colours=[rgb(230, 237, 243)]
+PASS  accent fills use accent-ink and clear AA — detail/dark — 1 accent-filled text node(s), colours=[rgb(15, 18, 22)]
 PASS  contrast AA detail/dark — PR-03 content only — no text below WCAG AA inside <main>
 PASS  no console errors / page errors anywhere — none
 
-42/42 checks passed
+full contrast report → /tmp/cs03/contrast-report.json
+
+56/56 checks passed
 ```
 
 ### Contrast audit
@@ -204,13 +289,49 @@ text) using the computed styles. Full dump: `/tmp/cs03/contrast-report.json`.
 | --- | --- | --- |
 | gallery `<main>` (PR 03) | 0 offenders | 0 offenders |
 | detail `<main>` (PR 03) | 0 offenders | 0 offenders |
-| shared Navbar (not PR 03) | 3 | 0 |
-| shared Footer (not PR 03) | 18 | 18 |
+| shared Navbar (not PR 03) | 1 | 0 |
+| shared Footer (not PR 03) | 2 | 2 |
 
-The 39 unique chrome failures are the ones the PR 05 axe report counts; they
-come from `text-surface-500/600` used as body text in `Navbar.astro` /
-`Footer.astro` and from `.btn-primary`'s `text-white` on the accent fill
-(4.05:1 light, 2.26:1 dark). See "Known gaps".
+After the base merge only 5 unique chrome failures remain (down from 39 before
+`00a1db1`/the `surface-500` remap):
+
+| Where | Text | Ratio | Cause |
+| --- | --- | --- | --- |
+| Navbar, light | "Skill Gallery" (active link) | 3.93:1 | `text-brand-400` → `--accent` on `bg-accent/10` |
+| Footer, light/dark | "MIT License · Made with ❤️ by" | 1.22 / 1.41:1 | `text-surface-600` → `--line` used as text |
+| Footer, light/dark | `// 人会离开，dot-skill 不会` | 1.22 / 1.41:1 | `text-surface-600` → `--line` used as text |
+
+All five live in `Navbar.astro` / `Footer.astro` (other agents' files, PR 04) —
+reported here for the integration-branch axe pass, not fixed in PR 03.
+
+### Dark plate / code-block audit
+
+The base darkened the light-theme accent and remapped the legacy
+`surface-300…500` aliases onto ink shades, which makes the old token habits
+(`text-brand-*`, `text-surface-*`) unsafe **on a dark plate**. PR 03 owns three
+plate blocks (the two install commands inside each agent panel) and no others,
+so the check is explicit rather than implied:
+
+- every element matching `#install-agents pre, #install-agents pre code` — 30
+  elements across all 8 panels, not just the visible one — resolves to
+  `rgb(230, 237, 243)` = `--plate-ink` in **both** themes;
+- every text node whose composited background *is* `--plate` clears 4.5:1
+  (15 nodes on the detail page, 0 on the gallery — it has no plate surface);
+- the gallery's one accent fill (`main .btn-primary`) resolves to
+  `--accent-ink` (white in light, `rgb(21, 24, 27)` in dark) and clears 4.5:1.
+
+| Checked | light | dark |
+| --- | --- | --- |
+| `#install-agents pre` + `code` elements, colour must be `--plate-ink` | 30 / 30 pass | 30 / 30 pass |
+| text nodes composited on `--plate` (detail) | 15, 0 violations | 15, 0 violations |
+| text nodes composited on `--accent` (gallery, incl. shared chrome) | 3, 0 violations | 3, 0 violations |
+| gallery `main .btn-primary`, colour must be `--accent-ink` | 1 / 1 pass | 1 / 1 pass |
+
+Step numbers, eyebrows, path cells and the copy buttons all sit on paper
+(`bg-paper`, `bg-paper-raised`, `bg-paper-sunk`) and therefore use `text-ink` /
+`text-ink-muted`; nothing in these four files puts `text-brand-*`,
+`text-surface-*`, `text-ink-*` or `text-accent-*` on a plate, and the only
+accent-on-plate treatment anywhere is a fill with `text-accent-ink`.
 
 ### Hard-coded colours
 
@@ -240,33 +361,30 @@ all colour comes from the semantic tokens, including the `<style>` blocks
 | Detail (dark, desktop) | — | `images/pr-03-gallery-detail-dark.jpg` |
 | Detail (mobile) | — | `images/pr-03-gallery-detail-light-mobile.jpg` |
 | Detail install block | — | `images/pr-03-gallery-detail-light-install-tabs.jpg`, `images/pr-03-gallery-detail-light-mobile-install.jpg` |
+| Detail install, unconfirmed host (Pi) | — | `images/pr-03-gallery-detail-light-pi-unverified.jpg` |
 
-The last six images are extra scrolled/viewport shots taken with a temporary
-script, because `scripts/capture.mjs` only takes viewport-only mobile shots and
-never scrolls — the responsive grid and the install tablist are below the fold
+The seven extra scrolled/viewport shots (`*-tablet.jpg`, `*-mobile-grid.jpg`,
+`*-empty.jpg`, `*-install-tabs.jpg`, `*-mobile-install.jpg`,
+`*-pi-unverified.jpg`) were taken with a temporary script, because
+`scripts/capture.mjs` only takes viewport-only mobile shots and never scrolls —
+the responsive grid, the empty state and the install tablist are below the fold
 in its output.
 
 ## Known gaps and unverified items
 
-### Base-layer (do not fix here — owned by PR 01 / PR 05)
+### Base-layer
 
-1. **`.lang-zh` / `.lang-en` visibility was dropped by PR 01.** Commit `9497db4`
-   replaced `global.css` and removed
-   `html[data-lang="en"] .lang-zh { display: none }` and its two siblings, so
-   **both languages render at once site-wide** (visible in the Navbar, Footer
-   and every page). PR 03 does not edit base files; instead each of its entry
-   points carries three `.lang-scope`-prefixed rules that reproduce the original
-   behaviour inside its own subtree. Delete them once `global.css` has the rules
-   back.
-2. **`.btn-primary` uses `text-white` on the accent fill** — 4.05:1 in light,
-   2.26:1 in dark. The gallery CTA overrides it locally with `text-plate`
-   (4.6:1 light / 8.5:1 dark). When the fix lands in `global.css` (or a
-   `text-accent-ink` token exists), that override can go — the class is applied
-   in `pages/gallery/index.astro` with a comment saying so.
-3. **39 unique AA text-contrast failures live in the shared Navbar/Footer**
-   (`text-surface-500` = `--ink-dim`, `text-surface-600` = `--line` used as body
-   text). Listed in `/tmp/cs03/contrast-report.json`; outside this PR's file
-   scope, reported here for the PR 05 sweep.
+1. ~~**`.lang-zh` / `.lang-en` visibility was dropped by PR 01**~~ — **resolved**
+   by the base (`5758ec7`) and PR 03's `.lang-scope` workaround deleted in
+   `e76d839`. Kept here as the record of what the merge fixed.
+2. ~~**`.btn-primary` uses `text-white` on the accent fill** (4.05:1 light /
+   2.26:1 dark)~~ — **resolved** by `00a1db1` (`--accent-ink`), and the local
+   `text-plate` override deleted in `e76d839`.
+3. **5 unique AA text-contrast failures remain in the shared Navbar/Footer**
+   (down from 39 before the base token fixes) — the active nav link and two
+   `text-surface-600` footer lines; full list and ratios in the contrast section
+   above and in `/tmp/cs03/contrast-report.json`. Outside this PR's file scope,
+   reported here for the integration-branch axe sweep.
 4. **Astro 4 compiler quirk**: a `/\\.0$/` regex literal in a page frontmatter
    breaks export hoisting — the compiler keeps `export async function
    getStaticPaths` *inside* the component and esbuild then fails with
@@ -319,15 +437,25 @@ in its output.
 
 ## Rollback
 
-Nothing was pushed, merged or rebased; the branch is linear on top of `688ec35`.
+Nothing was pushed; the branch is linear on top of `688ec35` apart from the
+fast-forward-free merge `f7b6138` of `site/01-design-system`.
 
 ```bash
 cd /tmp/cs-03-gallery
-git revert --no-commit b729837 a45f892 b714a45 52cf3d9   # detail, filters, chrome, card
-git commit -m "revert: PR 03 gallery refactor"           # or drop the worktree entirely
+# whole PR (code + evidence), keeping the merged base:
+git revert --no-commit 80604eb e76d839 b729837 a45f892 b714a45 52cf3d9
+git commit -m "revert: PR 03 gallery refactor"
+# or undo only the post-review sync, keeping the reviewed PR:
+git revert --no-commit 80604eb e76d839 f7b6138
+# or drop the worktree entirely (base tip, no trace):
+git worktree remove /tmp/cs-03-gallery
 ```
 
-The four commits are independent: `git revert <sha>` of any single one leaves
-the others applying cleanly, because they touch four different files (the
-evidence commit only adds `docs/evidence/*`). Deleting the worktree
-(`git worktree remove /tmp/cs-03-gallery`) restores the base tip with no trace.
+The four original commits are independent — each touches a different file, so
+`git revert <sha>` of any single one leaves the others applying cleanly. The two
+cleanup commits are independent of each other too (`e76d839` touches
+`SkillGallery.astro`, `index.astro` and the style block of `[slug].astro`;
+`80604eb` touches only the install block of `[slug].astro`), but note that
+reverting `f7b6138` alone restores the base regression it fixed and re-breaks
+`text-accent-ink` — undo it together with the cleanup that depended on it.
+
