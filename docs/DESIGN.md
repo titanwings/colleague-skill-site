@@ -1,5 +1,9 @@
 # Design system — paper & ink
 
+> Screenshots, capture receipts and diff images are **not committed** (see
+> `.gitignore`). Regenerate them with `cd website && npm run evidence`; the
+> figures quoted below come from those runs.
+
 The marketplace uses a paper-and-ink editorial visual language: warm paper
 surfaces, near-black ink, **one** burnt-orange accent, and colour reserved for
 meaning. Colour names are semantic; a page should not need to know whether it
@@ -11,22 +15,7 @@ All colours are CSS variables holding an `R G B` triplet, consumed through
 Tailwind as `rgb(var(--token) / <alpha-value>)`. That keeps opacity modifiers
 (`bg-accent/12`) working while a single `[data-theme]` flip re-themes the site.
 
-| Token | Light | Dark | Use |
-| --- | --- | --- | --- |
-| `--paper` | `#eff2f1` | `#0f1216` | page background |
-| `--paper-raised` | `#f8faf9` | `#161b21` | cards, popovers |
-| `--paper-sunk` | `#e6eae9` | `#0b0d10` | wells, inputs, code headers |
-| `--ink` | `#15181b` | `#ebf0f4` | body text |
-| `--ink-soft` | `#363c41` | `#c8d0d6` | strong secondary text |
-| `--ink-muted` | `#60686d` | `#96a0a8` | secondary text |
-| `--ink-dim` | `#929a9e` | `#6e7880` | decorative only — never body text |
-| `--line` | `#d6dddb` | `#2a3038` | hairlines, borders |
-| `--accent` | `#c73e0c` | `#fb923c` | brand mark, links, fills |
-| `--accent-ink` | `#ffffff` | `#15181b` | text **on** an accent fill |
-| `--accent-soft` / `--accent-deep` | darker / darkest | lighter / mid | hover, borders |
-| `--accent-wash` | `#fdf0ea` | `#29180c` | tinted backgrounds |
-| `--plate` / `--plate-ink` / `--plate-line` | dark plate, always | dark plate, always | terminals, code blocks |
-| `--ok` `--warn` `--info` `--violet` `--rose` | semantic | semantic | status, categories |
+| Token | Light | Dark | Use | — | --- | --- | --- | --- | — | `--paper` | `#eff2f1` | `#0f1216` | page background | — | `--paper-raised` | `#f8faf9` | `#161b21` | cards, popovers | — | `--paper-sunk` | `#e6eae9` | `#0b0d10` | wells, inputs, code headers | — | `--ink` | `#15181b` | `#ebf0f4` | body text | — | `--ink-soft` | `#363c41` | `#c8d0d6` | strong secondary text | — | `--ink-muted` | `#60686d` | `#96a0a8` | secondary text | — | `--ink-dim` | `#929a9e` | `#6e7880` | decorative only — never body text | — | `--line` | `#d6dddb` | `#2a3038` | hairlines, borders | — | `--accent` | `#c73e0c` | `#fb923c` | brand mark, links, fills | — | `--accent-ink` | `#ffffff` | `#15181b` | text **on** an accent fill | — | `--accent-soft` / `--accent-deep` | darker / darkest | lighter / mid | hover, borders | — | `--accent-wash` | `#fdf0ea` | `#29180c` | tinted backgrounds | — | `--plate` / `--plate-ink` / `--plate-line` | dark plate, always | dark plate, always | terminals, code blocks | — | `--ok` `--warn` `--info` `--violet` `--rose` | semantic | semantic | status, categories |
 
 Legacy `brand-*` and `surface-*` utility names remain as aliases onto these
 tokens so older markup re-skins automatically: `surface-100/50 → ink`,
@@ -43,12 +32,7 @@ tokens so older markup re-skins automatically: `surface-100/50 → ink`,
 
 ## Typography
 
-| Role | Family | Where |
-| --- | --- | --- |
-| Display | Fraunces → `Songti SC`/`Georgia` | page and section headlines, numerals |
-| UI | Space Grotesk → system sans | labels, buttons, nav, meta |
-| Body | Inter → system sans → `PingFang SC`/`Microsoft YaHei` | paragraphs |
-| Mono | JetBrains Mono → `ui-monospace` | commands, code, counters |
+| Role | Family | Where | — | --- | --- | --- | — | Display | Fraunces → `Songti SC`/`Georgia` | page and section headlines, numerals | — | UI | Space Grotesk → system sans | labels, buttons, nav, meta | — | Body | Inter → system sans → `PingFang SC`/`Microsoft YaHei` | paragraphs | — | Mono | JetBrains Mono → `ui-monospace` | commands, code, counters |
 
 Section headers follow one shape: a small uppercase `.section-label`
 (`Agent Skill · Open Standard`), a Fraunces headline, one short paragraph of
