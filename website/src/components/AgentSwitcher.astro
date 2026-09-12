@@ -8,10 +8,14 @@
  * guess whether their agent is supported.
  *
  * The data comes from `src/data/agents.ts` — nothing is hand-written here:
- *   - `skillsCliCommand(id, scope)` → the AgentSkills CLI one-liner
+ *   - `skillsCliSupported(id)`      → whether the CLI target is confirmed
+ *   - `skillsCliCommand(id, scope, { requireVerified: true })` → the CLI one-liner
  *   - `cloneCommand(id, scope)`     → the direct-clone route
  *   - `globalPath` / `projectPath`  → the documented install directories
  *   - `note.{zh,en}`                → the per-host caveat
+ *
+ * Hosts whose `--agent` target is unconfirmed (Pi) get the clone route only,
+ * labelled as such — an unverified command is never printed as if it worked.
  *
  * Progressive enhancement: the default host's panel is rendered visible, so
  * without JS the page still answers "how do I install this?".
@@ -21,6 +25,8 @@ import {
   DEFAULT_AGENT,
   cloneCommand,
   skillsCliCommand,
+  skillsCliSupported,
+  type AgentId,
   type CodingAgent,
 } from '../data/agents';
 
@@ -35,36 +41,45 @@ type Scope = 'global' | 'project';
 
 interface ScopeView {
   scope: Scope;
-  cli: string;
+  /** `null` when the AgentSkills CLI target is not confirmed for this host. */
+  cli: string | null;
   clone: string;
   path: string;
+  /** Row numbers, so the list stays 01/02/03 or 01/02 without a gap. */
+  numbers: { cli: string | null; clone: string; path: string };
 }
 
 interface HostView {
   agent: CodingAgent;
   scopes: ScopeView[];
-  /** No `skillsCliId` → the `--agent` target is not a confirmed one. */
+  /** Confirmed AgentSkills CLI target? */
   cliConfirmed: boolean;
 }
 
+/** The CLI route, or `null` when `--agent <id>` is unverified. */
+function cliRoute(agentId: AgentId, scope: Scope): string | null {
+  if (!skillsCliSupported(agentId)) return null;
+  return skillsCliCommand(agentId, scope, { requireVerified: true });
+}
+
 const hosts: HostView[] = AGENTS.map((agent) => {
-  const scopes: ScopeView[] = [
-    {
-      scope: 'global',
-      cli: skillsCliCommand(agent.id, 'global'),
-      clone: cloneCommand(agent.id, 'global'),
-      path: agent.globalPath,
-    },
-  ];
-  if (agent.projectPath) {
+  const confirmed = skillsCliSupported(agent.id);
+  const scopes: ScopeView[] = [];
+
+  for (const scope of ['global', 'project'] as const) {
+    if (scope === 'project' && !agent.projectPath) continue;
     scopes.push({
-      scope: 'project',
-      cli: skillsCliCommand(agent.id, 'project'),
-      clone: cloneCommand(agent.id, 'project'),
-      path: agent.projectPath,
+      scope,
+      cli: cliRoute(agent.id, scope),
+      clone: cloneCommand(agent.id, scope),
+      path: scope === 'project' ? agent.projectPath! : agent.globalPath,
+      numbers: confirmed
+        ? { cli: '01', clone: '02', path: '03' }
+        : { cli: null, clone: '01', path: '02' },
     });
   }
-  return { agent, scopes, cliConfirmed: Boolean(agent.skillsCliId) };
+
+  return { agent, scopes, cliConfirmed: confirmed };
 });
 
 const CAPABILITY = {
@@ -73,9 +88,9 @@ const CAPABILITY = {
 } as const;
 
 const ROW = {
-  cli: { n: '01', zh: 'AgentSkills CLI 安装', en: 'Install with the AgentSkills CLI' },
-  clone: { n: '02', zh: '直接克隆到目录', en: 'Clone straight into the directory' },
-  path: { n: '03', zh: '宿主扫描的目录', en: 'Directory the host scans' },
+  cli: { zh: 'AgentSkills CLI 安装', en: 'Install with the AgentSkills CLI' },
+  clone: { zh: '直接克隆到目录', en: 'Clone straight into the directory' },
+  path: { zh: '宿主扫描的目录', en: 'Directory the host scans' },
 } as const;
 
 const copyLabel = (what: string, agent: string) => `Copy ${what} for ${agent}`;
@@ -188,52 +203,56 @@ const copyLabel = (what: string, agent: string) => `Copy ${what} for ${agent}`;
 
       {host.scopes.map((view) => (
         <div data-scope-block={view.scope} hidden={view.scope !== 'global'}>
-          {/* 01 — AgentSkills CLI */}
-          <div class="mt-6" data-copy-row>
-            <div class="flex items-center justify-between gap-3">
-              <p class="section-label">
-                {ROW.cli.n} · <span class="lang-zh">{ROW.cli.zh}</span><span class="lang-en">{ROW.cli.en}</span>
-              </p>
-              <button
-                type="button"
-                data-copy
-                aria-label={copyLabel('the AgentSkills CLI command', host.agent.label)}
-                class="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-line bg-paper px-2.5 py-1 font-grotesk text-xs font-medium text-ink-muted transition-colors hover:border-accent/45 hover:text-accent-soft"
-              >
-                <svg class="icon-copy h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                <svg class="icon-check h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="label-copy"><span class="lang-zh">复制</span><span class="lang-en">Copy</span></span>
-                <span class="label-copied"><span class="lang-zh">已复制</span><span class="lang-en">Copied</span></span>
-              </button>
+          {/* 01 — AgentSkills CLI (confirmed targets only) */}
+          {view.cli && (
+            <div class="mt-6" data-copy-row>
+              <div class="flex items-center justify-between gap-3">
+                <p class="section-label">
+                  {view.numbers.cli} · <span class="lang-zh">{ROW.cli.zh}</span><span class="lang-en">{ROW.cli.en}</span>
+                </p>
+                <button
+                  type="button"
+                  data-copy
+                  aria-label={copyLabel('the AgentSkills CLI command', host.agent.label)}
+                  class="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-line bg-paper px-2.5 py-1 font-grotesk text-xs font-medium text-ink-muted transition-colors hover:border-accent/45 hover:text-accent-soft"
+                >
+                  <svg class="icon-copy h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  <svg class="icon-check h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="label-copy"><span class="lang-zh">复制</span><span class="lang-en">Copy</span></span>
+                  <span class="label-copied"><span class="lang-zh">已复制</span><span class="lang-en">Copied</span></span>
+                </button>
+              </div>
+              <pre
+                class="code-block mt-2 px-4 py-3"
+                tabindex="0"
+                role="group"
+                aria-label={`${ROW.cli.en} — ${host.agent.label}`}
+              ><code data-copy-source class="block whitespace-pre leading-relaxed">{view.cli}</code></pre>
             </div>
-            <pre
-              class="code-block mt-2 px-4 py-3"
-              tabindex="0"
-              role="group"
-              aria-label={`${ROW.cli.en} — ${host.agent.label}`}
-            ><code data-copy-source class="block whitespace-pre leading-relaxed">{view.cli}</code></pre>
-            {!host.cliConfirmed && (
-              <p class="mt-2 font-grotesk text-xs text-warn">
-                <span class="lang-zh">
-                  AgentSkills CLI 尚未确认支持 <code>{host.agent.id}</code> 这个 <code>--agent</code> 目标；命令照 <code>agents.ts</code> 生成，失败就用下面的克隆方式。
-                </span>
-                <span class="lang-en">
-                  <code>{host.agent.id}</code> is not a confirmed AgentSkills CLI <code>--agent</code> target yet — the
-                  command is generated from <code>agents.ts</code>; use the clone route below if it fails.
-                </span>
-              </p>
-            )}
-          </div>
+          )}
+
+          {!host.cliConfirmed && (
+            <p class="mt-6 border-l-2 border-warn/50 pl-3 font-grotesk text-xs leading-relaxed text-warn">
+              <span class="lang-zh">
+                {host.agent.label} 不是 AgentSkills CLI 的已确认 <code>--agent</code> 目标，所以这里不给出未经验证的一行命令 ——
+                用下面的克隆方式安装到 <code>{view.path}</code>。
+              </span>
+              <span class="lang-en">
+                {host.agent.label} is not a confirmed AgentSkills CLI <code>--agent</code> target, so no unverified one-liner
+                is shown — clone into <code>{view.path}</code> below instead.
+              </span>
+            </p>
+          )}
 
           {/* 02 — direct clone */}
           <div class="mt-6" data-copy-row>
             <div class="flex items-center justify-between gap-3">
               <p class="section-label">
-                {ROW.clone.n} · <span class="lang-zh">{ROW.clone.zh}</span><span class="lang-en">{ROW.clone.en}</span>
+                {view.numbers.clone} · <span class="lang-zh">{ROW.clone.zh}</span><span class="lang-en">{ROW.clone.en}</span>
               </p>
               <button
                 type="button"
@@ -263,7 +282,7 @@ const copyLabel = (what: string, agent: string) => `Copy ${what} for ${agent}`;
           <div class="mt-6 border-t border-line pt-4" data-copy-row>
             <div class="flex items-center justify-between gap-3">
               <p class="section-label">
-                {ROW.path.n} · <span class="lang-zh">{ROW.path.zh}</span><span class="lang-en">{ROW.path.en}</span>
+                {view.numbers.path} · <span class="lang-zh">{ROW.path.zh}</span><span class="lang-en">{ROW.path.en}</span>
               </p>
               <button
                 type="button"
@@ -296,16 +315,6 @@ const copyLabel = (what: string, agent: string) => `Copy ${what} for ${agent}`;
 </div>
 
 <style>
-  /* Scoped twin of the site-wide language switch: `html[data-lang]` flips the
-     pair. It lives here rather than in global.css because that file belongs to
-     the design-system PR — see the PR-02 evidence notes. */
-  :global(html[data-lang='en']) .lang-zh {
-    display: none !important;
-  }
-  :global(html:not([data-lang='en'])) .lang-en {
-    display: none !important;
-  }
-
   /* Panels and scope blocks are toggled with the `hidden` attribute; make sure
      no utility class can win over it. */
   [data-agent-panel][hidden],
