@@ -3,11 +3,9 @@
  * Language toggle — one button that flips `html[data-lang]` between `zh` and
  * `en`, persists the choice and keeps `<html lang>` in sync.
  *
- * This component also ships the *visibility* half of the bilingual mechanism:
- * both languages are always in the DOM and `html[data-lang]` picks one. The
- * rules are global because the pairs live in many components, and they only
- * ever *hide* the inactive side — no `display: revert` — so an author
- * `display: flex` / `inline-flex` utility on the visible side still wins.
+ * The *visibility* half of the bilingual mechanism (`html[data-lang]` picking
+ * between the paired `.lang-zh` / `.lang-en` nodes) lives in `global.css`, as
+ * the base design system requires; this component only owns the switch itself.
  *
  * The active half of `中文 / EN` is styled from `html[data-lang]` alone, so the
  * button is correct on the very first paint; JS only maintains the accessible
@@ -38,20 +36,11 @@ const { class: className = '' } = Astro.props;
 </button>
 
 <style is:global>
-  /*
-   * Both languages are in the DOM; `html[data-lang]` decides which one paints.
-   * Only the inactive side is hidden, and with `!important`, so it also beats a
-   * responsive display utility and nothing can override it by cascade order.
-   * `html` ships `data-lang="zh"` statically, so the no-JS default is Chinese.
-   */
-  html:not([data-lang='en']) .lang-en,
-  html[data-lang='en'] .lang-zh {
-    display: none !important;
-  }
-
   /* Active half of the toggle, driven by the attribute rather than by JS.
      The inactive half uses `ink-muted` (not `ink-dim`): `ink-dim` only clears
-     ~2.4:1 on paper, which axe flags as a serious contrast failure. */
+     ~2.4:1 on paper, which axe flags as a serious contrast failure.
+     The `.lang-zh` / `.lang-en` visibility rules are NOT here — they are
+     site-wide in `global.css`, so there is exactly one copy of them. */
   .ds-lang-toggle [data-lang-option] {
     color: rgb(var(--ink-muted));
     transition: color 0.2s ease;
