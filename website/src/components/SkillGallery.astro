@@ -95,7 +95,7 @@ const typeOptions = [
 ];
 ---
 
-<div class="lang-scope" id="gallery-root">
+<div id="gallery-root">
   <!-- ------------------------------------------------------------ controls -->
   <section aria-labelledby="gallery-filter-heading">
     <h2 id="gallery-filter-heading" class="sr-only">
@@ -356,25 +356,14 @@ const typeOptions = [
 
 <style is:global>
   /*
-   * Language pairing, limited to `.lang-scope` subtrees we own. `.lang-zh` /
-   * `.lang-en` visibility used to live in global.css; PR 01 dropped those three
-   * rules, so both languages currently render at once. Declared here (the base
-   * stylesheet is owned elsewhere) and `is:global` because the gallery page
-   * header lives outside this component — remove once global.css carries them.
+   * Chip styling for the filter bar. Kept in a global block on purpose: every
+   * selector is namespaced by `#gallery-root`, so nothing leaks, and the block
+   * is immune to Astro's per-component scope rewriting. Language pairing is NOT
+   * handled here — `global.css` owns `.lang-zh` / `.lang-en`.
    */
-  .lang-scope .lang-en {
-    display: none;
-  }
-  html[data-lang='en'] .lang-scope .lang-zh {
-    display: none;
-  }
-  html[data-lang='en'] .lang-scope .lang-en {
-    display: revert;
-  }
 
   /* Filter / sort / pagination chip. Selection is driven by `aria-pressed`,
-     so the visual state and the accessible state can never drift apart.
-     Namespaced by #gallery-root because this block is global. */
+     so the visual state and the accessible state can never drift apart. */
   #gallery-root .chip {
     display: inline-flex;
     align-items: center;

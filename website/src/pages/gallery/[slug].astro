@@ -122,7 +122,7 @@ const metaValue = 'mt-1.5 text-sm text-ink';
 ---
 
 <BaseLayout title={`${skill.name} — dot-skill Gallery`} description={skill.description} ogType="profile">
-  <article class="lang-scope mx-auto max-w-5xl px-4 pb-24 pt-28 sm:px-6 lg:px-8">
+  <article class="mx-auto max-w-5xl px-4 pb-24 pt-28 sm:px-6 lg:px-8">
     <!-- Back -->
     <a
       href={`${base}/gallery/`}
@@ -662,19 +662,10 @@ const metaValue = 'mt-1.5 text-sm text-ink';
 
 <style is:global>
   /*
-   * Language pairing, limited to `.lang-scope` subtrees we own — see the note in
-   * SkillGallery.astro: PR 01 dropped these rules from global.css, which is
-   * owned elsewhere, so the detail page carries its own copy.
+   * Agent tabs and copy buttons. Kept in a global block on purpose: every
+   * selector is namespaced by `#install-agents`, so nothing leaks. Language
+   * pairing is NOT handled here — `global.css` owns `.lang-zh` / `.lang-en`.
    */
-  .lang-scope .lang-en {
-    display: none;
-  }
-  html[data-lang='en'] .lang-scope .lang-zh {
-    display: none;
-  }
-  html[data-lang='en'] .lang-scope .lang-en {
-    display: revert;
-  }
 
   /* Agent tabs. Selection is driven by `aria-selected`, so the visual state and
      the accessible state can never drift apart. */
