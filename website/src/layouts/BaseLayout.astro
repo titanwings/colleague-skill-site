@@ -25,7 +25,7 @@ const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 ---
 
 <!doctype html>
-<html lang="zh-CN" class="scroll-smooth" data-theme="auto">
+<html lang="zh-CN" class="scroll-smooth" data-theme="auto" data-lang="zh">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -88,6 +88,44 @@ const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
           window.dispatchEvent(new CustomEvent('themechange', { detail: next }));
         };
         window.__getTheme = () => document.documentElement.getAttribute('data-theme') || 'auto';
+      })();
+    </script>
+
+    <!-- Language bootstrap: also runs before first paint, so a stored `en`
+         preference never flashes the Chinese copy first. `lang-zh` / `lang-en`
+         pairs are both in the DOM; `html[data-lang]` (plus the rules shipped by
+         components/LangToggle.astro) decides which one paints. Keep the storage
+         key and the tag map in sync with src/lib/i18n.ts. -->
+    <script is:inline>
+      (() => {
+        const KEY = 'dotskill-lang';
+        const TAGS = { zh: 'zh-CN', en: 'en' };
+        const read = () => {
+          try {
+            const saved = localStorage.getItem(KEY);
+            return saved === 'en' || saved === 'zh' ? saved : 'zh';
+          } catch {
+            return 'zh'; /* private mode: keep the default */
+          }
+        };
+        const apply = (lang) => {
+          const next = lang === 'en' ? 'en' : 'zh';
+          document.documentElement.setAttribute('data-lang', next);
+          document.documentElement.setAttribute('lang', TAGS[next]);
+          return next;
+        };
+        window.__setLang = (lang) => {
+          const next = apply(lang);
+          try {
+            localStorage.setItem(KEY, next);
+          } catch {
+            /* ignore */
+          }
+          window.dispatchEvent(new CustomEvent('langchange', { detail: next }));
+          return next;
+        };
+        window.__getLang = () => (document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'zh');
+        apply(read());
       })();
     </script>
 
