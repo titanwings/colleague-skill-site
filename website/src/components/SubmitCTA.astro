@@ -1,72 +1,82 @@
 ---
+/**
+ * Closing call to action — one plate band on the paper page.
+ *
+ * The plate is the only high-contrast block in the chrome, which is how the
+ * archify-style layouts sign off; everything inside it uses `plate-*` tokens
+ * (never `ink-*`, which is tuned for paper) so it reads in both themes.
+ *
+ * The three process lines are numbered rather than badged — no emoji, no
+ * gradient panel, no blurred glow.
+ */
+import { BRAND } from '../data/brand';
+
 const base = import.meta.env.BASE_URL;
+
+const process = [
+  { numZh: '01', numEn: '01', zh: '填一份 Issue 表单', en: 'File the Issue form' },
+  { numZh: '02', numEn: '02', zh: 'CI 校验格式', en: 'CI validates the format' },
+  { numZh: '03', numEn: '03', zh: '合并后进入 Gallery', en: 'Live in the Gallery on merge' },
+];
 ---
 
-<section class="py-24 relative overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 via-transparent to-purple-500/5"></div>
-  <div class="absolute inset-0 bg-grid-pattern opacity-50"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/8 rounded-full blur-3xl pointer-events-none"></div>
+<section class="border-t border-line py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="reveal rounded-card border border-plate-line bg-plate px-6 py-12 text-plate-ink sm:px-10 md:px-14 md:py-16">
+      <p class="font-grotesk text-xs font-medium uppercase tracking-[0.18em] text-accent">
+        <span class="lang-zh">提交 · Contribute</span>
+        <span class="lang-en">Contribute · 提交</span>
+      </p>
 
-  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-    <div class="card-base p-12 bg-gradient-to-br from-surface-800/80 to-surface-800/40 border-surface-700/50 backdrop-blur-sm">
-
-      <div class="text-5xl mb-6 animate-float">🧬</div>
-
-      <h2 class="text-3xl md:text-4xl font-black text-ink mb-2">
-        <span class="lang-zh">蒸馏了什么好东西？<br/><span class="gradient-text">分享出来啊！</span></span>
-        <span class="lang-en">Distilled something great?<br/><span class="gradient-text">Share it with the world.</span></span>
+      <h2 class="mt-5 max-w-2xl font-display text-3xl font-semibold leading-[1.2] tracking-tight text-plate-ink md:text-4xl">
+        <span class="lang-zh">蒸馏了什么好东西？分享出来。</span>
+        <span class="lang-en">Distilled something good? Share it.</span>
       </h2>
 
-      <p class="text-surface-400 text-lg mb-2 max-w-xl mx-auto">
-        <span class="lang-zh">你蒸馏的那个人，可能正是别人找了很久的。</span>
-        <span class="lang-en">The person you distilled might be exactly who someone else has been looking for.</span>
-      </p>
-      <p class="text-surface-500 text-base mb-8 max-w-lg mx-auto">
-        <span class="lang-zh">大牛、导师、某本书的作者、某个领域的专家——<br/>提交到 Gallery，让更多人用上。</span>
-        <span class="lang-en">A brilliant engineer, a legendary mentor, a book author, a domain expert —<br/>submit to the Gallery and let the world summon them too.</span>
+      <p class="mt-5 max-w-xl text-base leading-relaxed text-plate-ink/80">
+        <span class="lang-zh">你蒸馏的那个人，可能正是别人找了很久的。大牛、导师、某本书的作者、某个领域的专家——提交到 Gallery，让更多人用得上。</span>
+        <span class="lang-en">The person you distilled may be exactly who someone else has been looking for. An engineer, a mentor, an author, an expert — submit it to the Gallery and let others summon them too.</span>
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
         <a
-          href="https://github.com/titanwings/colleague-skill-site/issues/new?template=submit-skill.yml"
+          href={BRAND.submitUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-primary text-base px-8 py-4"
+          class="inline-flex items-center gap-2 rounded-lg bg-accent-deep px-6 py-3 text-base font-semibold text-paper transition-colors hover:bg-accent-soft"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" d="M12 5v14M5 12h14"></path>
           </svg>
           <span class="lang-zh">提交我的 Skill</span>
-          <span class="lang-en">Submit My Skill</span>
+          <span class="lang-en">Submit my Skill</span>
         </a>
         <a
           href={`${base}/gallery/`}
-          class="btn-secondary text-base px-8 py-4"
+          class="inline-flex items-center gap-2 rounded-lg border border-plate-line px-6 py-3 text-base font-medium text-plate-ink transition-colors hover:border-accent hover:text-accent"
         >
-          <span class="lang-zh">先逛逛 Gallery →</span>
-          <span class="lang-en">Browse Gallery →</span>
+          <span class="lang-zh">先逛逛 Gallery</span>
+          <span class="lang-en">Browse the Gallery</span>
+          <span aria-hidden="true">→</span>
         </a>
       </div>
 
-      <div class="flex flex-wrap justify-center gap-x-10 gap-y-4 pt-8 border-t border-surface-700/50">
-        {[
-          { numZh: '2 分钟', numEn: '2 min', labelZh: '填一个 Issue 表单', labelEn: 'Fill an Issue form' },
-          { numZh: '自动', numEn: 'Auto', labelZh: 'CI 校验格式', labelEn: 'CI validates format' },
-          { numZh: '合并后', numEn: 'On merge', labelZh: '立即出现在 Gallery', labelEn: 'Instantly live in Gallery' },
-        ].map((s) => (
-          <div class="text-center">
-            <div class="text-brand-400 font-bold text-lg">
-              <span class="lang-zh">{s.numZh}</span>
-              <span class="lang-en">{s.numEn}</span>
-            </div>
-            <div class="text-surface-500 text-base mt-0.5">
-              <span class="lang-zh">{s.labelZh}</span>
-              <span class="lang-en">{s.labelEn}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-
+      <ul class="mt-12 grid gap-6 border-t border-plate-line pt-8 sm:grid-cols-3">
+        {
+          process.map((item) => (
+            <li class="flex items-baseline gap-3">
+              <span class="font-mono text-[11px] tracking-[0.14em] text-accent">
+                <span class="lang-zh">{item.numZh}</span>
+                <span class="lang-en">{item.numEn}</span>
+              </span>
+              <span class="font-grotesk text-sm text-plate-ink/80">
+                <span class="lang-zh">{item.zh}</span>
+                <span class="lang-en">{item.en}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </section>
