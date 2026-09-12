@@ -48,7 +48,8 @@ Page heights (desktop, light = dark):
 | detail / dark | 61.5 % | 2968–3133 px |
 
 (The `dark` rows measure the theme switch as well: the live baseline was captured
-in the light theme only. Difference images are in `docs/evidence/diffs/`.)
+in the light theme only, so no dark difference image is kept — only the light
+ones, in `docs/evidence/diffs/`, downscaled for review.)
 
 ## What the individual PRs could not have proven
 
