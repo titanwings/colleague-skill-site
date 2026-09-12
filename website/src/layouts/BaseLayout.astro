@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { BRAND } from '../data/brand';
 
 interface Props {
   title?: string;
@@ -13,17 +14,18 @@ interface Props {
 const base = import.meta.env.BASE_URL;
 
 const {
-  title = 'dot-skill — 人会离开，dot-skill 不会',
-  description = '把任何人的智慧蒸馏成可调用的 AI Skill。Distill anyone into an AI Skill. AgentSkills open standard. GitHub 10k+ Stars.',
+  title = `${BRAND.name} — ${BRAND.tagline.zh} · ${BRAND.tagline.en}`,
+  description = BRAND.description.zh,
   ogImage = `${base}/og-image.png`,
   ogType = 'website',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 ---
 
 <!doctype html>
-<html lang="zh-CN" class="scroll-smooth">
+<html lang="zh-CN" class="scroll-smooth" data-theme="auto">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,8 +36,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="dot-skill, AI Skill, AgentSkills, skill distillation, 飞书, 钉钉, Slack, Claude Code" />
+    <meta name="keywords" content={BRAND.keywords.join(', ')} />
     <meta name="author" content="titanwings" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eff2f1" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1216" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={ogType} />
@@ -43,7 +47,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(ogImage, Astro.site)} />
-    <meta property="og:site_name" content="colleague-skill" />
+    <meta property="og:site_name" content={BRAND.siteRepo} />
     <meta property="og:locale" content="zh_CN" />
 
     <!-- Twitter -->
@@ -53,14 +57,53 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(ogImage, Astro.site)} />
 
-    <!-- Fonts -->
+    <!-- Type: Fraunces (editorial display) + Space Grotesk (UI) + JetBrains Mono.
+         Chinese falls back to the system serif/sans stacks declared in tailwind.config.mjs. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <!-- Theme bootstrap: runs before first paint so there is no flash of the wrong theme. -->
+    <script is:inline>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const theme = saved === 'light' || saved === 'dark' ? saved : 'auto';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch {
+          /* private mode: keep the default */
+        }
+        window.__setTheme = (theme) => {
+          const next = theme === 'light' || theme === 'dark' ? theme : 'auto';
+          document.documentElement.setAttribute('data-theme', next);
+          try {
+            if (next === 'auto') localStorage.removeItem('theme');
+            else localStorage.setItem('theme', next);
+          } catch {
+            /* ignore */
+          }
+          window.dispatchEvent(new CustomEvent('themechange', { detail: next }));
+        };
+        window.__getTheme = () => document.documentElement.getAttribute('data-theme') || 'auto';
+      })();
+    </script>
 
     <slot name="head" />
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "76878b4b6158495fb3efc083ab422f58"}'></script>
+    {/* Cloudflare Web Analytics is opt-in: set PUBLIC_CF_BEACON_TOKEN at build time.
+        It is off by default so local builds, offline use and CI captures stay
+        self-contained (the beacon throws CORS errors off-cloudflare origins). */}
+    {beaconToken && (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: beaconToken })}
+      />
+    )}
   </head>
-  <body class="min-h-screen flex flex-col bg-surface-900">
+  <body class="min-h-screen flex flex-col bg-paper text-ink">
     <Navbar />
     <main class="flex-1">
       <slot />
