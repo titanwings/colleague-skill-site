@@ -9,7 +9,10 @@
     "astro": "astro",
     "fetch-stars": "node scripts/fetch-github-stars.mjs",
     "capture": "node scripts/capture.mjs",
-    "evidence": "npm run build && node scripts/capture.mjs --label current"
+    "evidence": "npm run build && node scripts/capture.mjs --label current",
+    "check:a11y": "node scripts/check-a11y.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "check": "npm run build && npm run check:links && npm run check:a11y"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
@@ -18,7 +21,9 @@
     "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
-    "typescript": "^5.4.0",
-    "playwright": "^1.62.1"
+    "@axe-core/playwright": "^4.13.0",
+    "axe-core": "^4.13.0",
+    "playwright": "^1.62.1",
+    "typescript": "^5.4.0"
   }
 }
