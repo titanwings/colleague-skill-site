@@ -18,17 +18,7 @@ at a source for.
 
 ## Commits
 
-| SHA | Subject |
-| --- | --- |
-| `52cf3d9` | `refactor(gallery): rebuild the SkillCard on paper-and-ink tokens` |
-| `b714a45` | `refactor(gallery): restyle the gallery index header and catalog stats` |
-| `a45f892` | `feat(gallery): rebuild search, filters and sorting` |
-| `b729837` | `feat(gallery): rebuild the detail page with a verified install block` |
-| `8954134` | `docs(evidence): record the PR 03 gallery refactor` |
-| `f7b6138` | `Merge branch 'site/01-design-system' into site/03-gallery` |
-| `e76d839` | `refactor(gallery): drop the workarounds the base branch has since fixed` |
-| `80604eb` | `feat(gallery): flag unconfirmed AgentSkills CLI targets in the install block` |
-| _this file_ | `docs(evidence): record the PR 03 post-review cleanup` |
+| SHA | Subject | — | --- | --- | — | `52cf3d9` | `refactor(gallery): rebuild the SkillCard on paper-and-ink tokens` | — | `b714a45` | `refactor(gallery): restyle the gallery index header and catalog stats` | — | `a45f892` | `feat(gallery): rebuild search, filters and sorting` | — | `b729837` | `feat(gallery): rebuild the detail page with a verified install block` | — | `8954134` | `docs(evidence): record the PR 03 gallery refactor` | — | `f7b6138` | `Merge branch 'site/01-design-system' into site/03-gallery` | — | `e76d839` | `refactor(gallery): drop the workarounds the base branch has since fixed` | — | `80604eb` | `feat(gallery): flag unconfirmed AgentSkills CLI targets in the install block` | — | _this file_ | `docs(evidence): record the PR 03 post-review cleanup` |
 
 Each code commit was built on its own (`npm run build`, 217 pages) before the
 next one was made.
@@ -43,10 +33,7 @@ touches the four gallery files).
 
 **Removed (`e76d839`)**
 
-| Workaround | Why it existed | Why it is gone |
-| --- | --- | --- |
-| `.lang-scope .lang-en { display: none }` + 2 siblings, copied into `SkillGallery.astro` and `[slug].astro`, plus the `lang-scope` marker class on the page roots | PR 01 had dropped the site-wide `.lang-zh` / `.lang-en` rules, so both languages rendered at once | `5758ec7` restored them in `global.css`, which now states components must not ship scoped copies |
-| `text-plate` on the gallery CTA | `.btn-primary` hard-coded `text-white` on the accent fill (4.05:1 light / 2.26:1 dark) | `00a1db1` added `--accent-ink` + `text-accent-ink`; `.btn-primary` now clears AA in both themes |
+| Workaround | Why it existed | Why it is gone | — | --- | --- | --- | — | `.lang-scope .lang-en { display: none }` + 2 siblings, copied into `SkillGallery.astro` and `[slug].astro`, plus the `lang-scope` marker class on the page roots | PR 01 had dropped the site-wide `.lang-zh` / `.lang-en` rules, so both languages rendered at once | `5758ec7` restored them in `global.css`, which now states components must not ship scoped copies | — | `text-plate` on the gallery CTA | `.btn-primary` hard-coded `text-white` on the accent fill (4.05:1 light / 2.26:1 dark) | `00a1db1` added `--accent-ink` + `text-accent-ink`; `.btn-primary` now clears AA in both themes |
 
 The two `<style is:global>` blocks stay — every remaining selector is namespaced
 by `#gallery-root` / `#install-agents`, so nothing leaks and the blocks are
@@ -66,17 +53,10 @@ plus its documented directory — one copyable command, none invented. See
 `images/pr-03-gallery-detail-light-pi-unverified.jpg`.
 
 **Recaptured after the merge** — both columns are desktop heights read from the
-two `docs/evidence/captures/pr-03-gallery.json` receipts (pre-merge: commit
+two `(local) pr-03-gallery.json` receipts (pre-merge: commit
 `8954134`; post-merge: this branch tip), not hand-measured:
 
-| Surface (desktop) | Pre-merge receipt | Post-merge receipt | Δ | Attribution |
-| --- | --- | --- | --- | --- |
-| `home` (not this PR) | 7488 px | **5997 px** | −1491 px | base language fix (`5758ec7`): the duplicated-language text is gone from every home section |
-| `gallery` | 3133 px | **3095 px** | −38 px | same cause, limited to the shared chrome — PR 03's own `<main>` was already single-language |
-| `detail` | 3227 px | **3189 px** | −38 px | same cause |
-| `home` mobile | 14084 px | 10180 px | −3904 px | same cause |
-| `gallery` mobile | 8735 px | 8613 px | −122 px | same cause |
-| `detail` mobile | 5222 px | 5100 px | −122 px | same cause |
+| Surface (desktop) | Pre-merge receipt | Post-merge receipt | Δ | Attribution | — | --- | --- | --- | --- | --- | — | `home` (not this PR) | 7488 px | **5997 px** | −1491 px | base language fix (`5758ec7`): the duplicated-language text is gone from every home section | — | `gallery` | 3133 px | **3095 px** | −38 px | same cause, limited to the shared chrome — PR 03's own `<main>` was already single-language | — | `detail` | 3227 px | **3189 px** | −38 px | same cause | — | `home` mobile | 14084 px | 10180 px | −3904 px | same cause | — | `gallery` mobile | 8735 px | 8613 px | −122 px | same cause | — | `detail` mobile | 5222 px | 5100 px | −122 px | same cause |
 
 The numbers in the review request (5997 / 2463 / 1389 px) are the *base without
 PR 03* figures — `home` 5997 px matches this branch exactly because the home page
@@ -120,17 +100,7 @@ of boxed cards. Copy is unchanged in meaning and still bilingual.
 
 ### 3. `SkillGallery.astro` — search, filters, sorting
 
-| Concern | Before | After |
-| --- | --- | --- |
-| Search | placeholder-only, no `<label>` | `<label for="gallery-search">`, `type="search"`, bilingual placeholder that follows `data-lang` |
-| Type filter | 3 chips, `aria-pressed` absent | chips with `aria-pressed`, counts, `role="group"` + `aria-labelledby` |
-| Tag filter | none | 10 data-derived chips with counts |
-| Culture filter | none | data-derived chips (only cultures that exist) |
-| Sort | none (fixed `pinned → stars → created`) | `推荐/pinned`, `Stars`, `最新/newest`, default reproduces the build order |
-| Result count | static `<p>` | `role="status"` live region, count + page x/y |
-| Empty state | emoji 🔍 + ad-hoc copy | hairline block, reset button, submit link |
-| Pagination | 15/page | 24/page (divides the 1/2/3/4-column grid), `nav` + `aria-label`, disabled states |
-| Grid | 1 / 2 / 3 columns | 1 / 2 / 3 / 4 columns (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`) |
+| Concern | Before | After | — | --- | --- | --- | — | Search | placeholder-only, no `<label>` | `<label for="gallery-search">`, `type="search"`, bilingual placeholder that follows `data-lang` | — | Type filter | 3 chips, `aria-pressed` absent | chips with `aria-pressed`, counts, `role="group"` + `aria-labelledby` | — | Tag filter | none | 10 data-derived chips with counts | — | Culture filter | none | data-derived chips (only cultures that exist) | — | Sort | none (fixed `pinned → stars → created`) | `推荐/pinned`, `Stars`, `最新/newest`, default reproduces the build order | — | Result count | static `<p>` | `role="status"` live region, count + page x/y | — | Empty state | emoji 🔍 + ad-hoc copy | hairline block, reset button, submit link | — | Pagination | 15/page | 24/page (divides the 1/2/3/4-column grid), `nav` + `aria-label`, disabled states | — | Grid | 1 / 2 / 3 columns | 1 / 2 / 3 / 4 columns (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`) |
 
 Filtering stays client-side (the catalog is static), but the logic is now three
 named pure functions — `skillMatches(record, state)`,
@@ -285,21 +255,12 @@ visible text node in both themes, composites its real background (walking up
 through alpha layers) and checks the WCAG AA ratio (4.5:1, or 3:1 for large
 text) using the computed styles. Full dump: `/tmp/cs03/contrast-report.json`.
 
-| Surface | light | dark |
-| --- | --- | --- |
-| gallery `<main>` (PR 03) | 0 offenders | 0 offenders |
-| detail `<main>` (PR 03) | 0 offenders | 0 offenders |
-| shared Navbar (not PR 03) | 1 | 0 |
-| shared Footer (not PR 03) | 2 | 2 |
+| Surface | light | dark | — | --- | --- | --- | — | gallery `<main>` (PR 03) | 0 offenders | 0 offenders | — | detail `<main>` (PR 03) | 0 offenders | 0 offenders | — | shared Navbar (not PR 03) | 1 | 0 | — | shared Footer (not PR 03) | 2 | 2 |
 
 After the base merge only 5 unique chrome failures remain (down from 39 before
 `00a1db1`/the `surface-500` remap):
 
-| Where | Text | Ratio | Cause |
-| --- | --- | --- | --- |
-| Navbar, light | "Skill Gallery" (active link) | 3.93:1 | `text-brand-400` → `--accent` on `bg-accent/10` |
-| Footer, light/dark | "MIT License · Made with ❤️ by" | 1.22 / 1.41:1 | `text-surface-600` → `--line` used as text |
-| Footer, light/dark | `// 人会离开，dot-skill 不会` | 1.22 / 1.41:1 | `text-surface-600` → `--line` used as text |
+| Where | Text | Ratio | Cause | — | --- | --- | --- | --- | — | Navbar, light | "Skill Gallery" (active link) | 3.93:1 | `text-brand-400` → `--accent` on `bg-accent/10` | — | Footer, light/dark | "MIT License · Made with ❤️ by" | 1.22 / 1.41:1 | `text-surface-600` → `--line` used as text | — | Footer, light/dark | `// 人会离开，dot-skill 不会` | 1.22 / 1.41:1 | `text-surface-600` → `--line` used as text |
 
 All five live in `Navbar.astro` / `Footer.astro` (other agents' files, PR 04) —
 reported here for the integration-branch axe pass, not fixed in PR 03.
@@ -320,12 +281,7 @@ so the check is explicit rather than implied:
 - the gallery's one accent fill (`main .btn-primary`) resolves to
   `--accent-ink` (white in light, `rgb(21, 24, 27)` in dark) and clears 4.5:1.
 
-| Checked | light | dark |
-| --- | --- | --- |
-| `#install-agents pre` + `code` elements, colour must be `--plate-ink` | 30 / 30 pass | 30 / 30 pass |
-| text nodes composited on `--plate` (detail) | 15, 0 violations | 15, 0 violations |
-| text nodes composited on `--accent` (gallery, incl. shared chrome) | 3, 0 violations | 3, 0 violations |
-| gallery `main .btn-primary`, colour must be `--accent-ink` | 1 / 1 pass | 1 / 1 pass |
+| Checked | light | dark | — | --- | --- | --- | — | `#install-agents pre` + `code` elements, colour must be `--plate-ink` | 30 / 30 pass | 30 / 30 pass | — | text nodes composited on `--plate` (detail) | 15, 0 violations | 15, 0 violations | — | text nodes composited on `--accent` (gallery, incl. shared chrome) | 3, 0 violations | 3, 0 violations | — | gallery `main .btn-primary`, colour must be `--accent-ink` | 1 / 1 pass | 1 / 1 pass |
 
 Step numbers, eyebrows, path cells and the copy buttons all sit on paper
 (`bg-paper`, `bg-paper-raised`, `bg-paper-sunk`) and therefore use `text-ink` /
@@ -350,18 +306,7 @@ all colour comes from the semantic tokens, including the `<style>` blocks
 
 ## Before / after
 
-| Page | Before | After |
-| --- | --- | --- |
-| Gallery (light, desktop) | `images/before-gallery.jpg` | `images/pr-03-gallery-gallery-light.jpg` |
-| Gallery (dark, desktop) | — | `images/pr-03-gallery-gallery-dark.jpg` |
-| Gallery (mobile 390px) | — | `images/pr-03-gallery-gallery-light-mobile.jpg`, grid at 1 column: `images/pr-03-gallery-gallery-light-mobile-grid.jpg` |
-| Gallery (tablet 768px, 2 columns) | — | `images/pr-03-gallery-gallery-light-tablet.jpg`, `images/pr-03-gallery-gallery-dark-tablet.jpg` |
-| Gallery (empty state) | — | `images/pr-03-gallery-gallery-light-empty.jpg` |
-| Detail (light, desktop) | `images/before-detail.jpg` | `images/pr-03-gallery-detail-light.jpg` |
-| Detail (dark, desktop) | — | `images/pr-03-gallery-detail-dark.jpg` |
-| Detail (mobile) | — | `images/pr-03-gallery-detail-light-mobile.jpg` |
-| Detail install block | — | `images/pr-03-gallery-detail-light-install-tabs.jpg`, `images/pr-03-gallery-detail-light-mobile-install.jpg` |
-| Detail install, unconfirmed host (Pi) | — | `images/pr-03-gallery-detail-light-pi-unverified.jpg` |
+| Page | Before | After | — | --- | --- | --- | — | Gallery (light, desktop) | `images/before-gallery.jpg` | `images/pr-03-gallery-gallery-light.jpg` | — | Gallery (dark, desktop) | — | `images/pr-03-gallery-gallery-dark.jpg` | — | Gallery (mobile 390px) | — | `images/pr-03-gallery-gallery-light-mobile.jpg`, grid at 1 column: `images/pr-03-gallery-gallery-light-mobile-grid.jpg` | — | Gallery (tablet 768px, 2 columns) | — | `images/pr-03-gallery-gallery-light-tablet.jpg`, `images/pr-03-gallery-gallery-dark-tablet.jpg` | — | Gallery (empty state) | — | `images/pr-03-gallery-gallery-light-empty.jpg` | — | Detail (light, desktop) | `images/before-detail.jpg` | `images/pr-03-gallery-detail-light.jpg` | — | Detail (dark, desktop) | — | `images/pr-03-gallery-detail-dark.jpg` | — | Detail (mobile) | — | `images/pr-03-gallery-detail-light-mobile.jpg` | — | Detail install block | — | `images/pr-03-gallery-detail-light-install-tabs.jpg`, `images/pr-03-gallery-detail-light-mobile-install.jpg` | — | Detail install, unconfirmed host (Pi) | — | `images/pr-03-gallery-detail-light-pi-unverified.jpg` |
 
 The seven extra scrolled/viewport shots (`*-tablet.jpg`, `*-mobile-grid.jpg`,
 `*-empty.jpg`, `*-install-tabs.jpg`, `*-mobile-install.jpg`,
