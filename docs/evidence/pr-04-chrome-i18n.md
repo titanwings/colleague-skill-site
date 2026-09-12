@@ -108,9 +108,12 @@ All rows below were re-run after the merge and the cleanup.
 
 ```
 $ cd website && npm run build
-01:00:55 [build] 217 page(s) built in 1.30s
-01:00:55 [build] Complete!
+01:01:30 [build] 217 page(s) built in 1.16s
+01:01:30 [build] Complete!
 ```
+
+That is the code-bearing build every capture, assertion and axe run below was
+taken from (the only later commits are documentation).
 
 ### Evidence capture
 
